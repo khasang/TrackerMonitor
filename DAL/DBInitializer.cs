@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class DBInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
-    {
-        private Random rnd = new Random();
+    //public class DBInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
+    //{
+    //    private Random rnd = new Random();
 
-        protected override void Seed(ApplicationDbContext context)
-        {
-            // Здесь инициализируем БД
-        }
-    }
+    //    protected override void Seed(ApplicationDbContext context)
+    //    {
+    //        // Здесь инициализируем БД
+    //    }
+    //}
 }
