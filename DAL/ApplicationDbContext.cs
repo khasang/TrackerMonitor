@@ -15,7 +15,7 @@ namespace DAL
         // public DbSet<Entity> Entities { get; set; }
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("PrimaryConnection", throwIfV1Schema: false)
         {
         }
 
