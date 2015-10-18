@@ -9,17 +9,23 @@ namespace DAL.DBInitializers
 {
     public class DBInit
     {
-        List<IInitialization> list = new List<IInitialization>();
+        List<IInitialization> methods = new List<IInitialization>();
+        ApplicationDbContext context;
+
+        public DBInit(ApplicationDbContext context)
+        {
+            this.context = context;
+        }
 
         public void Add(IInitialization initObject)
         {
-            list.Add(initObject);
+            methods.Add(initObject);
         }
 
         public void Initialization()
         {
-            foreach (var init in list)
-                init.Initialization();
+            foreach (var method in methods)
+                method.Initialization(context);
         }
     }
 }

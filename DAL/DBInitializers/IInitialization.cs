@@ -11,6 +11,6 @@ namespace DAL.DBInitializers
         /// <summary>
         /// Метод, который реализует логику инициализации БД
         /// </summary>
-        void Initialization();
+        void Initialization(ApplicationDbContext context);
     }
 }

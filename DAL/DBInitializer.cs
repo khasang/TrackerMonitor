@@ -19,26 +19,26 @@ namespace DAL
         {
             // Здесь инициализируем БД
 
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            //var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            ApplicationUser user = new ApplicationUser()
-            {
-                UserName = "admin@admin.com",
-                Email = "admin@admin.com"
-            };
+            //ApplicationUser user = new ApplicationUser()
+            //{
+            //    UserName = "admin@admin.com",
+            //    Email = "admin@admin.com"
+            //};
 
-            IdentityRole role = new IdentityRole("Admin");
+            //IdentityRole role = new IdentityRole("Admin");
 
-            userManager.Create(user, "password");
-            roleManager.Create(role);
-            userManager.AddToRole(user.Id, role.Name);
+            //userManager.Create(user, "password");
+            //roleManager.Create(role);
+            //userManager.AddToRole(user.Id, role.Name);
 
-            //DBInit init = new DBInit();
-            //// Здесь добавляем созданные нами объекты, наследованные от IInitialization, для инициализации БД
-            //init.Add(new InitOject);
+            DBInit init = new DBInit(context);
+            // Здесь добавляем созданные нами объекты, наследованные от IInitialization, для инициализации БД
+            init.Add(new InitUserAdmin());
 
-            //init.Initialization();
+            init.Initialization();
         }
     }
 }
