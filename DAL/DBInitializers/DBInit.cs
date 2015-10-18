@@ -9,7 +9,7 @@ namespace DAL.DBInitializers
 {
     public class DBInit
     {
-        List<IInitialization> methods = new List<IInitialization>();
+        List<InitializationDB> methods = new List<InitializationDB>();
         ApplicationDbContext context;
 
         public DBInit(ApplicationDbContext context)
@@ -17,7 +17,7 @@ namespace DAL.DBInitializers
             this.context = context;
         }
 
-        public void Add(IInitialization initObject)
+        public void Add(InitializationDB initObject)
         {
             methods.Add(initObject);
         }

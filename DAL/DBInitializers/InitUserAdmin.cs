@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace DAL.DBInitializers
 {
-    class InitUserAdmin : IInitialization
+    class InitUserAdmin : InitializationDB
     {
-        public void Initialization(ApplicationDbContext context)
+        override public void Initialization(ApplicationDbContext context)
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
             ApplicationUser user = new ApplicationUser()
             {
