@@ -21,7 +21,8 @@ namespace DAL
 
             DBInit init = new DBInit(context);
 
-            // Здесь добавляем созданные нами объекты, наследованные от IInitialization, для инициализации БД
+            // Здесь добавляем созданные нами объекты, наследованные от InitializationDB, для инициализации БД
+            // Пример DBInitilizers.InitUserAdmin
             init.Add(new InitUserAdmin());
 
             init.Initialization();
