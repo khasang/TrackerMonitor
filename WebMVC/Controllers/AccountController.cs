@@ -41,7 +41,7 @@ namespace WebMVC.Controllers // Hello
             }
         }
 
-        public ApplicationUserManager UserManager
+        public ApplicationUserManager UserManager // User
         {
             get
             {
