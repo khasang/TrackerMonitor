@@ -1,4 +1,5 @@
 ﻿using DAL.Entities;
+using DAL.EntityConfigurations;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace DAL
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         //      Здесь подключаем сущности EF
-        // public DbSet<Entity> Entities { get; set; }
+        public DbSet<GPSTracker> GPSTrackers { get; set; }
+        public DbSet<GPSTrackerMessage> GPSTrackerMessages { get; set; }
 
         public ApplicationDbContext()
             : base("PrimaryConnection", throwIfV1Schema: false)
@@ -24,16 +26,16 @@ namespace DAL
             return new ApplicationDbContext();
         }
 
-        /*
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // Здесь подключаем настройки связей сущностей между собой
 
-            modelBuilder.Configurations.Add(new ClassMapper());
-         
+            modelBuilder.Configurations.Add(new GPSTrackerMapper());
+            modelBuilder.Configurations.Add(new GPSTrackerMessageMapper());
 
             base.OnModelCreating(modelBuilder);
         }
-         */
+
     }
 }
