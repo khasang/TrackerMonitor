@@ -11,6 +11,13 @@ namespace DAL.Entities
 {
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser()
+        {
+            GPSTrackers = new HashSet<GPSTracker>();
+        }
+
+        public virtual ICollection<GPSTracker> GPSTrackers { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
