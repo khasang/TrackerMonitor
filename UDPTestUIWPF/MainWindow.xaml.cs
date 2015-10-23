@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UDPServer;
 
 namespace UDPTestUIWPF
 {
@@ -20,6 +21,8 @@ namespace UDPTestUIWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        UDPnet udpServer;
+
         public MainWindow()
         {
             InitializeComponent();

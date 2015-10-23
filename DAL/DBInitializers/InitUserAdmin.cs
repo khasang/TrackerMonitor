@@ -26,7 +26,7 @@ namespace DAL.DBInitializers
 
             userManager.Create(user, "password");
             roleManager.Create(role);
-            userManager.AddToRole(user.Id, role.Name); ;
+            userManager.AddToRole(user.Id, role.Name);
         }
     }
 }

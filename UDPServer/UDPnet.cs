@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace UDPServer
 {
-    class UDPnet
+    public class UDPnet
     {
         Thread thrd;
         bool stopReceive;
@@ -31,10 +31,10 @@ namespace UDPServer
             this.ipHost = IPAddress.Parse(ipNet);
         }
 
-        public void StartReceive(object f) // Запуск отдельного потока для приема сообщений
+        public void StartReceive() // Запуск отдельного потока для приема сообщений
         {
             thrd = new Thread(Receive);
-            thrd.Start(f);
+            thrd.Start();
         }
 
         void Receive() // Функция извлекающая пришедшие сообщения работающая в отдельном потоке.

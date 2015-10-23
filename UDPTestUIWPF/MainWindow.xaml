@@ -3,18 +3,84 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="UDP test" Height="400" Width="600">
     <Grid Margin="0,0,2,4">
+        
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="537*"/>
-            <ColumnDefinition Width="23*"/>
+            <ColumnDefinition Width="540*" />
+            <ColumnDefinition Width="25*" />
         </Grid.ColumnDefinitions>
-        <TextBox HorizontalAlignment="Left" Height="50" Margin="10,63,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="292" FontSize="16"/>
-        <TextBox HorizontalAlignment="Left" Height="50" Margin="10,187,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="292" FontSize="16"/>
-        <TextBox HorizontalAlignment="Left" Height="275" Margin="321,63,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="235" FontSize="16"/>
-        <Label Content="IP Adress:" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <Label Content="Port:" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <Label Content="Message:" HorizontalAlignment="Left" Margin="321,25,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <Button Content="Receive" HorizontalAlignment="Left" Margin="10,298,0,0" VerticalAlignment="Top" Width="130" Height="40" FontSize="16" FontWeight="Bold"/>
-        <Button Content="Send" HorizontalAlignment="Left" Margin="172,298,0,0" VerticalAlignment="Top" Width="130" Height="40" FontSize="16" FontWeight="Bold"/>
-
+        
+        <TextBox Name="IPAdresTextBoxs"
+                 HorizontalAlignment="Left"
+                 Height="50"
+                 Margin="10,63,0,0"
+                 TextWrapping="Wrap"
+                 Text="TextBox"
+                 VerticalAlignment="Top"
+                 Width="292" FontSize="16"
+                 IsEnabled="{Binding ElementName=Send, Path=IsChecked}"
+                 Text="{Binding }"/>
+        
+        <TextBox Name="PortTextBox"
+                 HorizontalAlignment="Left"
+                 Height="50"
+                 Margin="10,187,0,0"
+                 TextWrapping="Wrap"
+                 Text="TextBox"
+                 VerticalAlignment="Top"
+                 Width="292" FontSize="16" />
+        
+        <TextBox Name="MessageTextBox"
+                 HorizontalAlignment="Left"
+                 Height="275"
+                 Margin="321,63,0,0"
+                 TextWrapping="Wrap"
+                 Text="TextBox"
+                 VerticalAlignment="Top"
+                 Width="235" FontSize="16" />
+        
+        <Label Name="IPAdressLabel"
+               Content="IP Adress:"
+               HorizontalAlignment="Left"
+               Margin="10,25,0,0"
+               VerticalAlignment="Top"
+               FontSize="16"
+               FontWeight="Bold"
+               IsEnabled="{Binding ElementName=Send, Path=IsChecked}"/>
+        
+        <Label Content="Port:"
+               HorizontalAlignment="Left"
+               Margin="10,151,0,0"
+               VerticalAlignment="Top"
+               FontSize="16"
+               FontWeight="Bold" />
+        
+        <Label Content="Message:"
+               HorizontalAlignment="Left"
+               Margin="321,25,0,0"
+               VerticalAlignment="Top"
+               FontSize="16"
+               FontWeight="Bold" />
+        
+        <Button Name="StartButton"
+                Content="Start"
+                HorizontalAlignment="Left"
+                Margin="170,300,0,0"
+                VerticalAlignment="Top"
+                Width="130"
+                Height="40"
+                FontSize="16"
+                FontWeight="Bold" />
+        
+        <StackPanel HorizontalAlignment="Left"
+                    Height="30"
+                    Margin="10,300,0,0"
+                    VerticalAlignment="Top"
+                    Width="100">
+            
+            <RadioButton Name="Send" Content="Send" IsChecked="True" />
+            <RadioButton Name="Receive" Content="Receive" />
+            
+        </StackPanel>
+        
     </Grid>
 </Window>
