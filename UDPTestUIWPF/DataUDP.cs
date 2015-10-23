@@ -18,7 +18,7 @@ namespace UDPTestUIWPF
         {
             InPortProperty = DependencyProperty.Register("InPort", typeof(int), typeof(UDPDataModel), new PropertyMetadata(1111));
             OutPortProperty = DependencyProperty.Register("OutPort", typeof(int), typeof(UDPDataModel), new PropertyMetadata(2222));
-            IpHostProperty = DependencyProperty.Register("IpHost", typeof(IPAddress), typeof(UDPDataModel), new PropertyMetadata(new IPAddress(new byte[] { 192, 168, 1, 255 })));
+            IpHostProperty = DependencyProperty.Register("IpHost", typeof(IPAddress), typeof(UDPDataModel));
         }
 
         public int InPort
