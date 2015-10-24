@@ -13,15 +13,17 @@ namespace UDPTestUIWPF
         static public DependencyProperty InPortProperty;
         static public DependencyProperty OutPortProperty;
         static public DependencyProperty IpHostProperty;
+        static public DependencyProperty MessageProperty;
 
         static UDPDataModel()
         {
             InPortProperty = DependencyProperty.Register("InPort", typeof(int), typeof(UDPDataModel), new PropertyMetadata(1111));
             OutPortProperty = DependencyProperty.Register("OutPort", typeof(int), typeof(UDPDataModel), new PropertyMetadata(2222));
             IpHostProperty = DependencyProperty.Register("IpHost", typeof(IPAddress), typeof(UDPDataModel));
+            MessageProperty = DependencyProperty.Register("Message", typeof(string), typeof(UDPDataModel), new PropertyMetadata("Message"));
         }
 
-        public int InPort
+        public int InPort 
         {
             set
             {
@@ -54,6 +56,18 @@ namespace UDPTestUIWPF
             get
             {
                 return (IPAddress)GetValue(IpHostProperty);
+            }
+        }
+
+        public string Message
+        {
+            set
+            {
+                SetValue(MessageProperty, value);
+            }
+            get
+            {
+                return (string)GetValue(MessageProperty);
             }
         }
 

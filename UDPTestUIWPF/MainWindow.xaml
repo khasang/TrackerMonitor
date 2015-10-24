@@ -5,7 +5,7 @@
         Title="UDP test" Height="400" Width="600">
     
     <Window.Resources>
-        <local:UDPDataModel x:Key="UdpModel" IpHost="192.168.1.255"></local:UDPDataModel>
+        <local:UDPDataModel x:Key="UdpModel"></local:UDPDataModel>
         <local:ConvertStrInt x:Key="ConvertStrInt"></local:ConvertStrInt>
         <local:ConvertStrIPAddress x:Key="ConvertStrIPAddress"></local:ConvertStrIPAddress>
     </Window.Resources>
@@ -24,7 +24,8 @@
                  TextWrapping="Wrap"
                  Text="{Binding IpHost,
                         Converter={StaticResource ConvertStrIPAddress},
-                        UpdateSourceTrigger=LostFocus}"
+                        UpdateSourceTrigger=LostFocus,
+                        Mode=TwoWay}"
                  VerticalAlignment="Top"
                  Width="292" FontSize="16"
                  IsEnabled="{Binding ElementName=Send, Path=IsChecked}" />
@@ -36,7 +37,8 @@
                  TextWrapping="Wrap"
                  Text="{Binding InPort,
                         Converter={StaticResource ConvertStrInt},
-                        UpdateSourceTrigger=LostFocus}"
+                        UpdateSourceTrigger=LostFocus,
+                        Mode=TwoWay}"
                  VerticalAlignment="Top"
                  Width="292" FontSize="16" />
         
@@ -45,7 +47,7 @@
                  Height="275"
                  Margin="321,63,0,0"
                  TextWrapping="Wrap"
-                 Text="TextBox"
+                 Text="{Binding Message, Mode=TwoWay}"
                  VerticalAlignment="Top"
                  Width="235" FontSize="16" />
         
