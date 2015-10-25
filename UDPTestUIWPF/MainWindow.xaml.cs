@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,11 +22,50 @@ namespace UDPTestUIWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        UDPDataModel dataUDP;
         UDPnet udpServer;
 
         public MainWindow()
         {
+            this.udpServer = new UDPnet();
+            this.dataUDP = new UDPDataModel();
+
             InitializeComponent();
+        }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (StartButton.Content.ToString() == "Start")
+            {
+                if(SendRadioButton.IsChecked == true)
+                {
+                    StatusLabel.Content = udpServer.SendMessage(MessageTextBox.Text,
+                                                                IPAddress.Parse(IPAddressTextBox.Text),
+                                                                Convert.ToInt32(PortTextBox.Text));
+                }
+                else
+                {
+                    StartButton.Content = "Stop";
+
+                    udpServer.StartReceive(Convert.ToInt32(PortTextBox.Text));
+                }                
+            }
+            else
+            {
+                StartButton.Content = "Start";
+
+                udpServer.StopReceive();
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            StringBuilder str = new StringBuilder();
+            foreach(var message in udpServer.Messages)
+            {
+                str.AppendLine(Encoding.ASCII.GetString(message.Value));
+            }
+            MessageTextBox.Text = str.ToString();
         }
     }
 }

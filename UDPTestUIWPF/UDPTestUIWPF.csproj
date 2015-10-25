@@ -63,7 +63,7 @@
     </Compile>
     <Compile Include="ConvertStrInt.cs" />
     <Compile Include="ConvertStrIPAddress.cs" />
-    <Compile Include="DataUDP.cs" />
+    <Compile Include="UDPDataModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

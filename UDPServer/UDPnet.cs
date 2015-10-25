@@ -11,28 +11,35 @@ namespace UDPServer
 {
     public class UDPnet
     {
-        Thread thrd;
+        Thread thrd = null;
         bool stopReceive;
+        UdpClient udpClient = null;
 
-        int inPort;
-        int outPort;
-
-        IPAddress ipHost;
-        UdpClient udp = null;
+        int keyMessage = 0;
+        Dictionary<int, byte[]> messages = new Dictionary<int, byte[]>();
 
         public int InPort { get; set; }
         public int OutPort { get; set; }
-        public IPAddress IpHost { get; set; }
+        public IPAddress IpAddress { get; set; }
+        public Dictionary<int, byte[]> Messages { get { return messages; } }
 
-        public UDPnet(string ipNet, int outPort, int inPort)
+        public UDPnet()
         {
-            this.inPort = inPort;
-            this.outPort = outPort;
-            this.ipHost = IPAddress.Parse(ipNet);
+            this.InPort = 9050;
+            this.OutPort = 9051;
+            this.IpAddress = new IPAddress(new byte[] { 192, 168, 1, 255 });
         }
 
-        public void StartReceive() // Запуск отдельного потока для приема сообщений
+        public UDPnet(IPAddress ipAddress, int outPort, int inPort)
         {
+            this.InPort = inPort;
+            this.OutPort = outPort;
+            this.IpAddress = ipAddress;
+        }
+
+        public void StartReceive(int port) // Запуск отдельного потока для приема сообщений
+        {
+            this.InPort = port;
             thrd = new Thread(Receive);
             thrd.Start();
         }
@@ -41,55 +48,67 @@ namespace UDPServer
         {
             try
             {
-                if (udp != null) udp.Close();  // Перед созданием нового объекта закрываем старый
-                udp = new UdpClient(inPort);
-                IPEndPoint ipendpoint;
+                if (udpClient != null) udpClient.Close();  // Перед созданием нового объекта закрываем старый
 
-                int count = 0;
+                udpClient = new UdpClient(InPort);
+                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, InPort);
+
                 while (true)
                 {
-                    ipendpoint = null;
-                    byte[] message = udp.Receive(ref ipendpoint);
+                    byte[] message = udpClient.Receive(ref ipEndPoint);
 
-                    //System.Windows.MessageBox.Show(Encoding.Default.GetString(message));
-
+                    Messages.Add(++keyMessage, message);   // Имитация записи в БД
+                    
                     if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
                 }
-                udp.Close();
-                udp = null;
+                udpClient.Close();
+                udpClient = null;
             }
             catch
             {
-                //System.Windows.MessageBox.Show("Ошибка приема сообщений!");
+               //  Ошибка приема сообщений!
+                Messages.Add(++keyMessage, Encoding.Default.GetBytes("Ошибка приема сообщений!"));
             }
         }
 
         public void StopReceive()  // Функция безопасной остановки дополнительного потока
         {
             stopReceive = true;            // Останавливаем цикл в дополнительном потоке            
-            if (udp != null) udp.Close();  // Принудительно закрываем объект класса UdpClient
+            if (udpClient != null) udpClient.Close();  // Принудительно закрываем объект класса UdpClient
             if (thrd != null) thrd.Join(); // Для корректного завершения дополнительного потока подключаем его к основному потоку.
         }
 
-        public void SendMessage(string name, IPAddress ipaddress) // Отправка сообщения
+        public string SendMessage(string message, IPAddress ipAddress, int port) // Отправка сообщения
         {
             UdpClient udp = new UdpClient();
+            IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, port);
+            byte[] messageByte = Encoding.Default.GetBytes(message);
 
-            //IPAddress ipaddress = IPAddress.Parse("192.168.1.255");
-            IPEndPoint ipendpoint = new IPEndPoint(ipaddress, outPort);
+            string backMessage = string.Empty;
 
-            byte[] message = Encoding.Default.GetBytes(name);
-            int sended = udp.Send(message, message.Length, ipendpoint);
-
-            // Если количество переданных байтов и предназначенных для 
-            // отправки совпадают, то 99,9% вероятности, что они доберутся 
-            // до адресата.
-            if (sended == message.Length)
+            try
             {
-                // все в порядке 
-                //System.Windows.MessageBox.Show("ok");
+                int sended = udp.Send(messageByte, messageByte.Length, ipEndPoint);
+
+                // Если количество переданных байтов и предназначенных для 
+                // отправки совпадают, то 99,9% вероятности, что они доберутся 
+                // до адресата.
+                if (sended == messageByte.Length)
+                {
+                    backMessage = string.Format("Отправленно {0} байт", sended);
+                }
             }
-            udp.Close();// После окончания попытки отправки закрываем UDP соединение,
+            catch
+            {
+                backMessage = "Ошибка при отправке!";
+            }
+            finally
+            {
+                udp.Close();  // После окончания попытки отправки закрываем UDP соединение
+                backMessage += " : Соединение закрыто.";
+            }
+
+            return backMessage;
         }
     }
 }
