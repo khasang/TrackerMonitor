@@ -19,7 +19,7 @@ namespace UDPTestUIWPF
             }
             catch
             {
-                return "192.168.1.255";
+                return "192.168.0.255";
             }
             
         }
@@ -33,7 +33,7 @@ namespace UDPTestUIWPF
             }
             catch
             {
-                return new IPAddress(new byte[] { 192, 168, 1, 255 });
+                return new IPAddress(new byte[] { 192, 168, 0, 255 });
             }
             
         }

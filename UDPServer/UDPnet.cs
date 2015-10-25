@@ -18,28 +18,25 @@ namespace UDPServer
         int keyMessage = 0;
         Dictionary<int, byte[]> messages = new Dictionary<int, byte[]>();
 
-        public int InPort { get; set; }
-        public int OutPort { get; set; }
+        public int Port { get; set; }
         public IPAddress IpAddress { get; set; }
         public Dictionary<int, byte[]> Messages { get { return messages; } }
 
         public UDPnet()
         {
-            this.InPort = 9050;
-            this.OutPort = 9051;
+            this.Port = 9050;
             this.IpAddress = new IPAddress(new byte[] { 192, 168, 1, 255 });
         }
 
-        public UDPnet(IPAddress ipAddress, int outPort, int inPort)
+        public UDPnet(IPAddress ipAddress, int port)
         {
-            this.InPort = inPort;
-            this.OutPort = outPort;
+            this.Port = port;
             this.IpAddress = ipAddress;
         }
 
         public void StartReceive(int port) // Запуск отдельного потока для приема сообщений
         {
-            this.InPort = port;
+            this.Port = port;
             thrd = new Thread(Receive);
             thrd.Start();
         }
@@ -50,8 +47,8 @@ namespace UDPServer
             {
                 if (udpClient != null) udpClient.Close();  // Перед созданием нового объекта закрываем старый
 
-                udpClient = new UdpClient(InPort);
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, InPort);
+                udpClient = new UdpClient(Port);
+                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, Port);
 
                 while (true)
                 {
