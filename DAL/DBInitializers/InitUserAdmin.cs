@@ -19,7 +19,8 @@ namespace DAL.DBInitializers
             ApplicationUser user = new ApplicationUser()
             {
                 UserName = "admin@admin.com",
-                Email = "admin@admin.com"
+                Email = "admin@admin.com",
+                EmailConfirmed = true
             };
 
             IdentityRole role = new IdentityRole("Admin");
