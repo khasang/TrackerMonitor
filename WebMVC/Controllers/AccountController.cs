@@ -74,22 +74,39 @@ namespace WebMVC.Controllers
                 return View(model);
             }
 
-            // Сбои при входе не приводят к блокированию учетной записи
-            // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            var user = await UserManager.FindAsync(model.Email, model.Password);
+            if (user != null)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Неудачная попытка входа.");
-                    return View(model);
+                if (user.EmailConfirmed == true)
+                {
+                    // Сбои при входе не приводят к блокированию учетной записи
+                    // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
+                    var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+                    switch (result)
+                    {
+                        case SignInStatus.Success:
+                            return RedirectToLocal(returnUrl);
+                        case SignInStatus.LockedOut:
+                            return View("Lockout");
+                        case SignInStatus.RequiresVerification:
+                            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                        case SignInStatus.Failure:
+                        default:
+                            ModelState.AddModelError("", "Неудачная попытка входа.");                            
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Не подтвержден email.");
+
+                }
             }
+            else
+            {
+                ModelState.AddModelError("", "Неверный логин или пароль");
+            }
+
+            return View(model);
         }
 
         //
