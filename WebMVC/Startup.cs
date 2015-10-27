@@ -1,5 +1,7 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.Owin;
 using Owin;
+using WebMVC.Hubs;
 
 [assembly: OwinStartupAttribute(typeof(WebMVC.Startup))]
 namespace WebMVC

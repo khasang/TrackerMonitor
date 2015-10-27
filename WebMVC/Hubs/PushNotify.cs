@@ -29,9 +29,11 @@ namespace WebMVC.Hubs
         {
             //if (message.GPSTracker.Owner == _userManager.FindById(Context.User.Identity.GetUserId()))
             //{
-            //Clients.User("3277c404-708b-43b8-9bbd-e6e65a869d3f").ShowMessage(message);
+
+            //Cогласно докам по сигнал р используется IPrincipal.Identity.Name as the user name, но можно изменить
+            Clients.User("3277c404-708b-43b8-9bbd-e6e65a869d3f").ShowMessage(message); //айди админа
             //}
-            Clients.All.ShowMessage(message);
+            //Clients.All.ShowMessage(message);
         }
 
     }
