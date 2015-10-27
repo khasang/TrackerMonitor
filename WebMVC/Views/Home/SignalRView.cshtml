@@ -1,0 +1,29 @@
+﻿@model DAL.Entities.GPSTrackerMessage
+
+@{
+    ViewBag.Title = "SignalRView";
+}
+
+<h2>SignalRView</h2>
+
+<button id="start-creation">Отслеживать</button>
+
+Messages: <span id="progress">null</span>
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            //событие нажатия на кнопку
+            $('#start-creation').on('click', function () {
+                $(this).attr("disabled", "disabled");
+                $.connection.hub.start();
+            });
+            //прокси
+            var pushNotify = $.connection.pushNotify;
+            pushNotify.client.ShowMessage = function (message) {
+                $('#progress').html(message.GPSTrackerId);
+            };
+        });
+    </script>
+}

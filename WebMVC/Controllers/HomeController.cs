@@ -26,5 +26,11 @@ namespace WebMVC.Controllers
 
             return View();
         }
+
+
+        public ActionResult SignalRView()
+        {
+            return View();
+        }
     }
 }
