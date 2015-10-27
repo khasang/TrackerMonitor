@@ -90,7 +90,11 @@
     <Compile Include="DBInitializers\InitializationDB.cs" />
     <Compile Include="DBInitializers\InitUserAdmin.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\GPSTracker.cs" />
+    <Compile Include="Entities\GPSTrackerMessage.cs" />
     <Compile Include="EntityConfigurations\ClassMapper.cs" />
+    <Compile Include="EntityConfigurations\GPSTrackerMapper.cs" />
+    <Compile Include="EntityConfigurations\GPSTrackerMessageMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
