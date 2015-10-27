@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPServer", "UDPServer\UDPS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPTestUIWPF", "UDPTestUIWPF\UDPTestUIWPF.csproj", "{D979642B-5BC8-44A7-8CB6-6FE516E59C02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMessageSender", "C:\Users\qdimka1991\Desktop\Новая папка\TestMessageSender\TestMessageSender.csproj", "{892D742D-0AE9-4205-A80A-DBB59C6B57F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMessageSender", "TestMessageSender\TestMessageSender.csproj", "{892D742D-0AE9-4205-A80A-DBB59C6B57F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
