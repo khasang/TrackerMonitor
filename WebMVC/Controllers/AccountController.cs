@@ -11,7 +11,7 @@ using Microsoft.Owin.Security;
 using WebMVC.Models;
 using DAL.Entities;
 
-namespace WebMVC.Controllers
+namespace WebMVC.Controllers // Hello 
 {
     [Authorize]
     public class AccountController : Controller
@@ -41,7 +41,7 @@ namespace WebMVC.Controllers
             }
         }
 
-        public ApplicationUserManager UserManager
+        public ApplicationUserManager UserManager // User
         {
             get
             {
