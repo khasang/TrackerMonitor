@@ -43,8 +43,8 @@ namespace UDPServer
                 {
                     while (true)
                     {
-                        message = (await udpClient.ReceiveAsync()).Buffer;
-                        Messages.Add(++keyMessage, message);   // Имитация записи в БД
+                        message = (await udpClient.ReceiveAsync()).Buffer; // Ассинхронно ждем получения сообщения
+                        Messages.Add(++keyMessage, message);   // Имитация записи в БД полученного сообщения
 
                         if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
                     }
@@ -63,7 +63,7 @@ namespace UDPServer
             if (udpClient != null) udpClient.Close();  // Принудительно закрываем объект класса UdpClient
         }
 
-        public string SendMessage(string message, IPAddress ipAddress, int port) // Отправка сообщения
+        public async Task<string> SendMessageAsync(string message, IPAddress ipAddress, int port) // Отправка сообщения
         {
             udpClient = new UdpClient();
             IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, port);
@@ -73,7 +73,8 @@ namespace UDPServer
 
             try
             {
-                int sended = udpClient.Send(messageByte, messageByte.Length, ipEndPoint);
+                // Отправляем ассинхронно сообщение
+                int sended = await udpClient.SendAsync(messageByte, messageByte.Length, ipEndPoint);
 
                 // Если количество переданных байтов и предназначенных для 
                 // отправки совпадают, то 99,9% вероятности, что они доберутся 

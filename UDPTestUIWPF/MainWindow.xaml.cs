@@ -33,15 +33,15 @@ namespace UDPTestUIWPF
             InitializeComponent();
         }
 
-        private void StartButton_Click(object sender, RoutedEventArgs e)
+        private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
             if (StartButton.Content.ToString() == "Start")
             {
                 if(SendRadioButton.IsChecked == true)
                 {
-                    StatusLabel.Content = udpServer.SendMessage(MessageTextBox.Text,
-                                                                IPAddress.Parse(IPAddressTextBox.Text),
-                                                                Convert.ToInt32(PortTextBox.Text));
+                    StatusLabel.Content = (string) await udpServer.SendMessageAsync(MessageTextBox.Text,
+                                                                                    IPAddress.Parse(IPAddressTextBox.Text),
+                                                                                    Convert.ToInt32(PortTextBox.Text));
                 }
                 else
                 {
