@@ -17,22 +17,8 @@ namespace UDPServer
         int keyMessage = 0;
         Dictionary<int, byte[]> messages = new Dictionary<int, byte[]>();
 
-        public int Port { get; set; }
-        public IPAddress IpAddress { get; set; }
         public Dictionary<int, byte[]> Messages { get { return messages; } }
-
-        public UDPnet()
-        {
-            this.Port = 9050;
-            this.IpAddress = new IPAddress(new byte[] { 192, 168, 1, 255 });
-        }
-
-        public UDPnet(IPAddress ipAddress, int port)
-        {
-            this.Port = port;
-            this.IpAddress = ipAddress;
-        }
-
+        
         public async void StartReceiveAsync(int port) // Запуск отдельного потока для приема сообщений
         {
             using(udpClient = new UdpClient(port))
