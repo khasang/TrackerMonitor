@@ -35,31 +35,29 @@ namespace UDPServer
 
         public async void StartReceiveAsync(int port) // Запуск отдельного потока для приема сообщений
         {
-            try
+            using(udpClient = new UdpClient(port))
             {
-                if (udpClient != null) udpClient.Close();  // Перед созданием нового объекта закрываем старый
+                byte[] message;
 
-                udpClient = new UdpClient(port);
-
-                while (true)
+                try
                 {
-                    byte[] message = (await udpClient.ReceiveAsync()).Buffer;
+                    while (true)
+                    {
+                        message = (await udpClient.ReceiveAsync()).Buffer;
+                        Messages.Add(++keyMessage, message);   // Имитация записи в БД
 
-                    Messages.Add(++keyMessage, message);   // Имитация записи в БД
-
-                    if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
+                        if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
+                    }
                 }
-                udpClient.Close();
-                udpClient = null;
-            }
-            catch(Exception e)
-            {
-                //  Ошибка приема сообщений!
-                Messages.Add(++keyMessage, Encoding.Default.GetBytes("Ошибка приема сообщений! " + e.Message));
+                catch (Exception e)
+                {
+                    //  Ошибка приема сообщений!
+                    Messages.Add(++keyMessage, Encoding.Default.GetBytes("Ошибка приема сообщений! " + e.Message));
+                }
             }
         }        
 
-        public void StopReceive()  // Функция безопасной остановки дополнительного потока
+        public void StopReceive()          // Функция безопасной остановки дополнительного потока
         {
             stopReceive = true;            // Останавливаем цикл приема сообщений           
             if (udpClient != null) udpClient.Close();  // Принудительно закрываем объект класса UdpClient
@@ -67,7 +65,7 @@ namespace UDPServer
 
         public string SendMessage(string message, IPAddress ipAddress, int port) // Отправка сообщения
         {
-            UdpClient udp = new UdpClient();
+            udpClient = new UdpClient();
             IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, port);
             byte[] messageByte = Encoding.Default.GetBytes(message);
 
@@ -75,7 +73,7 @@ namespace UDPServer
 
             try
             {
-                int sended = udp.Send(messageByte, messageByte.Length, ipEndPoint);
+                int sended = udpClient.Send(messageByte, messageByte.Length, ipEndPoint);
 
                 // Если количество переданных байтов и предназначенных для 
                 // отправки совпадают, то 99,9% вероятности, что они доберутся 
@@ -91,7 +89,7 @@ namespace UDPServer
             }
             finally
             {
-                udp.Close();  // После окончания попытки отправки закрываем UDP соединение
+                udpClient.Close();  // После окончания попытки отправки закрываем UDP соединение
                 backMessage += " : Соединение закрыто.";
             }
 
