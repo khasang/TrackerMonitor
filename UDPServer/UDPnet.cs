@@ -53,10 +53,10 @@ namespace UDPServer
                 udpClient.Close();
                 udpClient = null;
             }
-            catch
+            catch(Exception e)
             {
                 //  Ошибка приема сообщений!
-                Messages.Add(++keyMessage, Encoding.Default.GetBytes("Ошибка приема сообщений!"));
+                Messages.Add(++keyMessage, Encoding.Default.GetBytes("Ошибка приема сообщений! " + e.Message));
             }
         }
 
@@ -91,7 +91,7 @@ namespace UDPServer
         {
             stopReceive = true;            // Останавливаем цикл в дополнительном потоке            
             if (udpClient != null) udpClient.Close();  // Принудительно закрываем объект класса UdpClient
-            if (thrd != null) thrd.Join(); // Для корректного завершения дополнительного потока подключаем его к основному потоку.
+            //if (thrd != null) thrd.Join(); // Для корректного завершения дополнительного потока подключаем его к основному потоку.
         }
 
         public string SendMessage(string message, IPAddress ipAddress, int port) // Отправка сообщения
