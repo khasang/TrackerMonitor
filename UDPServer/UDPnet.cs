@@ -11,9 +11,8 @@ namespace UDPServer
 {
     public class UDPnet
     {
-        Thread thrd = null;
-        bool stopReceive;
         UdpClient udpClient = null;
+        bool stopReceive;
 
         int keyMessage = 0;
         Dictionary<int, byte[]> messages = new Dictionary<int, byte[]>();
@@ -58,40 +57,12 @@ namespace UDPServer
                 //  Ошибка приема сообщений!
                 Messages.Add(++keyMessage, Encoding.Default.GetBytes("Ошибка приема сообщений! " + e.Message));
             }
-        }
-
-        async void Receive(int port) // Функция извлекающая пришедшие сообщения работающая в отдельном потоке.
-        {
-            //try
-            //{
-                if (udpClient != null) udpClient.Close();  // Перед созданием нового объекта закрываем старый
-
-                udpClient = new UdpClient(port);
-                //IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, Port);
-
-                while (true)
-                {
-                    byte[] message = (await udpClient.ReceiveAsync()).Buffer;
-
-                    Messages.Add(++keyMessage, message);   // Имитация записи в БД
-                    
-                    if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
-                }
-                udpClient.Close();
-                udpClient = null;
-            //}
-            //catch
-            //{
-            //   //  Ошибка приема сообщений!
-            //    Messages.Add(++keyMessage, Encoding.Default.GetBytes("Ошибка приема сообщений!"));
-            //}
-        }
+        }        
 
         public void StopReceive()  // Функция безопасной остановки дополнительного потока
         {
-            stopReceive = true;            // Останавливаем цикл в дополнительном потоке            
+            stopReceive = true;            // Останавливаем цикл приема сообщений           
             if (udpClient != null) udpClient.Close();  // Принудительно закрываем объект класса UdpClient
-            //if (thrd != null) thrd.Join(); // Для корректного завершения дополнительного потока подключаем его к основному потоку.
         }
 
         public string SendMessage(string message, IPAddress ipAddress, int port) // Отправка сообщения
