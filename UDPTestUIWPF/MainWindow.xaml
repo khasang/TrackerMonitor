@@ -120,7 +120,15 @@
                 VerticalAlignment="Top"
                 Width="235"
                 Height="40"
-                IsEnabled="{Binding IsChecked, ElementName=ReceiveRadioButton}" Click="Button_Click"/>
+                IsEnabled="{Binding IsChecked, ElementName=ReceiveRadioButton}"
+                Click="Button_Click"/>
+        
+        <CheckBox Name="MultiSendCheckBox"
+                  Content="MultiSend"
+                  HorizontalAlignment="Left"
+                  Margin="10,280,0,0"
+                  VerticalAlignment="Top"
+                  IsEnabled="{Binding IsChecked, ElementName=SendRadioButton}"/>
 
     </Grid>
 </Window>

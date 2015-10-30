@@ -39,9 +39,16 @@ namespace UDPTestUIWPF
             {
                 if(SendRadioButton.IsChecked == true)
                 {
-                    StatusLabel.Content = (string) await udpServer.SendMessageAsync(MessageTextBox.Text,
-                                                                                    IPAddress.Parse(IPAddressTextBox.Text),
-                                                                                    Convert.ToInt32(PortTextBox.Text));
+                    if (MultiSendCheckBox.IsChecked)
+                    {
+                        
+                    }
+                    else
+                    {
+                        StatusLabel.Content = (string) await udpServer.SendMessageAsync(MessageTextBox.Text,
+                                                                                        IPAddress.Parse(IPAddressTextBox.Text),
+                                                                                        Convert.ToInt32(PortTextBox.Text));
+                    }
                 }
                 else
                 {
