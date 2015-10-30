@@ -34,28 +34,20 @@ namespace UDPServer
             this.IpAddress = ipAddress;
         }
 
-        public void StartReceive(int port) // Запуск отдельного потока для приема сообщений
-        {
-            this.Port = port;
-            thrd = new Thread(Receive);
-            thrd.Start();
-        }
-
-        void Receive() // Функция извлекающая пришедшие сообщения работающая в отдельном потоке.
+        public async void StartReceiveAsync(int port) // Запуск отдельного потока для приема сообщений
         {
             try
             {
                 if (udpClient != null) udpClient.Close();  // Перед созданием нового объекта закрываем старый
 
-                udpClient = new UdpClient(Port);
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, Port);
+                udpClient = new UdpClient(port);
 
                 while (true)
                 {
-                    byte[] message = udpClient.Receive(ref ipEndPoint);
+                    byte[] message = (await udpClient.ReceiveAsync()).Buffer;
 
                     Messages.Add(++keyMessage, message);   // Имитация записи в БД
-                    
+
                     if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
                 }
                 udpClient.Close();
@@ -63,9 +55,36 @@ namespace UDPServer
             }
             catch
             {
-               //  Ошибка приема сообщений!
+                //  Ошибка приема сообщений!
                 Messages.Add(++keyMessage, Encoding.Default.GetBytes("Ошибка приема сообщений!"));
             }
+        }
+
+        async void Receive(int port) // Функция извлекающая пришедшие сообщения работающая в отдельном потоке.
+        {
+            //try
+            //{
+                if (udpClient != null) udpClient.Close();  // Перед созданием нового объекта закрываем старый
+
+                udpClient = new UdpClient(port);
+                //IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, Port);
+
+                while (true)
+                {
+                    byte[] message = (await udpClient.ReceiveAsync()).Buffer;
+
+                    Messages.Add(++keyMessage, message);   // Имитация записи в БД
+                    
+                    if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
+                }
+                udpClient.Close();
+                udpClient = null;
+            //}
+            //catch
+            //{
+            //   //  Ошибка приема сообщений!
+            //    Messages.Add(++keyMessage, Encoding.Default.GetBytes("Ошибка приема сообщений!"));
+            //}
         }
 
         public void StopReceive()  // Функция безопасной остановки дополнительного потока

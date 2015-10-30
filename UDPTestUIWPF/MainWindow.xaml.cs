@@ -48,7 +48,7 @@ namespace UDPTestUIWPF
                     StartButton.Content = "Stop";
                     StatusLabel.Content = "Принимаем сообщения...";
 
-                    udpServer.StartReceive(Convert.ToInt32(PortTextBox.Text));
+                    udpServer.StartReceiveAsync(Convert.ToInt32(PortTextBox.Text));
                 }                
             }
             else
