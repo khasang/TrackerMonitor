@@ -19,13 +19,19 @@ namespace WebMVC.Hubs
     //[Authorize]
     public class PushNotify:Hub
     {
-        [Authorize]
+        //[Authorize]
         public void SendNewMessage(GPSTrackerMessage message)
         {
-            Debug.WriteLine(Context.User.Identity.Name);
-            Clients.Group("admin@admin.com").ShowMessage(message); 
-            //у определенного пользователя группа в честь его username, которая содержит все его ConnectionId
-            Clients.Group("admin@ad.com").ShowMessage(message);
+            if (message.Id == 0)
+            {
+                //Debug.WriteLine(Context.User.Identity.Name);
+                Clients.Group("admin@admin.com").ShowMessage(message);
+            }
+            else if (message.Id == 1)
+            {
+                //у определенного пользователя группа в честь его username, которая содержит все его ConnectionId
+                Clients.Group("admin@ad.com").ShowMessage(message);
+            }
         }
 
         /// <summary>

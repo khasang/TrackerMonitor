@@ -26,11 +26,12 @@ namespace TestMessageSender
             {
                 GPSTrackerMessage message = new GPSTrackerMessage()
                 {
-                    Id = r.Next(10),
-                    GPSTrackerId = r.Next(3),
+                    Id = r.Next(2),
+                    GPSTrackerId = r.Next(30),
                     Latitude = 31 + r.Next(20),
                     Longitude = 31 - r.Next(20),
                     Time = DateTime.Now,
+                    
                 };
                 //вызов метода из хаба PushNotify
                 hubProxy.Invoke("SendNewMessage", message);

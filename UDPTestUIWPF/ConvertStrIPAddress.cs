@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -10,32 +11,29 @@ namespace UDPTestUIWPF
 {
     public class ConvertStrIPAddress : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            try
+            var ipAddress = value as IPAddress;
+
+            if (ipAddress != null)
             {
-                
-                return ((IPAddress)value).ToString();
+                return ipAddress.ToString();
             }
-            catch
-            {
-                return "192.168.0.255";
-            }
-            
+
+            return Binding.DoNothing;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            try
-            {
+            var text = value as string;
+            IPAddress ipAddress;
 
-                return IPAddress.Parse((string)value);
-            }
-            catch
+            if (text != null && IPAddress.TryParse(text, out ipAddress))
             {
-                return new IPAddress(new byte[] { 192, 168, 0, 255 });
+                return ipAddress;
             }
-            
+
+            return Binding.DoNothing;
         }
     }
 }

@@ -22,7 +22,7 @@ Messages: <span id="progress">null</span>
             //прокси
             var pushNotify = $.connection.pushNotify;
             pushNotify.client.ShowMessage = function (message) {
-                $('#progress').html(message.GPSTrackerId);
+                $('#progress').html(Latitude);
             };
         });
     </script>
