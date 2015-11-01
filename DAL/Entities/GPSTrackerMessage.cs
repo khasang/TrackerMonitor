@@ -13,8 +13,6 @@ namespace DAL.Entities
         public decimal Longitude { get; set; }
         public DateTime Time { get; set; }
 
-        public List<GPSTrackerMessage> ListOfMessages = new List<GPSTrackerMessage>();
-
         public int GPSTrackerId { get; set; }
         public virtual GPSTracker GPSTracker { get; set; }
     }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace UDPServer
 {
-    abstract class Message : EventArgs
+    public class MessageUDP : EventArgs
     {
+        public byte[] Message { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace DAL
     {
         //      Здесь подключаем сущности EF
         // public DbSet<Entity> Entities { get; set; }
+        public DbSet<GPSTracker> GPSTrackers { get; set; }
         public DbSet<GPSTrackerMessage> GPSTrackerMessages { get; set; }
 
         public ApplicationDbContext()

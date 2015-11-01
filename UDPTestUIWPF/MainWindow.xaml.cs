@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -32,6 +33,7 @@ namespace UDPTestUIWPF
         public MainWindow()
         {
             this.udpServer = new UDPnet();
+            udpServer.Received += GetMessage;
             this.dataUDP = new UDPDataModel();            
 
             InitializeComponent();
@@ -130,6 +132,14 @@ namespace UDPTestUIWPF
                 str.AppendLine(Encoding.ASCII.GetString(message.Value));
             }
             MessageTextBox.Text = str.ToString();
+        }
+
+        private void GetMessage(object sender, EventArgs e)
+        {
+            GPSTrackerMessage message = new GPSTrackerMessage();
+
+            e as MessageUDP == null?
+                MessageTextBox.Text = (e as MessageUDP == null)? string.Empty : ((MessageUDP)e).Message;
         }
     }
 }

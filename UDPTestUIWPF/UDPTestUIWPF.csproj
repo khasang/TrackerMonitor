@@ -97,6 +97,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{7a95cf0d-f891-4e66-9d8e-0680fec162a7}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UDPServer\UDPServer.csproj">
       <Project>{dbad3094-c6fa-4a62-b807-bed3ae69fbc3}</Project>
       <Name>UDPServer</Name>

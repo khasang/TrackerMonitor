@@ -13,13 +13,10 @@ namespace UDPServer
     {
         UdpClient udpClient = null;
         bool stopReceive;
+        byte[] message;
 
-        //public event Received();
-
-        int keyMessage = 0;
-        Dictionary<int, byte[]> messages = new Dictionary<int, byte[]>();
-
-        public Dictionary<int, byte[]> Messages { get { return messages; } }
+        public EventHandler Received = (x, y) => { };
+        public EventHandler ErrorReceived = (x, y) => { };
         
         public async void StartReceiveAsync(int port) // Запуск отдельного потока для приема сообщений
         {
@@ -32,9 +29,9 @@ namespace UDPServer
                     while (true)  // В цикле слушаем сообщения
                     {
                         message = (await udpClient.ReceiveAsync()).Buffer; // Ассинхронно ждем получение сообщения
-                        //Received(this, (EventArgs)message);
 
-                        Messages.Add(++keyMessage, message);   // Имитация записи в БД полученного сообщения
+                        MessageUDP a = new MessageUDP() { Message = message };
+                        Received(this, a);
 
                         if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
                     }
@@ -42,7 +39,7 @@ namespace UDPServer
                 catch (Exception e)
                 {
                     //  Ошибка приема сообщений!
-                    Messages.Add(++keyMessage, Encoding.Default.GetBytes("Ошибка приема сообщений! " + e.Message));
+                    ErrorReceived(this, new ErrorMessage { Message = e.Message });
                 }
             }
         }
@@ -53,7 +50,8 @@ namespace UDPServer
             using(udpClient = new UdpClient(port))
             {
                 message = (await udpClient.ReceiveAsync()).Buffer;
-                Messages.Add(++keyMessage, message);
+                Received(this, new MessageUDP() { Message = message });
+
                 udpClient.Close();
             }
             return message;
