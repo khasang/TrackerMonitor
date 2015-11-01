@@ -13,6 +13,7 @@ using Microsoft.Owin.Security;
 using WebMVC.Models;
 using DAL.Entities;
 using DAL;
+using System.Net.Mail;
 
 namespace WebMVC
 {
@@ -21,6 +22,26 @@ namespace WebMVC
         public Task SendAsync(IdentityMessage message)
         {
             // Подключите здесь службу электронной почты для отправки сообщения электронной почты.
+            return configSendMailAsync(message);
+        }
+
+        private Task configSendMailAsync(IdentityMessage message)
+        {
+            MailMessage msg = new MailMessage();  // сообщение электронной почты
+
+            msg.From = new MailAddress("admin@adm.com", "Admin");  // от кого
+            msg.To.Add(new MailAddress(message.Destination));      // кому
+            msg.Subject = message.Subject;                         // Тема сообщения
+            msg.IsBodyHtml = true;  // показывает, имеет ли основная часть почтового сообщения формат HTML.
+            msg.Body = message.Body;                               // Тело сообщения
+
+            SmtpClient client = new SmtpClient();
+
+            // Send the email.
+            if (client != null)
+            {
+                client.SendAsync(msg, "test");  // Отправка сообщения
+            }
             return Task.FromResult(0);
         }
     }

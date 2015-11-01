@@ -1,4 +1,6 @@
 ﻿@model WebMVC.Models.RegisterViewModel
+@using CaptchaMvc.HtmlHelpers
+
 @{
     ViewBag.Title = "Регистрация";
 }
@@ -27,6 +29,11 @@
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Captcha("www", "Введите символы", 5)
         </div>
     </div>
     <div class="form-group">

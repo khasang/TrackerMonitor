@@ -86,9 +86,9 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DBInitializer.cs" />
-    <Compile Include="DBInitializers\ArrayList.cs" />
     <Compile Include="DBInitializers\DBInit.cs" />
-    <Compile Include="DBInitializers\IInitialization.cs" />
+    <Compile Include="DBInitializers\InitializationDB.cs" />
+    <Compile Include="DBInitializers\InitUserAdmin.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\GPSTracker.cs" />
     <Compile Include="Entities\GPSTrackerMessage.cs" />

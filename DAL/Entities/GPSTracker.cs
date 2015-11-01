@@ -8,17 +8,27 @@ namespace DAL.Entities
 {
     public class GPSTracker
     {
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Имя устройства
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Владелец устройства
+        /// </summary>
+        public string OwnerId { get; set; }
+        public virtual ApplicationUser Owner { get; set; }
+
+        /// <summary>
+        /// Коллекция сообщений, отправляемых устройством
+        /// </summary>
+        public virtual ICollection<GPSTrackerMessage> GPSTrackerMessages { get; set; }
+
         public GPSTracker()
         {
             GPSTrackerMessages = new HashSet<GPSTrackerMessage>();
         }
-
-        public int Id { get; set; }
-        public string Name { get; set; }
-
-        public int OwnerId { get; set; }
-        public virtual ApplicationUser Owner { get; set; }
-
-        public virtual ICollection<GPSTrackerMessage> GPSTrackerMessages { get; set; }
     }
 }
