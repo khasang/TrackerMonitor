@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +26,9 @@ namespace UDPTestUIWPF
         UDPDataModel dataUDP;
         UDPnet udpServer;
 
+        Task taskMultiSend;
+        CancellationTokenSource cancellToken = new CancellationTokenSource();
+
         public MainWindow()
         {
             this.udpServer = new UDPnet();
@@ -39,9 +43,16 @@ namespace UDPTestUIWPF
             {
                 if(SendRadioButton.IsChecked == true)
                 {
-                    if (MultiSendCheckBox.IsChecked)
+                    if (MultiSendCheckBox.IsChecked == true)
                     {
-                        
+                        StartButton.Content = "Stop";
+                        StatusLabel.Content = "Отправляем сообщения в цикле...";
+
+                        var ipAddress = IPAddress.Parse(IPAddressTextBox.Text);
+                        var port = Convert.ToInt32(PortTextBox.Text);
+
+                        var t = Task.Factory.StartNew(() => MultiSendMessageAsync(ipAddress, port), cancellToken.Token);
+                        var s = t.AsyncState;
                     }
                     else
                     {
@@ -63,8 +74,22 @@ namespace UDPTestUIWPF
                 StartButton.Content = "Start";
                 StatusLabel.Content = "Статус соединения";
 
+                cancellToken.Cancel();
                 udpServer.StopReceive();
             }
+        }
+
+        private Task MultiSendMessageAsync(IPAddress ipAddress, int port)
+        {
+            Random rnd = new Random();
+            return new Task(() =>
+            {
+                while (true)
+                {
+                    udpServer.SendMessageAsync(rnd.Next(1000, 10000).ToString(), ipAddress, port);
+                    Thread.Sleep(2000);
+                }
+            });
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
