@@ -39,20 +39,22 @@ namespace UDPTestUIWPF
 
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
+            IPAddress ipAddress = IPAddress.Parse(IPAddressTextBox.Text);
+            int port = Convert.ToInt32(PortTextBox.Text);
+            string message = MessageTextBox.Text;
+
             // Нажата кнопка "Старт"
             if (StartButton.Content.ToString() == "Start")
             {
                 // Выбрана отправка сообщения
                 if(SendRadioButton.IsChecked == true)
                 {
-                    IPAddress ipAddress = IPAddress.Parse(IPAddressTextBox.Text);
-                    int port = Convert.ToInt32(PortTextBox.Text);
-                    string message = MessageTextBox.Text;
-
                     // Выбрана мультиотправка в цикле
-                    if (MultiSendCheckBox.IsChecked == true)
+                    if (CycleSendCheckBox.IsChecked == true)
                     {
-                        MultiSendMessage(ipAddress, port);
+                        MessageTextBox.Text = string.Empty;
+
+                        CycleSendMessage(ipAddress, port);
                     }
                     // Выбрана одиночная отправка
                     else
@@ -66,7 +68,18 @@ namespace UDPTestUIWPF
                     StartButton.Content = "Stop";
                     StatusLabel.Content = "Принимаем сообщения...";
 
-                    udpServer.StartReceiveAsync(Convert.ToInt32(PortTextBox.Text));
+                    if (CycleSendCheckBox.IsChecked == true)
+                    {
+                        udpServer.StartReceiveAsync(port);
+                    }
+                    else
+                    {
+                        byte[] receiveMessage = (byte[]) await udpServer.ReceiveSingleMessageAsync(port);
+                        MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += Encoding.ASCII.GetString(receiveMessage) + "\n"));
+
+                        StartButton.Content = "Start";
+                        StatusLabel.Content = "Статус соединения...";
+                    }
                 }                
             }
             // Нажата кнопка "Стоп"
@@ -85,7 +98,7 @@ namespace UDPTestUIWPF
         /// </summary>
         /// <param name="ipAddress">IP адрес получателя</param>
         /// <param name="port">Порт</param>
-        private void MultiSendMessage(IPAddress ipAddress, int port)
+        private void CycleSendMessage(IPAddress ipAddress, int port)
         {
             StartButton.Content = "Stop";
             StatusLabel.Content = "Отправляем сообщения в цикле...";
@@ -97,6 +110,8 @@ namespace UDPTestUIWPF
                 {
                     string message = rnd.Next(1000, 10000).ToString();
                     udpServer.SendMessageAsync(message, ipAddress, port);
+
+                    MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += string.Format("отправлено: {0}\n", message)));
                     Thread.Sleep(2000);
 
                     if (stopSend) break;

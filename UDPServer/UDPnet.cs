@@ -42,7 +42,19 @@ namespace UDPServer
                     Messages.Add(++keyMessage, Encoding.Default.GetBytes("Ошибка приема сообщений! " + e.Message));
                 }
             }
-        }        
+        }
+     
+        public async Task<byte[]> ReceiveSingleMessageAsync(int port)
+        {
+            byte[] message;
+            using(udpClient = new UdpClient(port))
+            {
+                message = (await udpClient.ReceiveAsync()).Buffer;
+                Messages.Add(++keyMessage, message);
+                udpClient.Close();
+            }
+            return message;
+        }
 
         public void StopReceive()          // Функция безопасной остановки дополнительного потока
         {

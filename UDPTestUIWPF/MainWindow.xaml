@@ -123,12 +123,11 @@
                 IsEnabled="{Binding IsChecked, ElementName=ReceiveRadioButton}"
                 Click="Button_Click"/>
         
-        <CheckBox Name="MultiSendCheckBox"
-                  Content="MultiSend"
+        <CheckBox Name="CycleSendCheckBox"
+                  Content="CycleSend"
                   HorizontalAlignment="Left"
                   Margin="10,280,0,0"
-                  VerticalAlignment="Top"
-                  IsEnabled="{Binding IsChecked, ElementName=SendRadioButton}"/>
+                  VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
