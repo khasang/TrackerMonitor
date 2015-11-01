@@ -52,21 +52,7 @@ namespace UDPTestUIWPF
                     // Выбрана мультиотправка в цикле
                     if (MultiSendCheckBox.IsChecked == true)
                     {
-                        StartButton.Content = "Stop";
-                        StatusLabel.Content = "Отправляем сообщения в цикле...";                        
-
-                        stopSend = false;
-                        Task.Factory.StartNew(() =>
-                        {
-                            while (true)
-                            {
-                                message = rnd.Next(1000, 10000).ToString();
-                                udpServer.SendMessageAsync(message, ipAddress, port);
-                                Thread.Sleep(2000);
-
-                                if (stopSend) break;
-                            }
-                        });
+                        MultiSendMessage(ipAddress, port);
                     }
                     // Выбрана одиночная отправка
                     else
@@ -92,6 +78,30 @@ namespace UDPTestUIWPF
                 stopSend = true; // Останавливаем мультиотправку
                 udpServer.StopReceive();  // Останавливаем прием сообщений
             }
+        }
+
+        /// <summary>
+        /// Отправляет случайные сообщения в цикле
+        /// </summary>
+        /// <param name="ipAddress">IP адрес получателя</param>
+        /// <param name="port">Порт</param>
+        private void MultiSendMessage(IPAddress ipAddress, int port)
+        {
+            StartButton.Content = "Stop";
+            StatusLabel.Content = "Отправляем сообщения в цикле...";
+
+            stopSend = false;
+            Task.Factory.StartNew(() =>
+            {
+                while (true)
+                {
+                    string message = rnd.Next(1000, 10000).ToString();
+                    udpServer.SendMessageAsync(message, ipAddress, port);
+                    Thread.Sleep(2000);
+
+                    if (stopSend) break;
+                }
+            });
         }
 
         /// <summary>
