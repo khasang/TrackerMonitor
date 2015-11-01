@@ -26,41 +26,55 @@ namespace UDPTestUIWPF
         UDPDataModel dataUDP;
         UDPnet udpServer;
 
-        Task taskMultiSend;
-        CancellationTokenSource cancellToken = new CancellationTokenSource();
+        bool stopSend = true;
+        Random rnd = new Random();
 
         public MainWindow()
         {
             this.udpServer = new UDPnet();
-            this.dataUDP = new UDPDataModel();
+            this.dataUDP = new UDPDataModel();            
 
             InitializeComponent();
         }
 
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
+            // Нажата кнопка "Старт"
             if (StartButton.Content.ToString() == "Start")
             {
+                // Выбрана отправка сообщения
                 if(SendRadioButton.IsChecked == true)
                 {
+                    IPAddress ipAddress = IPAddress.Parse(IPAddressTextBox.Text);
+                    int port = Convert.ToInt32(PortTextBox.Text);
+                    string message = MessageTextBox.Text;
+
+                    // Выбрана мультиотправка в цикле
                     if (MultiSendCheckBox.IsChecked == true)
                     {
                         StartButton.Content = "Stop";
-                        StatusLabel.Content = "Отправляем сообщения в цикле...";
+                        StatusLabel.Content = "Отправляем сообщения в цикле...";                        
 
-                        var ipAddress = IPAddress.Parse(IPAddressTextBox.Text);
-                        var port = Convert.ToInt32(PortTextBox.Text);
+                        stopSend = false;
+                        Task.Factory.StartNew(() =>
+                        {
+                            while (true)
+                            {
+                                message = rnd.Next(1000, 10000).ToString();
+                                udpServer.SendMessageAsync(message, ipAddress, port);
+                                Thread.Sleep(2000);
 
-                        var t = Task.Factory.StartNew(() => MultiSendMessageAsync(ipAddress, port), cancellToken.Token);
-                        var s = t.AsyncState;
+                                if (stopSend) break;
+                            }
+                        });
                     }
+                    // Выбрана одиночная отправка
                     else
                     {
-                        StatusLabel.Content = (string) await udpServer.SendMessageAsync(MessageTextBox.Text,
-                                                                                        IPAddress.Parse(IPAddressTextBox.Text),
-                                                                                        Convert.ToInt32(PortTextBox.Text));
+                        StatusLabel.Content = (string) await udpServer.SendMessageAsync(message, ipAddress, port);
                     }
                 }
+                // Выбрано "Принимать сообщения"
                 else
                 {
                     StartButton.Content = "Stop";
@@ -69,29 +83,20 @@ namespace UDPTestUIWPF
                     udpServer.StartReceiveAsync(Convert.ToInt32(PortTextBox.Text));
                 }                
             }
+            // Нажата кнопка "Стоп"
             else
             {
                 StartButton.Content = "Start";
                 StatusLabel.Content = "Статус соединения";
 
-                cancellToken.Cancel();
-                udpServer.StopReceive();
+                stopSend = true; // Останавливаем мультиотправку
+                udpServer.StopReceive();  // Останавливаем прием сообщений
             }
         }
 
-        private Task MultiSendMessageAsync(IPAddress ipAddress, int port)
-        {
-            Random rnd = new Random();
-            return new Task(() =>
-            {
-                while (true)
-                {
-                    udpServer.SendMessageAsync(rnd.Next(1000, 10000).ToString(), ipAddress, port);
-                    Thread.Sleep(2000);
-                }
-            });
-        }
-
+        /// <summary>
+        /// Обновляет в текстбоксе список полученных сообщений
+        /// </summary>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder str = new StringBuilder();
