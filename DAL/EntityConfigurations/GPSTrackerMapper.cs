@@ -21,7 +21,7 @@ namespace DAL.EntityConfigurations
 
             this.HasRequired<ApplicationUser>(c => c.Owner)
                 .WithMany(o => o.GPSTrackers)
-                .HasForeignKey(c => c.OwnerId)
+                .HasForeignKey(c => c.OwnerId);
 
             this.HasMany<GPSTrackerMessage>(c => c.GPSTrackerMessages)
                 .WithRequired(m => m.GPSTracker)

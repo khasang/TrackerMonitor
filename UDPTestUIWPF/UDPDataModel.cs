@@ -17,7 +17,7 @@ namespace UDPTestUIWPF
         static UDPDataModel()
         {
             PortProperty = DependencyProperty.Register("Port", typeof(int), typeof(UDPDataModel), new PropertyMetadata(9050));
-            IpAddressProperty = DependencyProperty.Register("IpAddress", typeof(IPAddress), typeof(UDPDataModel), new PropertyMetadata(new IPAddress(new byte[]{192,168,0,1})));
+            IpAddressProperty = DependencyProperty.Register("IpAddress", typeof(IPAddress), typeof(UDPDataModel), new PropertyMetadata(new IPAddress(new byte[]{192,168,0,255})));
             MessageProperty = DependencyProperty.Register("Message", typeof(string), typeof(UDPDataModel), new PropertyMetadata("Message"));
         }
 

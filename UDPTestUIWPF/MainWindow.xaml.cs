@@ -33,7 +33,8 @@ namespace UDPTestUIWPF
         public MainWindow()
         {
             this.udpServer = new UDPnet();
-            udpServer.Received += GetMessage;
+            udpServer.eventReceived += OnShowReceivedMessage;
+
             this.dataUDP = new UDPDataModel();            
 
             InitializeComponent();
@@ -126,20 +127,20 @@ namespace UDPTestUIWPF
         /// </summary>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            StringBuilder str = new StringBuilder();
-            foreach(var message in udpServer.Messages)
-            {
-                str.AppendLine(Encoding.ASCII.GetString(message.Value));
-            }
-            MessageTextBox.Text = str.ToString();
+            //StringBuilder str = new StringBuilder();
+            //foreach(var message in udpServer.Messages)
+            //{
+            //    str.AppendLine(Encoding.ASCII.GetString(message.Value));
+            //}
+            //MessageTextBox.Text = str.ToString();
         }
 
-        private void GetMessage(object sender, EventArgs e)
+        private void OnShowReceivedMessage(object sender, EventArgs e)
         {
             GPSTrackerMessage message = new GPSTrackerMessage();
 
-            e as MessageUDP == null?
-                MessageTextBox.Text = (e as MessageUDP == null)? string.Empty : ((MessageUDP)e).Message;
+            MessageTextBox.Text += "\n";
+            MessageTextBox.Text += (e as MessageUDP == null)? string.Empty : ((MessageUDP)e).ToString();
         }
     }
 }

@@ -114,15 +114,6 @@
                VerticalAlignment="Top"
                Width="292" Height="26"/>
 
-        <Button Content="Обновить список сообщений"
-                HorizontalAlignment="Left"
-                Margin="320,350,0,0"
-                VerticalAlignment="Top"
-                Width="235"
-                Height="40"
-                IsEnabled="{Binding IsChecked, ElementName=ReceiveRadioButton}"
-                Click="Button_Click"/>
-        
         <CheckBox Name="CycleSendCheckBox"
                   Content="CycleSend"
                   HorizontalAlignment="Left"

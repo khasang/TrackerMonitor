@@ -13,10 +13,9 @@ namespace UDPServer
     {
         UdpClient udpClient = null;
         bool stopReceive;
-        byte[] message;
 
-        public EventHandler Received = (x, y) => { };
-        public EventHandler ErrorReceived = (x, y) => { };
+        public EventHandler eventReceived = (x, y) => { };
+        public EventHandler eventErrorReceived = (x, y) => { };
         
         public async void StartReceiveAsync(int port) // Запуск отдельного потока для приема сообщений
         {
@@ -29,17 +28,15 @@ namespace UDPServer
                     while (true)  // В цикле слушаем сообщения
                     {
                         message = (await udpClient.ReceiveAsync()).Buffer; // Ассинхронно ждем получение сообщения
-
-                        MessageUDP a = new MessageUDP() { Message = message };
-                        Received(this, a);
+                        eventReceived(this, new MessageUDP() { Message = message }); // Генерируем событие о получении сообщения.
 
                         if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
                     }
                 }
                 catch (Exception e)
                 {
-                    //  Ошибка приема сообщений!
-                    ErrorReceived(this, new ErrorMessage { Message = e.Message });
+                    // Генерируем событие об ошибке приема сообщений!
+                    eventErrorReceived(this, new ErrorMessage { Message = e.Message });
                 }
             }
         }
@@ -50,7 +47,7 @@ namespace UDPServer
             using(udpClient = new UdpClient(port))
             {
                 message = (await udpClient.ReceiveAsync()).Buffer;
-                Received(this, new MessageUDP() { Message = message });
+                eventReceived(this, new MessageUDP() { Message = message });
 
                 udpClient.Close();
             }
