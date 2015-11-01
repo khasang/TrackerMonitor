@@ -14,6 +14,8 @@ namespace UDPServer
         UdpClient udpClient = null;
         bool stopReceive;
 
+        public event Received();
+
         int keyMessage = 0;
         Dictionary<int, byte[]> messages = new Dictionary<int, byte[]>();
 
@@ -30,6 +32,7 @@ namespace UDPServer
                     while (true)  // В цикле слушаем сообщения
                     {
                         message = (await udpClient.ReceiveAsync()).Buffer; // Ассинхронно ждем получение сообщения
+                        Received(this, (EventArgs)message);
 
                         Messages.Add(++keyMessage, message);   // Имитация записи в БД полученного сообщения
 
