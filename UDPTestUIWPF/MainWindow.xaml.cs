@@ -33,7 +33,7 @@ namespace UDPTestUIWPF
         public MainWindow()
         {
             this.udpServer = new UDPnet();
-            udpServer.eventReceived += OnShowReceivedMessage;
+            udpServer.eventReceivedMessage += OnShowReceivedMessage;
 
             this.dataUDP = new UDPDataModel();            
 
@@ -42,9 +42,14 @@ namespace UDPTestUIWPF
 
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            IPAddress ipAddress = IPAddress.Parse(IPAddressTextBox.Text);
+            byte octet1 = byte.Parse(Octet1TextBox.Text);
+            byte octet2 = byte.Parse(Octet2TextBox.Text);
+            byte octet3 = byte.Parse(Octet3TextBox.Text);
+            byte octet4 = byte.Parse(Octet4TextBox.Text);
+
+            IPAddress ipAddress = new IPAddress(new byte[] { octet1, octet2, octet3, octet4 });
             int port = Convert.ToInt32(PortTextBox.Text);
-            string message = MessageTextBox.Text;
+            byte[] message = Encoding.ASCII.GetBytes(MessageTextBox.Text);
 
             // Нажата кнопка "Старт"
             if (StartButton.Content.ToString() == "Start")
@@ -53,7 +58,7 @@ namespace UDPTestUIWPF
                 if(SendRadioButton.IsChecked == true)
                 {
                     // Выбрана мультиотправка в цикле
-                    if (CycleSendCheckBox.IsChecked == true)
+                    if (CycleCheckBox.IsChecked == true)
                     {
                         MessageTextBox.Text = string.Empty;
 
@@ -71,7 +76,7 @@ namespace UDPTestUIWPF
                     StartButton.Content = "Stop";
                     StatusLabel.Content = "Принимаем сообщения...";
 
-                    if (CycleSendCheckBox.IsChecked == true)
+                    if (CycleCheckBox.IsChecked == true)
                     {
                         udpServer.StartReceiveAsync(port);
                     }
@@ -111,10 +116,10 @@ namespace UDPTestUIWPF
             {
                 while (true)
                 {
-                    string message = rnd.Next(1000, 10000).ToString();
+                    byte[] message = Encoding.ASCII.GetBytes(rnd.Next(1000, 10000).ToString());
                     udpServer.SendMessageAsync(message, ipAddress, port);
 
-                    MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += string.Format("отправлено: {0}\n", message)));
+                    MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += string.Format("отправлено: {0}\n", Encoding.ASCII.GetString(message))));
                     Thread.Sleep(2000);
 
                     if (stopSend) break;
@@ -122,25 +127,12 @@ namespace UDPTestUIWPF
             });
         }
 
-        /// <summary>
-        /// Обновляет в текстбоксе список полученных сообщений
-        /// </summary>
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //StringBuilder str = new StringBuilder();
-            //foreach(var message in udpServer.Messages)
-            //{
-            //    str.AppendLine(Encoding.ASCII.GetString(message.Value));
-            //}
-            //MessageTextBox.Text = str.ToString();
-        }
-
         private void OnShowReceivedMessage(object sender, EventArgs e)
         {
-            GPSTrackerMessage message = new GPSTrackerMessage();
+            //GPSTrackerMessage message = new GPSTrackerMessage();
 
             MessageTextBox.Text += "\n";
-            MessageTextBox.Text += (e as MessageUDP == null)? string.Empty : ((MessageUDP)e).ToString();
+            MessageTextBox.Text += (e as UDPMessage == null)? string.Empty : ((UDPMessage)e).ToString();
         }
     }
 }

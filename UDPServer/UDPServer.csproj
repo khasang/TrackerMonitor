@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErrorMessage.cs" />
-    <Compile Include="MessageUDP.cs" />
+    <Compile Include="UDPMessage.cs" />
     <Compile Include="UDPnet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
