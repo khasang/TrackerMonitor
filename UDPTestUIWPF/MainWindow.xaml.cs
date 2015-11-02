@@ -47,6 +47,7 @@ namespace UDPTestUIWPF
             byte octet3 = byte.Parse(Octet3TextBox.Text);
             byte octet4 = byte.Parse(Octet4TextBox.Text);
 
+            //IPAddress ipAddress = new IPAddress(new byte[] { dataUDP.Octet1, dataUDP.Octet2, dataUDP.Octet3, dataUDP.Octet4 });
             IPAddress ipAddress = new IPAddress(new byte[] { octet1, octet2, octet3, octet4 });
             int port = Convert.ToInt32(PortTextBox.Text);
             byte[] message = Encoding.ASCII.GetBytes(MessageTextBox.Text);

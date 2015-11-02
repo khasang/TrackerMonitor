@@ -61,8 +61,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ConvertStrInt.cs" />
-    <Compile Include="ConvertStrIPAddress.cs" />
+    <Compile Include="ConvertStrByte.cs" />
+    <Compile Include="ConvertStrUShort.cs" />
     <Compile Include="UDPDataModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

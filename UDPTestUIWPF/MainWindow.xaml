@@ -5,9 +5,9 @@
         Title="UDP test" Height="450" Width="600">
 
     <Window.Resources>
+        <local:ConvertStrUShort x:Key="ConvertStrUShort"></local:ConvertStrUShort>
         <local:UDPDataModel x:Key="UdpModel"></local:UDPDataModel>
-        <local:ConvertStrInt x:Key="ConvertStrInt"></local:ConvertStrInt>
-        <local:ConvertStrIPAddress x:Key="ConvertStrIPAddress"></local:ConvertStrIPAddress>
+        <local:ConvertStrByte x:Key="ConvertStrByte"></local:ConvertStrByte>
     </Window.Resources>
 
     <Grid Margin="0,0,2,4" DataContext="{StaticResource UdpModel}">
@@ -22,20 +22,26 @@
                  Margin="10,159,0,0"
                  TextWrapping="Wrap"
                  Text="{Binding Port,
-                        Converter={StaticResource ConvertStrInt},
+                        Converter={StaticResource ConvertStrUShort},
                         UpdateSourceTrigger=LostFocus,
                         Mode=TwoWay}"
                  VerticalAlignment="Top"
-                 Width="100" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" />
+                 Width="100"
+                 Height="40"
+                 FontSize="16"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center" />
 
         <TextBox Name="MessageTextBox"
                  HorizontalAlignment="Left"
+                 Width="311"
                  Height="296"
                  Margin="245,63,0,0"
                  TextWrapping="WrapWithOverflow"
                  Text="{Binding Message, Mode=TwoWay}"
                  VerticalAlignment="Top"
-                 Width="311" FontSize="16" VerticalScrollBarVisibility="Auto" />
+                 FontSize="16"
+                 VerticalScrollBarVisibility="Auto" />
 
         <Label Name="IPAdressLabel"
                Content="IP Adress:"
@@ -115,7 +121,7 @@
             <TextBox Name="Octet1TextBox"
                      TextWrapping="Wrap"
                      Text="{Binding Octet1,
-                        Converter={StaticResource ConvertStrInt},
+                        Converter={StaticResource ConvertStrByte},
                         UpdateSourceTrigger=LostFocus,
                         Mode=TwoWay}"
                      Margin="0"
@@ -133,7 +139,7 @@
             <TextBox Name="Octet2TextBox"
                      TextWrapping="Wrap"
                      Text="{Binding Octet2,
-                        Converter={StaticResource ConvertStrInt},
+                        Converter={StaticResource ConvertStrByte},
                         UpdateSourceTrigger=LostFocus,
                         Mode=TwoWay}"
                      Margin="0"
@@ -151,7 +157,7 @@
             <TextBox Name="Octet3TextBox"
                      TextWrapping="Wrap"
                      Text="{Binding Octet3,
-                        Converter={StaticResource ConvertStrInt},
+                        Converter={StaticResource ConvertStrByte},
                         UpdateSourceTrigger=LostFocus,
                         Mode=TwoWay}"
                      Margin="0"
@@ -170,7 +176,7 @@
             <TextBox Name="Octet4TextBox"
                      TextWrapping="Wrap"
                      Text="{Binding Octet4,
-                        Converter={StaticResource ConvertStrInt},
+                        Converter={StaticResource ConvertStrByte},
                         UpdateSourceTrigger=LostFocus,
                         Mode=TwoWay}"
                      Margin="0"

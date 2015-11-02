@@ -7,11 +7,11 @@ using System.Windows.Data;
 
 namespace UDPTestUIWPF
 {
-    public class ConvertStrInt : IValueConverter
+    public class ConvertStrUShort : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return ((int)value).ToString();
+            return ((ushort)value).ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -19,11 +19,11 @@ namespace UDPTestUIWPF
             
             try
             {
-                return Int32.Parse(value.ToString());
+                return ushort.Parse(value.ToString());
             }
             catch
             {
-                return 0;
+                return (ushort)0;
             }
         }
     }
