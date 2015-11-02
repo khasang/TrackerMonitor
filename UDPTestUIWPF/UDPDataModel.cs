@@ -18,27 +18,32 @@ namespace UDPTestUIWPF
             Octet1Property = DependencyProperty.Register("Octet1",
                                                         typeof(byte),
                                                         typeof(UDPDataModel),
-                                                        new PropertyMetadata(192, new PropertyChangedCallback(ChangedCallbackMethod), new CoerceValueCallback(CoerceOctetCallbackMethod)));
+                                                        new PropertyMetadata((byte)192),
+                                                        new ValidateValueCallback(ValidateOctetCallbackMethod));
 
             Octet2Property = DependencyProperty.Register("Octet2",
                                                         typeof(byte),
                                                         typeof(UDPDataModel),
-                                                        new PropertyMetadata(168, new PropertyChangedCallback(ChangedCallbackMethod), new CoerceValueCallback(CoerceOctetCallbackMethod)));
+                                                        new PropertyMetadata((byte)168),
+                                                        new ValidateValueCallback(ValidateOctetCallbackMethod));
 
             Octet3Property = DependencyProperty.Register("Octet3",
                                                         typeof(byte),
                                                         typeof(UDPDataModel),
-                                                        new PropertyMetadata(0, new PropertyChangedCallback(ChangedCallbackMethod), new CoerceValueCallback(CoerceOctetCallbackMethod)));
+                                                        new PropertyMetadata((byte)0),
+                                                        new ValidateValueCallback(ValidateOctetCallbackMethod));
 
             Octet4Property = DependencyProperty.Register("Octet4",
                                                         typeof(byte),
                                                         typeof(UDPDataModel),
-                                                        new PropertyMetadata(255, new PropertyChangedCallback(ChangedCallbackMethod), new CoerceValueCallback(CoerceOctetCallbackMethod)));
+                                                        new PropertyMetadata((byte)255),
+                                                        new ValidateValueCallback(ValidateOctetCallbackMethod));
 
             PortProperty = DependencyProperty.Register("Port",
                                                         typeof(ushort),
                                                         typeof(UDPDataModel),
-                                                        new PropertyMetadata(9050, new PropertyChangedCallback(ChangedCallbackMethod), new CoerceValueCallback(CoercePortCallbackMethod)));
+                                                        new PropertyMetadata((ushort)9050),
+                                                        new ValidateValueCallback(ValidatePortCallbackMethod));
             
             MessageProperty = DependencyProperty.Register("Message",
                                                         typeof(string),
@@ -82,26 +87,18 @@ namespace UDPTestUIWPF
             get { return (string)GetValue(MessageProperty); }
         }
 
-        // Метод, который будет срабатывать при обновлении значения свойства для корректирования значения октета, если оно не подходит.
-        private static object CoerceOctetCallbackMethod(DependencyObject d, object baseValue)
+        static bool ValidateOctetCallbackMethod(object value)
         {
-            if ((int)baseValue <= 255 && (int)baseValue >= 0)
-                return baseValue;
-            return (byte)0;
+            if (value is byte)
+                return true;
+            return false;
         }
 
-        // Метод, который будет срабатывать при обновлении значения свойства для корректирования значения порта, если оно не подходит.
-        private static object CoercePortCallbackMethod(DependencyObject d, object baseValue)
+        static bool ValidatePortCallbackMethod(object value)
         {
-            if ((int)baseValue <= 10000 && (int)baseValue >= 9000)
-                return baseValue;
-            return (ushort)9050;
-        }
-
-       // Метод который будет срабатывать при обновлении значения свойства. (Указывается через метаданные)
-        private static void ChangedCallbackMethod(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            //Application.Current.MainWindow.Title = e.NewValue.ToString();
+            if (value is ushort)
+                return true;
+            return false;
         }
     }
 }

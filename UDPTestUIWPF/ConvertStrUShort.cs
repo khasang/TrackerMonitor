@@ -11,12 +11,6 @@ namespace UDPTestUIWPF
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return ((ushort)value).ToString();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            
             try
             {
                 return ushort.Parse(value.ToString());
@@ -24,7 +18,12 @@ namespace UDPTestUIWPF
             catch
             {
                 return (ushort)0;
-            }
+            }          
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return value.ToString();
         }
     }
 }

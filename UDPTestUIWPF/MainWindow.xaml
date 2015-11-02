@@ -5,8 +5,8 @@
         Title="UDP test" Height="450" Width="600">
 
     <Window.Resources>
-        <local:ConvertStrUShort x:Key="ConvertStrUShort"></local:ConvertStrUShort>
         <local:UDPDataModel x:Key="UdpModel"></local:UDPDataModel>
+        <local:ConvertStrUShort x:Key="ConvertStrUShort"></local:ConvertStrUShort>
         <local:ConvertStrByte x:Key="ConvertStrByte"></local:ConvertStrByte>
     </Window.Resources>
 
