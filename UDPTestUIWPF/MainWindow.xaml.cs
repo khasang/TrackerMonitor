@@ -35,7 +35,7 @@ namespace UDPTestUIWPF
             this.udpServer = new UDPnet();
             udpServer.eventReceivedMessage += OnShowReceivedMessage;
 
-            this.dataUDP = new UDPDataModel();            
+            //this.dataUDP = new UDPDataModel();            
 
             InitializeComponent();
         }

@@ -13,6 +13,8 @@ namespace UDPTestUIWPF
         static public DependencyProperty Octet3Property;
         static public DependencyProperty Octet4Property;
 
+        static public DependencyProperty IPAddressProperty;
+
         static UDPDataModel()
         {
             Octet1Property = DependencyProperty.Register("Octet1",
@@ -49,6 +51,11 @@ namespace UDPTestUIWPF
                                                         typeof(string),
                                                         typeof(UDPDataModel),
                                                         new PropertyMetadata("Message"));
+
+            IPAddressProperty = DependencyProperty.Register("IPAddress",
+                                                        typeof(IPAddress),
+                                                        typeof(UDPDataModel),
+                                                        new PropertyMetadata(new IPAddress(new byte[] { 192, 168, 0, 255} )));
         }
 
         public byte Octet1
@@ -73,6 +80,12 @@ namespace UDPTestUIWPF
         {
             set { SetValue(Octet4Property, value); }
             get { return (byte)GetValue(Octet4Property); }
+        }
+
+        public IPAddress IPAddress
+        {
+            set { SetValue(IPAddressProperty, value); }
+            get { return new IPAddress(new byte[] { Octet1, Octet2, Octet3, Octet4 }); }
         }
 
         public ushort Port
