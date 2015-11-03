@@ -6,6 +6,7 @@
 
     <Window.Resources>
         <local:UDPDataModel x:Key="UdpModel"
+                            x:Name="udpModel"
                             Port="{Binding ElementName=PortTextBox, Path=Text}"
                             Octet1="{Binding ElementName=Octet1TextBox, Path=Text}"
                             Octet2="{Binding ElementName=Octet2TextBox, Path=Text}"
@@ -13,7 +14,7 @@
                             Octet4="{Binding ElementName=Octet4TextBox, Path=Text}"
                             Message="{Binding ElementName=MessageTextBox, Path=Text}">            
         </local:UDPDataModel>
-        <local:ConvertStrUShort x:Key="ConvertStrUShort"></local:ConvertStrUShort>
+        <local:ConvertStrInt x:Key="ConvertStrUShort"></local:ConvertStrInt>
         <local:ConvertStrByte x:Key="ConvertStrByte"></local:ConvertStrByte>
     </Window.Resources>
 

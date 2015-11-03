@@ -13,8 +13,6 @@ namespace UDPTestUIWPF
         static public DependencyProperty Octet3Property;
         static public DependencyProperty Octet4Property;
 
-        static public DependencyProperty IPAddressProperty;
-
         static UDPDataModel()
         {
             Octet1Property = DependencyProperty.Register("Octet1",
@@ -42,20 +40,15 @@ namespace UDPTestUIWPF
                                                         new ValidateValueCallback(ValidateOctetCallbackMethod));
 
             PortProperty = DependencyProperty.Register("Port",
-                                                        typeof(ushort),
+                                                        typeof(int),
                                                         typeof(UDPDataModel),
-                                                        new PropertyMetadata((ushort)9050),
+                                                        new PropertyMetadata(9050),
                                                         new ValidateValueCallback(ValidatePortCallbackMethod));
             
             MessageProperty = DependencyProperty.Register("Message",
                                                         typeof(string),
                                                         typeof(UDPDataModel),
                                                         new PropertyMetadata("Message"));
-
-            IPAddressProperty = DependencyProperty.Register("IPAddress",
-                                                        typeof(IPAddress),
-                                                        typeof(UDPDataModel),
-                                                        new PropertyMetadata(new IPAddress(new byte[] { 192, 168, 0, 255} )));
         }
 
         public byte Octet1
@@ -84,14 +77,21 @@ namespace UDPTestUIWPF
 
         public IPAddress IPAddress
         {
-            set { SetValue(IPAddressProperty, value); }
             get { return new IPAddress(new byte[] { Octet1, Octet2, Octet3, Octet4 }); }
+            set
+            {
+                byte[] ipAddress = value.GetAddressBytes();
+                Octet1 = ipAddress[0];
+                Octet2 = ipAddress[1];
+                Octet3 = ipAddress[2];
+                Octet4 = ipAddress[3];
+            }
         }
 
-        public ushort Port
+        public int Port
         {
             set { SetValue(PortProperty, value); }
-            get { return (ushort)GetValue(PortProperty); }
+            get { return (int)GetValue(PortProperty); }
         }
         
         public string Message
@@ -109,7 +109,7 @@ namespace UDPTestUIWPF
 
         static bool ValidatePortCallbackMethod(object value)
         {
-            if (value is ushort)
+            if (value is int)
                 return true;
             return false;
         }

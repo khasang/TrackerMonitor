@@ -35,22 +35,12 @@ namespace UDPTestUIWPF
             this.udpServer = new UDPnet();
             udpServer.eventReceivedMessage += OnShowReceivedMessage;
 
-            //this.dataUDP = new UDPDataModel();            
-
             InitializeComponent();
         }
 
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            byte octet1 = byte.Parse(Octet1TextBox.Text);
-            byte octet2 = byte.Parse(Octet2TextBox.Text);
-            byte octet3 = byte.Parse(Octet3TextBox.Text);
-            byte octet4 = byte.Parse(Octet4TextBox.Text);
-
-            //IPAddress ipAddress = new IPAddress(new byte[] { dataUDP.Octet1, dataUDP.Octet2, dataUDP.Octet3, dataUDP.Octet4 });
-            IPAddress ipAddress = new IPAddress(new byte[] { octet1, octet2, octet3, octet4 });
-            int port = Convert.ToInt32(PortTextBox.Text);
-            byte[] message = Encoding.ASCII.GetBytes(MessageTextBox.Text);
+            var udpModel = (UDPDataModel) this.FindResource("UdpModel");
 
             // Нажата кнопка "Старт"
             if (StartButton.Content.ToString() == "Start")
@@ -63,12 +53,12 @@ namespace UDPTestUIWPF
                     {
                         MessageTextBox.Text = string.Empty;
 
-                        CycleSendMessage(ipAddress, port);
+                        CycleSendMessage(udpModel.IPAddress, udpModel.Port);
                     }
                     // Выбрана одиночная отправка
                     else
                     {
-                        StatusLabel.Content = (string) await udpServer.SendMessageAsync(message, ipAddress, port);
+                        StatusLabel.Content = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
                     }
                 }
                 // Выбрано "Принимать сообщения"
@@ -79,11 +69,11 @@ namespace UDPTestUIWPF
 
                     if (CycleCheckBox.IsChecked == true)
                     {
-                        udpServer.StartReceiveAsync(port);
+                        udpServer.StartReceiveAsync(udpModel.Port);
                     }
                     else
                     {
-                        byte[] receiveMessage = (byte[]) await udpServer.ReceiveSingleMessageAsync(port);
+                        byte[] receiveMessage = (byte[])await udpServer.ReceiveSingleMessageAsync(udpModel.Port);
                         MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += Encoding.ASCII.GetString(receiveMessage) + "\n"));
 
                         StartButton.Content = "Start";
