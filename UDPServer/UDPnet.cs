@@ -12,7 +12,7 @@ namespace UDPServer
     public class UDPnet
     {
         UdpClient udpClient = null;
-        bool stopReceive;
+        bool stopReceive = false;
 
         public EventHandler eventReceivedMessage = (x, y) => { };
         public EventHandler eventReceivedError = (x, y) => { };
@@ -21,6 +21,7 @@ namespace UDPServer
         {
             using(udpClient = new UdpClient(port))
             {
+                stopReceive = false;
                 byte[] message;
 
                 try

@@ -191,11 +191,12 @@
                      FontSize="16" Width="40"/>
         </StackPanel>
         
-        <CheckBox x:Name="WtiteDBCheckBox"
+        <CheckBox x:Name="WriteDBCheckBox"
                   Content="Write to DB"
                   HorizontalAlignment="Left"
                   Margin="10,285,0,0"
-                  VerticalAlignment="Top"/>
+                  VerticalAlignment="Top"
+                  IsEnabled="{Binding IsChecked, ElementName=ReceiveRadioButton}"/>
 
     </Grid>
 </Window>

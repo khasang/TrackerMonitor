@@ -1,4 +1,6 @@
-﻿using DAL.Entities;
+﻿using DAL;
+using DAL.Entities;
+using DAL.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,55 +43,65 @@ namespace UDPTestUIWPF
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
             var udpModel = (UDPDataModel) this.FindResource("UdpModel");
+            string contentButton = StartButton.Content.ToString();
 
-            // Нажата кнопка "Старт"
-            if (StartButton.Content.ToString() == "Start")
+            // Выбрана отправка сообщения
+            if(contentButton == "Start" && SendRadioButton.IsChecked == true)
             {
-                // Выбрана отправка сообщения
-                if(SendRadioButton.IsChecked == true)
-                {
-                    // Выбрана мультиотправка в цикле
-                    if (CycleCheckBox.IsChecked == true)
-                    {
-                        MessageTextBox.Text = string.Empty;
 
-                        CycleSendMessage(udpModel.IPAddress, udpModel.Port);
-                    }
-                    // Выбрана одиночная отправка
-                    else
-                    {
-                        StatusLabel.Content = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
-                    }
+                // Выбрана мультиотправка в цикле
+                if (CycleCheckBox.IsChecked == true)
+                {
+                    MessageTextBox.Text = string.Empty;
+                    CycleSendMessage(udpModel.IPAddress, udpModel.Port);
                 }
-                // Выбрано "Принимать сообщения"
+                // Выбрана одиночная отправка
                 else
                 {
-                    StartButton.Content = "Stop";
-                    StatusLabel.Content = "Принимаем сообщения...";
-
-                    if (CycleCheckBox.IsChecked == true)
-                    {
-                        udpServer.StartReceiveAsync(udpModel.Port);
-                    }
-                    else
-                    {
-                        byte[] receiveMessage = (byte[])await udpServer.ReceiveSingleMessageAsync(udpModel.Port);
-                        MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += Encoding.ASCII.GetString(receiveMessage) + "\n"));
-
-                        StartButton.Content = "Start";
-                        StatusLabel.Content = "Статус соединения...";
-                    }
-                }                
+                    StatusLabel.Content = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
+                }
             }
+
+            // Выбран прием сообщений
+            if(contentButton == "Start" && ReceiveRadioButton.IsChecked == true)
+            {
+                StartButton.Content = "Stop";
+                StatusLabel.Content = "Принимаем сообщения...";
+
+                // Циклический прием сообщений
+                if (CycleCheckBox.IsChecked == true)
+                {
+                    if (WriteDBCheckBox.IsChecked == true)
+                    {
+                        udpServer.eventReceivedMessage += OnWriteToDB;
+                    }
+
+                    udpServer.StartReceiveAsync(udpModel.Port);
+                }
+                // Прием одного сообщения
+                else
+                {
+                    byte[] receiveMessage = (byte[])await udpServer.ReceiveSingleMessageAsync(udpModel.Port);
+
+                    StartButton.Content = "Start";
+                    StatusLabel.Content = "Статус соединения...";
+                }
+            }
+
             // Нажата кнопка "Стоп"
-            else
+            if (contentButton == "Stop")
             {
                 StartButton.Content = "Start";
                 StatusLabel.Content = "Статус соединения";
 
+                if (WriteDBCheckBox.IsChecked == true)
+                {
+                    udpServer.eventReceivedMessage -= OnWriteToDB;
+                }
+
                 stopSend = true; // Останавливаем мультиотправку
                 udpServer.StopReceive();  // Останавливаем прием сообщений
-            }
+            }            
         }
 
         /// <summary>
@@ -125,5 +137,14 @@ namespace UDPTestUIWPF
             MessageTextBox.Text += "\n";
             MessageTextBox.Text += (e as UDPMessage == null)? string.Empty : ((UDPMessage)e).ToString();
         }
+        private void OnWriteToDB(object sender, EventArgs e)
+        {
+            GPSTrackerMessage message = GPSTrackerMessageParser.Parse(((UDPMessage)e).Message);
+
+            ApplicationDbContext dbContext = new ApplicationDbContext();
+            message.GPSTracker.GPSTrackerMessages.Add(message);
+            dbContext.SaveChanges();
+        }
+
     }
 }
