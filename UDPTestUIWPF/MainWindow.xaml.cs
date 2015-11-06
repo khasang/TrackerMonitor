@@ -37,26 +37,24 @@ namespace UDPTestUIWPF
         public MainWindow()
         {
             this.udpServer = new UDPnet();
-            udpServer.eventReceivedMessage += OnShowReceivedMessage;
+            udpServer.eventReceivedMessage += OnShowReceivedMessage;  // Подписываемся на событие получения сообщения
 
-            this.dbContext = new ApplicationDbContext();
+            this.dbContext = new ApplicationDbContext();  // Для возможности записи сообщений в базу
 
             InitializeComponent();
         }
 
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            var udpModel = (UDPDataModel) this.FindResource("UdpModel");
-            string contentButton = StartButton.Content.ToString();
+            var udpModel = (UDPDataModel) this.FindResource("UdpModel"); // Достаем модель из xaml
+            string contentButton = StartButton.Content.ToString();       // Состояние кнопки (не совсем правильно, потом переделать в модель)
 
             // Выбрана отправка сообщения
             if(contentButton == "Start" && SendRadioButton.IsChecked == true)
             {
-
                 // Выбрана мультиотправка в цикле
                 if (CycleCheckBox.IsChecked == true)
                 {
-                    MessageTextBox.Text = string.Empty;
                     CycleSendMessage(udpModel.IPAddress, udpModel.Port);
                 }
                 // Выбрана одиночная отправка
@@ -111,22 +109,30 @@ namespace UDPTestUIWPF
             stopSend = false;
             Task.Factory.StartNew(() =>
             {
-                while (true)
+                while (true)                                     // В бесконечном цикле
                 {
-                    byte[] message = GetRndGPSTreckerMessage();
-                    udpServer.SendMessageAsync(message, ipAddress, port);
+                    byte[] message = GetRndGPSTreckerMessage();  // Создаем случайное сообщение
+                    udpServer.SendMessageAsync(message, ipAddress, port);  // Отправляем его
 
+                    // Выводим отправленное сообщение в текстбоксе
                     MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += string.Format("отправлено: {0}\n", Encoding.ASCII.GetString(message))));
+                    // Блокируем поток на 2 секунды
                     Thread.Sleep(2000);
-
+                    // Если флаг остановки отправки сообщений, то выходим из цикла
                     if (stopSend) break;
                 }
             });
         }
 
+        /// <summary>
+        /// Создает сообщение из экземпляра GPSTrackerMessage со случайными параметрами
+        /// </summary>
+        /// <returns>byte[]</returns>
         private byte[] GetRndGPSTreckerMessage()
         {
-            var tracker = dbContext.GPSTrackers.FirstOrDefault(x => x.Name == "NewTracker");
+            string nameTracker = "Tracker" + rnd.Next(1, 3).ToString();
+            var tracker = dbContext.GPSTrackers.FirstOrDefault(x => x.Name == nameTracker);
+
             GPSTrackerMessage message = new GPSTrackerMessage()
             {
                 Time = DateTime.Now,
@@ -138,6 +144,9 @@ namespace UDPTestUIWPF
             return GPSTrackerMessageConverter.MessageToByte(message);
         }
 
+        /// <summary>
+        /// Вывод полученного сообщения в текстбоксе
+        /// </summary>
         private void OnShowReceivedMessage(object sender, EventArgs e)
         {
             UDPMessage message = e as UDPMessage;
@@ -150,6 +159,11 @@ namespace UDPTestUIWPF
             if (WriteDBCheckBox.IsChecked == true)
                 WriteToDB(message.Message);
         }
+
+        /// <summary>
+        /// Запись полученного сообщения в базу
+        /// </summary>
+        /// <param name="bytes">byte[] message</param>
         private void WriteToDB(byte[] bytes)
         {
             GPSTrackerMessage message = GPSTrackerMessageConverter.ByteToMessage(bytes);

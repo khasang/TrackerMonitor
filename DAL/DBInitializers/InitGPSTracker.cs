@@ -12,13 +12,22 @@ namespace DAL.DBInitializers
         public override void Initialization(ApplicationDbContext context)
         {
             var user = context.Users.FirstOrDefault(x => x.Email == "admin@admin.com");
-            GPSTracker tracker = new GPSTracker()
+
+            GPSTracker tracker1 = new GPSTracker()
             {
-                Name = "NewTracker",
+                Name = "Tracker1",
                 Owner = user
             };
 
-            context.GPSTrackers.Add(tracker);
+            GPSTracker tracker2 = new GPSTracker()
+            {
+                Name = "Tracker2",
+                Owner = user
+            };
+
+            context.GPSTrackers.Add(tracker1);
+            context.GPSTrackers.Add(tracker2);
+
             context.SaveChanges();
         }
     }
