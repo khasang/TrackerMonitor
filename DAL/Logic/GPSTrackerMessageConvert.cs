@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace DAL.Logic
 {
-    public class GPSTrackerMessageParser
+    public class GPSTrackerMessageConverter
     {
         /// <summary>
         /// Метод для парсинга сообщения от маячка в объект сообщения
         /// </summary>
         /// <param name="bytes">сообщение от маячка</param>
         /// <returns>объект сообщения</returns>
-        public static GPSTrackerMessage Parse(byte[] bytes)
+        public static GPSTrackerMessage ByteToMessage(byte[] bytes)
         {
             GPSTrackerMessage message = new GPSTrackerMessage();
 
@@ -44,6 +44,14 @@ namespace DAL.Logic
             message.Longitude = Double.Parse(Encoding.UTF8.GetString(longitudeBytes));
 
             return message;
+        }
+
+        public static byte[] MessageToByte(GPSTrackerMessage message)
+        {
+            byte[] bytes = new byte[20];
+
+
+            return bytes;
         }
     }
 }

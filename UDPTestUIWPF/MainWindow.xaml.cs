@@ -32,10 +32,14 @@ namespace UDPTestUIWPF
         bool stopSend = true;
         Random rnd = new Random();
 
+        ApplicationDbContext dbContext;
+
         public MainWindow()
         {
             this.udpServer = new UDPnet();
             udpServer.eventReceivedMessage += OnShowReceivedMessage;
+
+            this.dbContext = new ApplicationDbContext();
 
             InitializeComponent();
         }
@@ -71,11 +75,6 @@ namespace UDPTestUIWPF
                 // Циклический прием сообщений
                 if (CycleCheckBox.IsChecked == true)
                 {
-                    if (WriteDBCheckBox.IsChecked == true)
-                    {
-                        udpServer.eventReceivedMessage += OnWriteToDB;
-                    }
-
                     udpServer.StartReceiveAsync(udpModel.Port);
                 }
                 // Прием одного сообщения
@@ -92,12 +91,7 @@ namespace UDPTestUIWPF
             if (contentButton == "Stop")
             {
                 StartButton.Content = "Start";
-                StatusLabel.Content = "Статус соединения";
-
-                if (WriteDBCheckBox.IsChecked == true)
-                {
-                    udpServer.eventReceivedMessage -= OnWriteToDB;
-                }
+                StatusLabel.Content = "Статус соединения";                
 
                 stopSend = true; // Останавливаем мультиотправку
                 udpServer.StopReceive();  // Останавливаем прием сообщений
@@ -119,7 +113,7 @@ namespace UDPTestUIWPF
             {
                 while (true)
                 {
-                    byte[] message = Encoding.ASCII.GetBytes(rnd.Next(1000, 10000).ToString());
+                    byte[] message = GetRndGPSTreckerMessage();
                     udpServer.SendMessageAsync(message, ipAddress, port);
 
                     MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += string.Format("отправлено: {0}\n", Encoding.ASCII.GetString(message))));
@@ -130,18 +124,36 @@ namespace UDPTestUIWPF
             });
         }
 
+        private byte[] GetRndGPSTreckerMessage()
+        {
+            var tracker = dbContext.GPSTrackers.FirstOrDefault(x => x.Name == "NewTracker");
+            GPSTrackerMessage message = new GPSTrackerMessage()
+            {
+                Time = DateTime.Now,
+                GPSTracker = tracker,
+                Latitude = rnd.Next(1000),
+                Longitude = rnd.Next(1000)
+            };
+
+            return GPSTrackerMessageConverter.MessageToByte(message);
+        }
+
         private void OnShowReceivedMessage(object sender, EventArgs e)
         {
-            //GPSTrackerMessage message = new GPSTrackerMessage();
+            UDPMessage message = e as UDPMessage;
+            if (message == null)
+                return;   // Здесь можно ввести обработку ошибки
 
             MessageTextBox.Text += "\n";
-            MessageTextBox.Text += (e as UDPMessage == null)? string.Empty : ((UDPMessage)e).ToString();
-        }
-        private void OnWriteToDB(object sender, EventArgs e)
-        {
-            GPSTrackerMessage message = GPSTrackerMessageParser.Parse(((UDPMessage)e).Message);
+            MessageTextBox.Text += message.ToString();  // Переделать
 
-            ApplicationDbContext dbContext = new ApplicationDbContext();
+            if (WriteDBCheckBox.IsChecked == true)
+                WriteToDB(message.Message);
+        }
+        private void WriteToDB(byte[] bytes)
+        {
+            GPSTrackerMessage message = GPSTrackerMessageConverter.ByteToMessage(bytes);
+
             message.GPSTracker.GPSTrackerMessages.Add(message);
             dbContext.SaveChanges();
         }

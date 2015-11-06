@@ -15,5 +15,17 @@ namespace DAL.Entities
 
         public int GPSTrackerId { get; set; }
         public virtual GPSTracker GPSTracker { get; set; }
+
+        public override string ToString()
+        {
+            StringBuilder str = new StringBuilder();
+
+            return str.AppendLine(Id.ToString())
+                        .AppendLine(Longitude.ToString())
+                        .AppendLine(Longitude.ToString())
+                        .AppendLine(Time.ToString())
+                        .AppendLine(" ")
+                        .ToString();
+        }
     }
 }
