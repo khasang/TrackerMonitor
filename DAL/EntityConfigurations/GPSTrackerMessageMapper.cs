@@ -18,8 +18,8 @@ namespace DAL.EntityConfigurations
             this.Property(m => m.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(m => m.Id).IsRequired();
 
-            this.Property(m => m.Latitude).HasPrecision(17, 15);
-            this.Property(m => m.Longitude).HasPrecision(18, 15);
+            //this.Property(m => m.Latitude).HasPrecision(17, 15);
+            //this.Property(m => m.Longitude).HasPrecision(18, 15);
 
             this.HasRequired(m => m.GPSTracker)
                 .WithMany(t => t.GPSTrackerMessages)

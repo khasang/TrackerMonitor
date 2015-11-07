@@ -24,6 +24,7 @@ namespace DAL
             // Здесь добавляем созданные нами объекты, наследованные от InitializationDB, для инициализации БД
             // Пример DBInitilizers.InitUserAdmin
             init.Add(new InitUserAdmin());  // Добавил Ruslan
+            init.Add(new InitGPSTracker()); // Добавил Ruslan
 
             init.Initialization();
         }

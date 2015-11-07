@@ -1,8 +1,12 @@
-﻿using System;
+﻿using DAL;
+using DAL.Entities;
+using DAL.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,49 +29,141 @@ namespace UDPTestUIWPF
         UDPDataModel dataUDP;
         UDPnet udpServer;
 
+        bool stopSend = true;
+        Random rnd = new Random();
+
+        ApplicationDbContext dbContext;
+
         public MainWindow()
         {
             this.udpServer = new UDPnet();
-            this.dataUDP = new UDPDataModel();
+            udpServer.eventReceivedMessage += OnShowReceivedMessage;  // Подписываемся на событие получения сообщения
+
+            this.dbContext = new ApplicationDbContext();  // Для возможности записи сообщений в базу
 
             InitializeComponent();
         }
 
-        private void StartButton_Click(object sender, RoutedEventArgs e)
+        private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            if (StartButton.Content.ToString() == "Start")
+            var udpModel = (UDPDataModel) this.FindResource("UdpModel"); // Достаем модель из xaml
+            string contentButton = StartButton.Content.ToString();       // Состояние кнопки (не совсем правильно, потом переделать в модель)
+
+            // Выбрана отправка сообщения
+            if(contentButton == "Start" && SendRadioButton.IsChecked == true)
             {
-                if(SendRadioButton.IsChecked == true)
+                // Выбрана мультиотправка в цикле
+                if (CycleCheckBox.IsChecked == true)
                 {
-                    StatusLabel.Content = udpServer.SendMessage(MessageTextBox.Text,
-                                                                IPAddress.Parse(IPAddressTextBox.Text),
-                                                                Convert.ToInt32(PortTextBox.Text));
+                    CycleSendMessage(udpModel.IPAddress, udpModel.Port);
                 }
+                // Выбрана одиночная отправка
                 else
                 {
-                    StartButton.Content = "Stop";
-                    StatusLabel.Content = "Принимаем сообщения...";
-
-                    udpServer.StartReceive(Convert.ToInt32(PortTextBox.Text));
-                }                
+                    StatusLabel.Content = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
+                }
             }
-            else
+
+            // Выбран прием сообщений
+            if(contentButton == "Start" && ReceiveRadioButton.IsChecked == true)
+            {
+                StartButton.Content = "Stop";
+                StatusLabel.Content = "Принимаем сообщения...";
+
+                // Циклический прием сообщений
+                if (CycleCheckBox.IsChecked == true)
+                {
+                    udpServer.StartReceiveAsync(udpModel.Port);
+                }
+                // Прием одного сообщения
+                else
+                {
+                    byte[] receiveMessage = (byte[])await udpServer.ReceiveSingleMessageAsync(udpModel.Port);
+
+                    StartButton.Content = "Start";
+                    StatusLabel.Content = "Статус соединения...";
+                }
+            }
+
+            // Нажата кнопка "Стоп"
+            if (contentButton == "Stop")
             {
                 StartButton.Content = "Start";
-                StatusLabel.Content = "Статус соединения";
+                StatusLabel.Content = "Статус соединения";                
 
-                udpServer.StopReceive();
-            }
+                stopSend = true; // Останавливаем мультиотправку
+                udpServer.StopReceive();  // Останавливаем прием сообщений
+            }            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Отправляет случайные сообщения в цикле
+        /// </summary>
+        /// <param name="ipAddress">IP адрес получателя</param>
+        /// <param name="port">Порт</param>
+        private void CycleSendMessage(IPAddress ipAddress, int port)
         {
-            StringBuilder str = new StringBuilder();
-            foreach(var message in udpServer.Messages)
+            StartButton.Content = "Stop";
+            StatusLabel.Content = "Отправляем сообщения в цикле...";
+
+            stopSend = false;
+            Task.Factory.StartNew(() =>
             {
-                str.AppendLine(Encoding.ASCII.GetString(message.Value));
-            }
-            MessageTextBox.Text = str.ToString();
+                while (true)                                     // В бесконечном цикле
+                {
+                    byte[] message = GetRndGPSTreckerMessage();  // Создаем случайное сообщение
+                    udpServer.SendMessageAsync(message, ipAddress, port);  // Отправляем его
+
+                    // Выводим отправленное сообщение в текстбоксе
+                    MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += GPSTrackerMessageConverter.ByteToMessage(message).ToString()));
+                    // Блокируем поток на 2 секунды
+                    Thread.Sleep(2000);
+                    // Если флаг остановки отправки сообщений, то выходим из цикла
+                    if (stopSend) break;
+                }
+            });
         }
+
+        /// <summary>
+        /// Создает сообщение из экземпляра GPSTrackerMessage со случайными параметрами
+        /// </summary>
+        /// <returns>byte[]</returns>
+        private byte[] GetRndGPSTreckerMessage()
+        {
+            string nameTracker = "Tracker" + rnd.Next(1, 3).ToString();
+            var tracker = dbContext.GPSTrackers.FirstOrDefault(x => x.Name == nameTracker);
+
+            GPSTrackerMessage message = new GPSTrackerMessage()
+            {
+                Time = DateTime.Now,
+                GPSTracker = tracker,
+                Latitude = rnd.Next(1000),
+                Longitude = rnd.Next(1000)
+            };
+
+            return GPSTrackerMessageConverter.MessageToByte(message);
+        }
+
+        /// <summary>
+        /// Вывод полученного сообщения в текстбоксе
+        /// </summary>
+        private void OnShowReceivedMessage(object sender, EventArgs e)
+        {
+            UDPMessage message = e as UDPMessage;
+            if (message == null)
+                return;   // Здесь можно ввести обработку ошибки
+
+            GPSTrackerMessage gpsMessage = GPSTrackerMessageConverter.ByteToMessage(message.Message);
+
+            MessageTextBox.Text += "\n";
+            MessageTextBox.Text += gpsMessage.ToString();  // ToString() переопределен
+
+            if (WriteDBCheckBox.IsChecked == true)
+            {
+                gpsMessage.GPSTracker.GPSTrackerMessages.Add(gpsMessage);
+                dbContext.SaveChanges();
+            }
+        }
+
     }
 }

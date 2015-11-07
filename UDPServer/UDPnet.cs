@@ -11,101 +11,95 @@ namespace UDPServer
 {
     public class UDPnet
     {
-        Thread thrd = null;
-        bool stopReceive;
         UdpClient udpClient = null;
+        bool stopReceive = false;
 
-        int keyMessage = 0;
-        Dictionary<int, byte[]> messages = new Dictionary<int, byte[]>();
-
-        public int Port { get; set; }
-        public IPAddress IpAddress { get; set; }
-        public Dictionary<int, byte[]> Messages { get { return messages; } }
-
-        public UDPnet()
+        public EventHandler eventReceivedMessage = (x, y) => { };
+        public EventHandler eventReceivedError = (x, y) => { };
+        
+        public async void StartReceiveAsync(int port) // Запуск отдельного потока для приема сообщений
         {
-            this.Port = 9050;
-            this.IpAddress = new IPAddress(new byte[] { 192, 168, 1, 255 });
-        }
-
-        public UDPnet(IPAddress ipAddress, int port)
-        {
-            this.Port = port;
-            this.IpAddress = ipAddress;
-        }
-
-        public void StartReceive(int port) // Запуск отдельного потока для приема сообщений
-        {
-            this.Port = port;
-            thrd = new Thread(Receive);
-            thrd.Start();
-        }
-
-        void Receive() // Функция извлекающая пришедшие сообщения работающая в отдельном потоке.
-        {
-            try
+            using(udpClient = new UdpClient(port))
             {
-                if (udpClient != null) udpClient.Close();  // Перед созданием нового объекта закрываем старый
+                stopReceive = false;
+                byte[] message;
 
-                udpClient = new UdpClient(Port);
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, Port);
-
-                while (true)
+                try
                 {
-                    byte[] message = udpClient.Receive(ref ipEndPoint);
+                    while (true)  // В цикле слушаем сообщения
+                    {
+                        message = (await udpClient.ReceiveAsync()).Buffer; // Ассинхронно ждем получение сообщения
+                        eventReceivedMessage(this, new UDPMessage() { Message = message }); // Генерируем событие о получении сообщения.
 
-                    Messages.Add(++keyMessage, message);   // Имитация записи в БД
-                    
-                    if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
+                        if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
+                    }
                 }
+                catch (Exception e)
+                {
+                    // Генерируем событие об ошибке приема сообщений!
+                    eventReceivedError(this, new ErrorMessage { Message = e.Message });
+                }
+            }
+        }
+     
+        public async Task<byte[]> ReceiveSingleMessageAsync(int port)
+        {
+            byte[] message;
+            using(udpClient = new UdpClient(port))
+            {
+                message = (await udpClient.ReceiveAsync()).Buffer;
+                eventReceivedMessage(this, new UDPMessage() { Message = message });
+
                 udpClient.Close();
-                udpClient = null;
             }
-            catch
-            {
-               //  Ошибка приема сообщений!
-                Messages.Add(++keyMessage, Encoding.Default.GetBytes("Ошибка приема сообщений!"));
-            }
+            return message;
         }
 
-        public void StopReceive()  // Функция безопасной остановки дополнительного потока
+        public void StopReceive()          // Метод остановки дополнительного потока
         {
-            stopReceive = true;            // Останавливаем цикл в дополнительном потоке            
+            stopReceive = true;            // Останавливаем цикл приема сообщений           
             if (udpClient != null) udpClient.Close();  // Принудительно закрываем объект класса UdpClient
-            if (thrd != null) thrd.Join(); // Для корректного завершения дополнительного потока подключаем его к основному потоку.
         }
 
-        public string SendMessage(string message, IPAddress ipAddress, int port) // Отправка сообщения
+        /// <summary>
+        /// Асинхронно отправляет сообщение по UDP протоколу
+        /// </summary>
+        /// <param name="message">Сообщение</param>
+        /// <param name="ipAddress">IP адрес</param>
+        /// <param name="port">Порт</param>
+        /// <returns>Результат отправки</returns>
+        public async Task<string> SendMessageAsync(byte[] message, IPAddress ipAddress, int port) // Отправка сообщения
         {
-            UdpClient udp = new UdpClient();
-            IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, port);
-            byte[] messageByte = Encoding.Default.GetBytes(message);
-
-            string backMessage = string.Empty;
-
-            try
+            using(udpClient = new UdpClient())
             {
-                int sended = udp.Send(messageByte, messageByte.Length, ipEndPoint);
+                IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, port);
+                string backMessage = string.Empty;
 
-                // Если количество переданных байтов и предназначенных для 
-                // отправки совпадают, то 99,9% вероятности, что они доберутся 
-                // до адресата.
-                if (sended == messageByte.Length)
+                try
                 {
-                    backMessage = string.Format("Отправленно {0} байт", sended);
-                }
-            }
-            catch
-            {
-                backMessage = "Ошибка при отправке!";
-            }
-            finally
-            {
-                udp.Close();  // После окончания попытки отправки закрываем UDP соединение
-                backMessage += " : Соединение закрыто.";
-            }
+                    // Отправляем ассинхронно сообщение
+                    int sended = await udpClient.SendAsync(message, message.Length, ipEndPoint);
 
-            return backMessage;
+                    // Если количество переданных байтов и предназначенных для 
+                    // отправки совпадают, то 99,9% вероятности, что они доберутся 
+                    // до адресата.
+                    if (sended == message.Length)
+                    {
+                        backMessage = string.Format("Отправленно {0} байт", sended);
+                    }
+                }
+                catch
+                {
+                    backMessage = "Ошибка при отправке!";
+                }
+                finally
+                {
+                    udpClient.Close();  // После окончания попытки отправки закрываем UDP соединение
+                    backMessage += " : Соединение закрыто.";
+                }
+
+                return backMessage;
+            }            
         }
     }
 }

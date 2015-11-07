@@ -87,6 +87,7 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DBInitializer.cs" />
     <Compile Include="DBInitializers\DBInit.cs" />
+    <Compile Include="DBInitializers\InitGPSTracker.cs" />
     <Compile Include="DBInitializers\InitializationDB.cs" />
     <Compile Include="DBInitializers\InitUserAdmin.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="EntityConfigurations\ClassMapper.cs" />
     <Compile Include="EntityConfigurations\GPSTrackerMapper.cs" />
     <Compile Include="EntityConfigurations\GPSTrackerMessageMapper.cs" />
+    <Compile Include="Logic\GPSTrackerMessageConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

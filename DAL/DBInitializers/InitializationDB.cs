@@ -11,7 +11,6 @@ namespace DAL.DBInitializers
 {
     abstract public class InitializationDB
     {
-        public virtual void Initialization(ApplicationDbContext context)
-        { }
+        public abstract void Initialization(ApplicationDbContext context);
     }
 }
