@@ -15,12 +15,16 @@ namespace DAL.DBInitializers
 
             GPSTracker tracker1 = new GPSTracker()
             {
+                Id = 1,
+                Identifier = 1000,
                 Name = "Tracker1",
                 Owner = user
             };
 
             GPSTracker tracker2 = new GPSTracker()
             {
+                Id = 2,
+                Identifier = 2000,
                 Name = "Tracker2",
                 Owner = user
             };

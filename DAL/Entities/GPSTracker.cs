@@ -11,6 +11,11 @@ namespace DAL.Entities
         public int Id { get; set; }
 
         /// <summary>
+        /// Идентификатор маячка
+        /// </summary>
+        public int Identifier { get; set; }
+
+        /// <summary>
         /// Имя устройства
         /// </summary>
         public string Name { get; set; }

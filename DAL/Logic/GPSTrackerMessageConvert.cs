@@ -49,7 +49,7 @@ namespace DAL.Logic
         public static byte[] MessageToByte(GPSTrackerMessage message)
         {
             byte[] bytes = new byte[20];
-
+            Convert.ToByte()
 
             return bytes;
         }

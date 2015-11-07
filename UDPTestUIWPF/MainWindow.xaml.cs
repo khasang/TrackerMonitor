@@ -115,7 +115,7 @@ namespace UDPTestUIWPF
                     udpServer.SendMessageAsync(message, ipAddress, port);  // Отправляем его
 
                     // Выводим отправленное сообщение в текстбоксе
-                    MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += string.Format("отправлено: {0}\n", Encoding.ASCII.GetString(message))));
+                    MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += GPSTrackerMessageConverter.ByteToMessage(message).ToString()));
                     // Блокируем поток на 2 секунды
                     Thread.Sleep(2000);
                     // Если флаг остановки отправки сообщений, то выходим из цикла
@@ -153,23 +153,16 @@ namespace UDPTestUIWPF
             if (message == null)
                 return;   // Здесь можно ввести обработку ошибки
 
+            GPSTrackerMessage gpsMessage = GPSTrackerMessageConverter.ByteToMessage(message.Message);
+
             MessageTextBox.Text += "\n";
-            MessageTextBox.Text += message.ToString();  // Переделать
+            MessageTextBox.Text += gpsMessage.ToString();  // ToString() переопределен
 
             if (WriteDBCheckBox.IsChecked == true)
-                WriteToDB(message.Message);
-        }
-
-        /// <summary>
-        /// Запись полученного сообщения в базу
-        /// </summary>
-        /// <param name="bytes">byte[] message</param>
-        private void WriteToDB(byte[] bytes)
-        {
-            GPSTrackerMessage message = GPSTrackerMessageConverter.ByteToMessage(bytes);
-
-            message.GPSTracker.GPSTrackerMessages.Add(message);
-            dbContext.SaveChanges();
+            {
+                gpsMessage.GPSTracker.GPSTrackerMessages.Add(gpsMessage);
+                dbContext.SaveChanges();
+            }
         }
 
     }

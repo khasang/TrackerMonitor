@@ -8,11 +8,26 @@ namespace DAL.Entities
 {
     public class GPSTrackerMessage
     {
-        public int Id { get; set; }
+        public int Id { get; set; }        
+
+        /// <summary>
+        /// Широта
+        /// </summary>
         public double Latitude { get; set; }
+
+        /// <summary>
+        /// Долгота
+        /// </summary>
         public double Longitude { get; set; }
+
+        /// <summary>
+        /// Дата, время отправки
+        /// </summary>
         public DateTime Time { get; set; }
 
+        /// <summary>
+        /// Какому трекеру принадлежит сообщение
+        /// </summary>
         public int GPSTrackerId { get; set; }
         public virtual GPSTracker GPSTracker { get; set; }
 
