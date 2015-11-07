@@ -30,7 +30,7 @@ namespace DAL.Logic
                     Convert.ToInt32(bytes[7]), // Парсинг числа
                     Convert.ToInt32(bytes[4]), // Парсинг часа
                     Convert.ToInt32(bytes[5]), // Парсинг минуты
-                    Convert.ToInt32(bytes[6]) // Парсинг секунды
+                    Convert.ToInt32(bytes[6])  // Парсинг секунды
                 );
 
             // Парсинг широты
@@ -49,7 +49,15 @@ namespace DAL.Logic
         public static byte[] MessageToByte(GPSTrackerMessage message)
         {
             byte[] bytes = new byte[20];
-            Convert.ToByte()
+
+            Convert.ToByte(message.Latitude);
+            Convert.ToByte(message.Longitude);
+            Convert.ToByte(message.Time.Year);
+            Convert.ToByte(message.Time.Month);
+            Convert.ToByte(message.Time.Date);
+            Convert.ToByte(message.Time.Hour);
+            Convert.ToByte(message.Time.Minute);
+            Convert.ToByte(message.Time.Second);
 
             return bytes;
         }
