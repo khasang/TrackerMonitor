@@ -21,7 +21,7 @@ Messages: <span id="progress">null</span>
             });
             //прокси
             var pushNotify = $.connection.pushNotify;
-            pushNotify.client.ShowMessage = function (message) {
+            pushNotify.client.ShowMessage = function (Model) {
                 $('#progress').html(Latitude);
             };
         });

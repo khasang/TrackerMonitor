@@ -44,6 +44,9 @@ namespace UDPTestUIWPF
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработчик нажатия на копку "Start/Stop"
+        /// </summary>
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
             var udpModel = (UDPDataModel) this.FindResource("UdpModel"); // Достаем модель из xaml
@@ -115,7 +118,7 @@ namespace UDPTestUIWPF
                     udpServer.SendMessageAsync(message, ipAddress, port);  // Отправляем его
 
                     // Выводим отправленное сообщение в текстбоксе
-                    MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += GPSTrackerMessageConverter.ByteToMessage(message).ToString()));
+                    MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += GPSTrackerMessageConverter.BytesToMessage(message).ToString()));
                     // Блокируем поток на 2 секунды
                     Thread.Sleep(2000);
                     // Если флаг остановки отправки сообщений, то выходим из цикла
@@ -135,13 +138,13 @@ namespace UDPTestUIWPF
 
             GPSTrackerMessage message = new GPSTrackerMessage()
             {
-                Time = DateTime.Now,
-                GPSTracker = tracker,
                 Latitude = rnd.Next(1000),
-                Longitude = rnd.Next(1000)
+                Longitude = rnd.Next(1000),
+                Time = DateTime.Now,
+                GPSTracker = tracker
             };
 
-            return GPSTrackerMessageConverter.MessageToByte(message);
+            return GPSTrackerMessageConverter.MessageToBytes(message);
         }
 
         /// <summary>
@@ -153,7 +156,7 @@ namespace UDPTestUIWPF
             if (message == null)
                 return;   // Здесь можно ввести обработку ошибки
 
-            GPSTrackerMessage gpsMessage = GPSTrackerMessageConverter.ByteToMessage(message.Message);
+            GPSTrackerMessage gpsMessage = GPSTrackerMessageConverter.BytesToMessage(message.Message);
 
             MessageTextBox.Text += "\n";
             MessageTextBox.Text += gpsMessage.ToString();  // ToString() переопределен

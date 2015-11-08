@@ -14,14 +14,12 @@ namespace DAL.Logic
         /// </summary>
         /// <param name="bytes">сообщение от маячка</param>
         /// <returns>объект сообщения</returns>
-        public static GPSTrackerMessage ByteToMessage(byte[] bytes)
+        public static GPSTrackerMessage BytesToMessage(byte[] bytes)
         {
             GPSTrackerMessage message = new GPSTrackerMessage();
 
             // Парсинг идентификатора маячка
-            byte[] idBytes = new byte[4];
-            Array.Copy(bytes, idBytes, 4);
-            message.GPSTrackerId = Convert.ToInt32(idBytes);
+            message.GPSTrackerId = Encoding.ASCII.GetString(bytes.Take(20));
 
             // Парсинг времени отправления сообщения
             message.Time = new DateTime(
@@ -46,18 +44,22 @@ namespace DAL.Logic
             return message;
         }
 
-        public static byte[] MessageToByte(GPSTrackerMessage message)
+        public static byte[] MessageToBytes(GPSTrackerMessage message)
         {
-            byte[] bytes = new byte[20];
+            byte[] bytes = new byte[100];
 
-            Convert.ToByte(message.Latitude);
-            Convert.ToByte(message.Longitude);
-            Convert.ToByte(message.Time.Year);
-            Convert.ToByte(message.Time.Month);
-            Convert.ToByte(message.Time.Date);
-            Convert.ToByte(message.Time.Hour);
-            Convert.ToByte(message.Time.Minute);
-            Convert.ToByte(message.Time.Second);
+            byte[] identifier = BitConverter.GetBytes(message.GPSTrackerId);
+            byte[] longitude = BitConverter.GetBytes(message.Longitude);
+            byte[] latitude = BitConverter.GetBytes(message.Latitude);
+            byte[] year = BitConverter.GetBytes(message.Time.Year);
+            byte month = Convert.ToByte(message.Time.Month);
+            byte date = Convert.ToByte(message.Time.Date);
+            byte hour = Convert.ToByte(message.Time.Minute);
+            byte second = Convert.ToByte(message.Time.Second);
+
+            Array.Copy(identifier, bytes, 20); // Первые 20 байт идентификатор трекера
+            Array.Copy(longitude, 0, bytes, 20, 8);
+            Array.Copy(latitude, 0, bytes, 27, 8);
 
             return bytes;
         }

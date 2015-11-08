@@ -8,12 +8,10 @@ namespace DAL.Entities
 {
     public class GPSTracker
     {
-        public int Id { get; set; }
-
         /// <summary>
-        /// Идентификатор маячка
+        /// Иденификатор устройства
         /// </summary>
-        public int Identifier { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Имя устройства

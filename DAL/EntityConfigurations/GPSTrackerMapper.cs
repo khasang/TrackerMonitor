@@ -15,9 +15,9 @@ namespace DAL.EntityConfigurations
         {
             this.ToTable("GPSTrackers");
 
-            this.HasKey(c => c.Id);
             this.Property(c => c.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             this.Property(c => c.Id).IsRequired();
+            this.Property(c => c.Id).HasMaxLength(20);
 
             this.HasRequired<ApplicationUser>(c => c.Owner)
                 .WithMany(o => o.GPSTrackers)
