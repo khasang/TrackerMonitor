@@ -52,15 +52,15 @@ namespace DAL.Logic
             byte[] latitude = Encoding.UTF8.GetBytes(message.Latitude.ToString("+00.000000000000000;-00.000000000000000"));
             byte[] year = BitConverter.GetBytes((ushort)message.Time.Year);
 
-            Array.Copy(identifier, bytes, identifier.Length); // Первые 20 байт идентификатор трекера
-            Array.Copy(longitude, 0, bytes, 20, longitude.Length);          // 20 байт долгота
-            Array.Copy(latitude, 0, bytes, 40, latitude.Length);           // 19 байт широта
-            Array.Copy(year, 0, bytes, 59, 2);                // 2 байта год
-            bytes[61] = Convert.ToByte(message.Time.Month);   // Месяц
-            bytes[62] = Convert.ToByte(message.Time.Day);    // Дата
-            bytes[63] = Convert.ToByte(message.Time.Hour);    // Часы
-            bytes[64] = Convert.ToByte(message.Time.Minute);  // Минуты
-            bytes[65] = Convert.ToByte(message.Time.Second);  // Секунды
+            Array.Copy(identifier, bytes, identifier.Length);       // Первые 20 байт идентификатор трекера
+            Array.Copy(longitude, 0, bytes, 20, longitude.Length);  // 20 байт долгота
+            Array.Copy(latitude, 0, bytes, 40, latitude.Length);    // 19 байт широта
+            Array.Copy(year, 0, bytes, 59, 2);                      // 2 байта год
+            bytes[61] = Convert.ToByte(message.Time.Month);         // Месяц
+            bytes[62] = Convert.ToByte(message.Time.Day);           // Дата
+            bytes[63] = Convert.ToByte(message.Time.Hour);          // Часы
+            bytes[64] = Convert.ToByte(message.Time.Minute);        // Минуты
+            bytes[65] = Convert.ToByte(message.Time.Second);        // Секунды
 
             return bytes;
         }
