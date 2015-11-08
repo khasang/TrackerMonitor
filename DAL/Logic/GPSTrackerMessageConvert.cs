@@ -31,15 +31,14 @@ namespace DAL.Logic
             Array.Copy(bytes, 40, latitudeBytes, 0, 19);
             message.Latitude = Double.Parse(Encoding.UTF8.GetString(latitudeBytes));
 
-            // Парсинг времени отправления сообщения
-            message.Time = new DateTime(
-                    Convert.ToInt32(new byte[] { bytes[59], bytes[60] }),  // Парсинг года
-                    Convert.ToInt32(bytes[61]),                            // Парсинг месяца
-                    Convert.ToInt32(bytes[62]),                            // Парсинг числа
-                    Convert.ToInt32(bytes[63]),                            // Парсинг часа
-                    Convert.ToInt32(bytes[64]),                            // Парсинг минуты
-                    Convert.ToInt32(bytes[65])                             // Парсинг секунды
-                );
+            int year = (int)BitConverter.ToInt16(new byte[] { bytes[59], bytes[60] }, 0);
+            int month =  Convert.ToInt32(bytes[61]);
+            int day =  Convert.ToInt32(bytes[62]);
+            int hour = Convert.ToInt32(bytes[63]);
+            int minute = Convert.ToInt32(bytes[64]);
+            int second = Convert.ToInt32(bytes[65]);
+
+            message.Time = new DateTime(year, month, day,hour, minute, second);
 
             return message;
         }
@@ -53,12 +52,12 @@ namespace DAL.Logic
             byte[] latitude = Encoding.UTF8.GetBytes(message.Latitude.ToString("+00.000000000000000;-00.000000000000000"));
             byte[] year = BitConverter.GetBytes((ushort)message.Time.Year);
 
-            Array.Copy(identifier, bytes, 20);                // Первые 20 байт идентификатор трекера
-            Array.Copy(longitude, 0, bytes, 20, 20);          // 20 байт долгота
-            Array.Copy(latitude, 0, bytes, 40, 19);           // 19 байт широта
+            Array.Copy(identifier, bytes, identifier.Length); // Первые 20 байт идентификатор трекера
+            Array.Copy(longitude, 0, bytes, 20, longitude.Length);          // 20 байт долгота
+            Array.Copy(latitude, 0, bytes, 40, latitude.Length);           // 19 байт широта
             Array.Copy(year, 0, bytes, 59, 2);                // 2 байта год
             bytes[61] = Convert.ToByte(message.Time.Month);   // Месяц
-            bytes[62] = Convert.ToByte(message.Time.Date);    // Дата
+            bytes[62] = Convert.ToByte(message.Time.Day);    // Дата
             bytes[63] = Convert.ToByte(message.Time.Hour);    // Часы
             bytes[64] = Convert.ToByte(message.Time.Minute);  // Минуты
             bytes[65] = Convert.ToByte(message.Time.Second);  // Секунды

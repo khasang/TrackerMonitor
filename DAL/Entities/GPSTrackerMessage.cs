@@ -35,10 +35,10 @@ namespace DAL.Entities
         {
             StringBuilder str = new StringBuilder();
 
-            return str.AppendLine(Id.ToString())
-                        .AppendLine(Longitude.ToString())
-                        .AppendLine(Longitude.ToString())
-                        .AppendLine(Time.ToString())
+            return str.Append("GPSTrackerId: ").AppendLine(GPSTrackerId)
+                        .Append("Latitude: ").AppendLine(Latitude.ToString())
+                        .Append("Longitude: ").AppendLine(Longitude.ToString())
+                        .Append("Date: ").AppendLine(Time.ToString())
                         .AppendLine(" ")
                         .ToString();
         }

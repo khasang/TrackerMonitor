@@ -134,14 +134,14 @@ namespace UDPTestUIWPF
         private byte[] GetRndGPSTreckerMessage()
         {
             string nameTracker = "Tracker" + rnd.Next(1, 3).ToString();
-            var tracker = dbContext.GPSTrackers.FirstOrDefault(x => x.Name == nameTracker);
+            //var tracker = dbContext.GPSTrackers.FirstOrDefault(x => x.Name == nameTracker);
 
             GPSTrackerMessage message = new GPSTrackerMessage()
             {
                 Latitude = rnd.Next(1000),
                 Longitude = rnd.Next(1000),
                 Time = DateTime.Now,
-                GPSTracker = tracker
+                GPSTrackerId = "111111"
             };
 
             return GPSTrackerMessageConverter.MessageToBytes(message);
