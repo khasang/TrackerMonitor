@@ -28,7 +28,7 @@ namespace DAL.Entities
         /// <summary>
         /// Какому трекеру принадлежит сообщение
         /// </summary>
-        public int GPSTrackerId { get; set; }
+        public string GPSTrackerId { get; set; }
         public virtual GPSTracker GPSTracker { get; set; }
 
         public override string ToString()

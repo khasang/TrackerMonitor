@@ -27,7 +27,7 @@ namespace TestMessageSender
                 GPSTrackerMessage message = new GPSTrackerMessage()
                 {
                     Id = r.Next(2),
-                    GPSTrackerId = r.Next(30),
+                    GPSTrackerId = r.Next(30).ToString(),
                     Latitude = 31 + r.Next(20),
                     Longitude = 31 - r.Next(20),
                     Time = DateTime.Now,
