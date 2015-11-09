@@ -78,24 +78,24 @@ namespace UDPServer
                 try
                 {
                     // Отправляем ассинхронно сообщение
-                    int sended = await udpClient.SendAsync(message, message.Length, ipEndPoint);
+                    int sent = await udpClient.SendAsync(message, message.Length, ipEndPoint);
 
                     // Если количество переданных байтов и предназначенных для 
                     // отправки совпадают, то 99,9% вероятности, что они доберутся 
                     // до адресата.
-                    if (sended == message.Length)
+                    if (sent == message.Length)
                     {
-                        backMessage = string.Format("Отправленно {0} байт", sended);
+                        backMessage = string.Format("Sent {0} bytes. ", sent);
                     }
                 }
                 catch
                 {
-                    backMessage = "Ошибка при отправке!";
+                    backMessage = "Error sending!";
                 }
                 finally
                 {
                     udpClient.Close();  // После окончания попытки отправки закрываем UDP соединение
-                    backMessage += " : Соединение закрыто.";
+                    backMessage += "Closed!";
                 }
 
                 return backMessage;

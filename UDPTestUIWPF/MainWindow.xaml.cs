@@ -47,39 +47,43 @@ namespace UDPTestUIWPF
             InitializeComponent();
 
             udpModel = (UDPDataModel)this.FindResource("UdpModel");     // Достаем модели из xaml
-            settingModel = (SettingModel)this.FindName("SettingModel");
+            settingModel = (SettingModel)this.FindResource("SettingModel");
         }
 
         /// <summary>
         /// Обработчик нажатия на копку "Start/Stop"
         /// </summary>
         private async void StartButton_Click(object sender, RoutedEventArgs e)
-        {            
-            string contentButton = StartButton.Content.ToString();       // Состояние кнопки (не совсем правильно, потом переделать в модель)
-
+        {
             // Выбрана отправка сообщения
-            if(contentButton == "Start" && SendRadioButton.IsChecked == true)
+            if(settingModel.StateButton == "Start" && settingModel.SendReceive == true)
             {
+                settingModel.StateButton = "Stop";
+
                 // Выбрана мультиотправка в цикле
-                if (CycleCheckBox.IsChecked == true)
-                {
+                if (settingModel.Cycle == true)
+                {                    
+                    settingModel.Status = "Отправляем сообщения в цикле...";
                     CycleSendMessage(udpModel.IPAddress, udpModel.Port);
                 }
                 // Выбрана одиночная отправка
                 else
                 {
-                    StatusLabel.Content = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
+                    settingModel.Status = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
+                    settingModel.StateButton = "Start";
                 }
+                
+                return;
             }
 
             // Выбран прием сообщений
-            if(contentButton == "Start" && ReceiveRadioButton.IsChecked == true)
+            if(settingModel.StateButton == "Start" && ReceiveRadioButton.IsChecked == true)
             {
-                StartButton.Content = "Stop";
-                StatusLabel.Content = "Принимаем сообщения...";
+                settingModel.StateButton = "Stop";
+                settingModel.Status = "Receiving message...";
 
                 // Циклический прием сообщений
-                if (CycleCheckBox.IsChecked == true)
+                if (settingModel.Cycle == true)
                 {
                     udpServer.StartReceiveAsync(udpModel.Port);
                 }
@@ -88,16 +92,18 @@ namespace UDPTestUIWPF
                 {
                     byte[] receiveMessage = (byte[])await udpServer.ReceiveSingleMessageAsync(udpModel.Port);
 
-                    StartButton.Content = "Start";
-                    StatusLabel.Content = "Статус соединения...";
+                    settingModel.StateButton = "Start";
+                    settingModel.Status = "Connection status";
                 }
+
+                return;
             }
 
             // Нажата кнопка "Стоп"
-            if (contentButton == "Stop")
+            if (settingModel.StateButton == "Stop")
             {
-                StartButton.Content = "Start";
-                StatusLabel.Content = "Статус соединения";                
+                settingModel.StateButton = "Start";
+                settingModel.Status = "Connection status";                
 
                 stopSend = true; // Останавливаем мультиотправку
                 udpServer.StopReceive();  // Останавливаем прием сообщений
@@ -110,10 +116,7 @@ namespace UDPTestUIWPF
         /// <param name="ipAddress">IP адрес получателя</param>
         /// <param name="port">Порт</param>
         private void CycleSendMessage(IPAddress ipAddress, int port)
-        {
-            StartButton.Content = "Stop";
-            StatusLabel.Content = "Отправляем сообщения в цикле...";
-
+        {          
             stopSend = false;
             Task.Factory.StartNew(() =>
             {
@@ -123,7 +126,8 @@ namespace UDPTestUIWPF
                     udpServer.SendMessageAsync(message, ipAddress, port);  // Отправляем его
 
                     // Выводим отправленное сообщение в текстбоксе
-                    MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += GPSTrackerMessageConverter.BytesToMessage(message).ToString()));
+                    Dispatcher.Invoke(new Action(() => udpModel.Message += GPSTrackerMessageConverter.BytesToMessage(message).ToString()));
+                    //MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += GPSTrackerMessageConverter.BytesToMessage(message).ToString()));
                     // Блокируем поток на 2 секунды
                     Thread.Sleep(2000);
                     // Если флаг остановки отправки сообщений, то выходим из цикла
@@ -141,7 +145,7 @@ namespace UDPTestUIWPF
             GPSTracker tracker;
             string nameTracker = "Tracker" + rnd.Next(1, 3).ToString();
 
-            //if(WriteDBCheckBox.Dispatcher.Invoke(new Action(() => XamlGeneratedNames WriteDBCheckBox.IsChecked)) == true)
+            //if(Dispatcher.Invoke(new Action(() => WriteDBCheckBox.IsChecked)) == true)
             //{
             //    tracker = dbContext.GPSTrackers.FirstOrDefault(x => x.Name == nameTracker);
             //}
@@ -176,10 +180,10 @@ namespace UDPTestUIWPF
 
             GPSTrackerMessage gpsMessage = GPSTrackerMessageConverter.BytesToMessage(message.Message);
 
-            MessageTextBox.Text += "\n";
-            MessageTextBox.Text += gpsMessage.ToString();  // ToString() переопределен.
+            udpModel.Message += "\n";
+            udpModel.Message += gpsMessage.ToString();  // ToString() переопределен.
 
-            if (WriteDBCheckBox.IsChecked == true)
+            if (settingModel.WriteToDB == true)
             {
                 gpsMessage.GPSTracker.GPSTrackerMessages.Add(gpsMessage);
                 dbContext.SaveChanges();

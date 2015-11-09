@@ -13,6 +13,7 @@ namespace UDPTestUIWPF
         public static DependencyProperty CycleProperty;
         public static DependencyProperty WriteToDBProperty;
         public static DependencyProperty StateButtonProperty;
+        public static DependencyProperty StatusProperty;
 
         static SettingModel()
         {
@@ -35,6 +36,11 @@ namespace UDPTestUIWPF
                                                                 typeof(string),
                                                                 typeof(SettingModel),
                                                                 new PropertyMetadata("Start"));
+
+            StatusProperty = DependencyProperty.Register("Status",
+                                                                typeof(string),
+                                                                typeof(SettingModel),
+                                                                new PropertyMetadata("Сonnection status"));
         }
 
         public bool SendReceive
@@ -59,6 +65,12 @@ namespace UDPTestUIWPF
         {
             set { SetValue(StateButtonProperty, value); }
             get { return (string)GetValue(StateButtonProperty); }
+        }
+
+        public string Status
+        {
+            set { SetValue(StatusProperty, value); }
+            get { return (string)GetValue(StatusProperty); }
         }
     }
 }
