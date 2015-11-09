@@ -133,8 +133,21 @@ namespace UDPTestUIWPF
         /// <returns>byte[]</returns>
         private byte[] GetRndGPSTreckerMessage()
         {
+            GPSTracker tracker;
             string nameTracker = "Tracker" + rnd.Next(1, 3).ToString();
-            //var tracker = dbContext.GPSTrackers.FirstOrDefault(x => x.Name == nameTracker);
+
+            //if(WriteDBCheckBox.Dispatcher.Invoke(new Action(() => XamlGeneratedNames WriteDBCheckBox.IsChecked)) == true)
+            //{
+            //    tracker = dbContext.GPSTrackers.FirstOrDefault(x => x.Name == nameTracker);
+            //}
+            //else
+            //{
+            //    tracker = new GPSTracker()
+            //    {
+            //        Id = "111111",
+            //        Name = nameTracker
+            //    };
+            //}
 
             GPSTrackerMessage message = new GPSTrackerMessage()
             {
