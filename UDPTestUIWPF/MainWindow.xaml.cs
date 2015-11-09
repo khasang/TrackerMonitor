@@ -159,7 +159,7 @@ namespace UDPTestUIWPF
             GPSTrackerMessage gpsMessage = GPSTrackerMessageConverter.BytesToMessage(message.Message);
 
             MessageTextBox.Text += "\n";
-            MessageTextBox.Text += gpsMessage.ToString();  // ToString() переопределен
+            MessageTextBox.Text += gpsMessage.ToString();  // ToString() переопределен.
 
             if (WriteDBCheckBox.IsChecked == true)
             {
