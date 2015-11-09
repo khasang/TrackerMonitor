@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="ConvertStrByte.cs" />
     <Compile Include="ConvertStrInt.cs" />
+    <Compile Include="SettingModel.cs" />
     <Compile Include="UDPDataModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
