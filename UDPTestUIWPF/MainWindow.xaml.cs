@@ -34,6 +34,9 @@ namespace UDPTestUIWPF
 
         ApplicationDbContext dbContext;
 
+        UDPDataModel udpModel;
+        SettingModel settingModel;
+
         public MainWindow()
         {
             this.udpServer = new UDPnet();
@@ -42,14 +45,16 @@ namespace UDPTestUIWPF
             this.dbContext = new ApplicationDbContext();  // Для возможности записи сообщений в базу
 
             InitializeComponent();
+
+            udpModel = (UDPDataModel)this.FindResource("UdpModel");     // Достаем модели из xaml
+            settingModel = (SettingModel)this.FindName("SettingModel");
         }
 
         /// <summary>
         /// Обработчик нажатия на копку "Start/Stop"
         /// </summary>
         private async void StartButton_Click(object sender, RoutedEventArgs e)
-        {
-            var udpModel = (UDPDataModel) this.FindResource("UdpModel"); // Достаем модель из xaml
+        {            
             string contentButton = StartButton.Content.ToString();       // Состояние кнопки (не совсем правильно, потом переделать в модель)
 
             // Выбрана отправка сообщения

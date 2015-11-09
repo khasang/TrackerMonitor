@@ -12,19 +12,20 @@
                             Octet2="{Binding ElementName=Octet2TextBox, Path=Text}"
                             Octet3="{Binding ElementName=Octet3TextBox, Path=Text}"
                             Octet4="{Binding ElementName=Octet4TextBox, Path=Text}"
-                            Message="{Binding ElementName=MessageTextBox, Path=Text}">            
+                            Message="{Binding ElementName=MessageTextBox, Path=Text}">
         </local:UDPDataModel>
         <local:SettingModel x:Key="SettingModel"
                             x:Name="settingModel"
                             SendReceive="{Binding ElementName=SendRadioButton, Path=IsChecked}"
                             Cycle="{Binding ElementName=CycleCheckBox, Path=IsChecked}"
-                            WriteToDB="{Binding ElementName=WriteDBCheckBox, Path=IsChecked}">            
+                            WriteToDB="{Binding ElementName=WriteDBCheckBox, Path=IsChecked}"
+                            StateButton="{Binding ElementName=StartButton, Path=Content}">
         </local:SettingModel>
         <local:ConvertStrInt x:Key="ConvertStrUShort"></local:ConvertStrInt>
         <local:ConvertStrByte x:Key="ConvertStrByte"></local:ConvertStrByte>
     </Window.Resources>
 
-    <Grid Margin="0,0,2,4" DataContext="{StaticResource UdpModel}">       
+    <Grid Margin="0,0,2,4" DataContext="{StaticResource UdpModel}">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="58*" />
@@ -85,22 +86,12 @@
                Height="30"
                Width="80" />
 
-        <Button Name="StartButton"
-                Content="Start"
-                HorizontalAlignment="Left"
-                Margin="10,319,0,0"
-                VerticalAlignment="Top"
+
+
+        <Canvas Name="Setting"
                 Width="210"
-                Height="40"
-                FontSize="16"
-                FontWeight="Bold"
-                Click="StartButton_Click"
-                IsDefault="True" />
-        
-        <StackPanel Name="Setting"
-                    Orientation="Vertical"
                     HorizontalAlignment="Left"
-                    Margin="10,225,0,116"
+                    Margin="10,218,0,56"
                     DataContext="{StaticResource SettingModel}">
 
             <CheckBox x:Name="CycleCheckBox"
@@ -112,7 +103,7 @@
             <StackPanel HorizontalAlignment="Left"
                         Height="30"
                         VerticalAlignment="Top"
-                        Width="100">
+                        Width="100" Canvas.Top="20">
 
                 <RadioButton Name="SendRadioButton"
                              Content="Send"
@@ -127,9 +118,20 @@
             	HorizontalAlignment="Left"
             	VerticalAlignment="Top"
             	IsEnabled="{Binding IsChecked, ElementName=ReceiveRadioButton}"
-                IsChecked="{Binding WriteToDB}"/>
+                IsChecked="{Binding WriteToDB}" Canvas.Top="65"/>
 
-        </StackPanel>
+            <Button Name="StartButton"
+                Content="{Binding StateButton}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="210"
+                Height="40"
+                FontSize="16"
+                FontWeight="Bold"
+                Click="StartButton_Click"
+                IsDefault="True" Canvas.Top="101" />
+
+        </Canvas>
 
         <Label Name="StatusLabel"
                Content="Статус соединения"
@@ -138,8 +140,8 @@
                VerticalAlignment="Top"
                Width="292" Height="26"/>
 
-        
-        
+
+
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Left"
                     Height="40"
@@ -211,8 +213,8 @@
                      HorizontalContentAlignment="Center"
                      FontSize="16" Width="40"/>
         </StackPanel>
-        
-        
+
+
 
     </Grid>
 </Window>
