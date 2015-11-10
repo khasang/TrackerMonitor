@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace DAL.EntityConfigurations
 {
-    public class GPSTrackerMapper : EntityTypeConfiguration<GPSTracker>
+    public class UserProfileMapper : EntityTypeConfiguration<GPSTracker>
     {
-        public GPSTrackerMapper()
+        public UserProfileMapper()
         {
             this.ToTable("GPSTrackers");
 

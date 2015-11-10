@@ -15,6 +15,7 @@ namespace DAL
         //      Здесь подключаем сущности EF
         public DbSet<GPSTracker> GPSTrackers { get; set; }
         public DbSet<GPSTrackerMessage> GPSTrackerMessages { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
 
         public ApplicationDbContext()
             : base("PrimaryConnection", throwIfV1Schema: false)
@@ -31,10 +32,12 @@ namespace DAL
         {
             // Здесь подключаем настройки связей сущностей между собой
 
-            modelBuilder.Configurations.Add(new GPSTrackerMapper());
+            modelBuilder.Configurations.Add(new UserProfileMapper());
             modelBuilder.Configurations.Add(new GPSTrackerMessageMapper());
 
             base.OnModelCreating(modelBuilder);
+           // modelBuilder.Entity<ApplicationUser>().HasOptional(x => x.UserProfileId).WithRequired();
+
         }
 
     }
