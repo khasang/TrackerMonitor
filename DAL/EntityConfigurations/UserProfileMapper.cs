@@ -9,17 +9,16 @@ using System.Threading.Tasks;
 
 namespace DAL.EntityConfigurations
 {
-    public class ProfileMapper : EntityTypeConfiguration<UserProfile>
+    public class UserProfileMapper : EntityTypeConfiguration<UserProfile>
     {
-        public ProfileMapper()
+        public UserProfileMapper()
         {
             this.ToTable("UserProfiles");
 
             this.Property(c => c.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(c => c.Id).IsRequired();
-            this.HasRequired(c => c.UserId).WithOptional();
 
-
+            this.HasRequired<ApplicationUser>(c => c.User).WithOptional(c => c.UserProfile).WillCascadeOnDelete(false);
         }
              
     }

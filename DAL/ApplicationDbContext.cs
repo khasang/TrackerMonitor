@@ -34,6 +34,7 @@ namespace DAL
 
             modelBuilder.Configurations.Add(new UserProfileMapper());
             modelBuilder.Configurations.Add(new GPSTrackerMessageMapper());
+            modelBuilder.Configurations.Add(new UserProfileMapper());
 
             base.OnModelCreating(modelBuilder);
            // modelBuilder.Entity<ApplicationUser>().HasOptional(x => x.UserProfileId).WithRequired();

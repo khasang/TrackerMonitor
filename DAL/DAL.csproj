@@ -97,7 +97,7 @@
     <Compile Include="EntityConfigurations\ClassMapper.cs" />
     <Compile Include="EntityConfigurations\GPSTrackerMapper.cs" />
     <Compile Include="EntityConfigurations\GPSTrackerMessageMapper.cs" />
-    <Compile Include="EntityConfigurations\ProfileMapper.cs" />
+    <Compile Include="EntityConfigurations\UserProfileMapper.cs" />
     <Compile Include="Logic\GPSTrackerMessageConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
