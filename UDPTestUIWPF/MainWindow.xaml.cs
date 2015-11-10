@@ -2,21 +2,12 @@
 using DAL.Entities;
 using DAL.Logic;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using UDPServer;
 
 namespace UDPTestUIWPF
@@ -55,6 +46,7 @@ namespace UDPTestUIWPF
         /// </summary>
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
+            var d = dbContext.GPSTrackers.ToArray();
             // Выбрана отправка сообщения
             if(settingModel.StateButton == "Start" && settingModel.SendReceive == true)
             {
@@ -145,25 +137,25 @@ namespace UDPTestUIWPF
             GPSTracker tracker;
             string nameTracker = "Tracker" + rnd.Next(1, 3).ToString();
 
-            //if(Dispatcher.Invoke(new Action(() => WriteDBCheckBox.IsChecked)) == true)
-            //{
-            //    tracker = dbContext.GPSTrackers.FirstOrDefault(x => x.Name == nameTracker);
-            //}
-            //else
-            //{
-            //    tracker = new GPSTracker()
-            //    {
-            //        Id = "111111",
-            //        Name = nameTracker
-            //    };
-            //}
+            try
+            {
+                tracker = dbContext.GPSTrackers.FirstOrDefault(x => x.Name == nameTracker);
+            }
+            catch
+            {
+                tracker = new GPSTracker()
+                {
+                    Id = "111111",
+                    Name = "Tracker1"
+                };
+            }
 
             GPSTrackerMessage message = new GPSTrackerMessage()
             {
                 Latitude = rnd.Next(1000),
                 Longitude = rnd.Next(1000),
                 Time = DateTime.Now,
-                GPSTrackerId = "111111"
+                GPSTracker = tracker
             };
 
             return GPSTrackerMessageConverter.MessageToBytes(message);
@@ -180,12 +172,11 @@ namespace UDPTestUIWPF
 
             GPSTrackerMessage gpsMessage = GPSTrackerMessageConverter.BytesToMessage(message.Message);
 
-            udpModel.Message += "\n";
             udpModel.Message += gpsMessage.ToString();  // ToString() переопределен.
 
             if (settingModel.WriteToDB == true)
             {
-                gpsMessage.GPSTracker.GPSTrackerMessages.Add(gpsMessage);
+                dbContext.GPSTrackerMessages.Add(gpsMessage);
                 dbContext.SaveChanges();
             }
         }
