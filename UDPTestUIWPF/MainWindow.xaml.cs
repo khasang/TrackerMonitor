@@ -113,7 +113,7 @@ namespace UDPTestUIWPF
             stopSend = false;
             Task.Factory.StartNew(() =>
             {
-                List<GPSTracker> trackers;
+                List<GPSTracker> trackers = new List<GPSTracker>();
                 try
                 {
                     trackers = dbContext.GPSTrackers.ToList();
@@ -135,7 +135,6 @@ namespace UDPTestUIWPF
 
                 while (true)                                     // В бесконечном цикле
                 {
-
                     byte[] message = GetRndGPSTreckerMessage(trackers);  // Создаем случайное сообщение
                     udpServer.SendMessageAsync(message, ipAddress, port);  // Отправляем его
 
@@ -156,12 +155,14 @@ namespace UDPTestUIWPF
         /// <returns>byte[]</returns>
         private byte[] GetRndGPSTreckerMessage(IList<GPSTracker> trackers)
         {
+            int number = rnd.Next(trackers.Count);
             GPSTrackerMessage message = new GPSTrackerMessage()
             {
                 Latitude = rnd.Next(1000),
                 Longitude = rnd.Next(1000),
                 Time = DateTime.Now,
-                GPSTracker = trackers[rnd.Next(trackers.Count)];
+                GPSTracker = trackers[number],
+                GPSTrackerId = trackers[number].Id
             };
 
             return GPSTrackerMessageConverter.MessageToBytes(message);
@@ -182,8 +183,17 @@ namespace UDPTestUIWPF
 
             if (settingModel.WriteToDB == true)
             {
+                gpsMessage.GPSTracker = dbContext.GPSTrackers.Find(gpsMessage.GPSTrackerId);
                 dbContext.GPSTrackerMessages.Add(gpsMessage);
-                dbContext.SaveChanges();
+                try
+                {
+                    dbContext.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    Dispatcher.Invoke(new Action(() => StatusLabel.Content = ex.Message));
+                }
+                
             }
         }
 
