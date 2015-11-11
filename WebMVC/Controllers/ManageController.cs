@@ -73,7 +73,7 @@ namespace WebMVC.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                Profile = dbContext.UserProfiles.FirstOrDefault(c => c.UserId == User.Identity.GetUserId())
+                Profile = dbContext.UserProfiles.FirstOrDefault(c => c.UserId == userId)
             };
             return View(model);
         }

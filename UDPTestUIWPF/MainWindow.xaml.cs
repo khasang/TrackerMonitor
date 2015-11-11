@@ -2,6 +2,7 @@
 using DAL.Entities;
 using DAL.Logic;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -46,7 +47,7 @@ namespace UDPTestUIWPF
         /// </summary>
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            var d = dbContext.GPSTrackers.ToArray();
+            //var d = dbContext.GPSTrackers.ToArray();
             // Выбрана отправка сообщения
             if(settingModel.StateButton == "Start" && settingModel.SendReceive == true)
             {
@@ -112,9 +113,30 @@ namespace UDPTestUIWPF
             stopSend = false;
             Task.Factory.StartNew(() =>
             {
+                List<GPSTracker> trackers;
+                try
+                {
+                    trackers = dbContext.GPSTrackers.ToList();
+                }
+                catch
+                {
+                    trackers.Add(new GPSTracker()
+                    {
+                        Id = "111111",
+                        Name = "Tracker1"
+                    });
+
+                    trackers.Add(new GPSTracker()
+                    {
+                        Id = "222222",
+                        Name = "Tracker2"
+                    });
+                }
+
                 while (true)                                     // В бесконечном цикле
                 {
-                    byte[] message = GetRndGPSTreckerMessage();  // Создаем случайное сообщение
+
+                    byte[] message = GetRndGPSTreckerMessage(trackers);  // Создаем случайное сообщение
                     udpServer.SendMessageAsync(message, ipAddress, port);  // Отправляем его
 
                     // Выводим отправленное сообщение в текстбоксе
@@ -132,30 +154,14 @@ namespace UDPTestUIWPF
         /// Создает сообщение из экземпляра GPSTrackerMessage со случайными параметрами
         /// </summary>
         /// <returns>byte[]</returns>
-        private byte[] GetRndGPSTreckerMessage()
+        private byte[] GetRndGPSTreckerMessage(IList<GPSTracker> trackers)
         {
-            GPSTracker tracker;
-            string nameTracker = "Tracker" + rnd.Next(1, 3).ToString();
-
-            try
-            {
-                tracker = dbContext.GPSTrackers.FirstOrDefault(x => x.Name == nameTracker);
-            }
-            catch
-            {
-                tracker = new GPSTracker()
-                {
-                    Id = "111111",
-                    Name = "Tracker1"
-                };
-            }
-
             GPSTrackerMessage message = new GPSTrackerMessage()
             {
                 Latitude = rnd.Next(1000),
                 Longitude = rnd.Next(1000),
                 Time = DateTime.Now,
-                GPSTracker = tracker
+                GPSTracker = trackers[rnd.Next(trackers.Count)];
             };
 
             return GPSTrackerMessageConverter.MessageToBytes(message);
