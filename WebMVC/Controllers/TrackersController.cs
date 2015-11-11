@@ -26,6 +26,7 @@ namespace WebMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
@@ -62,6 +63,7 @@ namespace WebMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel model)
         {
             if (!ModelState.IsValid)
@@ -103,6 +105,7 @@ namespace WebMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int? id)
         {
             if (id == null)

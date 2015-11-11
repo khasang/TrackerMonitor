@@ -8,6 +8,7 @@
 
 @using (Html.BeginForm("Delete", "Trackers", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Id)
     
     <h4>Вы действительно хотите удалить трекер "@Model.Name"?</h4>

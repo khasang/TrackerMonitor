@@ -7,6 +7,8 @@
 
 @using (Html.BeginForm("Register", "Trackers", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
+
     <div class="form-group">
         <label>@Html.DisplayNameFor(m => m.Name)</label>
         @Html.TextBoxFor(m => m.Name,
