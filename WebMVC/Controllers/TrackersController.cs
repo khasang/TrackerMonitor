@@ -86,11 +86,23 @@ namespace WebMVC.Controllers
             return View();
         }
 
-        public ActionResult ConfirmDelete()
+        public ActionResult ConfirmDelete(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            GPSTracker tracker = dbContext.GPSTrackers.Find(id);
+
+            if (tracker == null)
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+            if (tracker.OwnerId != User.Identity.GetUserId())
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
+            return View(tracker);
         }
 
+        [HttpPost]
         public ActionResult Delete()
         {
             return View();
