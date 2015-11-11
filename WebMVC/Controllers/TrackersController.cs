@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebMVC.Models.TrackersViewModels;
 
 namespace WebMVC.Controllers
 {
+    [Authorize]
     public class TrackersController : BaseController
     {
-        // GET: Trackers
         public ActionResult Index()
         {
             return View();
         }
 
         public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterViewModel model)
         {
             return View();
         }
@@ -37,6 +44,11 @@ namespace WebMVC.Controllers
         public ActionResult Delete()
         {
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
         }
     }
 }

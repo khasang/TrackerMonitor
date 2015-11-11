@@ -1,0 +1,22 @@
+﻿@model WebMVC.Models.TrackersViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+<h2>Регистрация нового трекера</h2>
+<hr />
+
+@using (Html.BeginForm("Register", "Trackers", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(m => m.Name)</label>
+        @Html.TextBoxFor(m => m.Name,
+                                 new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(m => m.PhoneNumber)</label>
+        @Html.TextBoxFor(m => m.PhoneNumber,
+                                 new { @class = "form-control" })
+    </div>
+}
+
