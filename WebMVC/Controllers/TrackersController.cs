@@ -103,9 +103,23 @@ namespace WebMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete()
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            GPSTracker tracker = dbContext.GPSTrackers.Find(id);
+
+            if (tracker == null)
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+            if (tracker.OwnerId != User.Identity.GetUserId())
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
+            dbContext.GPSTrackers.Remove(tracker);
+            dbContext.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
