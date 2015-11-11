@@ -15,7 +15,7 @@ namespace WebMVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(dbContext.GPSTrackers);
         }
 
         public ActionResult Register()

@@ -249,6 +249,7 @@
     <Content Include="Views\Trackers\Register.cshtml" />
     <Content Include="Views\Trackers\Edit.cshtml" />
     <Content Include="Views\Trackers\ConfirmDelete.cshtml" />
+    <Content Include="Views\Trackers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
