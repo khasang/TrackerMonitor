@@ -250,6 +250,8 @@
     <Content Include="Views\Trackers\Edit.cshtml" />
     <Content Include="Views\Trackers\ConfirmDelete.cshtml" />
     <Content Include="Views\Trackers\Index.cshtml" />
+    <Content Include="Views\Shared\_PersonalAccountLayout.cshtml" />
+    <Content Include="Views\Shared\_SideMenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

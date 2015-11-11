@@ -10,12 +10,19 @@ using WebMVC.Models.TrackersViewModels;
 
 namespace WebMVC.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class TrackersController : BaseController
     {
         public ActionResult Index()
         {
-            return View(dbContext.GPSTrackers);
+            List<GPSTracker> trackers = new List<GPSTracker>()
+            {
+                new GPSTracker() { Id = 1, Name = "Автомобиль" },
+                new GPSTracker() { Id = 2, Name = "Мотоцикл" },
+                new GPSTracker() { Id = 3, Name = "Велосипед" }
+            };
+
+            return View(trackers);
         }
 
         public ActionResult Register()
