@@ -8,7 +8,7 @@ namespace WebMVC.Models.TrackersViewModels
 {
     public class EditViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Display(Name = "Название")]
         public string Name { get; set; }

@@ -17,9 +17,9 @@ namespace WebMVC.Controllers
         {
             List<GPSTracker> trackers = new List<GPSTracker>()
             {
-                new GPSTracker() { Id = 1, Name = "Автомобиль" },
-                new GPSTracker() { Id = 2, Name = "Мотоцикл" },
-                new GPSTracker() { Id = 3, Name = "Велосипед" }
+                new GPSTracker() { Id = "1", Name = "Автомобиль" },
+                new GPSTracker() { Id = "2", Name = "Мотоцикл" },
+                new GPSTracker() { Id = "3", Name = "Велосипед" }
             };
 
             return View(trackers);

@@ -176,12 +176,15 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TrackersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\PushNotify.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TrackersViewModels\EditViewModel.cs" />
+    <Compile Include="Models\TrackersViewModels\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -255,6 +258,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\RegisterStepTwo.cshtml" />
     <Content Include="Views\Home\SignalRView.cshtml" />
+    <Content Include="Views\Trackers\ConfirmDelete.cshtml" />
+    <Content Include="Views\Trackers\Edit.cshtml" />
+    <Content Include="Views\Trackers\Index.cshtml" />
+    <Content Include="Views\Trackers\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
