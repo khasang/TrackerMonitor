@@ -1,0 +1,19 @@
+﻿@model DAL.Entities.GPSTracker
+@{
+    ViewBag.Title = "ConfirmDelete";
+    Layout = "~/Views/Shared/_PersonalAccountLayout.cshtml";
+}
+
+<h2>Подтверждение удаления трекера</h2>
+<hr />
+
+@using (Html.BeginForm("Delete", "Trackers", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    
+    <h4>Вы действительно хотите удалить трекер "@Model.Name"?</h4>
+    <button type="submit" class="btn btn-danger">Да</button>
+    <a href="@Url.Action("Index")" class="btn btn-default">Нет</a>
+}
+

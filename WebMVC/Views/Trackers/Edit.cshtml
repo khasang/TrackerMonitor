@@ -1,0 +1,25 @@
+﻿@model WebMVC.Models.TrackersViewModels.EditViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_PersonalAccountLayout.cshtml";
+}
+
+<h2>Редактирование свойств трекера</h2>
+<hr />
+
+@using (Html.BeginForm("Edit", "Trackers", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(m => m.Name)</label>
+        @Html.TextBoxFor(m => m.Name,
+                                 new { @class = "form-control" })
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Сохранить" />
+    <a class="btn btn-default" href="@Url.Action("Index")">Отмена</a>
+}
+
