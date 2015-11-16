@@ -82,16 +82,5 @@
         </dd>
     </dl>
 </div>
-<div>
-    @if (@Model.Profile != null)
-    {
-        <p>Имя: @Model.Profile.Login</p>
-        <p>Зарегистрированные маячки:</p>
-        foreach(var tracker in Model.Profile.GPSTrackers)
-        {
-            <p>@tracker.Name</p>
-        }
-    }
-</div>
 
     

@@ -176,6 +176,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PersonalAreaController.cs" />
     <Compile Include="Controllers\TrackersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -258,10 +259,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\RegisterStepTwo.cshtml" />
     <Content Include="Views\Home\SignalRView.cshtml" />
-    <Content Include="Views\Trackers\ConfirmDelete.cshtml" />
-    <Content Include="Views\Trackers\Edit.cshtml" />
-    <Content Include="Views\Trackers\Index.cshtml" />
-    <Content Include="Views\Trackers\Register.cshtml" />
+    <Content Include="Views\PersonalArea\ConfirmDelete.cshtml" />
+    <Content Include="Views\PersonalArea\Edit.cshtml" />
+    <Content Include="Views\PersonalArea\Index.cshtml" />
+    <Content Include="Views\PersonalArea\Register.cshtml" />
+    <Content Include="Views\Shared\_SideMenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

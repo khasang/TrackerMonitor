@@ -1,6 +1,9 @@
-﻿<ul class="nav nav-sidebar">
-    <li role="presentation"><a href="">Профиль</a></li>
-    <li role="presentation"><a href="@Url.Action("Index", "Trackers")">Маячки</a></li>
-    <li role="presentation"><a href="">Группы</a></li>
-</ul>
+﻿@if (Request.IsAuthenticated)
+{
+    <ul class="nav nav-sidebar">
+        <li role="presentation"><a href="">Профиль</a></li>
+        <li role="presentation"><a href="@Url.Action("Index", "Trackers")">Маячки</a></li>
+        <li role="presentation"><a href="">Группы</a></li>
+    </ul>
+}
 
