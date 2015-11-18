@@ -18,7 +18,9 @@ namespace DAL.EntityConfigurations
             this.Property(c => c.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(c => c.Id).IsRequired();
 
-            this.HasRequired<ApplicationUser>(c => c.User).WithOptional(c => c.UserProfile).WillCascadeOnDelete(false);
+            this.HasRequired<ApplicationUser>(c => c.User)
+                .WithOptional(c => c.UserProfile)
+                .WillCascadeOnDelete(false);
         }
              
     }

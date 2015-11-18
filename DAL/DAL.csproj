@@ -90,6 +90,7 @@
     <Compile Include="DBInitializers\InitGPSTracker.cs" />
     <Compile Include="DBInitializers\InitializationDB.cs" />
     <Compile Include="DBInitializers\InitUserAdmin.cs" />
+    <Compile Include="DBInitializers\InitUserProfile.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\GPSTracker.cs" />
     <Compile Include="Entities\GPSTrackerMessage.cs" />

@@ -17,14 +17,14 @@ namespace DAL.DBInitializers
             {
                 Id = "111111",
                 Name = "Tracker1",
-                Owner = user
+                Owner = user.UserProfile
             };
 
             GPSTracker tracker2 = new GPSTracker()
             {
                 Id = "222222",
                 Name = "Tracker2",
-                Owner = user
+                Owner = user.UserProfile
             };
 
             context.GPSTrackers.Add(tracker1);

@@ -22,7 +22,7 @@ namespace DAL.DBInitializers
                 Email = "admin@admin.com",
                 EmailConfirmed = true
             };
-
+            
             IdentityRole role = new IdentityRole("Admin");
 
             userManager.Create(user, "password");

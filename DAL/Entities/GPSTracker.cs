@@ -22,7 +22,7 @@ namespace DAL.Entities
         /// Владелец устройства
         /// </summary>
         public string OwnerId { get; set; }
-        public virtual ApplicationUser Owner { get; set; }
+        public virtual UserProfile Owner { get; set; }
 
         /// <summary>
         /// Коллекция сообщений, отправляемых устройством

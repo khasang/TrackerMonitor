@@ -19,9 +19,9 @@ namespace DAL.EntityConfigurations
             this.Property(c => c.Id).IsRequired();
             this.Property(c => c.Id).HasMaxLength(20);
 
-            this.HasRequired<ApplicationUser>(c => c.Owner)
+            this.HasRequired<UserProfile>(c => c.Owner)
                 .WithMany(o => o.GPSTrackers)
-                .HasForeignKey(c => c.OwnerId);
+                .HasForeignKey(x => x.OwnerId);
 
             this.HasMany<GPSTrackerMessage>(c => c.GPSTrackerMessages)
                 .WithRequired(m => m.GPSTracker)
