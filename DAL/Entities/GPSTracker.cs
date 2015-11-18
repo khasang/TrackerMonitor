@@ -14,6 +14,11 @@ namespace DAL.Entities
         public string Id { get; set; }
 
         /// <summary>
+        /// Телефонный номер трекера
+        /// </summary>
+        public string PhoneNumber { get; set; }
+
+        /// <summary>
         /// Имя устройства
         /// </summary>
         public string Name { get; set; }

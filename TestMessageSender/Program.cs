@@ -30,7 +30,7 @@ namespace TestMessageSender
             {
                 //вызов метода из хаба PushNotify и передача ему сообщения.
                 hubProxy.Invoke("SendNewMessage", message);
-                Console.WriteLine($"...Send {message.GPSTracker.OwnerId} - {message.GPSTrackerId} - {message.Latitude} - {message.Longitude} - {message.Time} ..... ok");
+                Console.WriteLine("...Send {0} - {1} - {2} - {3} - {4} ... ok", message.GPSTracker.OwnerId, message.GPSTrackerId, message.Latitude, message.Longitude, message.Time);
                 Console.WriteLine();
                 Thread.Sleep(new Random().Next(1000, 4000));
             }

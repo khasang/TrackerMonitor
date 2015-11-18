@@ -15,16 +15,17 @@ namespace WebMVC.Controllers
         // GET: PersonalArea
         public ActionResult Index()
         {
-            string userId = User.Identity.GetUserId();
-            UserProfile model = dbContext.UserProfiles.FirstOrDefault(x => x.UserId == userId);
+            string currentUserId = User.Identity.GetUserId();
 
+            // Профайл текущего пользователя
+            UserProfile model = dbContext.UserProfiles.FirstOrDefault(x => x.UserId == currentUserId);
+
+            // Если в личный кабинет пользователь заходит первый раз и профайла у него еще нет, то его надо создать
             if (model == null)
             {
                 model = new UserProfile()
                 {
-                    User = dbContext.Users.FirstOrDefault(x => x.Id == userId),
-                    UserId = userId,
-                    GPSTrackers = dbContext.GPSTrackers.Where(x => x.OwnerId == userId).ToList()
+                    User = dbContext.Users.FirstOrDefault(x => x.Id == currentUserId)
                 };
 
                 dbContext.UserProfiles.Add(model);
@@ -48,11 +49,13 @@ namespace WebMVC.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            var currenUserId = User.Identity.GetUserId();
+
             GPSTracker tracker = new GPSTracker()
             {
                 Id = model.Id,
-                Owner = dbContext.Users.Find(User.Identity.GetUserId()),
-                //OwnerId = User.Identity.GetUserId()
+                Owner = dbContext.Users.Find(currenUserId).UserProfile,
+                PhoneNumber = model.PhoneNumber,
                 Name = model.Name
             };
             
@@ -72,13 +75,15 @@ namespace WebMVC.Controllers
             if (tracker == null)
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 
-            if (tracker.OwnerId != User.Identity.GetUserId())
+            if (tracker.Owner.User.Id != User.Identity.GetUserId())
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
-            EditViewModel model = new EditViewModel();
-
-            model.Id = tracker.Id;
-            model.Name = tracker.Name;
+            EditViewModel model = new EditViewModel()
+            {
+                Id = tracker.Id,
+                PhoneNumber = tracker.PhoneNumber,
+                Name = tracker.Name
+            };            
 
             return View(model);
         }
@@ -95,10 +100,12 @@ namespace WebMVC.Controllers
             if (tracker == null)
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 
-            if (tracker.OwnerId != User.Identity.GetUserId())
+            if (tracker.Owner.User.Id != User.Identity.GetUserId())
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
+            tracker.PhoneNumber = model.PhoneNumber;
             tracker.Name = model.Name;
+
             dbContext.SaveChanges();
 
             return RedirectToAction("Index");
@@ -119,7 +126,7 @@ namespace WebMVC.Controllers
             if (tracker == null)
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 
-            if (tracker.OwnerId != User.Identity.GetUserId())
+            if (tracker.Owner.User.Id != User.Identity.GetUserId())
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
             return View(tracker);
@@ -137,7 +144,7 @@ namespace WebMVC.Controllers
             if (tracker == null)
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 
-            if (tracker.OwnerId != User.Identity.GetUserId())
+            if (tracker.Owner.User.Id != User.Identity.GetUserId())
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
             dbContext.GPSTrackers.Remove(tracker);

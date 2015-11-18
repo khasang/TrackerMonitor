@@ -10,8 +10,18 @@
 
 @using (Html.BeginForm("Edit", "PersonalArea", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()    
+
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(m => m.Id)</label>
+        @Model.Id
+        @Html.HiddenFor(m => m.Id)
+    </div>
+
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(m => m.PhoneNumber)</label>
+        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+    </div>
 
     <div class="form-group">
         <label>@Html.DisplayNameFor(m => m.Name)</label>

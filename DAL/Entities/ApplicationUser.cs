@@ -16,7 +16,7 @@ namespace DAL.Entities
 
         public ApplicationUser()
         {
-            GPSTrackers = new HashSet<GPSTracker>();
+            //GPSTrackers = new HashSet<GPSTracker>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
