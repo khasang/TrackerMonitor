@@ -23,7 +23,8 @@ namespace WebMVC.Controllers
                 model = new UserProfile()
                 {
                     User = dbContext.Users.FirstOrDefault(x => x.Id == userId),
-                    UserId = userId
+                    UserId = userId,
+                    GPSTrackers = dbContext.GPSTrackers.Where(x => x.OwnerId == userId).ToList()
                 };
 
                 dbContext.UserProfiles.Add(model);
@@ -47,16 +48,21 @@ namespace WebMVC.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            GPSTracker tracker = new GPSTracker();
-            tracker.Name = model.Name;
-            tracker.OwnerId = User.Identity.GetUserId();
-
+            GPSTracker tracker = new GPSTracker()
+            {
+                Id = model.Id,
+                Owner = dbContext.Users.Find(User.Identity.GetUserId()),
+                //OwnerId = User.Identity.GetUserId()
+                Name = model.Name
+            };
+            
             dbContext.GPSTrackers.Add(tracker);
+            dbContext.SaveChanges();
 
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -103,7 +109,7 @@ namespace WebMVC.Controllers
             return View();
         }
 
-        public ActionResult ConfirmDelete(int? id)
+        public ActionResult ConfirmDelete(string id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -121,7 +127,7 @@ namespace WebMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

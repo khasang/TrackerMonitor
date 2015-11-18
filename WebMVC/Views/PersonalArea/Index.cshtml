@@ -23,13 +23,13 @@
                     <tr class="text-center">
                         <td>@tracker.Name</td>
                         <td>
-                            <a href="@Url.Action("Map", "Trackers", new { id = tracker.Id})" class="btn btn-default btn-xs">
+                            <a href="@Url.Action("Map", "Trackers", new { id = tracker.Id })" class="btn btn-default btn-xs">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
-                            <a href="@Url.Action("Edit", "Trackers", new { id = tracker.Id})" class="btn btn-default btn-xs">
+                            <a href="@Url.Action("Edit", "PersonalArea", new { id = tracker.Id })" class="btn btn-default btn-xs">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </a>
-                            <a href="@Url.Action("ConfirmDelete", "Trackers", new { id = tracker.Id})" class="btn btn-default btn-xs">
+                            <a href="@Url.Action("ConfirmDelete", "PersonalArea", new { id = tracker.Id })" class="btn btn-default btn-xs">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
                         </td>
@@ -41,7 +41,7 @@
     </table>
 </div>
 <div class="form-group">
-    <a href="@Url.Action("Register", "Trackers")" class="btn btn-default">
+    <a href="@Url.Action("Register", "PersonalArea")" class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
     </a>
 </div>

@@ -2,21 +2,20 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_PersonalAccountLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Редактирование свойств трекера</h2>
 <hr />
 
-@using (Html.BeginForm("Edit", "Trackers", FormMethod.Post))
+@using (Html.BeginForm("Edit", "PersonalArea", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Id)
 
     <div class="form-group">
         <label>@Html.DisplayNameFor(m => m.Name)</label>
-        @Html.TextBoxFor(m => m.Name,
-                                 new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
     </div>
 
     <input type="submit" class="btn btn-primary" value="Сохранить" />

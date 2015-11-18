@@ -48,7 +48,7 @@ namespace WebMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if(id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -61,10 +61,11 @@ namespace WebMVC.Controllers
             if (tracker.OwnerId != User.Identity.GetUserId())
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
-            EditViewModel model = new EditViewModel();
-
-            model.Id = tracker.Id;
-            model.Name = tracker.Name;
+            EditViewModel model = new EditViewModel()
+                                    {
+                                        Id = tracker.Id,
+                                        Name = tracker.Name
+                                    };
 
             return View(model);
         }

@@ -140,7 +140,6 @@ namespace UDPTestUIWPF
 
                     // Выводим отправленное сообщение в текстбоксе
                     Dispatcher.Invoke(new Action(() => udpModel.Message += GPSTrackerMessageConverter.BytesToMessage(message).ToString()));
-                    //MessageTextBox.Dispatcher.Invoke(new Action(() => MessageTextBox.Text += GPSTrackerMessageConverter.BytesToMessage(message).ToString()));
                     // Блокируем поток на 2 секунды
                     Thread.Sleep(2000);
                     // Если флаг остановки отправки сообщений, то выходим из цикла
