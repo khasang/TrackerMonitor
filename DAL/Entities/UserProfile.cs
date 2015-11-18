@@ -8,8 +8,6 @@ namespace DAL.Entities
 {
     public class UserProfile
     {
-        public string Id { get; set; }
-
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
 

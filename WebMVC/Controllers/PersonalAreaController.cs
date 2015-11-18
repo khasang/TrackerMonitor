@@ -18,7 +18,7 @@ namespace WebMVC.Controllers
             string currentUserId = User.Identity.GetUserId();
 
             // Профайл текущего пользователя
-            UserProfile model = dbContext.UserProfiles.FirstOrDefault(x => x.UserId == currentUserId);
+            UserProfile model = dbContext.UserProfiles.FirstOrDefault(x => x.User.Id == currentUserId);
 
             // Если в личный кабинет пользователь заходит первый раз и профайла у него еще нет, то его надо создать
             if (model == null)

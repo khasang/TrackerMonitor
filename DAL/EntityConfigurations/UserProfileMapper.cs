@@ -15,12 +15,7 @@ namespace DAL.EntityConfigurations
         {
             this.ToTable("UserProfiles");
 
-            this.Property(c => c.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(c => c.Id).IsRequired();
-
-            this.HasRequired<ApplicationUser>(c => c.User)
-                .WithOptional(c => c.UserProfile)
-                .WillCascadeOnDelete(false);
+            this.HasKey(p => p.UserId);
         }
              
     }

@@ -32,6 +32,7 @@ namespace DAL
         {
             // Здесь подключаем настройки связей сущностей между собой
 
+            modelBuilder.Configurations.Add(new ApplicationUserMapper());
             modelBuilder.Configurations.Add(new GPSTrackerMapper());
             modelBuilder.Configurations.Add(new GPSTrackerMessageMapper());
             modelBuilder.Configurations.Add(new UserProfileMapper());

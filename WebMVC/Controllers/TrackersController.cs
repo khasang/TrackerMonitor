@@ -79,7 +79,7 @@ namespace WebMVC.Controllers
 
             GPSTracker tracker = dbContext.GPSTrackers.Find(model.Id);
 
-            if(tracker == null)
+            if (tracker == null)
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 
             if(tracker.OwnerId != User.Identity.GetUserId())

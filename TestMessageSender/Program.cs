@@ -59,10 +59,10 @@ namespace TestMessageSender
                         GPSTrackerId = r.Next(30).ToString(),
                         Latitude = double.Parse(coordinates[0], dbNumberFormat),
                         Longitude = double.Parse(coordinates[1], dbNumberFormat),
-                        GPSTracker = new GPSTracker()
-                        {
-                            OwnerId = guids[r.Next(2)]
-                        },
+                        //GPSTracker = new GPSTracker()
+                        //{
+                        //    OwnerId = guids[r.Next(2)]
+                        //},
                         Time = DateTime.Now
                     });
                 }

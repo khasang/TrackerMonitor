@@ -95,6 +95,7 @@
     <Compile Include="Entities\GPSTracker.cs" />
     <Compile Include="Entities\GPSTrackerMessage.cs" />
     <Compile Include="Entities\UserProfile.cs" />
+    <Compile Include="EntityConfigurations\ApplicationUserMapper.cs" />
     <Compile Include="EntityConfigurations\ClassMapper.cs" />
     <Compile Include="EntityConfigurations\GPSTrackerMapper.cs" />
     <Compile Include="EntityConfigurations\GPSTrackerMessageMapper.cs" />

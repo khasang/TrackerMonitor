@@ -11,7 +11,7 @@ namespace DAL.Entities
 {
     public class ApplicationUser : IdentityUser
     {
-        public string UserProfileId { get; set; }
+        public int UserProfileId { get; set; }
         public virtual UserProfile UserProfile { get; set; }
 
         public ApplicationUser()
