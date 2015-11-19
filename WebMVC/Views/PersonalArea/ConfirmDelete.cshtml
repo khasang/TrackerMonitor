@@ -7,7 +7,7 @@
 <h2>Подтверждение удаления трекера</h2>
 <hr />
 
-@using (Html.BeginForm("Delete", "Trackers", FormMethod.Post))
+@using (Html.BeginForm("Delete", "PersonalArea", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Id)
