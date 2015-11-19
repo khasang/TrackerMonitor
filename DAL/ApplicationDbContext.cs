@@ -22,6 +22,11 @@ namespace DAL
         {
         }
 
+        public ApplicationDbContext(string connectionString)
+            : base(connectionString, throwIfV1Schema: false)
+        {
+        }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

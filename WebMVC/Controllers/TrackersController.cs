@@ -96,7 +96,7 @@ namespace WebMVC.Controllers
             return View();
         }
 
-        public ActionResult ConfirmDelete(int? id)
+        public ActionResult ConfirmDelete(string id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -114,7 +114,7 @@ namespace WebMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -34,7 +34,7 @@ namespace UDPTestUIWPF
             this.udpServer = new UDPnet();
             udpServer.eventReceivedMessage += OnShowReceivedMessage;  // Подписываемся на событие получения сообщения
 
-            this.dbContext = new ApplicationDbContext();  // Для возможности записи сообщений в базу
+            this.dbContext = new ApplicationDbContext("UDPTestConnection");  // Для возможности записи сообщений в базу
 
             InitializeComponent();
 
