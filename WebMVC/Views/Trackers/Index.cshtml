@@ -1,0 +1,88 @@
+﻿@model IEnumerable<DAL.Entities.GPSTrackerMessage>
+
+@using System.Globalization
+
+@{
+    ViewBag.Title = "SignalRView";
+}
+
+<h2>SignalRView</h2>
+
+<button id="start-creation">Отслеживать</button>
+
+<div id="googleMap" style="width:1024px;height:768px;"></div>
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script>
+            var map;
+            function initialize() {
+                var mapProp = {
+                    center: new google.maps.LatLng(@Model.Last().Latitude.ToString((new CultureInfo("en-US")).NumberFormat), @Model.Last().Longitude.ToString((new CultureInfo("en-US")).NumberFormat)),
+                    zoom: 16,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+                @foreach (var gpsMessage in Model)
+                        {
+                            @:addMarker(@gpsMessage.Latitude.ToString((new CultureInfo("en-US")).NumberFormat), @gpsMessage.Longitude.ToString((new CultureInfo("en-US")).NumberFormat), map, markers);
+                        }
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <script>
+        var markers = [];
+
+        function addMarker(latitude, longitude, map, markers)
+        {
+            var latLng = new google.maps.LatLng(latitude, longitude);
+
+            var marker = new google.maps.Marker({
+                position: latLng,
+                draggable: false
+            });
+            marker.setMap(map);
+            markers.push(marker);
+        }
+
+        function changeMarker(latitude, longitude, map, marker)
+        {
+            var latLng = new google.maps.LatLng(latitude, longitude);
+
+            marker.setPosition(latLng);
+
+            map.setCenter(latLng);
+        }
+    </script>
+    <script>
+        $(function () {
+            //событие нажатия на кнопку
+            $('#start-creation').on('click', function () {
+                $(this).attr("disabled", "disabled");
+                $.connection.hub.start();
+            });
+            //прокси
+            var pushNotify = $.connection.pushNotify;
+
+            var markerIndex = 0;
+
+            pushNotify.client.ShowMessage = function (message) {
+                if(markers.length < 10){
+                    addMarker(message.Latitude, message.Longitude, map, markers);
+                } else {
+                    changeMarker(message.Latitude, message.Longitude, map, markers[markerIndex]);
+
+                    if(markerIndex < 9){
+                        markerIndex++;
+                    } else {
+                        markerIndex = 0;
+                    }
+                }
+            };
+        });
+    </script>
+}

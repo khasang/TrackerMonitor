@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 
 namespace WebMVC.Controllers
 {
+    [Authorize]
     public class PersonalAreaController : BaseController
     {
         // GET: PersonalArea

@@ -264,6 +264,7 @@
     <Content Include="Views\PersonalArea\Index.cshtml" />
     <Content Include="Views\PersonalArea\Register.cshtml" />
     <Content Include="Views\Shared\_SideMenuPartial.cshtml" />
+    <Content Include="Views\Trackers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
