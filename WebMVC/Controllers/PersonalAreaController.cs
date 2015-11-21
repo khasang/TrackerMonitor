@@ -48,14 +48,19 @@ namespace WebMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
             UserProfile profile = dbContext.UserProfiles.Find(User.Identity.GetUserId());
-            
-            return View();
+
+            profile.Name = model.Name;
+
+            dbContext.SaveChanges();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
     }
 }

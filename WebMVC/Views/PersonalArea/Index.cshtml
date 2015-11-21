@@ -7,43 +7,51 @@
 <h2>Личный кабинет</h2>
 <hr />
 
-<div class="form-group">
-    @if (Model.GPSTrackers.Count != 0)
-    {
-        <table class="table table-bordered table-condensed">
-            <thead>
-                <tr>
-                    <th class="text-center">Название</th>
-                    <th class="text-center">Действия</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var tracker in Model.GPSTrackers)
-                {
-                    <tr class="text-center">
-                        <td>@tracker.Name</td>
-                        <td>
-                            <a href="@Url.Action("Index", "Trackers", new { trackers = Model.GPSTrackers.Where(x => x.Id == tracker.Id).ToList() })" class="btn btn-default btn-xs">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                            </a>
-                            <a href="@Url.Action("Edit", "PersonalArea", new { id = tracker.Id })" class="btn btn-default btn-xs">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </a>
-                            <a href="@Url.Action("ConfirmDelete", "PersonalArea", new { id = tracker.Id })" class="btn btn-default btn-xs">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
-                        </td>
+<fieldset>
+    <legend>Профайл</legend>
+    <label>Имя: @Model.Name</label>
+</fieldset>
+
+<fieldset>
+    <legend>Трекеры</legend>
+    <div class="form-group">
+        @if (Model.GPSTrackers.Count != 0)
+        {
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th class="text-center">Название</th>
+                        <th class="text-center">Действия</th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <h4>На данный момент у вас отсутствуют трекеры. Нажмите "+", чтобы добавить трекер.</h4>
-    }
-    
-</div>
+                </thead>
+                <tbody>
+                    @foreach (var tracker in Model.GPSTrackers)
+                {
+                        <tr class="text-center">
+                            <td>@tracker.Name</td>
+                            <td>
+                                <a href="@Url.Action("Index", "Trackers", new { trackers = Model.GPSTrackers.Where(x => x.Id == tracker.Id).ToList() })" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                </a>
+                                <a href="@Url.Action("Edit", "PersonalArea", new { id = tracker.Id })" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>
+                                <a href="@Url.Action("ConfirmDelete", "PersonalArea", new { id = tracker.Id })" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h4>На данный момент у вас отсутствуют трекеры. Нажмите "+", чтобы добавить трекер.</h4>
+        }
+
+    </div>
+</fieldset>
 <div class="form-group">
     <a href="@Url.Action("Register", "PersonalArea")" class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
