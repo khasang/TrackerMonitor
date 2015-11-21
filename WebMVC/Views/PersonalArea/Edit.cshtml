@@ -2,10 +2,15 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
 @using (Ajax.BeginForm("Edit", "PersonalArea", new AjaxOptions() { }))
 {
+    @Html.AntiForgeryToken()
 
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(m => m.Name)</label>
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
 }

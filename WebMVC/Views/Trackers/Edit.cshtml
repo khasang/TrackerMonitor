@@ -1,4 +1,4 @@
-﻿@model DAL.Entities.UserProfile
+﻿@model WebMVC.Models.TrackersViewModels.EditViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -8,7 +8,8 @@
 <h2>Редактирование свойств трекера</h2>
 <hr />
 
-@using ()
+@using (Html.BeginForm("Edit", "Trackers", FormMethod.Post))
+{ 
     @Html.AntiForgeryToken()    
 
     <div class="form-group">

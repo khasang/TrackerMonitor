@@ -5,8 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebMVC.Models.TrackersViewModels;
 using Microsoft.AspNet.Identity;
+using WebMVC.Models.PersonalAreaViewModels;
 
 namespace WebMVC.Controllers
 {
@@ -40,7 +40,22 @@ namespace WebMVC.Controllers
         {
             UserProfile profile = dbContext.UserProfiles.Find(User.Identity.GetUserId());
 
-            return View(profile);
+            EditViewModel model = new EditViewModel();
+
+            model.Name = "Admin";
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            UserProfile profile = dbContext.UserProfiles.Find(User.Identity.GetUserId());
+            
+            return View();
         }
     }
 }
