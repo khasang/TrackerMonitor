@@ -11,6 +11,8 @@ namespace DAL.Entities
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
 
+        public string Name { get; set; }
+
         public virtual ICollection<GPSTracker> GPSTrackers { get; set; }
         
         public UserProfile()
