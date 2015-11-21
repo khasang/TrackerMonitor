@@ -1,4 +1,10 @@
 ﻿@model DAL.Entities.UserProfile
 
 <label>Имя: @Model.Name</label>
-<a class="btn btn-default" href="@Url.Action("Edit")"><span class="glyphicon glyphicon-pencil"></span></a>
+<a class="btn btn-default"
+   href="@Url.Action("Edit")"
+   data-ajax="true"
+   data-ajax-mode="replace"
+   data-ajax-update="#profile">
+    <span class="glyphicon glyphicon-pencil"></span>
+</a>
