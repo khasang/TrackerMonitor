@@ -9,8 +9,8 @@
 
 <fieldset>
     <legend>Профайл</legend>
-    <div class="form-group" id="profile">
-        @Html.Action("Details", Model)
+    <div id="profile">
+        @Html.Partial("~/Views/PersonalArea/Details.cshtml", Model)
     </div>
 </fieldset>
 
@@ -59,4 +59,8 @@
         <span class="glyphicon glyphicon-plus"></span>
     </a>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryajax")
+}
 

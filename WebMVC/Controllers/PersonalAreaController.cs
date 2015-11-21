@@ -38,7 +38,9 @@ namespace WebMVC.Controllers
 
         public ActionResult Details()
         {
-            return View();
+            UserProfile profile = dbContext.UserProfiles.Find(User.Identity.GetUserId());
+
+            return View(profile);
         }
 
         public ActionResult Edit()
@@ -47,7 +49,7 @@ namespace WebMVC.Controllers
 
             EditViewModel model = new EditViewModel();
 
-            model.Name = "Admin";
+            model.Name = profile.Name;
 
             return View(model);
         }
@@ -65,7 +67,7 @@ namespace WebMVC.Controllers
 
             dbContext.SaveChanges();
 
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
+            return View("Details", profile);
         }
     }
 }

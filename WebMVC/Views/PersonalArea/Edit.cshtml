@@ -1,4 +1,4 @@
-﻿@model DAL.Entities.UserProfile
+﻿@model WebMVC.Models.PersonalAreaViewModels.EditViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -15,5 +15,9 @@
     </div>
 
     <input type="submit" class="btn btn-primary" value="Сохранить" />
-    <a class="btn btn-default" href="@Url.Action("Details")">Отмена</a>
+
+    @Ajax.ActionLink("Отмена", "Details", "PersonalArea",
+                null,
+                new AjaxOptions { UpdateTargetId = "profile" },
+                new { @class = "btn btn-default"})
 }
