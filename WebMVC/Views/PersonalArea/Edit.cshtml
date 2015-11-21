@@ -5,7 +5,7 @@
     Layout = null;
 }
 
-@using (Ajax.BeginForm("Edit", "PersonalArea", new AjaxOptions() { }))
+@using (Ajax.BeginForm("Edit", "PersonalArea", new AjaxOptions { UpdateTargetId = "profile" }))
 {
     @Html.AntiForgeryToken()
 
@@ -13,4 +13,7 @@
         <label>@Html.DisplayNameFor(m => m.Name)</label>
         @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
     </div>
+
+    <input type="submit" class="btn btn-primary" value="Сохранить" />
+    <a class="btn btn-default" href="@Url.Action("Details")">Отмена</a>
 }

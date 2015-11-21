@@ -36,6 +36,11 @@ namespace WebMVC.Controllers
             return View(model);
         }
 
+        public ActionResult Details()
+        {
+            return View();
+        }
+
         public ActionResult Edit()
         {
             UserProfile profile = dbContext.UserProfiles.Find(User.Identity.GetUserId());

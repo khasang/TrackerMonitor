@@ -184,6 +184,7 @@
     <Compile Include="Hubs\PushNotify.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PersonalAreaViewModels\EditViewModel.cs" />
     <Compile Include="Models\TrackersViewModels\EditViewModel.cs" />
     <Compile Include="Models\TrackersViewModels\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -266,6 +267,7 @@
     <Content Include="Views\Shared\_SideMenuPartial.cshtml" />
     <Content Include="Views\Trackers\Index.cshtml" />
     <Content Include="Views\PersonalArea\Edit.cshtml" />
+    <Content Include="Views\PersonalArea\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
