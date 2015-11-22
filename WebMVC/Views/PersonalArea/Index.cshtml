@@ -23,7 +23,7 @@
                     <tr class="text-center">
                         <td>@tracker.Name</td>
                         <td>
-                            <a href="@Url.Action("Index", "Trackers", new { trackers = Model.GPSTrackers.Where(x => x.Id == tracker.Id).ToList() })" class="btn btn-default btn-xs">
+                            <a href="@Url.Action("Index", "Trackers", /*new { trackers = Model.GPSTrackers.Where(x => x.Id == tracker.Id).ToList() }*/ tracker)" class="btn btn-default btn-xs">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
                             <a href="@Url.Action("Edit", "PersonalArea", new { id = tracker.Id })" class="btn btn-default btn-xs">

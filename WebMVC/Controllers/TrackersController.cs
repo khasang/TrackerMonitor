@@ -14,9 +14,25 @@ namespace WebMVC.Controllers
     [Authorize]
     public class TrackersController : BaseController
     {
-        public ActionResult Index()
+        
+        public ActionResult Index(GPSTracker tracker)
         {
-            return View();
+            string currentUserId = User.Identity.GetUserId();
+            UserProfile model = dbContext.UserProfiles.FirstOrDefault(x => x.User.Id == currentUserId);
+
+            ICollection<GPSTrackerMessage> messages = new List<GPSTrackerMessage>();
+
+            messages = dbContext.GPSTrackerMessages.Where(x => x.GPSTrackerId == tracker.Id).ToList();
+            //ICollection<GPSTrackerMessage> trackerMessages = new List<GPSTrackerMessage>();
+
+            //foreach (GPSTracker tracker in trackers)
+            //{
+            //    trackerMessages.Add(tracker.GPSTrackerMessages.Last());
+            //}
+
+            //return View(trackerMessages);
+
+            return View(messages);
         }
 
     }
