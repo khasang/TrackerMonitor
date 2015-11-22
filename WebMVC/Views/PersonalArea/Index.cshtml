@@ -35,10 +35,10 @@
                                 <a href="@Url.Action("Index", "Trackers", new { trackers = Model.GPSTrackers.Where(x => x.Id == tracker.Id).ToList() })" class="btn btn-default btn-xs">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
-                                <a href="@Url.Action("Edit", "PersonalArea", new { id = tracker.Id })" class="btn btn-default btn-xs">
+                                <a href="@Url.Action("Edit", "Trackers", new { id = tracker.Id })" class="btn btn-default btn-xs">
                                     <span class="glyphicon glyphicon-edit"></span>
                                 </a>
-                                <a href="@Url.Action("ConfirmDelete", "PersonalArea", new { id = tracker.Id })" class="btn btn-default btn-xs">
+                                <a href="@Url.Action("ConfirmDelete", "Trackers", new { id = tracker.Id })" class="btn btn-default btn-xs">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </a>
                             </td>
@@ -55,7 +55,7 @@
     </div>
 </fieldset>
 <div class="form-group">
-    <a href="@Url.Action("Register", "PersonalArea")" class="btn btn-default">
+    <a href="@Url.Action("Register", "Trackers")" class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
     </a>
 </div>

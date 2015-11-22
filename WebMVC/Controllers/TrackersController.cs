@@ -53,7 +53,7 @@ namespace WebMVC.Controllers
             dbContext.GPSTrackers.Add(tracker);
             dbContext.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "PersonalArea", null);
         }
 
         public ActionResult Edit(string id)
@@ -99,7 +99,7 @@ namespace WebMVC.Controllers
 
             dbContext.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "PersonalArea", null);
         }
 
         public ActionResult Map()
@@ -141,7 +141,7 @@ namespace WebMVC.Controllers
             dbContext.GPSTrackers.Remove(tracker);
             dbContext.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "PersonalArea", null);
         }
 
 
