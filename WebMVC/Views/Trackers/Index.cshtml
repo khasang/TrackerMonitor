@@ -19,7 +19,7 @@
         var map;
 
             function initialize() {
-                var mapProp = {
+                var mapProp = { //если нет сообщений то ловим NullReference
                     center: new google.maps.LatLng(@Model.Last().Latitude.ToString((new CultureInfo("en-US")).NumberFormat), @Model.Last().Longitude.ToString((new CultureInfo("en-US")).NumberFormat)),
                     zoom: 16,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
