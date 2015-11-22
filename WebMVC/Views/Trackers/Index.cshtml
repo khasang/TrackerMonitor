@@ -8,7 +8,7 @@
 
 <h2>SignalRView</h2>
 
-<button id="start-creation">Отслеживать</button>
+<button id="start-creation" class="off_receive">Подписаться</button>
 
 <div id="googleMap" style="width:1024px;height:768px;"></div>
 @section scripts{
@@ -62,13 +62,19 @@
             //событие нажатия на кнопку
             $('#start-creation').on('click', function () {
                 //$(this).attr("disabled", "disabled");
-                $.connection.hub.start();
-            });
-
-            $('#start-creation').off('click', function () {
-                //$(this).attr("disabled", "disabled");
+                //$.connection.hub.start();
+                if ($(this).hasClass('off_receive'))
+                {
+                    $(this).removeClass('off_receive').addClass('on_receive').html('Отписаться');
+                    $.connection.hub.start();
+                    return
+                }
+                $(this).removeClass('on_receive').addClass('off_receive').html('Подписаться');
                 $.connection.hub.stop();
             });
+
+            //наверно нужен какой-нибудь toogle
+
             //прокси
             var pushNotify = $.connection.pushNotify;
 

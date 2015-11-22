@@ -30,6 +30,11 @@ namespace DAL.Entities
         public virtual UserProfile Owner { get; set; }
 
         /// <summary>
+        /// Активно или неактивно устройство
+        /// </summary>
+        public bool IsActive { get; set; }
+
+        /// <summary>
         /// Коллекция сообщений, отправляемых устройством
         /// </summary>
         public virtual ICollection<GPSTrackerMessage> GPSTrackerMessages { get; set; }
