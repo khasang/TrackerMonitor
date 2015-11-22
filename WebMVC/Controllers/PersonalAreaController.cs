@@ -153,5 +153,26 @@ namespace WebMVC.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Active(string id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            GPSTracker tracker = dbContext.GPSTrackers.Find(id);
+
+            if (tracker == null)
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+            if (tracker.Owner.User.Id != User.Identity.GetUserId())
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
+            tracker.IsActive = !tracker.IsActive;
+            dbContext.SaveChanges();
+
+            return View(tracker);
+        }
     }
 }
