@@ -84,7 +84,8 @@
                       Content="Cycle"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top"
-                      IsChecked="{Binding Cycle, Mode=OneWayToSource}"/>
+                      IsChecked="{Binding Cycle, Mode=OneWayToSource}"
+                      IsEnabled="{Binding IsChecked, ElementName=TemplateCheckBox}"/>
 
             <StackPanel HorizontalAlignment="Left"
                         Height="30"
@@ -98,7 +99,7 @@
                 <RadioButton Name="ReceiveRadioButton"
                              Content="Receive" />
             </StackPanel>
-            
+
             <CheckBox x:Name="WriteDBCheckBox"
             	        Content="Write to DB"
             	        HorizontalAlignment="Left"
@@ -124,6 +125,20 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Width="230" Height="25" Canvas.Top="160"/>
+
+            <CheckBox Name="SignalRCheckBox"
+                      IsEnabled="{Binding IsChecked, ElementName=ReceiveRadioButton}"
+                      IsChecked="{Binding SendSignalR, Mode=OneWayToSource}"
+                      Content="Send to SigalR"
+                      Canvas.Left="115"
+                      Canvas.Top="65"/>
+            
+            <CheckBox x:Name="TemplateCheckBox"
+                      IsEnabled="{Binding IsChecked, ElementName=SendRadioButton}"
+                      IsChecked="{Binding Template, Mode=OneWayToSource}"
+                      Content="Tempate"
+                      Canvas.Left="115"
+                      Canvas.Top="20"/>
 
         </Canvas>
 

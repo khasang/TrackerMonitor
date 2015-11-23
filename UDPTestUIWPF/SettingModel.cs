@@ -10,8 +10,10 @@ namespace UDPTestUIWPF
     public class SettingModel : DependencyObject
     {
         public static DependencyProperty SendReceiveProperty;
+        public static DependencyProperty TemplateProperty;
         public static DependencyProperty CycleProperty;
         public static DependencyProperty WriteToDBProperty;
+        public static DependencyProperty SignalRProperty;
         public static DependencyProperty StateButtonProperty;
         public static DependencyProperty StatusProperty;
 
@@ -22,12 +24,22 @@ namespace UDPTestUIWPF
                                                                 typeof(SettingModel),
                                                                 new PropertyMetadata(true));
 
+            TemplateProperty = DependencyProperty.Register("Template",
+                                                                typeof(bool),
+                                                                typeof(SettingModel),
+                                                                new PropertyMetadata(false));
+
             CycleProperty = DependencyProperty.Register("Cycle",
                                                                 typeof(bool),
                                                                 typeof(SettingModel),
                                                                 new PropertyMetadata(false));
 
             WriteToDBProperty = DependencyProperty.Register("WriteToDB",
+                                                                typeof(bool),
+                                                                typeof(SettingModel),
+                                                                new PropertyMetadata(false));
+
+            SignalRProperty = DependencyProperty.Register("SignalR",
                                                                 typeof(bool),
                                                                 typeof(SettingModel),
                                                                 new PropertyMetadata(false));
@@ -49,6 +61,12 @@ namespace UDPTestUIWPF
             get { return (bool)GetValue(SendReceiveProperty); }
         }
 
+        public bool Template
+        {
+            set { SetValue(TemplateProperty, value); }
+            get { return (bool)GetValue(TemplateProperty); }
+        }
+
         public bool Cycle
         {
             set { SetValue(CycleProperty, value); }
@@ -59,6 +77,12 @@ namespace UDPTestUIWPF
         {
             set { SetValue(WriteToDBProperty, value); }
             get { return (bool)GetValue(WriteToDBProperty); }
+        }
+
+        public bool SignalR
+        {
+            set { SetValue(SignalRProperty, value); }
+            get { return (bool)GetValue(SignalRProperty); }
         }
 
         public string StateButton

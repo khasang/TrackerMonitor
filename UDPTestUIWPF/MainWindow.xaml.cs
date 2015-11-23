@@ -26,6 +26,10 @@ namespace UDPTestUIWPF
 
         ApplicationDbContext dbContext;
 
+        //HubConnection hubConnection;
+        //IHubProxy hubProxy;
+            
+
         UDPDataModel udpModel;
         SettingModel settingModel;
 
@@ -35,6 +39,9 @@ namespace UDPTestUIWPF
             udpServer.eventReceivedMessage += OnShowReceivedMessage;  // Подписываемся на событие получения сообщения
 
             this.dbContext = new ApplicationDbContext("UDPTestConnection");  // Для возможности записи сообщений в базу
+
+            //this.hubConnection = new HubConnection(@"http://localhost:3254");
+            //this.hubProxy = hubConnection.CreateHubProxy("PushNotify");
 
             InitializeComponent();
 
@@ -74,6 +81,12 @@ namespace UDPTestUIWPF
             {
                 settingModel.StateButton = "Stop";
                 settingModel.Status = "Receiving message...";
+
+                // Выбрано отправлять сообщение хабу SignalR
+                if(SignalRCheckBox.IsChecked == true)
+                {
+                    //hubConnection.Start().Wait();
+                }
 
                 // Циклический прием сообщений
                 if (settingModel.Cycle == true)
@@ -135,7 +148,7 @@ namespace UDPTestUIWPF
 
                 while (true)                                     // В бесконечном цикле
                 {
-                    byte[] message = GetRndGPSTreckerMessage(trackers);  // Создаем случайное сообщение
+                    byte[] message = GetRndGPSTrackerMessage(trackers);  // Создаем случайное сообщение
                     udpServer.SendMessageAsync(message, ipAddress, port);  // Отправляем его
 
                     // Выводим отправленное сообщение в текстбоксе
@@ -152,7 +165,7 @@ namespace UDPTestUIWPF
         /// Создает сообщение из экземпляра GPSTrackerMessage со случайными параметрами
         /// </summary>
         /// <returns>byte[]</returns>
-        private byte[] GetRndGPSTreckerMessage(IList<GPSTracker> trackers)
+        private byte[] GetRndGPSTrackerMessage(IList<GPSTracker> trackers)
         {
             int number = rnd.Next(trackers.Count);
             GPSTrackerMessage message = new GPSTrackerMessage()
@@ -191,8 +204,12 @@ namespace UDPTestUIWPF
                 catch(Exception ex)
                 {
                     Dispatcher.Invoke(new Action(() => StatusLabel.Content = ex.Message));
-                }
-                
+                }                
+            }
+
+            if(settingModel.SignalR == true)
+            {
+                //hubProxy.Invoke("SendNewMessage", gpsMessage);
             }
         }
 
