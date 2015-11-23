@@ -117,7 +117,7 @@
                     Click="StartButton_Click"
                     IsDefault="True"
                     Canvas.Top="100"
-                    Content="{Binding StateButton, Mode=OneWay}" />
+                    Content="{Binding StateButton, Mode=OneWay}" IsCancel="True" />
 
             <Label Name="StatusLabel"
                Content="{Binding Status, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"

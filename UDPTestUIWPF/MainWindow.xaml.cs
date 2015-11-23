@@ -12,6 +12,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using UDPServer;
+using Microsoft.AspNet.SignalR.Client;
+using Microsoft.AspNet.SignalR.Messaging;
 
 namespace UDPTestUIWPF
 {
@@ -20,20 +22,18 @@ namespace UDPTestUIWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        UDPDataModel dataUDP;
         UDPnet udpServer;
-
-        bool stopSend = true;
-        Random rnd = new Random();
-
-        ApplicationDbContext dbContext;
-
-        //HubConnection hubConnection;
-        //IHubProxy hubProxy;
-            
 
         UDPDataModel udpModel;
         SettingModel settingModel;
+
+        ApplicationDbContext dbContext;
+
+        HubConnection hubConnection;
+        IHubProxy hubProxy;
+
+        bool stopSend = true;
+        Random rnd = new Random();
 
         public MainWindow()
         {
@@ -42,12 +42,12 @@ namespace UDPTestUIWPF
 
             this.dbContext = new ApplicationDbContext("UDPTestConnection");  // Для возможности записи сообщений в базу
 
-            //this.hubConnection = new HubConnection(@"http://localhost:3254");
-            //this.hubProxy = hubConnection.CreateHubProxy("PushNotify");
+            this.hubConnection = new HubConnection(@"http://localhost:3254");
+            this.hubProxy = hubConnection.CreateHubProxy("PushNotify");
 
             InitializeComponent();
 
-            udpModel = (UDPDataModel)this.FindResource("UdpModel");     // Достаем модели из xaml
+            udpModel = (UDPDataModel)this.FindResource("UdpModel");          // Достаем модели из xaml
             settingModel = (SettingModel)this.FindResource("SettingModel");
         }
 
@@ -56,11 +56,15 @@ namespace UDPTestUIWPF
         /// </summary>
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            //var d = dbContext.GPSTrackers.ToArray();
             // Выбрана отправка сообщения
             if(settingModel.StateButton == "Start" && settingModel.SendReceive == true)
             {
                 settingModel.StateButton = "Stop";
+
+                if(settingModel.Template == true)
+                {
+
+                }
 
                 // Выбрана мультиотправка в цикле
                 if (settingModel.Cycle == true)
@@ -87,7 +91,7 @@ namespace UDPTestUIWPF
                 // Выбрано отправлять сообщение хабу SignalR
                 if(SignalRCheckBox.IsChecked == true)
                 {
-                    //hubConnection.Start().Wait();
+                    hubConnection.Start().Wait();
                 }
 
                 // Циклический прием сообщений
@@ -115,6 +119,9 @@ namespace UDPTestUIWPF
 
                 stopSend = true; // Останавливаем мультиотправку
                 udpServer.StopReceive();  // Останавливаем прием сообщений
+
+                if (hubConnection.State == ConnectionState.Connected)
+                    hubConnection.Stop();
             }            
         }
 
@@ -132,10 +139,7 @@ namespace UDPTestUIWPF
 
                 while (true)                                     // В бесконечном цикле
                 {
-                    double latitude = rnd.Next(1000);
-                    double longitude = rnd.Next(1000);
-
-                    GPSTrackerMessage message = GetGPSTrackerMessage(trackers, longitude, longitude);  // Создаем случайное сообщение
+                    GPSTrackerMessage message = GetGPSTrackerMessage(trackers, rnd.Next(1000), rnd.Next(1000));  // Создаем случайное сообщение
                     byte[] messageByte = GPSTrackerMessageConverter.MessageToBytes(message);
 
                     udpServer.SendMessageAsync(messageByte, ipAddress, port);  // Отправляем его
@@ -176,7 +180,7 @@ namespace UDPTestUIWPF
         }
 
         /// <summary>
-        /// Создает сообщение из экземпляра GPSTrackerMessage со случайными параметрами
+        /// Создает сообщение типа GPSTrackerMessage со случайными параметрами
         /// </summary>
         /// <returns>byte[]</returns>
         private GPSTrackerMessage GetGPSTrackerMessage(IList<GPSTracker> trackers, double latitude, double longitude)
@@ -247,7 +251,7 @@ namespace UDPTestUIWPF
 
             if(settingModel.SignalR == true)
             {
-                //hubProxy.Invoke("SendNewMessage", gpsMessage);
+                hubProxy.Invoke("SendNewMessage", gpsMessage);
             }
         }
 
