@@ -67,7 +67,7 @@
 
         <Label Content="Message:"
                HorizontalAlignment="Left"
-               Margin="245,25,0,0"
+               Margin="265,25,0,0"
                VerticalAlignment="Top"
                FontSize="16"
                FontWeight="Bold"
@@ -84,8 +84,7 @@
                       Content="Cycle"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top"
-                      IsChecked="{Binding Cycle, Mode=OneWayToSource}"
-                      IsEnabled="{Binding IsChecked, ElementName=TemplateCheckBox}"/>
+                      IsChecked="{Binding Cycle, Mode=OneWayToSource}"/>
 
             <StackPanel HorizontalAlignment="Left"
                         Height="30"
@@ -136,7 +135,7 @@
             <CheckBox x:Name="TemplateCheckBox"
                       IsEnabled="{Binding IsChecked, ElementName=SendRadioButton}"
                       IsChecked="{Binding Template, Mode=OneWayToSource}"
-                      Content="Tempate"
+                      Content="From file"
                       Canvas.Left="115"
                       Canvas.Top="20"/>
 

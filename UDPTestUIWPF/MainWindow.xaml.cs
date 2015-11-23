@@ -3,6 +3,8 @@ using DAL.Entities;
 using DAL.Logic;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -126,33 +128,20 @@ namespace UDPTestUIWPF
             stopSend = false;
             Task.Factory.StartNew(() =>
             {
-                List<GPSTracker> trackers = new List<GPSTracker>();
-                try
-                {
-                    trackers = dbContext.GPSTrackers.ToList();
-                }
-                catch
-                {
-                    trackers.Add(new GPSTracker()
-                    {
-                        Id = "111111",
-                        Name = "Tracker1"
-                    });
-
-                    trackers.Add(new GPSTracker()
-                    {
-                        Id = "222222",
-                        Name = "Tracker2"
-                    });
-                }
+                List<GPSTracker> trackers = GetTrackers();
 
                 while (true)                                     // В бесконечном цикле
                 {
-                    byte[] message = GetRndGPSTrackerMessage(trackers);  // Создаем случайное сообщение
-                    udpServer.SendMessageAsync(message, ipAddress, port);  // Отправляем его
+                    double latitude = rnd.Next(1000);
+                    double longitude = rnd.Next(1000);
+
+                    GPSTrackerMessage message = GetGPSTrackerMessage(trackers, longitude, longitude);  // Создаем случайное сообщение
+                    byte[] messageByte = GPSTrackerMessageConverter.MessageToBytes(message);
+
+                    udpServer.SendMessageAsync(messageByte, ipAddress, port);  // Отправляем его
 
                     // Выводим отправленное сообщение в текстбоксе
-                    Dispatcher.Invoke(new Action(() => udpModel.Message += GPSTrackerMessageConverter.BytesToMessage(message).ToString()));
+                    Dispatcher.Invoke(new Action(() => udpModel.Message += message.ToString()));
                     // Блокируем поток на 2 секунды
                     Thread.Sleep(2000);
                     // Если флаг остановки отправки сообщений, то выходим из цикла
@@ -161,23 +150,72 @@ namespace UDPTestUIWPF
             });
         }
 
+        private List<GPSTracker> GetTrackers()
+        {
+            List<GPSTracker> trackers = new List<GPSTracker>();
+            try
+            {
+                trackers = dbContext.GPSTrackers.ToList();
+            }
+            catch
+            {
+                trackers.Add(new GPSTracker()
+                {
+                    Id = "111111",
+                    Name = "Tracker1"
+                });
+
+                trackers.Add(new GPSTracker()
+                {
+                    Id = "222222",
+                    Name = "Tracker2"
+                });
+            }
+
+            return trackers;
+        }
+
         /// <summary>
         /// Создает сообщение из экземпляра GPSTrackerMessage со случайными параметрами
         /// </summary>
         /// <returns>byte[]</returns>
-        private byte[] GetRndGPSTrackerMessage(IList<GPSTracker> trackers)
+        private GPSTrackerMessage GetGPSTrackerMessage(IList<GPSTracker> trackers, double latitude, double longitude)
         {
             int number = rnd.Next(trackers.Count);
             GPSTrackerMessage message = new GPSTrackerMessage()
             {
-                Latitude = rnd.Next(1000),
-                Longitude = rnd.Next(1000),
+                Latitude = latitude,
+                Longitude = longitude,
                 Time = DateTime.Now,
                 GPSTracker = trackers[number],
                 GPSTrackerId = trackers[number].Id
             };
 
-            return GPSTrackerMessageConverter.MessageToBytes(message);
+            return message;
+        }
+
+        private IList<GPSTrackerMessage> GetGPSTrackerMessages()
+        {
+            List<GPSTracker> trackers = GetTrackers();
+            List<GPSTrackerMessage> messages = new List<GPSTrackerMessage>();
+            
+            using (StreamReader sr = new StreamReader(@"Projects\GPSTracker\GPSPoints\GPSPoints.csv"))
+            {
+                CultureInfo usCulture = new CultureInfo("en-US");
+                NumberFormatInfo dbNumberFormat = usCulture.NumberFormat;
+
+                while (!sr.EndOfStream)
+                {
+                    string[] coordinates = sr.ReadLine().Split(';');
+
+                    messages.Add(GetGPSTrackerMessage(trackers,
+                        double.Parse(coordinates[0], dbNumberFormat),
+                        double.Parse(coordinates[1], dbNumberFormat)
+                        ));
+                }
+            }
+
+            return messages;
         }
 
         /// <summary>
