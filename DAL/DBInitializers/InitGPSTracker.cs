@@ -39,9 +39,8 @@ namespace DAL.DBInitializers
             { 
                 GPSTracker track = new GPSTracker()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = Guid.NewGuid().ToString().Substring(0,10),
                     Name = $"Трекер №{i}",
-                    OwnerId = user.Id,
                     Owner = user.UserProfile,
                     IsActive = r.Next(5) > 2 ? true : false
                 };

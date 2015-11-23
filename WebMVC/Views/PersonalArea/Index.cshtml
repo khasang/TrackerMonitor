@@ -33,17 +33,17 @@
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
                             @* настройка активности трекера /qdimka *@
-                            <a href="@Ajax.ActionLink("Active", "PersonalArea", new { id = tracker.Id } , null)" class="btn btn-default btn-xs">
-                                @{
-                                    if (tracker.IsActive)
-                                    {
-                                        <span class="glyphicon glyphicon-check"></span>
+                            <a href="@Url.Action("Active", "PersonalArea", new { id = tracker.Id })" class="btn btn-default btn-xs">
+                                    @{
+                                        if (tracker.IsActive)
+                                        {
+                                            <span class="glyphicon glyphicon-check"></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="glyphicon glyphicon-unchecked"></span>
+                                        }
                                     }
-                                    else
-                                    {
-                                        <span class="glyphicon glyphicon-unchecked"></span>
-                                    }
-                                }
                             </a>
                         </td>
                     </tr>

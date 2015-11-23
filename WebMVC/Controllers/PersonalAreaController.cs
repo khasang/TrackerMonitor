@@ -154,8 +154,11 @@ namespace WebMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        /// <summary>
+        /// Принимать или не принимать сообщения.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Active(string id)
         {
             if (id == null)
@@ -172,7 +175,7 @@ namespace WebMVC.Controllers
             tracker.IsActive = !tracker.IsActive;
             dbContext.SaveChanges();
 
-            return View(tracker);
+            return RedirectToAction("Index");
         }
     }
 }
