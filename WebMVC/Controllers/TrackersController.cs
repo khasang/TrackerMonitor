@@ -19,16 +19,6 @@ namespace WebMVC.Controllers
         {
             ICollection<GPSTrackerMessage> messages = new List<GPSTrackerMessage>();
             messages = dbContext.GPSTrackerMessages.Where(x => x.GPSTrackerId == tracker.Id).ToList();
-
-            //ICollection<GPSTrackerMessage> trackerMessages = new List<GPSTrackerMessage>();
-
-            //foreach (GPSTracker tracker in trackers)
-            //{
-            //    trackerMessages.Add(tracker.GPSTrackerMessages.Last());
-            //}
-
-            //return View(trackerMessages);
-
             return View(messages);
         }
 

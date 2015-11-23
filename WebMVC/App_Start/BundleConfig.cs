@@ -26,6 +26,12 @@ namespace WebMVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            //Пока не работает
+            //bundles.Add(new ScriptBundle("~/bundles/signalRmaps").Include(
+            //          "~/Scripts/jquery.signalR-2.2.0.min.js",
+            //          "~/signalr/hubs",
+            //          "~/Scripts/map/gmaps.js"));
         }
     }
 }

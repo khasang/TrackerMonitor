@@ -38,7 +38,7 @@ function GetMap()
         alert(7);
         var pushNotify = $.connection.pushNotify;
         pushNotify.client.ShowMessage = function (message) {
-            alert(8);
+             alert(8);
             var marker = new google.maps.Marker({
                 'position': new google.maps.LatLng(message.Longitude, message.Latitude),
                 'map': map

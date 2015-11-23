@@ -42,11 +42,11 @@ namespace TestMessageSender
             List<GPSTrackerMessage> messages = new List<GPSTrackerMessage>();
             GPSTracker gps = new GPSTracker()
             {
-                Id = "141005e0-1",
-                Name = "Трекер №0",
-                OwnerId = "2bf361cf-4533-4ce6-bc40-d1fab867417d"
+                Id = "08a9e53d-a",
+                Name = "Трекер №1",
+                OwnerId = "0e911dcc-60d6-44f4-a2fc-76e21b1ee6b5"
             };
-            string gpsPointsFilePath = @"E:\repos\OurInternshipProject\Documents\GPSPoints.csv";
+            string gpsPointsFilePath = @"E:\Repositories\OurInternshipProject\Documents\GPSPoints.csv";
             string[] guids = new string[] { "3277c404-708b-43b8-9bbd-e6e65a869d3f", "a49b8728-6d68-4029-a3a9-a1581edb2d7e" };
 
             using (StreamReader sr = new StreamReader(gpsPointsFilePath))
@@ -61,7 +61,7 @@ namespace TestMessageSender
                     messages.Add(new GPSTrackerMessage
                     {
                         Id = r.Next(2),
-                        GPSTrackerId = "141005e0-1",
+                        GPSTrackerId = "08a9e53d-a",
                         Latitude = double.Parse(coordinates[0], dbNumberFormat),
                         Longitude = double.Parse(coordinates[1], dbNumberFormat),
                         Time = DateTime.Now,
