@@ -217,6 +217,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\map\gmaps.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
@@ -264,6 +265,7 @@
     <Content Include="Views\PersonalArea\Index.cshtml" />
     <Content Include="Views\PersonalArea\Register.cshtml" />
     <Content Include="Views\Shared\_SideMenuPartial.cshtml" />
+    <Content Include="Views\Trackers\Indexold.cshtml" />
     <Content Include="Views\Trackers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
