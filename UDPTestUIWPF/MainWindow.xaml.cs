@@ -42,8 +42,7 @@ namespace UDPTestUIWPF
 
             this.dbContext = new ApplicationDbContext("UDPTestConnection");  // Для возможности записи сообщений в базу
 
-            this.hubConnection = new HubConnection(@"http://localhost:3254");
-            this.hubProxy = hubConnection.CreateHubProxy("PushNotify");
+            
 
             InitializeComponent();
 
@@ -91,6 +90,8 @@ namespace UDPTestUIWPF
                 // Выбрано отправлять сообщение хабу SignalR
                 if(SignalRCheckBox.IsChecked == true)
                 {
+                    this.hubConnection = new HubConnection(@"http://localhost:3254");
+                    this.hubProxy = hubConnection.CreateHubProxy("PushNotify");
                     hubConnection.Start().Wait();
                 }
 
