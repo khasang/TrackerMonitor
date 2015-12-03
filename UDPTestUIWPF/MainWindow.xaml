@@ -6,23 +6,21 @@
 
     <Window.Resources>
         <local:UDPDataModel x:Key="UdpModel"></local:UDPDataModel>
-        <local:SettingModel x:Key="SettingModel">
-        </local:SettingModel>
+        <local:SettingModel x:Key="SettingModel"></local:SettingModel>
 
         <local:ConvertStrInt x:Key="ConvertStrUShort"></local:ConvertStrInt>
         <local:ConvertStrByte x:Key="ConvertStrByte"></local:ConvertStrByte>
     </Window.Resources>
 
-    <Grid DataContext="{StaticResource UdpModel}">
-
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="90*" />
-            <RowDefinition Height="279*" />
+            <RowDefinition Height="98*" />
+            <RowDefinition Height="271*" />
             <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
 
@@ -37,7 +35,7 @@
 
             <TextBox Name="PortTextBox"
                             HorizontalAlignment="Left"
-                            Text="{Binding Port,
+                            Text="{Binding Source={StaticResource UdpModel}, Path=Port,
                                    Converter={StaticResource ConvertStrUShort},
                                    UpdateSourceTrigger=LostFocus,
                                    Mode=TwoWay}"
@@ -61,7 +59,7 @@
 
             <TextBox x:Name="MessageTextBox"
             	TextWrapping="Wrap"
-            	Text="{Binding Message, Mode=TwoWay}"
+            	Text="{Binding Source={StaticResource UdpModel}, Path=Message, Mode=TwoWay}"
             	FontSize="16"
             	VerticalScrollBarVisibility="Auto" IsReadOnly="True" />
         </StackPanel>
@@ -88,7 +86,7 @@
                                     Width="210" >
 
                             <TextBox Name="Octet1TextBox"
-                                     Text="{Binding Octet1,
+                                     Text="{Binding Source={StaticResource UdpModel}, Path=Octet1,
                                         Converter={StaticResource ConvertStrByte},
                                         UpdateSourceTrigger=LostFocus,
                                         Mode=TwoWay}"
@@ -104,7 +102,7 @@
                                    FontSize="16"/>
 
                             <TextBox Name="Octet2TextBox"
-                                     Text="{Binding Octet2,
+                                     Text="{Binding Source={StaticResource UdpModel}, Path=Octet2,
                                         Converter={StaticResource ConvertStrByte},
                                         UpdateSourceTrigger=LostFocus,
                                         Mode=TwoWay}"
@@ -120,7 +118,7 @@
                                    FontSize="16"/>
 
                             <TextBox Name="Octet3TextBox"
-                                     Text="{Binding Octet3,
+                                     Text="{Binding Source={StaticResource UdpModel}, Path=Octet3,
                                         Converter={StaticResource ConvertStrByte},
                                         UpdateSourceTrigger=LostFocus,
                                         Mode=TwoWay}"
@@ -137,7 +135,7 @@
                                    FontSize="16"/>
 
                             <TextBox Name="Octet4TextBox"
-                                     Text="{Binding Octet4,
+                                     Text="{Binding Source={StaticResource UdpModel}, Path=Octet4,
                                         Converter={StaticResource ConvertStrByte},
                                         UpdateSourceTrigger=LostFocus,
                                         Mode=TwoWay}"
@@ -162,16 +160,18 @@
 
                         <StackPanel>
                             <Label Content="Quantity:" FontWeight="Bold" FontSize="16" />
-                            <TextBox Name="CountMessages"
-                                     Text="{Binding Octet1,
+                            <TextBox Name="QuantityMessages"
+                                     Text="{Binding Source={StaticResource SettingModel }, Path=Quantity,
                                         Converter={StaticResource ConvertStrByte},
                                         UpdateSourceTrigger=LostFocus,
                                         Mode=TwoWay}"
                                      MinWidth="40"
+                                     Width="40"
+                                     FontSize="16"
                                      VerticalContentAlignment="Center"
                                      HorizontalContentAlignment="Center"
-                                     FontSize="16"
-                                     Width="40" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Top"/>
                         </StackPanel>
 
                     </StackPanel>
@@ -208,10 +208,10 @@
                 FontWeight="Bold"
                 Click="StartButton_Click"
                 IsDefault="True"
-                Content="{Binding StateButton, Mode=OneWay}" IsCancel="True" />
+                Content="{Binding Source={StaticResource SettingModel}, Path=StateButton, Mode=OneWay}" IsCancel="True" />
 
         <Label Name="StatusLabel" Grid.Column="0" Grid.Row="2"
-               Content="{Binding Status, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+               Content="{Binding Source={StaticResource SettingModel}, Path=Status, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                HorizontalAlignment="Left"
                VerticalAlignment="Bottom"
                Width="230"

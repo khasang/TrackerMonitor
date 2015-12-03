@@ -82,7 +82,7 @@ namespace UDPTestUIWPF
             }
 
             // Выбран прием сообщений
-            if(settingModel.StateButton == "Start" && ReceiveRadioButton.IsChecked == true)
+            if (settingModel.StateButton == "Start")// && ReceiveRadioButton.IsChecked == true)
             {
                 settingModel.StateButton = "Stop";
                 settingModel.Status = "Receiving message...";

@@ -16,6 +16,7 @@ namespace UDPTestUIWPF
         public static DependencyProperty SignalRProperty;
         public static DependencyProperty StateButtonProperty;
         public static DependencyProperty StatusProperty;
+        public static DependencyProperty QuantityProperty;
 
         static SettingModel()
         {
@@ -53,6 +54,10 @@ namespace UDPTestUIWPF
                                                                 typeof(string),
                                                                 typeof(SettingModel),
                                                                 new PropertyMetadata("Сonnection status"));
+            QuantityProperty = DependencyProperty.Register("Quantity",
+                                                                typeof(byte),
+                                                                typeof(SettingModel),
+                                                                new PropertyMetadata((byte)1));
         }
 
         public bool SendReceive
@@ -95,6 +100,12 @@ namespace UDPTestUIWPF
         {
             set { SetValue(StatusProperty, value); }
             get { return (string)GetValue(StatusProperty); }
+        }
+
+        public byte Quantity
+        {
+            set { SetValue(QuantityProperty, value); }
+            get { return (byte)GetValue(QuantityProperty); }
         }
     }
 }
