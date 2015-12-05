@@ -60,7 +60,10 @@ namespace UDPTestUIWPF
 
                 settingModel.Status = "Отправляем сообщения в цикле...";
 
-                CycleSendMessage(udpModel.IPAddress, udpModel.Port, GetGPSTrackerMessages((int)settingModel.Quantity));
+                await CycleSendMessageAsync(udpModel.IPAddress, udpModel.Port, GetGPSTrackerMessages((int)settingModel.Quantity));
+
+                settingModel.StateButton = "Start";
+                settingModel.Status = "Connection status";
 
                 // Выбрана одиночная отправка
                 //settingModel.Status = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
@@ -122,12 +125,13 @@ namespace UDPTestUIWPF
         /// </summary>
         /// <param name="ipAddress">IP адрес получателя</param>
         /// <param name="port">Порт</param>
-        private void CycleSendMessage(IPAddress ipAddress, int port, IList<GPSTrackerMessage> messages)
+        private async void CycleSendMessageAsync(IPAddress ipAddress, int port, IList<GPSTrackerMessage> messages)
         {          
             stopSend = false;
-            Task.Factory.StartNew(() =>
-            {
+            //Task.Factory..StartNew(() =>
+            //{
                 List<GPSTracker> trackers = GetTrackers();
+                int count = 0;
 
                 foreach(var message in messages)     // В цикле
                 {
@@ -136,13 +140,13 @@ namespace UDPTestUIWPF
                     udpServer.SendMessageAsync(messageByte, ipAddress, port);  // Отправляем его
 
                     // Выводим отправленное сообщение в текстбоксе
-                    Dispatcher.Invoke(new Action(() => udpModel.Message += message.ToString()));
+                    Dispatcher.Invoke(new Action(() => udpModel.Message += (++count).ToString() + "." + message.ToString()));
                     // Блокируем поток на 2 секунды
                     Thread.Sleep(2000);
                     // Если флаг остановки отправки сообщений, то выходим из цикла
                     if (stopSend) break;
                 }
-            });
+            //});
         }
 
         private List<GPSTracker> GetTrackers()
