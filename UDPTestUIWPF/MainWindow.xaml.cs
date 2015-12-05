@@ -106,11 +106,14 @@ namespace UDPTestUIWPF
                 settingModel.StateButton = "Start";
                 settingModel.Status = "Connection status";                
 
-                stopSend = true; // Останавливаем мультиотправку
+                stopSend = true;          // Останавливаем мультиотправку
                 udpServer.StopReceive();  // Останавливаем прием сообщений
 
-                if (hubConnection.State == ConnectionState.Connected)
-                    hubConnection.Stop();
+                if(hubConnection != null)
+                {
+                    if (hubConnection.State == ConnectionState.Connected)
+                        hubConnection.Stop();
+                }
             }            
         }
 
@@ -172,16 +175,14 @@ namespace UDPTestUIWPF
         /// Создает сообщение типа GPSTrackerMessage со случайными параметрами
         /// </summary>
         /// <returns>byte[]</returns>
-        private GPSTrackerMessage GetGPSTrackerMessage(IList<GPSTracker> trackers, double latitude, double longitude)
+        private GPSTrackerMessage GetGPSTrackerMessage(string trackerId, double latitude, double longitude)
         {
-            int number = rnd.Next(trackers.Count);
             GPSTrackerMessage message = new GPSTrackerMessage()
             {
                 Latitude = latitude,
                 Longitude = longitude,
                 Time = DateTime.Now,
-                GPSTracker = trackers[number],
-                GPSTrackerId = trackers[number].Id
+                GPSTrackerId = trackerId
             };
 
             return message;
@@ -189,6 +190,7 @@ namespace UDPTestUIWPF
 
         private IList<GPSTrackerMessage> GetGPSTrackerMessages(int quantity)
         {
+            var trackers = GetTrackers();
             var messages = new List<GPSTrackerMessage>();
 
             CultureInfo usCulture = new CultureInfo("en-US");
@@ -197,8 +199,9 @@ namespace UDPTestUIWPF
             if(settingModel.Random == true)
             {
                 for (int i = 0; i < quantity; i++)
-                    messages.Add(GetGPSTrackerMessage(double.Parse(rnd.Next(1000), dbNumberFormat),
-                                                      double.Parse(rnd.Next(1000), dbNumberFormat)));
+                    messages.Add(GetGPSTrackerMessage(trackers[0].Id,
+                                                      (double)rnd.Next(100),
+                                                      (double)rnd.Next(100)));
                 
             }
             else
@@ -209,7 +212,8 @@ namespace UDPTestUIWPF
                     {
                         string[] coordinates = sr.ReadLine().Split(';');
 
-                        messages.Add(GetGPSTrackerMessage(double.Parse(coordinates[0], dbNumberFormat),
+                        messages.Add(GetGPSTrackerMessage(trackers[0].Id,
+                                                          double.Parse(coordinates[0], dbNumberFormat),
                                                           double.Parse(coordinates[1], dbNumberFormat)));
                     }
                 }
@@ -217,12 +221,7 @@ namespace UDPTestUIWPF
 
             return messages.Take(quantity).ToList();
         }
-
-        private double GetRndCoordinat()
-        {
-
-        }
-
+        
         /// <summary>
         /// Вывод полученного сообщения в текстбоксе
         /// </summary>

@@ -61,7 +61,7 @@
             	TextWrapping="Wrap"
             	Text="{Binding Message, Source={StaticResource UdpModel}, Mode=TwoWay}"
             	FontSize="16"
-            	VerticalScrollBarVisibility="Auto" IsReadOnly="True" />
+            	VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="319" />
         </StackPanel>
 
         <TabControl Name="SendRecieve" Grid.Column="0" Grid.Row="1" Margin="10,10,10,10">
