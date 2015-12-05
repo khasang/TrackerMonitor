@@ -36,9 +36,9 @@
             <TextBox Name="PortTextBox"
                             HorizontalAlignment="Left"
                             Text="{Binding Source={StaticResource UdpModel}, Path=Port,
-                                   Converter={StaticResource ConvertStrUShort},
-                                   UpdateSourceTrigger=LostFocus,
-                                   Mode=TwoWay}"
+                                           Converter={StaticResource ConvertStrUShort},
+                                           UpdateSourceTrigger=LostFocus,
+                                           Mode=TwoWay}"
                             VerticalAlignment="Top"
                             Width="100"
                             Height="40"
@@ -59,13 +59,15 @@
 
             <TextBox x:Name="MessageTextBox"
             	TextWrapping="Wrap"
-            	Text="{Binding Source={StaticResource UdpModel}, Path=Message, Mode=TwoWay}"
+            	Text="{Binding Message, Source={StaticResource UdpModel}, Mode=TwoWay}"
             	FontSize="16"
             	VerticalScrollBarVisibility="Auto" IsReadOnly="True" />
         </StackPanel>
 
         <TabControl Name="SendRecieve" Grid.Column="0" Grid.Row="1" Margin="10,10,10,10">
-            <TabItem>
+            <TabItem Name="Send" IsSelected="{Binding SendRecieve,
+                                                      Source={StaticResource SettingModel},
+                                                      Mode=OneWayToSource}">
                 <TabItem.Header>
                     <TextBlock>Send</TextBlock>
                 </TabItem.Header>
@@ -86,10 +88,10 @@
                                     Width="210" >
 
                             <TextBox Name="Octet1TextBox"
-                                     Text="{Binding Source={StaticResource UdpModel}, Path=Octet1,
-                                        Converter={StaticResource ConvertStrByte},
-                                        UpdateSourceTrigger=LostFocus,
-                                        Mode=TwoWay}"
+                                     Text="{Binding Octet1, Source={StaticResource UdpModel},
+                                                    Converter={StaticResource ConvertStrByte},
+                                                    UpdateSourceTrigger=LostFocus,
+                                                    Mode=TwoWay}"
                                      MinWidth="40"
                                      VerticalContentAlignment="Center"
                                      HorizontalContentAlignment="Center"
@@ -102,10 +104,10 @@
                                    FontSize="16"/>
 
                             <TextBox Name="Octet2TextBox"
-                                     Text="{Binding Source={StaticResource UdpModel}, Path=Octet2,
-                                        Converter={StaticResource ConvertStrByte},
-                                        UpdateSourceTrigger=LostFocus,
-                                        Mode=TwoWay}"
+                                     Text="{Binding Octet2, Source={StaticResource UdpModel},
+                                                    Converter={StaticResource ConvertStrByte},
+                                                    UpdateSourceTrigger=LostFocus,
+                                                    Mode=TwoWay}"
                                      MinWidth="40"
                                      VerticalContentAlignment="Center"
                                      HorizontalContentAlignment="Center"
@@ -118,10 +120,10 @@
                                    FontSize="16"/>
 
                             <TextBox Name="Octet3TextBox"
-                                     Text="{Binding Source={StaticResource UdpModel}, Path=Octet3,
-                                        Converter={StaticResource ConvertStrByte},
-                                        UpdateSourceTrigger=LostFocus,
-                                        Mode=TwoWay}"
+                                     Text="{Binding Octet3, Source={StaticResource UdpModel},
+                                                    Converter={StaticResource ConvertStrByte},
+                                                    UpdateSourceTrigger=LostFocus,
+                                                    Mode=TwoWay}"
                                      MinWidth="40"
                                      VerticalContentAlignment="Center"
                                      HorizontalContentAlignment="Center"
@@ -135,10 +137,10 @@
                                    FontSize="16"/>
 
                             <TextBox Name="Octet4TextBox"
-                                     Text="{Binding Source={StaticResource UdpModel}, Path=Octet4,
-                                        Converter={StaticResource ConvertStrByte},
-                                        UpdateSourceTrigger=LostFocus,
-                                        Mode=TwoWay}"
+                                     Text="{Binding Octet4, Source={StaticResource UdpModel},
+                                                    Converter={StaticResource ConvertStrByte},
+                                                    UpdateSourceTrigger=LostFocus,
+                                                    Mode=TwoWay}"
                                      MinWidth="40"
                                      VerticalContentAlignment="Center"
                                      HorizontalContentAlignment="Center"
@@ -151,20 +153,21 @@
 
                             <RadioButton Name="Random"
                                          Content="Random"
-                                         IsChecked="True" />
+                                         IsChecked="{Binding Random,
+                                                             Source={StaticResource SettingModel},
+                                                             Mode=OneWayToSource}" />
 
                             <RadioButton Name="File"
-                                         Content="From File"
-                                         IsChecked="{Binding Cycle, Mode=OneWayToSource}" />
+                                         Content="From File" />
                         </StackPanel>
 
                         <StackPanel>
                             <Label Content="Quantity:" FontWeight="Bold" FontSize="16" />
                             <TextBox Name="QuantityMessages"
-                                     Text="{Binding Source={StaticResource SettingModel }, Path=Quantity,
-                                        Converter={StaticResource ConvertStrByte},
-                                        UpdateSourceTrigger=LostFocus,
-                                        Mode=TwoWay}"
+                                     Text="{Binding Quantity, Source={StaticResource SettingModel },
+                                                    Converter={StaticResource ConvertStrByte},
+                                                    UpdateSourceTrigger=LostFocus,
+                                                    Mode=TwoWay}"
                                      MinWidth="40"
                                      Width="40"
                                      FontSize="16"
@@ -179,7 +182,7 @@
                 </TabItem.Content>
             </TabItem>
 
-            <TabItem>
+            <TabItem Name="Recieve">
                 <TabItem.Header>
                     <TextBlock>Recieve</TextBlock>
                 </TabItem.Header>
@@ -187,16 +190,16 @@
                 <TabItem.Content>
                     <Grid>
                         <CheckBox Name="SignalRCheckBox"
-                                  IsEnabled="{Binding IsChecked, ElementName=ReceiveRadioButton}"
                                   IsChecked="{Binding SendSignalR, Mode=OneWayToSource}"
-                                  Content="Send to SigalR" Margin="10,10,-10,-10" />
+                                  Content="Send to SigalR"
+                                  Margin="10,10,-10,-10" />
 
                         <CheckBox Name="WriteDBCheckBox"
             	                  Content="Write to DB"
             	                  HorizontalAlignment="Left"
             	                  VerticalAlignment="Top"
-            	                  IsEnabled="{Binding IsChecked, ElementName=ReceiveRadioButton}"
-                                  IsChecked="{Binding WriteToDB, Mode=OneWayToSource}" Margin="126,10,0,0" />
+                                  IsChecked="{Binding WriteToDB, Mode=OneWayToSource}"
+                                  Margin="126,10,0,0" />
                     </Grid>
                 </TabItem.Content>
             </TabItem>
@@ -208,10 +211,14 @@
                 FontWeight="Bold"
                 Click="StartButton_Click"
                 IsDefault="True"
-                Content="{Binding Source={StaticResource SettingModel}, Path=StateButton, Mode=OneWay}" IsCancel="True" />
+                Content="{Binding StateButton, Source={StaticResource SettingModel}, Mode=OneWay}"
+                IsCancel="True" />
 
         <Label Name="StatusLabel" Grid.Column="0" Grid.Row="2"
-               Content="{Binding Source={StaticResource SettingModel}, Path=Status, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+               Content="{Binding Status,
+                                 Source={StaticResource SettingModel},
+                                 Mode=OneWay,
+                                 UpdateSourceTrigger=PropertyChanged}"
                HorizontalAlignment="Left"
                VerticalAlignment="Bottom"
                Width="230"

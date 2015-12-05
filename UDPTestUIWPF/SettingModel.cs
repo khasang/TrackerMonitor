@@ -11,7 +11,7 @@ namespace UDPTestUIWPF
     {
         public static DependencyProperty SendReceiveProperty;
         public static DependencyProperty TemplateProperty;
-        public static DependencyProperty CycleProperty;
+        public static DependencyProperty RandomProperty;
         public static DependencyProperty WriteToDBProperty;
         public static DependencyProperty SignalRProperty;
         public static DependencyProperty StateButtonProperty;
@@ -30,10 +30,10 @@ namespace UDPTestUIWPF
                                                                 typeof(SettingModel),
                                                                 new PropertyMetadata(false));
 
-            CycleProperty = DependencyProperty.Register("Cycle",
+            RandomProperty = DependencyProperty.Register("Random",
                                                                 typeof(bool),
                                                                 typeof(SettingModel),
-                                                                new PropertyMetadata(false));
+                                                                new PropertyMetadata(true));
 
             WriteToDBProperty = DependencyProperty.Register("WriteToDB",
                                                                 typeof(bool),
@@ -72,10 +72,10 @@ namespace UDPTestUIWPF
             get { return (bool)GetValue(TemplateProperty); }
         }
 
-        public bool Cycle
+        public bool Random
         {
-            set { SetValue(CycleProperty, value); }
-            get { return (bool)GetValue(CycleProperty); }
+            set { SetValue(RandomProperty, value); }
+            get { return (bool)GetValue(RandomProperty); }
         }
 
         public bool WriteToDB

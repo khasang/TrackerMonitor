@@ -40,9 +40,7 @@ namespace UDPTestUIWPF
             this.udpServer = new UDPnet();
             udpServer.eventReceivedMessage += OnShowReceivedMessage;  // Подписываемся на событие получения сообщения
 
-            this.dbContext = new ApplicationDbContext("UDPTestConnection");  // Для возможности записи сообщений в базу
-
-            
+            this.dbContext = new ApplicationDbContext("UDPTestConnection");  // Для возможности записи сообщений в базу   
 
             InitializeComponent();
 
@@ -60,23 +58,13 @@ namespace UDPTestUIWPF
             {
                 settingModel.StateButton = "Stop";
 
-                if(settingModel.Template == true)
-                {
+                settingModel.Status = "Отправляем сообщения в цикле...";
 
-                }
+                CycleSendMessage(udpModel.IPAddress, udpModel.Port, GetGPSTrackerMessages((int)settingModel.Quantity));
 
-                // Выбрана мультиотправка в цикле
-                if (settingModel.Cycle == true)
-                {                    
-                    settingModel.Status = "Отправляем сообщения в цикле...";
-                    CycleSendMessage(udpModel.IPAddress, udpModel.Port);
-                }
                 // Выбрана одиночная отправка
-                else
-                {
-                    settingModel.Status = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
-                    settingModel.StateButton = "Start";
-                }
+                //settingModel.Status = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
+                //settingModel.StateButton = "Start";
                 
                 return;
             }
@@ -96,7 +84,7 @@ namespace UDPTestUIWPF
                 }
 
                 // Циклический прием сообщений
-                if (settingModel.Cycle == true)
+                if (settingModel.Random == true)
                 {
                     udpServer.StartReceiveAsync(udpModel.Port);
                 }
@@ -131,16 +119,15 @@ namespace UDPTestUIWPF
         /// </summary>
         /// <param name="ipAddress">IP адрес получателя</param>
         /// <param name="port">Порт</param>
-        private void CycleSendMessage(IPAddress ipAddress, int port)
+        private void CycleSendMessage(IPAddress ipAddress, int port, IList<GPSTrackerMessage> messages)
         {          
             stopSend = false;
             Task.Factory.StartNew(() =>
             {
                 List<GPSTracker> trackers = GetTrackers();
 
-                while (true)                                     // В бесконечном цикле
+                foreach(var message in messages)     // В цикле
                 {
-                    GPSTrackerMessage message = GetGPSTrackerMessage(trackers, rnd.Next(1000), rnd.Next(1000));  // Создаем случайное сообщение
                     byte[] messageByte = GPSTrackerMessageConverter.MessageToBytes(message);
 
                     udpServer.SendMessageAsync(messageByte, ipAddress, port);  // Отправляем его
@@ -156,8 +143,9 @@ namespace UDPTestUIWPF
         }
 
         private List<GPSTracker> GetTrackers()
-        {
+        {            
             List<GPSTracker> trackers = new List<GPSTracker>();
+
             try
             {
                 trackers = dbContext.GPSTrackers.ToList();
@@ -199,28 +187,40 @@ namespace UDPTestUIWPF
             return message;
         }
 
-        private IList<GPSTrackerMessage> GetGPSTrackerMessages()
+        private IList<GPSTrackerMessage> GetGPSTrackerMessages(int quantity)
         {
-            List<GPSTracker> trackers = GetTrackers();
-            List<GPSTrackerMessage> messages = new List<GPSTrackerMessage>();
-            
-            using (StreamReader sr = new StreamReader(@"Projects\GPSTracker\GPSPoints\GPSPoints.csv"))
+            var messages = new List<GPSTrackerMessage>();
+
+            CultureInfo usCulture = new CultureInfo("en-US");
+            NumberFormatInfo dbNumberFormat = usCulture.NumberFormat;
+
+            if(settingModel.Random == true)
             {
-                CultureInfo usCulture = new CultureInfo("en-US");
-                NumberFormatInfo dbNumberFormat = usCulture.NumberFormat;
-
-                while (!sr.EndOfStream)
+                for (int i = 0; i < quantity; i++)
+                    messages.Add(GetGPSTrackerMessage(double.Parse(rnd.Next(1000), dbNumberFormat),
+                                                      double.Parse(rnd.Next(1000), dbNumberFormat)));
+                
+            }
+            else
+            {
+                using (StreamReader sr = new StreamReader(@"GPSPoints.txt"))
                 {
-                    string[] coordinates = sr.ReadLine().Split(';');
+                    while (!sr.EndOfStream)
+                    {
+                        string[] coordinates = sr.ReadLine().Split(';');
 
-                    messages.Add(GetGPSTrackerMessage(trackers,
-                        double.Parse(coordinates[0], dbNumberFormat),
-                        double.Parse(coordinates[1], dbNumberFormat)
-                        ));
+                        messages.Add(GetGPSTrackerMessage(double.Parse(coordinates[0], dbNumberFormat),
+                                                          double.Parse(coordinates[1], dbNumberFormat)));
+                    }
                 }
             }
 
-            return messages;
+            return messages.Take(quantity).ToList();
+        }
+
+        private double GetRndCoordinat()
+        {
+
         }
 
         /// <summary>
@@ -252,9 +252,18 @@ namespace UDPTestUIWPF
 
             if(settingModel.SignalR == true)
             {
-                hubProxy.Invoke("SendNewMessage", gpsMessage);
+                try
+                {
+                    hubProxy.Invoke("SendNewMessage", gpsMessage);
+                }
+                catch (Exception ex)
+                {
+                    Dispatcher.Invoke(new Action(() => StatusLabel.Content = ex.Message));
+                } 
             }
         }
+
+
 
     }
 }
