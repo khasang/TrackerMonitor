@@ -68,8 +68,6 @@ namespace UDPTestUIWPF
                 // Выбрана одиночная отправка
                 //settingModel.Status = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
                 //settingModel.StateButton = "Start";
-                
-                return;
             }
 
             // Выбран прием сообщений
@@ -125,10 +123,11 @@ namespace UDPTestUIWPF
         /// </summary>
         /// <param name="ipAddress">IP адрес получателя</param>
         /// <param name="port">Порт</param>
-        private async void CycleSendMessageAsync(IPAddress ipAddress, int port, IList<GPSTrackerMessage> messages)
+        private async Task CycleSendMessageAsync(IPAddress ipAddress, int port, IList<GPSTrackerMessage> messages)
         {          
             stopSend = false;
-            //Task.Factory..StartNew(() =>
+
+            //return Task.Run(() =>
             //{
                 List<GPSTracker> trackers = GetTrackers();
                 int count = 0;
