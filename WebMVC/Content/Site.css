@@ -22,3 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.unbulleted {
+    list-style-type:none;
+}

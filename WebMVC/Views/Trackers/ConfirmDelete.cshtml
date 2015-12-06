@@ -1,19 +1,26 @@
 ﻿@model DAL.Entities.GPSTracker
 @{
     ViewBag.Title = "ConfirmDelete";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<h2>Подтверждение удаления трекера</h2>
-<hr />
+<div class="form-group">
+    <h2>Подтверждение удаления трекера</h2>
+    <hr />
 
-@using (Html.BeginForm("Delete", "Trackers", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.Id)
-    
-    <h4>Вы действительно хотите удалить трекер "@Model.Name"?</h4>
-    <button type="submit" class="btn btn-danger">Да</button>
-    <a href="@Url.Action("Index")" class="btn btn-default">Нет</a>
-}
+    @using (Ajax.BeginForm("Delete", "Trackers",
+            new AjaxOptions
+            {
+                UpdateTargetId = String.Format("tracker{0}", Model.Id),
+                OnSuccess = "removeTrackerNode(data)"
+            }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+
+        <h4>Вы действительно хотите удалить трекер "@Model.Name"?</h4>
+        <button type="submit" class="btn btn-danger">Да</button>
+        <button type="button" class="btn btn-default" onclick=hideConfirmMessage(@(Model.Id))>Нет</button>
+    }
+</div>
 

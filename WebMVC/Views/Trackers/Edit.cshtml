@@ -2,33 +2,40 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<h2>Редактирование свойств трекера</h2>
-<hr />
+<div class="form-group">
+    <h2>Редактирование свойств трекера</h2>
+    <hr />
 
-@using (Html.BeginForm("Edit", "Trackers", FormMethod.Post))
-{ 
-    @Html.AntiForgeryToken()    
+    @using (Ajax.BeginForm("Edit", "Trackers",
+            new AjaxOptions
+            {
+                UpdateTargetId = String.Format("tracker{0}", Model.Id),
+                InsertionMode = InsertionMode.Replace
+            }))
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="form-group">
-        <label>@Html.DisplayNameFor(m => m.Id)</label>
-        @Model.Id
-        @Html.HiddenFor(m => m.Id)
-    </div>
+        <div class="form-group">
+            <label>@Html.DisplayNameFor(m => m.Id)</label>
+            @Model.Id
+            @Html.HiddenFor(m => m.Id)
+        </div>
 
-    <div class="form-group">
-        <label>@Html.DisplayNameFor(m => m.PhoneNumber)</label>
-        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
-    </div>
+        <div class="form-group">
+            <label>@Html.DisplayNameFor(m => m.PhoneNumber)</label>
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+        </div>
 
-    <div class="form-group">
-        <label>@Html.DisplayNameFor(m => m.Name)</label>
-        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-    </div>
+        <div class="form-group">
+            <label>@Html.DisplayNameFor(m => m.Name)</label>
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
 
-    <input type="submit" class="btn btn-primary" value="Сохранить" />
-    <a class="btn btn-default" href="@Url.Action("Index")">Отмена</a>
-}
+        <input type="submit" class="btn btn-primary" value="Сохранить" />
+        <button type="button" class="btn btn-default" onclick=hideTrackerEditForm(@(Model.Id))>Отмена</button>
+    }
+</div>
 

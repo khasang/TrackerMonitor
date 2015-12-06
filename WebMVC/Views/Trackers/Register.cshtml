@@ -1,12 +1,17 @@
 ﻿@model WebMVC.Models.TrackersViewModels.RegisterViewModel
 @{
     ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 <h2>Регистрация нового трекера</h2>
 <hr />
 
-@using (Html.BeginForm("Register", "Trackers", FormMethod.Post))
+@using (Ajax.BeginForm("Register", "Trackers",
+    new AjaxOptions {
+        UpdateTargetId = "tracker-list",
+        OnSuccess = "showRegisterTrackerBtn",
+        InsertionMode = InsertionMode.InsertAfter
+    }))
 {
     @Html.AntiForgeryToken()
 
@@ -26,6 +31,6 @@
     </div>
 
     <input type="submit" class="btn btn-primary" value="Сохранить" />
-    <a class="btn btn-default" href="@Url.Action("Index", "PersonalArea")">Отмена</a>
+    <button class="btn btn-default" type="button" onclick=showRegisterTrackerBtn()>Отмена</button>
 }
 

@@ -5,7 +5,8 @@
 }
 
 <div class="form-group">
-    <label>Имя: @(Model.Name == null ? "Имя не задано" : Model.Name)</label>
+    <label>Имя:</label>
+    <span>@(Model.Name == null ? "Имя не задано" : Model.Name)</span>
 </div>
 <div class="form-group">
     <a class="btn btn-default"

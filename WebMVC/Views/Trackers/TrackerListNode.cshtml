@@ -1,0 +1,29 @@
+﻿@model DAL.Entities.GPSTracker
+<li id="delete-tracker@(Model.Id)" style="display:none;margin-bottom:5px"></li>
+<li id="edit-tracker@(Model.Id)" style="display:none;margin-bottom:5px"></li>
+<li id="tracker@(Model.Id)" style="margin-bottom:5px">
+    <span>@Model.Name</span>
+    <a class="btn btn-default btn-xs"
+       href="@Url.Action("Index", "Trackers")"
+       data-ajax="true"
+       data-ajax-mode="replace"
+       data-ajax-update="#tracker@(Model.Id)">
+        <span class="glyphicon glyphicon-eye-open"></span>
+    </a>
+    <a class="btn btn-default btn-xs"
+       href="@Url.Action("Edit", "Trackers", new { id = Model.Id })"
+       data-ajax="true"
+       data-ajax-mode="replace"
+       data-ajax-update="#tracker@(Model.Id)">
+        <span class="glyphicon glyphicon-edit"></span>
+    </a>
+    <a class="btn btn-default btn-xs"
+       href="@Url.Action("ConfirmDelete", "Trackers", new { id = Model.Id })"
+       data-ajax="true"
+       data-ajax-mode="replace"
+       data-ajax-update="#delete-tracker@(Model.Id)"
+       data-ajax-success="showConfirmMessage(@(Model.Id))">
+        <span class="glyphicon glyphicon-remove"></span>
+    </a>
+</li>
+

@@ -10,14 +10,16 @@
     @Html.AntiForgeryToken()
 
     <div class="form-group">
-        <label>@Html.DisplayNameFor(m => m.Name)</label>
-        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        <label style="display:inline-block">@Html.DisplayNameFor(m => m.Name):</label>
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", style = "display:inline" })
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Сохранить" />
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Сохранить" />
 
-    @Ajax.ActionLink("Отмена", "Details", "PersonalArea",
+        @Ajax.ActionLink("Отмена", "Details", "PersonalArea",
                 null,
                 new AjaxOptions { UpdateTargetId = "profile" },
-                new { @class = "btn btn-default"})
+                new { @class = "btn btn-default" })
+    </div>
 }

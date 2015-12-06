@@ -19,7 +19,13 @@
     <div class="form-group">
         @if (Model.GPSTrackers.Count != 0)
         {
-            <table class="table table-bordered table-condensed">
+            <ul class="unbulleted" id="tracker-list">
+                @foreach (var tracker in Model.GPSTrackers)
+                {
+                    @Html.Partial("~/Views/Trackers/TrackerListNode.cshtml", tracker)
+                }
+            </ul>
+            @*<table class="table table-bordered table-condensed">
                 <thead>
                     <tr>
                         <th class="text-center">Название</th>
@@ -45,7 +51,7 @@
                         </tr>
                     }
                 </tbody>
-            </table>
+            </table>*@
         }
         else
         {
@@ -55,7 +61,14 @@
     </div>
 </fieldset>
 <div class="form-group">
-    <a href="@Url.Action("Register", "Trackers")" class="btn btn-default">
+    <div id="register-tracker"></div>
+    <a class="btn btn-default"
+       href="@Url.Action("Register", "Trackers")"
+       id="register-tracker-btn"
+       data-ajax="true"
+       data-ajax-mode="replace"
+       data-ajax-update="#register-tracker"
+       data-ajax-success="hideRegisterTrackerBtn">
         <span class="glyphicon glyphicon-plus"></span>
     </a>
 </div>
@@ -63,4 +76,52 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryajax")
 }
+
+<script>
+    function showRegisterTrackerBtn() {
+        $("#register-tracker").children().remove();
+        $("#register-tracker-btn").show();
+    }
+
+    function hideRegisterTrackerBtn() {
+        $("#register-tracker-btn").hide();
+    }
+</script>
+
+<script>
+    function showTrackerNode(id) {
+        $("#tracker" + id).show()
+    }
+
+    function hideTrackerNode(id) {
+        $("#tracker" + id).hide();
+    }
+
+    function removeTrackerNode(id) {
+        $("#delete-tracker" + id).remove();
+        $("#tracker" + id).remove();
+    }
+
+    function showConfirmMessage(id) {
+        $("#delete-tracker" + id).show();
+        hideTrackerNode(id);
+    }
+
+    function hideConfirmMessage(id) {
+        $("#delete-tracker" + id).hide();
+        showTrackerNode(id);
+    }
+</script>
+<script>
+    function showTrackerEditForm(id) {
+        $("#edit-tracker" + id).show();
+        hideTrackerNode(id);
+    }
+
+    function hideTrackerEditForm(id) {
+        $("#edit-tracker" + id).hide();
+        showTrackerNode(id);
+    }
+
+</script>
 

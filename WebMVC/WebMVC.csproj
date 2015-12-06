@@ -270,6 +270,7 @@
     <Content Include="Views\Trackers\Index.cshtml" />
     <Content Include="Views\PersonalArea\Edit.cshtml" />
     <Content Include="Views\PersonalArea\Details.cshtml" />
+    <Content Include="Views\Trackers\TrackerListNode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
