@@ -48,7 +48,7 @@
             <TabControl Name="SendRecieve" Margin="0,10">
                 <TabItem Name="Send" IsSelected="{Binding SendRecieve,
                                                           Source={StaticResource SettingModel},
-                                                          Mode=OneWayToSource}">
+                                                          Mode=TwoWay}">
                     <TabItem.Header>
                         <TextBlock>Send</TextBlock>
                     </TabItem.Header>

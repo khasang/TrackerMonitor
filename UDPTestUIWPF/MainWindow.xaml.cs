@@ -89,27 +89,13 @@ namespace UDPTestUIWPF
                 settingModel.StateButton = "Stop";
                 settingModel.Status = "Receiving message...";
 
-                // Выбрано отправлять сообщение хабу SignalR
-                if(SignalRCheckBox.IsChecked == true)
+                // Выбрано отправлять сообщение хабу SignalR, создаем хаб
+                if(settingModel.SignalR == true)
                 {
                     this.hubConnection = new HubConnection(@"http://localhost:3254");
                     this.hubProxy = hubConnection.CreateHubProxy("PushNotify");
                     hubConnection.Start().Wait();
                 }
-
-                //// Циклический прием сообщений
-                //if (settingModel.Random == true)
-                //{
-                //    udpServer.StartReceiveAsync(udpModel.Port);
-                //}
-                //// Прием одного сообщения
-                //else
-                //{
-                //    byte[] receiveMessage = (byte[])await udpServer.ReceiveSingleMessageAsync(udpModel.Port);
-
-                //    settingModel.StateButton = "Start";
-                //    settingModel.Status = "Connection status";
-                //}
 
                 udpServer.StartReceiveAsync(udpModel.Port);
                 return;
@@ -136,7 +122,7 @@ namespace UDPTestUIWPF
 
                 string backMessage = (string)await udpServer.SendMessageAsync(messageByte, ipAddress, port);  // Отправляем его
 
-                Dispatcher.Invoke(new Action(() => settingModel.Status = backMessage));
+                Dispatcher.Invoke(new Action(() => settingModel.Status = backMessage.s));
 
                 // Выводим отправленное сообщение в текстбоксе
                 Dispatcher.Invoke(new Action(() => udpModel.Message += (++count).ToString() + "." + message.ToString()));
@@ -240,6 +226,7 @@ namespace UDPTestUIWPF
 
             udpModel.Message += gpsMessage.ToString();  // ToString() переопределен.
 
+            // Если выбрано писать сообщения в БД
             if (settingModel.WriteToDB == true)
             {
                 gpsMessage.GPSTracker = dbContext.GPSTrackers.Find(gpsMessage.GPSTrackerId);
@@ -254,6 +241,7 @@ namespace UDPTestUIWPF
                 }                
             }
 
+            // Если выбрано отправлять сообщения на хаб SignalR
             if(settingModel.SignalR == true)
             {
                 try
