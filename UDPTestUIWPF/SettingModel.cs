@@ -57,7 +57,7 @@ namespace UDPTestUIWPF
             QuantityProperty = DependencyProperty.Register("Quantity",
                                                                 typeof(byte),
                                                                 typeof(SettingModel),
-                                                                new PropertyMetadata((byte)1));
+                                                                new PropertyMetadata((byte)5));
         }
 
         public bool SendReceive

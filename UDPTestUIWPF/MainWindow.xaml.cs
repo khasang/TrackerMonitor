@@ -53,6 +53,19 @@ namespace UDPTestUIWPF
         /// </summary>
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
+            // Нажата кнопка "Стоп"
+            if (settingModel.StateButton == "Stop")
+            {
+                settingModel.StateButton = "Start";
+                settingModel.Status = "Connection status";
+
+                stopSend = true;          // Останавливаем мультиотправку
+                udpServer.StopReceive();  // Останавливаем прием сообщений
+
+                if (hubConnection != null && hubConnection.State == ConnectionState.Connected)
+                    hubConnection.Stop();
+            }       
+
             // Выбрана отправка сообщения
             if(settingModel.StateButton == "Start" && settingModel.SendReceive == true)
             {
@@ -60,10 +73,10 @@ namespace UDPTestUIWPF
 
                 settingModel.Status = "Отправляем сообщения в цикле...";
 
-                await CycleSendMessageAsync(udpModel.IPAddress, udpModel.Port, GetGPSTrackerMessages((int)settingModel.Quantity));
+                
+                CycleSendMessageAsync(udpModel.IPAddress, udpModel.Port, GetGPSTrackerMessages((int)settingModel.Quantity));
 
-                settingModel.StateButton = "Start";
-                settingModel.Status = "Connection status";
+                
 
                 // Выбрана одиночная отправка
                 //settingModel.Status = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
@@ -71,7 +84,7 @@ namespace UDPTestUIWPF
             }
 
             // Выбран прием сообщений
-            if (settingModel.StateButton == "Start")// && ReceiveRadioButton.IsChecked == true)
+            if (settingModel.StateButton == "Start" && settingModel.SendReceive == false)
             {
                 settingModel.StateButton = "Stop";
                 settingModel.Status = "Receiving message...";
@@ -84,38 +97,25 @@ namespace UDPTestUIWPF
                     hubConnection.Start().Wait();
                 }
 
-                // Циклический прием сообщений
-                if (settingModel.Random == true)
-                {
-                    udpServer.StartReceiveAsync(udpModel.Port);
-                }
-                // Прием одного сообщения
-                else
-                {
-                    byte[] receiveMessage = (byte[])await udpServer.ReceiveSingleMessageAsync(udpModel.Port);
+                //// Циклический прием сообщений
+                //if (settingModel.Random == true)
+                //{
+                //    udpServer.StartReceiveAsync(udpModel.Port);
+                //}
+                //// Прием одного сообщения
+                //else
+                //{
+                //    byte[] receiveMessage = (byte[])await udpServer.ReceiveSingleMessageAsync(udpModel.Port);
 
-                    settingModel.StateButton = "Start";
-                    settingModel.Status = "Connection status";
-                }
+                //    settingModel.StateButton = "Start";
+                //    settingModel.Status = "Connection status";
+                //}
 
+                udpServer.StartReceiveAsync(udpModel.Port);
                 return;
             }
 
-            // Нажата кнопка "Стоп"
-            if (settingModel.StateButton == "Stop")
-            {
-                settingModel.StateButton = "Start";
-                settingModel.Status = "Connection status";                
-
-                stopSend = true;          // Останавливаем мультиотправку
-                udpServer.StopReceive();  // Останавливаем прием сообщений
-
-                if(hubConnection != null)
-                {
-                    if (hubConnection.State == ConnectionState.Connected)
-                        hubConnection.Stop();
-                }
-            }            
+                 
         }
 
         /// <summary>
@@ -127,25 +127,27 @@ namespace UDPTestUIWPF
         {          
             stopSend = false;
 
-            //return Task.Run(() =>
-            //{
-                List<GPSTracker> trackers = GetTrackers();
-                int count = 0;
+            List<GPSTracker> trackers = GetTrackers();
+            int count = 0;
 
-                foreach(var message in messages)     // В цикле
-                {
-                    byte[] messageByte = GPSTrackerMessageConverter.MessageToBytes(message);
+            foreach(var message in messages)     // В цикле
+            {
+                byte[] messageByte = GPSTrackerMessageConverter.MessageToBytes(message);
 
-                    udpServer.SendMessageAsync(messageByte, ipAddress, port);  // Отправляем его
+                string backMessage = (string)await udpServer.SendMessageAsync(messageByte, ipAddress, port);  // Отправляем его
 
-                    // Выводим отправленное сообщение в текстбоксе
-                    Dispatcher.Invoke(new Action(() => udpModel.Message += (++count).ToString() + "." + message.ToString()));
-                    // Блокируем поток на 2 секунды
-                    Thread.Sleep(2000);
-                    // Если флаг остановки отправки сообщений, то выходим из цикла
-                    if (stopSend) break;
-                }
-            //});
+                Dispatcher.Invoke(new Action(() => settingModel.Status = backMessage));
+
+                // Выводим отправленное сообщение в текстбоксе
+                Dispatcher.Invoke(new Action(() => udpModel.Message += (++count).ToString() + "." + message.ToString()));
+                // Блокируем поток на 2 секунды
+                Thread.Sleep(2000);
+                // Если флаг остановки отправки сообщений, то выходим из цикла
+                if (stopSend) break;
+            }
+
+            Dispatcher.Invoke(new Action(() => settingModel.StateButton = "Start"));
+            Dispatcher.Invoke(new Action(() => settingModel.Status = "Connection status"));
         }
 
         private List<GPSTracker> GetTrackers()
