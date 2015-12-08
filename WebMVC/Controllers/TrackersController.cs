@@ -14,14 +14,32 @@ namespace WebMVC.Controllers
     [Authorize]
     public class TrackersController : BaseController
     {
-        public ActionResult Index(ICollection<GPSTracker> trackers)
+        public ActionResult Index(string id)
         {
-            ICollection<GPSTrackerMessage> trackerMasseges = new List<GPSTrackerMessage>();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            foreach(GPSTracker tracker in trackers)
-            {
-                trackerMasseges.Add(tracker.GPSTrackerMessages.Last());
-            }
+            GPSTracker tracker = dbContext.GPSTrackers.Find(id);
+
+            if (tracker == null)
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+            if (tracker.OwnerId != User.Identity.GetUserId())
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
+            ICollection<GPSTrackerMessage> trackerMasseges = dbContext.GPSTrackerMessages
+                                                                        .Where(m => m.GPSTrackerId == id)
+                                                                        .OrderByDescending(m => m.Id)
+                                                                        .Take(10)
+                                                                        .ToList();
+
+            if (trackerMasseges.Count() == 0)
+                trackerMasseges.Add(new GPSTrackerMessage()
+                {
+                    GPSTrackerId = "111111",
+                    Latitude = 55.69873893333814,
+                    Longitude = 52.34677000002305
+                });
 
             return View(trackerMasseges);
         }

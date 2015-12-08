@@ -4,10 +4,7 @@
 <li id="tracker@(Model.Id)" style="margin-bottom:5px">
     <span>@Model.Name</span>
     <a class="btn btn-default btn-xs"
-       href="@Url.Action("Index", "Trackers")"
-       data-ajax="true"
-       data-ajax-mode="replace"
-       data-ajax-update="#tracker@(Model.Id)">
+       href="@Url.Action("Index", "Trackers", new { id = Model.Id })">
         <span class="glyphicon glyphicon-eye-open"></span>
     </a>
     <a class="btn btn-default btn-xs"

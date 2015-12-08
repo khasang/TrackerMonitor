@@ -55,14 +55,14 @@ namespace TestMessageSender
 
                     messages.Add(new GPSTrackerMessage
                     {
-                        Id = r.Next(2),
-                        GPSTrackerId = r.Next(30).ToString(),
+                        Id = 0,
+                        GPSTrackerId = "111111",
                         Latitude = double.Parse(coordinates[0], dbNumberFormat),
                         Longitude = double.Parse(coordinates[1], dbNumberFormat),
-                        //GPSTracker = new GPSTracker()
-                        //{
-                        //    OwnerId = guids[r.Next(2)]
-                        //},
+                        GPSTracker = new GPSTracker()
+                        {
+                            OwnerId = guids[r.Next(2)]
+                        },
                         Time = DateTime.Now
                     });
                 }

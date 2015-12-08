@@ -3,14 +3,16 @@
 @using System.Globalization
 
 @{
-    ViewBag.Title = "SignalRView";
+    ViewBag.Title = "Map";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SignalRView</h2>
+<h2>Карта местоположения маячка</h2>
 
 <button id="start-creation">Отслеживать</button>
 
 <div id="googleMap" style="width:1024px;height:768px;"></div>
+
 @section scripts{
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
     <script src="~/signalr/hubs"></script>
