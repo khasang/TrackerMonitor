@@ -134,32 +134,6 @@ namespace UDPTestUIWPF
             });            
         }
 
-        private List<GPSTracker> GetTrackers()
-        {            
-            List<GPSTracker> trackers = new List<GPSTracker>();
-
-            try
-            {
-                trackers = dbContext.GPSTrackers.ToList();
-            }
-            catch  // Если из базы прочитать не смогли, создаем по умолчанию пару трекеров
-            {
-                trackers.Add(new GPSTracker()
-                {
-                    Id = "111111",
-                    Name = "Tracker1"
-                });
-
-                trackers.Add(new GPSTracker()
-                {
-                    Id = "222222",
-                    Name = "Tracker2"
-                });
-            }
-
-            return trackers;
-        }
-
         /// <summary>
         /// Создает сообщение типа GPSTrackerMessage со случайными параметрами
         /// </summary>
@@ -179,7 +153,6 @@ namespace UDPTestUIWPF
 
         private IList<GPSTrackerMessage> GetGPSTrackerMessages(int quantity)
         {
-            var trackers = GetTrackers();
             var messages = new List<GPSTrackerMessage>();
 
             CultureInfo usCulture = new CultureInfo("en-US");
@@ -189,7 +162,7 @@ namespace UDPTestUIWPF
             {
                 for (int i = 0; i < quantity; i++)
                 {
-                    messages.Add(GetGPSTrackerMessage(trackers[0].Id,
+                    messages.Add(GetGPSTrackerMessage(settingModel.IMEI,
                                                       (double)rnd.Next(100),
                                                       (double)rnd.Next(100)));
                 }
@@ -202,7 +175,7 @@ namespace UDPTestUIWPF
                     {
                         string[] coordinates = sr.ReadLine().Split(';');
 
-                        messages.Add(GetGPSTrackerMessage(trackers[0].Id,
+                        messages.Add(GetGPSTrackerMessage(settingModel.IMEI,
                                                           double.Parse(coordinates[0], dbNumberFormat),
                                                           double.Parse(coordinates[1], dbNumberFormat)));
                     }
@@ -228,10 +201,10 @@ namespace UDPTestUIWPF
             // Если выбрано писать сообщения в БД
             if (settingModel.WriteToDB == true)
             {
-                gpsMessage.GPSTracker = dbContext.GPSTrackers.Find(gpsMessage.GPSTrackerId);
-                dbContext.GPSTrackerMessages.Add(gpsMessage);
                 try
                 {
+                    gpsMessage.GPSTracker = dbContext.GPSTrackers.Find(gpsMessage.GPSTrackerId);
+                    dbContext.GPSTrackerMessages.Add(gpsMessage);
                     dbContext.SaveChanges();
                 }
                 catch(Exception ex)
