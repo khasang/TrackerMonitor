@@ -53,7 +53,6 @@ namespace UDPTestUIWPF
         /// </summary>
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            //settingModel.Status = Send.IsSelected.ToString(); return;
             // Нажата кнопка "Стоп"
             if (settingModel.StateButton == "Stop")
             {
@@ -65,23 +64,22 @@ namespace UDPTestUIWPF
 
                 if (hubConnection != null && hubConnection.State == ConnectionState.Connected)
                     hubConnection.Stop();
+
+                return;
             }       
 
             // Выбрана отправка сообщения
             if(settingModel.StateButton == "Start" && settingModel.SendReceive == true)
             {
                 settingModel.StateButton = "Stop";
-
-                settingModel.Status = "Отправляем сообщения в цикле...";
-
-                
-                CycleSendMessageAsync(udpModel.IPAddress, udpModel.Port, GetGPSTrackerMessages((int)settingModel.Quantity));
-
-                
+                settingModel.Status = "Отправляем сообщения в цикле...";                
+                CycleSendMessageAsync(udpModel.IPAddress, udpModel.Port, GetGPSTrackerMessages((int)settingModel.Quantity));                
 
                 // Выбрана одиночная отправка
                 //settingModel.Status = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
                 //settingModel.StateButton = "Start";
+
+                return;
             }
 
             // Выбран прием сообщений
@@ -90,7 +88,7 @@ namespace UDPTestUIWPF
                 settingModel.StateButton = "Stop";
                 settingModel.Status = "Receiving message...";
 
-                // Выбрано отправлять сообщение хабу SignalR, создаем хаб
+                // Выбрано отправлять сообщение хабу SignalR, соединяемся с хабом
                 if(settingModel.SignalR == true)
                 {
                     this.hubConnection = new HubConnection(@"http://localhost:3254");
@@ -242,7 +240,7 @@ namespace UDPTestUIWPF
                 }                
             }
 
-            // Если выбрано отправлять сообщения на хаб SignalR
+            // Если выбрано отправлять сообщения на хаб SignalR, отправляем
             if(settingModel.SignalR == true)
             {
                 try

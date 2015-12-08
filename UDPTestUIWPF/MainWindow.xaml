@@ -45,8 +45,8 @@
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center" />
 
-            <TabControl Name="SendRecieve" Margin="0,10">
-                <TabItem Name="Send" IsSelected="{Binding SendRecieve,
+            <TabControl Name="SendReceive" Margin="0,10">
+                <TabItem Name="Send" IsSelected="{Binding SendReceive,
                                                           Source={StaticResource SettingModel},
                                                           Mode=OneWayToSource,
                                                           UpdateSourceTrigger=LostFocus}">
@@ -164,9 +164,9 @@
                     </TabItem.Content>
                 </TabItem>
 
-                <TabItem Name="Recieve">
+                <TabItem Name="Receive">
                     <TabItem.Header>
-                        <TextBlock>Recieve</TextBlock>
+                        <TextBlock>Receive</TextBlock>
                     </TabItem.Header>
 
                     <TabItem.Content>
