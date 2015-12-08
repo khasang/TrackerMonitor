@@ -22,7 +22,8 @@ namespace UDPTestUIWPF
         {
             SendReceiveProperty = DependencyProperty.Register("SendReceive",
                                                                 typeof(bool),
-                                                                typeof(SettingModel));
+                                                                typeof(SettingModel),
+                                                                new PropertyMetadata(true));
 
             TemplateProperty = DependencyProperty.Register("Template",
                                                                 typeof(bool),

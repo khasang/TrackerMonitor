@@ -48,7 +48,8 @@
             <TabControl Name="SendRecieve" Margin="0,10">
                 <TabItem Name="Send" IsSelected="{Binding SendRecieve,
                                                           Source={StaticResource SettingModel},
-                                                          Mode=TwoWay}">
+                                                          Mode=OneWayToSource,
+                                                          UpdateSourceTrigger=LostFocus}">
                     <TabItem.Header>
                         <TextBlock>Send</TextBlock>
                     </TabItem.Header>
@@ -200,7 +201,7 @@
             	     TextWrapping="Wrap"
             	     Text="{Binding Message, Source={StaticResource UdpModel}, Mode=TwoWay}"
             	     FontSize="16"
-            	     VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="319" />
+            	     VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="300" />
         </StackPanel>
 
         

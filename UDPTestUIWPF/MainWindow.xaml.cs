@@ -53,6 +53,7 @@ namespace UDPTestUIWPF
         /// </summary>
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
+            //settingModel.Status = Send.IsSelected.ToString(); return;
             // Нажата кнопка "Стоп"
             if (settingModel.StateButton == "Stop")
             {
@@ -109,31 +110,31 @@ namespace UDPTestUIWPF
         /// </summary>
         /// <param name="ipAddress">IP адрес получателя</param>
         /// <param name="port">Порт</param>
-        private async Task CycleSendMessageAsync(IPAddress ipAddress, int port, IList<GPSTrackerMessage> messages)
+        private void CycleSendMessageAsync(IPAddress ipAddress, int port, IList<GPSTrackerMessage> messages)
         {          
-            stopSend = false;
+            stopSend = false;            
 
-            List<GPSTracker> trackers = GetTrackers();
-            int count = 0;
-
-            foreach(var message in messages)     // В цикле
+            Task.Factory.StartNew(() =>
             {
-                byte[] messageByte = GPSTrackerMessageConverter.MessageToBytes(message);
+                List<GPSTracker> trackers = GetTrackers();
+                int count = 0;
 
-                string backMessage = (string)await udpServer.SendMessageAsync(messageByte, ipAddress, port);  // Отправляем его
+                foreach (var message in messages)  // Проходим по списку сообщений
+                {
+                    byte[] messageByte = GPSTrackerMessageConverter.MessageToBytes(message);  // Конвертируем в массив байтов
+                    udpServer.SendMessageAsync(messageByte, ipAddress, port);  // Отправляем его
 
-                Dispatcher.Invoke(new Action(() => settingModel.Status = backMessage.s));
+                    // Выводим отправленное сообщение в текстбоксе
+                    Dispatcher.Invoke(new Action(() => udpModel.Message += (++count).ToString() + "." + message.ToString()));
+                    // Блокируем поток на 2 секунды
+                    Thread.Sleep(2000);
+                    // Если флаг остановки отправки сообщений, то выходим из цикла
+                    if (stopSend) break;
+                }
 
-                // Выводим отправленное сообщение в текстбоксе
-                Dispatcher.Invoke(new Action(() => udpModel.Message += (++count).ToString() + "." + message.ToString()));
-                // Блокируем поток на 2 секунды
-                Thread.Sleep(2000);
-                // Если флаг остановки отправки сообщений, то выходим из цикла
-                if (stopSend) break;
-            }
-
-            Dispatcher.Invoke(new Action(() => settingModel.StateButton = "Start"));
-            Dispatcher.Invoke(new Action(() => settingModel.Status = "Connection status"));
+                Dispatcher.Invoke(new Action(() => settingModel.StateButton = "Start"));
+                Dispatcher.Invoke(new Action(() => settingModel.Status = "Connection status"));
+            });            
         }
 
         private List<GPSTracker> GetTrackers()
@@ -144,7 +145,7 @@ namespace UDPTestUIWPF
             {
                 trackers = dbContext.GPSTrackers.ToList();
             }
-            catch
+            catch  // Если из базы прочитать не смогли, создаем по умолчанию пару трекеров
             {
                 trackers.Add(new GPSTracker()
                 {
