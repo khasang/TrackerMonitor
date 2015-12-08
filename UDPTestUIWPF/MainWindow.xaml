@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:UDPTestUIWPF"
-        Title="UDP test" Height="450" Width="600">
+        Title="UDP test" Height="510" Width="500">
 
     <Window.Resources>
         <local:UDPDataModel x:Key="UdpModel"></local:UDPDataModel>
@@ -14,13 +14,13 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="65*" />
+            <ColumnDefinition Width="60*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="271*" />
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="400*" />
+            <RowDefinition Height="75*" />
         </Grid.RowDefinitions>
 
         <StackPanel Name="Port" Grid.Column="0" Grid.Row="0" Margin="10,10">
@@ -57,6 +57,19 @@
                     <TabItem.Content>
                         <StackPanel Name="IpAddress"
                                     Margin="10,10,10,10">
+
+                            <Label Content="Tracker's IMEI:"
+                                    FontSize="16"
+                                    FontWeight="Bold" />
+
+                            <TextBox Name="IMEITextBox"
+            	                     TextWrapping="Wrap"
+            	                     Text="{Binding IMEI, Source={StaticResource SettingModel}, Mode=TwoWay}"
+            	                     FontSize="16"
+                                     MinWidth="40"
+                                     VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Left"
+                                     Height="40" />
 
                             <Label Name="IPAdressLabel"
                                     Content="IP Adress:"
@@ -134,13 +147,13 @@
                                     Margin="0,10,10,10" >
 
                                 <RadioButton Name="Random"
-                                             Content="Random messages"
+                                             Content="Random coordinates"
                                              IsChecked="{Binding Random,
                                                                  Source={StaticResource SettingModel},
                                                                  Mode=OneWayToSource}" />
 
                                 <RadioButton Name="File"
-                                             Content="Messages from file" />
+                                             Content="Coordinates from file" />
                             </StackPanel>
 
                             <StackPanel>
@@ -188,7 +201,7 @@
         </StackPanel>
 
         <StackPanel Name="Message" Grid.Column="1" Grid.Row="0"
-                    Margin="10,10,10,4">
+                    Margin="10,10,10,10">
             <Label Content="Message:"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
@@ -201,12 +214,10 @@
             	     TextWrapping="Wrap"
             	     Text="{Binding Message, Source={StaticResource UdpModel}, Mode=TwoWay}"
             	     FontSize="16"
-            	     VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="300" />
+            	     VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="340" />
         </StackPanel>
 
-        
-
-        <Button Name="StartButton" Grid.Column="1" Grid.Row="2"
+        <Button Name="StartButton" Grid.Column="1" Grid.Row="1"
                 Margin="10,10,10,10"
                 FontSize="16"
                 FontWeight="Bold"
@@ -215,7 +226,7 @@
                 Content="{Binding StateButton, Source={StaticResource SettingModel}, Mode=OneWay}"
                 IsCancel="True" />
 
-        <Label Name="StatusLabel" Grid.Column="0" Grid.Row="2"
+        <Label Name="StatusLabel" Grid.Column="0" Grid.Row="1"
                Content="{Binding Status,
                                  Source={StaticResource SettingModel},
                                  Mode=OneWay,

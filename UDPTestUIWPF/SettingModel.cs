@@ -10,7 +10,7 @@ namespace UDPTestUIWPF
     public class SettingModel : DependencyObject
     {
         public static DependencyProperty SendReceiveProperty;
-        public static DependencyProperty TemplateProperty;
+        public static DependencyProperty IMEIProperty;
         public static DependencyProperty RandomProperty;
         public static DependencyProperty WriteToDBProperty;
         public static DependencyProperty SignalRProperty;
@@ -25,10 +25,10 @@ namespace UDPTestUIWPF
                                                                 typeof(SettingModel),
                                                                 new PropertyMetadata(true));
 
-            TemplateProperty = DependencyProperty.Register("Template",
-                                                                typeof(bool),
+            IMEIProperty = DependencyProperty.Register("IMEI",
+                                                                typeof(string),
                                                                 typeof(SettingModel),
-                                                                new PropertyMetadata(false));
+                                                                new PropertyMetadata("11223344556677"));
 
             RandomProperty = DependencyProperty.Register("Random",
                                                                 typeof(bool),
@@ -66,10 +66,10 @@ namespace UDPTestUIWPF
             get { return (bool)GetValue(SendReceiveProperty); }
         }
 
-        public bool Template
+        public string IMEI
         {
-            set { SetValue(TemplateProperty, value); }
-            get { return (bool)GetValue(TemplateProperty); }
+            set { SetValue(IMEIProperty, value); }
+            get { return (string)GetValue(IMEIProperty); }
         }
 
         public bool Random

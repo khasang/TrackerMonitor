@@ -114,7 +114,6 @@ namespace UDPTestUIWPF
 
             Task.Factory.StartNew(() =>
             {
-                List<GPSTracker> trackers = GetTrackers();
                 int count = 0;
 
                 foreach (var message in messages)  // Проходим по списку сообщений
@@ -189,10 +188,11 @@ namespace UDPTestUIWPF
             if(settingModel.Random == true)
             {
                 for (int i = 0; i < quantity; i++)
+                {
                     messages.Add(GetGPSTrackerMessage(trackers[0].Id,
                                                       (double)rnd.Next(100),
                                                       (double)rnd.Next(100)));
-                
+                }
             }
             else
             {
