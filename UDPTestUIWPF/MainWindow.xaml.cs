@@ -134,23 +134,6 @@ namespace UDPTestUIWPF
             });            
         }
 
-        /// <summary>
-        /// Создает сообщение типа GPSTrackerMessage со случайными параметрами
-        /// </summary>
-        /// <returns>byte[]</returns>
-        private GPSTrackerMessage GetGPSTrackerMessage(string trackerId, double latitude, double longitude)
-        {
-            GPSTrackerMessage message = new GPSTrackerMessage()
-            {
-                Latitude = latitude,
-                Longitude = longitude,
-                Time = DateTime.Now,
-                GPSTrackerId = trackerId
-            };
-
-            return message;
-        }
-
         private IList<GPSTrackerMessage> GetGPSTrackerMessages(int quantity)
         {
             var messages = new List<GPSTrackerMessage>();
@@ -162,9 +145,13 @@ namespace UDPTestUIWPF
             {
                 for (int i = 0; i < quantity; i++)
                 {
-                    messages.Add(GetGPSTrackerMessage(settingModel.IMEI,
-                                                      (double)rnd.Next(100),
-                                                      (double)rnd.Next(100)));
+                    messages.Add(new GPSTrackerMessage()
+                    {
+                        GPSTrackerId = settingModel.IMEI,
+                        Time = DateTime.Now,
+                        Latitude = (double)rnd.Next(100),
+                        Longitude = (double)rnd.Next(100)
+                    });
                 }
             }
             else
@@ -175,9 +162,13 @@ namespace UDPTestUIWPF
                     {
                         string[] coordinates = sr.ReadLine().Split(';');
 
-                        messages.Add(GetGPSTrackerMessage(settingModel.IMEI,
-                                                          double.Parse(coordinates[0], dbNumberFormat),
-                                                          double.Parse(coordinates[1], dbNumberFormat)));
+                        messages.Add(new GPSTrackerMessage()
+                        {
+                            GPSTrackerId = settingModel.IMEI,
+                            Time = DateTime.Now,
+                            Latitude = double.Parse(coordinates[0], dbNumberFormat),
+                            Longitude = double.Parse(coordinates[1], dbNumberFormat)
+                        });
                     }
                 }
             }

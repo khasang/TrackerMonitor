@@ -185,14 +185,18 @@
                     <TabItem.Content>
                         <StackPanel>
                             <CheckBox Name="SignalRCheckBox"
-                                      IsChecked="{Binding SendSignalR, Mode=OneWayToSource}"
+                                      IsChecked="{Binding SendSignalR,
+                                                  Source={StaticResource SettingModel},
+                                                  Mode=OneWayToSource}"
                                       Content="Send to SigalR hub"
                                       Margin="10,10"/>
 
                             <CheckBox Name="WriteDBCheckBox"
             	                      Content="Write messages to DB"
             	                      VerticalAlignment="Bottom"
-                                      IsChecked="{Binding WriteToDB, Mode=OneWayToSource}"
+                                      IsChecked="{Binding WriteToDB,
+                                                  Source={StaticResource SettingModel},
+                                                  Mode=OneWayToSource}"
                                       Margin="10,10"/>
                         </StackPanel>
                     </TabItem.Content>
