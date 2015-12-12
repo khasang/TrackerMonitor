@@ -185,7 +185,7 @@
                     <TabItem.Content>
                         <StackPanel>
                             <CheckBox Name="SignalRCheckBox"
-                                      IsChecked="{Binding SendSignalR,
+                                      IsChecked="{Binding SignalR,
                                                   Source={StaticResource SettingModel},
                                                   Mode=OneWayToSource}"
                                       Content="Send to SigalR hub"

@@ -38,9 +38,7 @@ namespace UDPTestUIWPF
         public MainWindow()
         {
             this.udpServer = new UDPnet();
-            udpServer.eventReceivedMessage += OnShowReceivedMessage;  // Подписываемся на событие получения сообщения
-
-            this.dbContext = new ApplicationDbContext("UDPTestConnection");  // Для возможности записи сообщений в базу   
+            udpServer.eventReceivedMessage += OnShowReceivedMessage;  // Подписываемся на событие получения сообщения              
 
             InitializeComponent();
 
@@ -94,6 +92,11 @@ namespace UDPTestUIWPF
                     this.hubConnection = new HubConnection(@"http://localhost:3254");
                     this.hubProxy = hubConnection.CreateHubProxy("PushNotify");
                     hubConnection.Start().Wait();
+                }
+
+                if(settingModel.WriteToDB == true)
+                {
+                    dbContext = new ApplicationDbContext("UDPTestConnection");  // Для возможности записи сообщений в базу 
                 }
 
                 udpServer.StartReceiveAsync(udpModel.Port);
@@ -195,12 +198,17 @@ namespace UDPTestUIWPF
                 try
                 {
                     gpsMessage.GPSTracker = dbContext.GPSTrackers.Find(gpsMessage.GPSTrackerId);
+                    if (gpsMessage.GPSTracker == null)
+                    {
+                        udpModel.Message += "Tracker is not found!\n";
+                    }
+
                     dbContext.GPSTrackerMessages.Add(gpsMessage);
                     dbContext.SaveChanges();
                 }
                 catch(Exception ex)
                 {
-                    Dispatcher.Invoke(new Action(() => StatusLabel.Content = ex.Message));
+                    udpModel.Message += "Error saving!\n";
                 }                
             }
 
