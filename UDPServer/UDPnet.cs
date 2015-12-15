@@ -92,11 +92,11 @@ namespace UDPServer
                 {
                     backMessage = "Error sending!";
                 }
-                finally
-                {
-                    udpClient.Close();  // После окончания попытки отправки закрываем UDP соединение
-                    backMessage += "Closed!";
-                }
+                //finally
+                //{
+                //    udpClient.Close();  // После окончания попытки отправки закрываем UDP соединение
+                //    backMessage += "Closed!";
+                //}
 
                 return backMessage;
             }            

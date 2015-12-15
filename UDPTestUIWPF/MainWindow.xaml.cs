@@ -3,6 +3,8 @@ using DAL.Entities;
 using DAL.Logic;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -10,6 +12,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using UDPServer;
+using Microsoft.AspNet.SignalR.Client;
+using Microsoft.AspNet.SignalR.Messaging;
 
 namespace UDPTestUIWPF
 {
@@ -18,27 +22,27 @@ namespace UDPTestUIWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        UDPDataModel dataUDP;
         UDPnet udpServer;
-
-        bool stopSend = true;
-        Random rnd = new Random();
-
-        ApplicationDbContext dbContext;
 
         UDPDataModel udpModel;
         SettingModel settingModel;
 
+        ApplicationDbContext dbContext;
+
+        HubConnection hubConnection;
+        IHubProxy hubProxy;
+
+        bool stopSend = true;
+        Random rnd = new Random();
+
         public MainWindow()
         {
             this.udpServer = new UDPnet();
-            udpServer.eventReceivedMessage += OnShowReceivedMessage;  // Подписываемся на событие получения сообщения
-
-            this.dbContext = new ApplicationDbContext("UDPTestConnection");  // Для возможности записи сообщений в базу
+            udpServer.eventReceivedMessage += OnShowReceivedMessage;  // Подписываемся на событие получения сообщения              
 
             InitializeComponent();
 
-            udpModel = (UDPDataModel)this.FindResource("UdpModel");     // Достаем модели из xaml
+            udpModel = (UDPDataModel)this.FindResource("UdpModel");          // Достаем модели из xaml
             settingModel = (SettingModel)this.FindResource("SettingModel");
         }
 
@@ -47,60 +51,67 @@ namespace UDPTestUIWPF
         /// </summary>
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            //var d = dbContext.GPSTrackers.ToArray();
-            // Выбрана отправка сообщения
-            if(settingModel.StateButton == "Start" && settingModel.SendReceive == true)
-            {
-                settingModel.StateButton = "Stop";
-
-                // Выбрана мультиотправка в цикле
-                if (settingModel.Cycle == true)
-                {                    
-                    settingModel.Status = "Отправляем сообщения в цикле...";
-                    CycleSendMessage(udpModel.IPAddress, udpModel.Port);
-                }
-                // Выбрана одиночная отправка
-                else
-                {
-                    settingModel.Status = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
-                    settingModel.StateButton = "Start";
-                }
-                
-                return;
-            }
-
-            // Выбран прием сообщений
-            if(settingModel.StateButton == "Start" && ReceiveRadioButton.IsChecked == true)
-            {
-                settingModel.StateButton = "Stop";
-                settingModel.Status = "Receiving message...";
-
-                // Циклический прием сообщений
-                if (settingModel.Cycle == true)
-                {
-                    udpServer.StartReceiveAsync(udpModel.Port);
-                }
-                // Прием одного сообщения
-                else
-                {
-                    byte[] receiveMessage = (byte[])await udpServer.ReceiveSingleMessageAsync(udpModel.Port);
-
-                    settingModel.StateButton = "Start";
-                    settingModel.Status = "Connection status";
-                }
-
-                return;
-            }
-
             // Нажата кнопка "Стоп"
             if (settingModel.StateButton == "Stop")
             {
                 settingModel.StateButton = "Start";
-                settingModel.Status = "Connection status";                
+                settingModel.Status = "Connection status";
 
-                stopSend = true; // Останавливаем мультиотправку
+                stopSend = true;          // Останавливаем мультиотправку
                 udpServer.StopReceive();  // Останавливаем прием сообщений
-            }            
+
+                if (hubConnection != null && hubConnection.State == ConnectionState.Connected)
+                    hubConnection.Stop();
+
+                return;
+            }       
+
+            // Выбрана отправка сообщения
+            if(settingModel.StateButton == "Start" && settingModel.SendReceive == true)
+            {
+                settingModel.StateButton = "Stop";
+                settingModel.Status = "Отправляем сообщения в цикле...";                
+                CycleSendMessageAsync(udpModel.IPAddress, udpModel.Port, GetGPSTrackerMessages((int)settingModel.Quantity));                
+
+                // Выбрана одиночная отправка
+                //settingModel.Status = (string)await udpServer.SendMessageAsync(Encoding.ASCII.GetBytes(udpModel.Message), udpModel.IPAddress, udpModel.Port);
+                //settingModel.StateButton = "Start";
+
+                return;
+            }
+
+            // Выбран прием сообщений
+            if (settingModel.StateButton == "Start" && settingModel.SendReceive == false)
+            {
+                settingModel.StateButton = "Stop";
+                settingModel.Status = "Receiving message...";
+
+                // Выбрано отправлять сообщение хабу SignalR, соединяемся с хабом
+                if(settingModel.SignalR == true)
+                {
+                    try
+                    {
+                        this.hubConnection = new HubConnection(@"http://localhost:3254");
+                        this.hubProxy = hubConnection.CreateHubProxy("PushNotify");
+                        hubConnection.Start().Wait();
+                    }
+                    catch(Exception ex)
+                    {
+                        settingModel.Status = ex.Message;
+                        return;
+                    }
+                }
+
+                if(settingModel.WriteToDB == true)
+                {
+                    dbContext = new ApplicationDbContext("UDPTestConnection");  // Для возможности записи сообщений в базу 
+                }
+
+                udpServer.StartReceiveAsync(udpModel.Port);
+                return;
+            }
+
+                 
         }
 
         /// <summary>
@@ -108,65 +119,74 @@ namespace UDPTestUIWPF
         /// </summary>
         /// <param name="ipAddress">IP адрес получателя</param>
         /// <param name="port">Порт</param>
-        private void CycleSendMessage(IPAddress ipAddress, int port)
+        private void CycleSendMessageAsync(IPAddress ipAddress, int port, IList<GPSTrackerMessage> messages)
         {          
-            stopSend = false;
+            stopSend = false;            
+
             Task.Factory.StartNew(() =>
             {
-                List<GPSTracker> trackers = new List<GPSTracker>();
-                try
-                {
-                    trackers = dbContext.GPSTrackers.ToList();
-                }
-                catch
-                {
-                    trackers.Add(new GPSTracker()
-                    {
-                        Id = "111111",
-                        Name = "Tracker1"
-                    });
+                int count = 0;
 
-                    trackers.Add(new GPSTracker()
-                    {
-                        Id = "222222",
-                        Name = "Tracker2"
-                    });
-                }
-
-                while (true)                                     // В бесконечном цикле
+                foreach (var message in messages)  // Проходим по списку сообщений
                 {
-                    byte[] message = GetRndGPSTreckerMessage(trackers);  // Создаем случайное сообщение
-                    udpServer.SendMessageAsync(message, ipAddress, port);  // Отправляем его
+                    byte[] messageByte = GPSTrackerMessageConverter.MessageToBytes(message);  // Конвертируем в массив байтов
+                    udpServer.SendMessageAsync(messageByte, ipAddress, port);  // Отправляем его
 
                     // Выводим отправленное сообщение в текстбоксе
-                    Dispatcher.Invoke(new Action(() => udpModel.Message += GPSTrackerMessageConverter.BytesToMessage(message).ToString()));
+                    Dispatcher.Invoke(new Action(() => udpModel.Message += (++count).ToString() + "." + message.ToString()));
                     // Блокируем поток на 2 секунды
                     Thread.Sleep(2000);
                     // Если флаг остановки отправки сообщений, то выходим из цикла
                     if (stopSend) break;
                 }
-            });
+
+                Dispatcher.Invoke(new Action(() => settingModel.StateButton = "Start"));
+                Dispatcher.Invoke(new Action(() => settingModel.Status = "Connection status"));
+            });            
         }
 
-        /// <summary>
-        /// Создает сообщение из экземпляра GPSTrackerMessage со случайными параметрами
-        /// </summary>
-        /// <returns>byte[]</returns>
-        private byte[] GetRndGPSTreckerMessage(IList<GPSTracker> trackers)
+        private IList<GPSTrackerMessage> GetGPSTrackerMessages(int quantity)
         {
-            int number = rnd.Next(trackers.Count);
-            GPSTrackerMessage message = new GPSTrackerMessage()
+            var messages = new List<GPSTrackerMessage>();
+
+            CultureInfo usCulture = new CultureInfo("en-US");
+            NumberFormatInfo dbNumberFormat = usCulture.NumberFormat;
+
+            if(settingModel.Random == true)
             {
-                Latitude = rnd.Next(1000),
-                Longitude = rnd.Next(1000),
-                Time = DateTime.Now,
-                GPSTracker = trackers[number],
-                GPSTrackerId = trackers[number].Id
-            };
+                for (int i = 0; i < quantity; i++)
+                {
+                    messages.Add(new GPSTrackerMessage()
+                    {
+                        GPSTrackerId = settingModel.IMEI,
+                        Time = DateTime.Now,
+                        Latitude = (double)rnd.Next(100),
+                        Longitude = (double)rnd.Next(100)
+                    });
+                }
+            }
+            else
+            {
+                using (StreamReader sr = new StreamReader(@"GPSPoints.txt"))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string[] coordinates = sr.ReadLine().Split(';');
 
-            return GPSTrackerMessageConverter.MessageToBytes(message);
+                        messages.Add(new GPSTrackerMessage()
+                        {
+                            GPSTrackerId = settingModel.IMEI,
+                            Time = DateTime.Now,
+                            Latitude = double.Parse(coordinates[0], dbNumberFormat),
+                            Longitude = double.Parse(coordinates[1], dbNumberFormat)
+                        });
+                    }
+                }
+            }
+
+            return messages.Take(quantity).ToList();
         }
-
+        
         /// <summary>
         /// Вывод полученного сообщения в текстбоксе
         /// </summary>
@@ -180,21 +200,41 @@ namespace UDPTestUIWPF
 
             udpModel.Message += gpsMessage.ToString();  // ToString() переопределен.
 
+            // Если выбрано писать сообщения в БД
             if (settingModel.WriteToDB == true)
             {
-                gpsMessage.GPSTracker = dbContext.GPSTrackers.Find(gpsMessage.GPSTrackerId);
-                dbContext.GPSTrackerMessages.Add(gpsMessage);
                 try
                 {
+                    gpsMessage.GPSTracker = dbContext.GPSTrackers.Find(gpsMessage.GPSTrackerId);
+                    if (gpsMessage.GPSTracker == null)
+                    {
+                        udpModel.Message += "Tracker is not found!\n";
+                    }
+
+                    dbContext.GPSTrackerMessages.Add(gpsMessage);
                     dbContext.SaveChanges();
                 }
                 catch(Exception ex)
                 {
-                    Dispatcher.Invoke(new Action(() => StatusLabel.Content = ex.Message));
+                    udpModel.Message += "Error saving!\n";
+                }                
+            }
+
+            // Если выбрано отправлять сообщения на хаб SignalR, отправляем
+            if(settingModel.SignalR == true)
+            {
+                try
+                {
+                    hubProxy.Invoke("SendNewMessage", gpsMessage);
                 }
-                
+                catch (Exception ex)
+                {
+                    Dispatcher.Invoke(new Action(() => StatusLabel.Content = ex.Message));
+                } 
             }
         }
+
+
 
     }
 }

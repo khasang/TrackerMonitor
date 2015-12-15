@@ -2,202 +2,242 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:UDPTestUIWPF"
-        Title="UDP test" Height="450" Width="600">
+        Title="UDP test" Height="510" Width="500">
 
     <Window.Resources>
         <local:UDPDataModel x:Key="UdpModel"></local:UDPDataModel>
-        <local:SettingModel x:Key="SettingModel">
-        </local:SettingModel>
+        <local:SettingModel x:Key="SettingModel"></local:SettingModel>
 
         <local:ConvertStrInt x:Key="ConvertStrUShort"></local:ConvertStrInt>
         <local:ConvertStrByte x:Key="ConvertStrByte"></local:ConvertStrByte>
     </Window.Resources>
 
-    <Grid Margin="0,0,2,4" DataContext="{StaticResource UdpModel}">
-
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="58*" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="65*" />
+            <ColumnDefinition Width="60*" />
         </Grid.ColumnDefinitions>
 
-        <TextBox Name="PortTextBox"
-                 HorizontalAlignment="Left"
-                 Margin="10,160,0,0"
-                 Text="{Binding Port,
-                        Converter={StaticResource ConvertStrUShort},
-                        UpdateSourceTrigger=LostFocus,
-                        Mode=TwoWay}"
-                 VerticalAlignment="Top"
-                 Width="100"
-                 Height="40"
-                 FontSize="16"
-                 HorizontalContentAlignment="Center"
-                 VerticalContentAlignment="Center" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="400*" />
+            <RowDefinition Height="75*" />
+        </Grid.RowDefinitions>
 
-        <TextBox Name="MessageTextBox"
-                 HorizontalAlignment="Left"
-                 Width="290"
-                 Height="295"
-                 Margin="265,65,0,0"
-                 TextWrapping="Wrap"
-                 Text="{Binding Message, Mode=TwoWay}"
-                 VerticalAlignment="Top"
-                 FontSize="16"
-                 VerticalScrollBarVisibility="Auto" />
+        <StackPanel Name="Port" Grid.Column="0" Grid.Row="0" Margin="10,10">
+            <Label Content="Port:"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Height="30"
+                            Width="80" />
 
-        <Label Name="IPAdressLabel"
-               Content="IP Adress:"
-               HorizontalAlignment="Left"
-               Margin="10,25,0,0"
-               VerticalAlignment="Top"
-               FontSize="16"
-               FontWeight="Bold"
-               IsEnabled="{Binding IsChecked, ElementName=SendRadioButton}"
-               Height="30"
-               Width="80"/>
+            <TextBox Name="PortTextBox"
+                            HorizontalAlignment="Left"
+                            Text="{Binding Source={StaticResource UdpModel}, Path=Port,
+                                           Converter={StaticResource ConvertStrUShort},
+                                           UpdateSourceTrigger=LostFocus,
+                                           Mode=TwoWay}"
+                            VerticalAlignment="Top"
+                            Width="100"
+                            Height="40"
+                            FontSize="16"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center" />
 
-        <Label Content="Port:"
-               HorizontalAlignment="Left"
-               Margin="10,123,0,0"
-               VerticalAlignment="Top"
-               FontSize="16"
-               FontWeight="Bold"
-               Height="30"
-               Width="80" />
+            <TabControl Name="SendReceive" Margin="0,10">
+                <TabItem Name="Send" IsSelected="{Binding SendReceive,
+                                                          Source={StaticResource SettingModel},
+                                                          Mode=OneWayToSource,
+                                                          UpdateSourceTrigger=LostFocus}">
+                    <TabItem.Header>
+                        <TextBlock>Send</TextBlock>
+                    </TabItem.Header>
 
-        <Label Content="Message:"
-               HorizontalAlignment="Left"
-               Margin="245,25,0,0"
-               VerticalAlignment="Top"
-               FontSize="16"
-               FontWeight="Bold"
-               Height="30"
-               Width="80" />
+                    <TabItem.Content>
+                        <StackPanel Name="IpAddress"
+                                    Margin="10,10,10,10">
 
-        <Canvas Name="Setting"
-                Width="230"
-                HorizontalAlignment="Left"
-                Margin="10,220,0,10"
-                DataContext="{StaticResource SettingModel}">
+                            <Label Content="Tracker's IMEI:"
+                                    FontSize="16"
+                                    FontWeight="Bold" />
 
-            <CheckBox x:Name="CycleCheckBox"
-                      Content="Cycle"
-                      HorizontalAlignment="Left"
-                      VerticalAlignment="Top"
-                      IsChecked="{Binding Cycle, Mode=OneWayToSource}"/>
+                            <TextBox Name="IMEITextBox"
+            	                     TextWrapping="Wrap"
+            	                     Text="{Binding IMEI, Source={StaticResource SettingModel}, Mode=TwoWay}"
+            	                     FontSize="16"
+                                     MinWidth="40"
+                                     VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Left"
+                                     Height="40" />
 
-            <StackPanel HorizontalAlignment="Left"
-                        Height="30"
-                        VerticalAlignment="Top"
-                        Width="100" Canvas.Top="20" >
+                            <Label Name="IPAdressLabel"
+                                    Content="IP Adress:"
+                                    FontSize="16"
+                                    FontWeight="Bold" />
 
-                <RadioButton Name="SendRadioButton"
-                             Content="Send"
-                             IsChecked="{Binding SendReceive, Mode=OneWayToSource, UpdateSourceTrigger=LostFocus}" />
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Left"
+                                        Height="40"
+                                        VerticalAlignment="Top"
+                                        Width="210" >
 
-                <RadioButton Name="ReceiveRadioButton"
-                             Content="Receive" />
-            </StackPanel>
-            
-            <CheckBox x:Name="WriteDBCheckBox"
-            	        Content="Write to DB"
-            	        HorizontalAlignment="Left"
-            	        VerticalAlignment="Top"
-            	        IsEnabled="{Binding IsChecked, ElementName=ReceiveRadioButton}"
-                        IsChecked="{Binding WriteToDB, Mode=OneWayToSource}"
-                        Canvas.Top="65"/>
+                                <TextBox Name="Octet1TextBox"
+                                         Text="{Binding Octet1, Source={StaticResource UdpModel},
+                                                        Converter={StaticResource ConvertStrByte},
+                                                        UpdateSourceTrigger=LostFocus,
+                                                        Mode=TwoWay}"
+                                         MinWidth="40"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center"
+                                         FontSize="16"
+                                         Width="40"/>
 
-            <Button Name="StartButton"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Width="230"
-                    Height="40"
-                    FontSize="16"
-                    FontWeight="Bold"
-                    Click="StartButton_Click"
-                    IsDefault="True"
-                    Canvas.Top="100"
-                    Content="{Binding StateButton, Mode=OneWay}" />
+                                <Label Content="."
+                                       VerticalContentAlignment="Center"
+                                       FontWeight="Bold"
+                                       FontSize="16"/>
 
-            <Label Name="StatusLabel"
-               Content="{Binding Status, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Top"
-               Width="230" Height="25" Canvas.Top="160"/>
+                                <TextBox Name="Octet2TextBox"
+                                         Text="{Binding Octet2, Source={StaticResource UdpModel},
+                                                        Converter={StaticResource ConvertStrByte},
+                                                        UpdateSourceTrigger=LostFocus,
+                                                        Mode=TwoWay}"
+                                         MinWidth="40"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center"
+                                         FontSize="16"
+                                         Width="40"/>
 
-        </Canvas>
+                                <Label Content="."
+                                       VerticalContentAlignment="Center"
+                                       FontWeight="Bold"
+                                       FontSize="16"/>
 
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Left"
-                    Height="40"
-                    Margin="10,65,0,0"
-                    VerticalAlignment="Top"
-                    Width="210"
-                    IsEnabled="{Binding IsChecked, ElementName=SendRadioButton}">
+                                <TextBox Name="Octet3TextBox"
+                                         Text="{Binding Octet3, Source={StaticResource UdpModel},
+                                                        Converter={StaticResource ConvertStrByte},
+                                                        UpdateSourceTrigger=LostFocus,
+                                                        Mode=TwoWay}"
+                                         MinWidth="40"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center"
+                                         FontSize="16"
+                                         AcceptsReturn="True"
+                                         Width="40"/>
 
-            <TextBox Name="Octet1TextBox"
-                     Text="{Binding Octet1,
-                        Converter={StaticResource ConvertStrByte},
-                        UpdateSourceTrigger=LostFocus,
-                        Mode=TwoWay}"
-                     Margin="0"
-                     MinWidth="40"
-                     VerticalContentAlignment="Center"
-                     HorizontalContentAlignment="Center"
-                     FontSize="16" Width="40"/>
+                                <Label Content="."
+                                       VerticalContentAlignment="Center"
+                                       FontWeight="Bold"
+                                       FontSize="16"/>
 
-            <Label Content="."
-                   Margin="0"
-                   VerticalContentAlignment="Center"
-                   FontWeight="Bold"
-                   FontSize="16"/>
+                                <TextBox Name="Octet4TextBox"
+                                         Text="{Binding Octet4, Source={StaticResource UdpModel},
+                                                        Converter={StaticResource ConvertStrByte},
+                                                        UpdateSourceTrigger=LostFocus,
+                                                        Mode=TwoWay}"
+                                         MinWidth="40"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center"
+                                         FontSize="16"
+                                         Width="40"/>
+                            </StackPanel>
 
-            <TextBox Name="Octet2TextBox"
-                     Text="{Binding Octet2,
-                        Converter={StaticResource ConvertStrByte},
-                        UpdateSourceTrigger=LostFocus,
-                        Mode=TwoWay}"
-                     Margin="0"
-                     MinWidth="40"
-                     VerticalContentAlignment="Center"
-                     HorizontalContentAlignment="Center"
-                     FontSize="16" Width="40"/>
+                            <StackPanel Name="RandomOrFile"
+                                    Margin="0,10,10,10" >
 
-            <Label Content="."
-                   Margin="0"
-                   VerticalContentAlignment="Center"
-                   FontWeight="Bold"
-                   FontSize="16"/>
+                                <RadioButton Name="Random"
+                                             Content="Random coordinates"
+                                             IsChecked="{Binding Random,
+                                                                 Source={StaticResource SettingModel},
+                                                                 Mode=OneWayToSource}" />
 
-            <TextBox Name="Octet3TextBox"
-                     Text="{Binding Octet3,
-                        Converter={StaticResource ConvertStrByte},
-                        UpdateSourceTrigger=LostFocus,
-                        Mode=TwoWay}"
-                     Margin="0"
-                     MinWidth="40"
-                     VerticalContentAlignment="Center"
-                     HorizontalContentAlignment="Center"
-                     FontSize="16"
-                     AcceptsReturn="True" Width="40"/>
+                                <RadioButton Name="File"
+                                             Content="Coordinates from file" />
+                            </StackPanel>
 
-            <Label Content="."
-                   Margin="0"
-                   VerticalContentAlignment="Center"
-                   FontWeight="Bold"
-                   FontSize="16"/>
+                            <StackPanel>
+                                <Label Content="Quantity:" FontWeight="Bold" FontSize="16" />
+                                <TextBox Name="QuantityMessages"
+                                         Text="{Binding Quantity, Source={StaticResource SettingModel },
+                                                        Converter={StaticResource ConvertStrByte},
+                                                        UpdateSourceTrigger=LostFocus,
+                                                        Mode=TwoWay}"
+                                         MinWidth="40"
+                                         Width="40"
+                                         FontSize="16"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center"
+                                         HorizontalAlignment="Left"
+                                         VerticalAlignment="Top"/>
+                            </StackPanel>
 
-            <TextBox Name="Octet4TextBox"
-                     Text="{Binding Octet4,
-                        Converter={StaticResource ConvertStrByte},
-                        UpdateSourceTrigger=LostFocus,
-                        Mode=TwoWay}"
-                     Margin="0"
-                     MinWidth="40"
-                     VerticalContentAlignment="Center"
-                     HorizontalContentAlignment="Center"
-                     FontSize="16" Width="40"/>
+                        </StackPanel>
+
+                    </TabItem.Content>
+                </TabItem>
+
+                <TabItem Name="Receive">
+                    <TabItem.Header>
+                        <TextBlock>Receive</TextBlock>
+                    </TabItem.Header>
+
+                    <TabItem.Content>
+                        <StackPanel>
+                            <CheckBox Name="SignalRCheckBox"
+                                      IsChecked="{Binding SignalR,
+                                                  Source={StaticResource SettingModel},
+                                                  Mode=OneWayToSource}"
+                                      Content="Send to SigalR hub"
+                                      Margin="10,10"/>
+
+                            <CheckBox Name="WriteDBCheckBox"
+            	                      Content="Write messages to DB"
+            	                      VerticalAlignment="Bottom"
+                                      IsChecked="{Binding WriteToDB,
+                                                  Source={StaticResource SettingModel},
+                                                  Mode=OneWayToSource}"
+                                      Margin="10,10"/>
+                        </StackPanel>
+                    </TabItem.Content>
+                </TabItem>
+            </TabControl>
         </StackPanel>
 
+        <StackPanel Name="Message" Grid.Column="1" Grid.Row="0"
+                    Margin="10,10,10,10">
+            <Label Content="Message:"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               FontSize="16"
+               FontWeight="Bold"
+               Height="30"
+               Width="80" />
+
+            <TextBox Name="MessageTextBox"
+            	     TextWrapping="Wrap"
+            	     Text="{Binding Message, Source={StaticResource UdpModel}, Mode=TwoWay}"
+            	     FontSize="16"
+            	     VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="340" />
+        </StackPanel>
+
+        <Button Name="StartButton" Grid.Column="1" Grid.Row="1"
+                Margin="10,10,10,10"
+                FontSize="16"
+                FontWeight="Bold"
+                Click="StartButton_Click"
+                IsDefault="True"
+                Content="{Binding StateButton, Source={StaticResource SettingModel}, Mode=OneWay}"
+                IsCancel="True" />
+
+        <Label Name="StatusLabel" Grid.Column="0" Grid.Row="1"
+               Content="{Binding Status,
+                                 Source={StaticResource SettingModel},
+                                 Mode=OneWay,
+                                 UpdateSourceTrigger=PropertyChanged}"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Bottom"
+               Width="230"
+               Height="25" />
     </Grid>
 </Window>

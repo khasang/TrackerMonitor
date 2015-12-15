@@ -47,8 +47,7 @@ namespace UDPTestUIWPF
             
             MessageProperty = DependencyProperty.Register("Message",
                                                         typeof(string),
-                                                        typeof(UDPDataModel),
-                                                        new PropertyMetadata("Message"));
+                                                        typeof(UDPDataModel));
         }
 
         public byte Octet1

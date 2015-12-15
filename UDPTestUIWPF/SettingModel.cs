@@ -10,10 +10,13 @@ namespace UDPTestUIWPF
     public class SettingModel : DependencyObject
     {
         public static DependencyProperty SendReceiveProperty;
-        public static DependencyProperty CycleProperty;
+        public static DependencyProperty IMEIProperty;
+        public static DependencyProperty RandomProperty;
         public static DependencyProperty WriteToDBProperty;
+        public static DependencyProperty SignalRProperty;
         public static DependencyProperty StateButtonProperty;
         public static DependencyProperty StatusProperty;
+        public static DependencyProperty QuantityProperty;
 
         static SettingModel()
         {
@@ -22,12 +25,22 @@ namespace UDPTestUIWPF
                                                                 typeof(SettingModel),
                                                                 new PropertyMetadata(true));
 
-            CycleProperty = DependencyProperty.Register("Cycle",
+            IMEIProperty = DependencyProperty.Register("IMEI",
+                                                                typeof(string),
+                                                                typeof(SettingModel),
+                                                                new PropertyMetadata("11223344556677"));
+
+            RandomProperty = DependencyProperty.Register("Random",
+                                                                typeof(bool),
+                                                                typeof(SettingModel),
+                                                                new PropertyMetadata(true));
+
+            WriteToDBProperty = DependencyProperty.Register("WriteToDB",
                                                                 typeof(bool),
                                                                 typeof(SettingModel),
                                                                 new PropertyMetadata(false));
 
-            WriteToDBProperty = DependencyProperty.Register("WriteToDB",
+            SignalRProperty = DependencyProperty.Register("SignalR",
                                                                 typeof(bool),
                                                                 typeof(SettingModel),
                                                                 new PropertyMetadata(false));
@@ -41,6 +54,10 @@ namespace UDPTestUIWPF
                                                                 typeof(string),
                                                                 typeof(SettingModel),
                                                                 new PropertyMetadata("Сonnection status"));
+            QuantityProperty = DependencyProperty.Register("Quantity",
+                                                                typeof(byte),
+                                                                typeof(SettingModel),
+                                                                new PropertyMetadata((byte)5));
         }
 
         public bool SendReceive
@@ -49,16 +66,28 @@ namespace UDPTestUIWPF
             get { return (bool)GetValue(SendReceiveProperty); }
         }
 
-        public bool Cycle
+        public string IMEI
         {
-            set { SetValue(CycleProperty, value); }
-            get { return (bool)GetValue(CycleProperty); }
+            set { SetValue(IMEIProperty, value); }
+            get { return (string)GetValue(IMEIProperty); }
+        }
+
+        public bool Random
+        {
+            set { SetValue(RandomProperty, value); }
+            get { return (bool)GetValue(RandomProperty); }
         }
 
         public bool WriteToDB
         {
             set { SetValue(WriteToDBProperty, value); }
             get { return (bool)GetValue(WriteToDBProperty); }
+        }
+
+        public bool SignalR
+        {
+            set { SetValue(SignalRProperty, value); }
+            get { return (bool)GetValue(SignalRProperty); }
         }
 
         public string StateButton
@@ -71,6 +100,12 @@ namespace UDPTestUIWPF
         {
             set { SetValue(StatusProperty, value); }
             get { return (string)GetValue(StatusProperty); }
+        }
+
+        public byte Quantity
+        {
+            set { SetValue(QuantityProperty, value); }
+            get { return (byte)GetValue(QuantityProperty); }
         }
     }
 }
