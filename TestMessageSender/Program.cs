@@ -30,7 +30,7 @@ namespace TestMessageSender
             {
                 //вызов метода из хаба PushNotify и передача ему сообщения.
                 hubProxy.Invoke("SendNewMessage", message);
-                Console.WriteLine("...Send {0} - {1} - {2} - {3} - {4} ... ok", message.GPSTracker.OwnerId, message.GPSTrackerId, message.Latitude, message.Longitude, message.Time);
+                Console.WriteLine("...Send {0} - {1} - {2} - {3} ... ok", message.GPSTrackerId, message.Latitude, message.Longitude, message.Time);
                 Console.WriteLine();
                 Thread.Sleep(new Random().Next(1000, 4000));
             }
@@ -41,7 +41,7 @@ namespace TestMessageSender
             Random r = new Random();
             List<GPSTrackerMessage> messages = new List<GPSTrackerMessage>();
 
-            string gpsPointsFilePath = @"C:\Users\Николай\Documents\Visual Studio 2015\Projects\GPSTracker\GPSPoints\GPSPoints.csv";
+            string gpsPointsFilePath = @"E:\Projects\OurInternshipProject\UDPTestUIWPF\bin\Debug\GPSPoints.txt";
             string[] guids = new string[] { "3277c404-708b-43b8-9bbd-e6e65a869d3f", "a49b8728-6d68-4029-a3a9-a1581edb2d7e" };
 
             using (StreamReader sr = new StreamReader(gpsPointsFilePath))

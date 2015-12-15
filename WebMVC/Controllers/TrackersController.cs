@@ -14,19 +14,11 @@ namespace WebMVC.Controllers
     [Authorize]
     public class TrackersController : BaseController
     {
-        public ActionResult Index(ICollection<GPSTracker> trackers)
+        public ActionResult Index(string trackerId)
         {
-            ICollection<GPSTrackerMessage> trackerMasseges = new List<GPSTrackerMessage>();
+            GPSTracker tracker = dbContext.GPSTrackers.Find(trackerId);
 
-            foreach(GPSTracker tracker in trackers)
-            {
-                trackerMasseges.Add(tracker.GPSTrackerMessages.Last());
-            }
-
-            return View(trackerMasseges);
+            return View(tracker);
         }
-        
-               
-    
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DAL.Entities.GPSTrackerMessage>
+﻿@model DAL.Entities.GPSTracker
 
 @using System.Globalization
 
@@ -19,17 +19,17 @@
             var map;
             function initialize() {
                 var mapProp = {
-                    center: new google.maps.LatLng(@Model.Last().Latitude.ToString((new CultureInfo("en-US")).NumberFormat), @Model.Last().Longitude.ToString((new CultureInfo("en-US")).NumberFormat)),
+                    center: new google.maps.LatLng(@(50).ToString((new CultureInfo("en-US")).NumberFormat), @(50).ToString((new CultureInfo("en-US")).NumberFormat)),
                     zoom: 16,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
                 map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-                @foreach (var gpsMessage in Model)
+                @*@foreach (var gpsMessage in Model)
                         {
                             @:addMarker(@gpsMessage.Latitude.ToString((new CultureInfo("en-US")).NumberFormat), @gpsMessage.Longitude.ToString((new CultureInfo("en-US")).NumberFormat), map, markers);
-                        }
+                        }*@
             }
 
             google.maps.event.addDomListener(window, 'load', initialize);
