@@ -73,12 +73,14 @@
             pushNotify.client.ShowMessage = function (message) {
                 if(markers.length < 10){
                     addMarker(message.Latitude, message.Longitude, map, markers);
-                } else {
+                }
+                else {
                     changeMarker(message.Latitude, message.Longitude, map, markers[markerIndex]);
 
                     if(markerIndex < 9){
                         markerIndex++;
-                    } else {
+                    }
+                    else {
                         markerIndex = 0;
                     }
                 }

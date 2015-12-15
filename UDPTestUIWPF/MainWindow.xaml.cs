@@ -89,9 +89,17 @@ namespace UDPTestUIWPF
                 // Выбрано отправлять сообщение хабу SignalR, соединяемся с хабом
                 if(settingModel.SignalR == true)
                 {
-                    this.hubConnection = new HubConnection(@"http://localhost:3254");
-                    this.hubProxy = hubConnection.CreateHubProxy("PushNotify");
-                    hubConnection.Start().Wait();
+                    try
+                    {
+                        this.hubConnection = new HubConnection(@"http://localhost:3254");
+                        this.hubProxy = hubConnection.CreateHubProxy("PushNotify");
+                        hubConnection.Start().Wait();
+                    }
+                    catch(Exception ex)
+                    {
+                        settingModel.Status = ex.Message;
+                        return;
+                    }
                 }
 
                 if(settingModel.WriteToDB == true)
