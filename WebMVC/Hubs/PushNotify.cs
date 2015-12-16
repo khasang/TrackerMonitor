@@ -22,7 +22,7 @@ namespace WebMVC.Hubs
         //[Authorize]
         public void SendNewMessage(GPSTrackerMessage message)
         {
-            Clients.Group(message.GPSTracker.OwnerId).ShowMessage(message);
+            Clients.Group("admin@admin.com").ShowMessage(message);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace WebMVC.Hubs
             Debug.WriteLine(Context.ConnectionId);
             Debug.WriteLine(Context.User.Identity.GetUserId());
 
-            Groups.Add(Context.ConnectionId, Context.User.Identity.GetUserId()); //имя группы - имя пользователя
+            Groups.Add(Context.ConnectionId, Context.User.Identity.Name); //имя группы - имя пользователя
             return base.OnConnected();
         }
 
