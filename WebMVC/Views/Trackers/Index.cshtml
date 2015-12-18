@@ -25,47 +25,52 @@
     <script src="~/signalr/hubs"></script>
     <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script>
-            var map;
-            var coordinates = [];
+        var map;
+        var coordinates = [];
 
-            function initialize(latitude, longitude) {
-                var mapProp = {
-                    center: new google.maps.LatLng(latitude, longitude),
-                    zoom: 16,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
+        function init(){
+            initialize(
+                @Model.Last().Latitude.ToString((new CultureInfo("en-US")).NumberFormat),
+                @Model.Last().Longitude.ToString((new CultureInfo("en-US")).NumberFormat));
+        }
 
-                map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        function initialize(latitude, longitude) {
 
-                coordinates.forEach(function(coordinate, index, ar) {
-                    addMarker(coordinate.lat, coordinate.lng, map, markers);
-                });
-            }
+            var mapProp = {
+                center: new google.maps.LatLng(latitude, longitude),
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
 
-            @if (Model.Count() != 0)
+            map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+            coordinates.forEach(function(coordinate, index, ar) {
+                addMarker(coordinate.lat, coordinate.lng, map, markers);
+            });
+        }
+
+        @if (Model.Count() != 0)
+        {
+            @:$("googleMap").show();
+
+            <text>
+                google.maps.event.addDomListener(window, 'load', init);
+
+            </text>
+
+            foreach (var gpsMessage in Model)
             {
-                @:$("googleMap").show();
-
-                <text>
-                    google.maps.event.addDomListener(window, 'load', initialize, 
-                        @Model.Last().Latitude.ToString((new CultureInfo("en-US")).NumberFormat),
-                        @Model.Last().Longitude.ToString((new CultureInfo("en-US")).NumberFormat)))
-                    
-                </text>
-
-                foreach (var gpsMessage in Model)
-                {
-                     <text>
-                        coordinates.push({
-                            lat:@gpsMessage.Latitude.ToString((new CultureInfo("en-US")).NumberFormat),
-                            lng:@gpsMessage.Longitude.ToString((new CultureInfo("en-US")).NumberFormat) });
-                     </text>
-                }
+                    <text>
+                    coordinates.push({
+                        lat:@gpsMessage.Latitude.ToString((new CultureInfo("en-US")).NumberFormat),
+                        lng:@gpsMessage.Longitude.ToString((new CultureInfo("en-US")).NumberFormat) });
+                    </text>
             }
-            else
-            {
-                @:$("googleMap").hide();
-            }
+        }
+        else
+        {
+            @:$("googleMap").hide();
+        }
     </script>
     <script>
         var markers = [];
@@ -74,10 +79,17 @@
         {
             var latLng = new google.maps.LatLng(latitude, longitude);
 
-            if(markers.length == 0){
+            if(map == null){
                 $("#noMessage").remove();
                 $("googleMap").show();
-                initialize(latitude, longitude);
+
+                var mapProp = {
+                    center: new google.maps.LatLng(latitude, longitude),
+                    zoom: 16,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
             }
 
             var marker = new google.maps.Marker({
