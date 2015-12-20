@@ -19,12 +19,27 @@ namespace WebMVC.Hubs
     //[Authorize]
     public class PushNotify:Hub
     {
-        //[Authorize]
+        ApplicationDbContext dbContext = new ApplicationDbContext();
+
         public void SendNewMessage(GPSTrackerMessage message)
         {
             Debug.WriteLine(message.GPSTracker.OwnerId);
 
-            Clients.Group(message.GPSTracker.OwnerId).ShowMessage(message);
+            if(message.GPSTracker == null)
+            {
+                var tracker = dbContext.GPSTrackers.Find(message.GPSTrackerId);
+                if (tracker != null)
+                {
+                    message.GPSTracker = tracker;                    
+                }
+                else
+                {
+                    // Здесь логирование сообщений неизвестных трекеров
+                    return;
+                }
+            }
+
+            Clients.Group(message.GPSTracker.OwnerId).ShowMessage(message);            
         }
 
         /// <summary>
