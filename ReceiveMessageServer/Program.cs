@@ -10,8 +10,9 @@ namespace ReceiveMessageServer
     {
         static void Main(string[] args)
         {
-            Server server = new Server();
+            Console.WriteLine("AAAAAAAAAAAAAAAAAA");
 
+            Server server = new Server();
             server.Start();
             Console.WriteLine("Сервер запущен!");
 
