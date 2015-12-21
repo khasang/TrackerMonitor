@@ -17,7 +17,7 @@ namespace UDPServer
         public EventHandler eventReceivedMessage = (x, y) => { };
         public EventHandler eventReceivedError = (x, y) => { };
         
-        public async void StartReceiveAsync(int port) // Запуск отдельного потока для приема сообщений
+        public async void StartReceiveAsync(int port) // Запуск приема сообщений
         {
             using(udpClient = new UdpClient(port))
             {
@@ -34,10 +34,10 @@ namespace UDPServer
                         if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
                     // Генерируем событие об ошибке приема сообщений!
-                    eventReceivedError(this, new ErrorMessage { Message = e.Message });
+                    eventReceivedError(this, new ErrorMessage { Message = ex.Message });
                 }
             }
         }

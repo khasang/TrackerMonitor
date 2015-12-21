@@ -23,7 +23,7 @@ namespace WebMVC.Hubs
 
         public void SendNewMessage(GPSTrackerMessage message)
         {
-            Debug.WriteLine(message.GPSTracker.OwnerId);
+            Debug.WriteLine("Send -> " + message.GPSTracker.OwnerId);
 
             if(message.GPSTracker == null)
             {
@@ -34,7 +34,7 @@ namespace WebMVC.Hubs
                 }
                 else
                 {
-                    // Здесь логирование сообщений неизвестных трекеров
+                    // Здесь логирование сообщений от неизвестных трекеров
                     return;
                 }
             }
@@ -48,11 +48,13 @@ namespace WebMVC.Hubs
         /// <returns></returns>
         public override Task OnConnected()
         {
-            Debug.WriteLine(Context.User.Identity.IsAuthenticated);
+            Debug.WriteLine("OnConnected");
+            Debug.WriteLine("IsAuthenticated = " + Context.User.Identity.IsAuthenticated.ToString());
+
             if (!Context.User.Identity.IsAuthenticated) return base.OnConnected();
 
-            Debug.WriteLine(Context.ConnectionId);
-            Debug.WriteLine(Context.User.Identity.GetUserId());
+            Debug.WriteLine("ConnectionId = " + Context.ConnectionId);
+            Debug.WriteLine("UserId = " + Context.User.Identity.GetUserId());
 
             Groups.Add(Context.ConnectionId, Context.User.Identity.GetUserId()); //имя группы - имя пользователя
             return base.OnConnected();
