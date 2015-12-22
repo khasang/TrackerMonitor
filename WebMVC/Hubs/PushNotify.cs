@@ -27,16 +27,8 @@ namespace WebMVC.Hubs
 
             if(message.GPSTracker == null)
             {
-                var tracker = dbContext.GPSTrackers.Find(message.GPSTrackerId);
-                if (tracker != null)
-                {
-                    message.GPSTracker = tracker;                    
-                }
-                else
-                {
-                    // Здесь логирование сообщений от неизвестных трекеров
-                    return;
-                }
+                // Здесь логирование сообщений от неизвестных трекеров
+                return;
             }
 
             Clients.Group(message.GPSTracker.OwnerId).ShowMessage(message);            

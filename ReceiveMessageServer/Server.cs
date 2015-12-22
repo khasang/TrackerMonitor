@@ -75,13 +75,15 @@ namespace ReceiveMessageServer
                     // Записываем в лог, что пришло сообщение с неизвестного трекера
                     Console.WriteLine("Не найден трекер с id = {0}", gpsMessage.GPSTrackerId);
                 }
-
-                dbContext.GPSTrackerMessages.Add(gpsMessage);
-                dbContext.SaveChanges();
+                else
+                {
+                    dbContext.GPSTrackerMessages.Add(gpsMessage);
+                    dbContext.SaveChanges();
+                }                
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ошибка сохранения в базе данных! : {0}", ex.Message);
+                Console.WriteLine("Ошибка работы с базой данных! : {0}", ex.Message);
             }
 
             try
