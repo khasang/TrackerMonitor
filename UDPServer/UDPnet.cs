@@ -29,8 +29,9 @@ namespace UDPServer
                     while (true)  // В цикле слушаем сообщения
                     {
                         message = (await udpClient.ReceiveAsync()).Buffer; // Ассинхронно ждем получение сообщения
-                        eventReceivedMessage(this, new UDPMessage() { Message = message }); // Генерируем событие о получении сообщения.
 
+                        eventReceivedMessage(this, new UDPMessage() { Message = message }); // Генерируем событие о получении сообщения.
+                        
                         if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
                     }
                 }
