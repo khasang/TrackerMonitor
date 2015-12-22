@@ -86,7 +86,16 @@ namespace ReceiveMessageServer
 
             try
             {
-                hubProxy.Invoke("SendNewMessage", gpsMessage);
+                GPSTrackerMessage signalRMessage = new GPSTrackerMessage();
+
+                signalRMessage.Id = gpsMessage.Id;
+                signalRMessage.Latitude = gpsMessage.Latitude;
+                signalRMessage.Longitude = gpsMessage.Longitude;
+                signalRMessage.Time = gpsMessage.Time;
+                signalRMessage.GPSTracker = new GPSTracker();
+                signalRMessage.GPSTracker.OwnerId = gpsMessage.GPSTracker.OwnerId;
+
+                hubProxy.Invoke("SendNewMessage", signalRMessage);
             }
             catch (Exception ex)
             {
