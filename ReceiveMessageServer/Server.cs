@@ -11,7 +11,7 @@ using UDPServer;
 
 namespace ReceiveMessageServer
 {
-    class Server
+    class Server : IDisposable
     {
         UDPnet udpServer;
 
@@ -92,6 +92,12 @@ namespace ReceiveMessageServer
             {
                 Console.WriteLine("Ошибка отправки сообщения на узел SignalR! : {0}", ex.Message);
             }
+        }
+
+        public void Dispose()
+        {
+            if (dbContext != null)
+                dbContext.Dispose();
         }
     }
 }
