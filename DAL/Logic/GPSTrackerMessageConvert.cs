@@ -16,10 +16,24 @@ namespace DAL.Logic
         /// <returns>объект сообщения</returns>
         public static GPSTrackerMessage BytesToMessage(byte[] bytes)
         {
+            Console.WriteLine(bytes.Length);
             GPSTrackerMessage message = new GPSTrackerMessage();
-
+            int year = (int)BitConverter.ToUInt16(new byte[] { bytes[59], bytes[60] }, 0);
+            Console.WriteLine(year);
+            int month = Convert.ToInt32(bytes[61]);
+            int day = Convert.ToInt32(bytes[62]);
+            int hour = Convert.ToInt32(bytes[63]);
+            int minute = Convert.ToInt32(bytes[64]);
+            int second = Convert.ToInt32(bytes[65]);
+            Console.WriteLine(bytes[59].ToString("{0:X}") + bytes[60].ToString("{0:X}"));
+            Console.WriteLine(month);
+            Console.WriteLine(day);
+            Console.WriteLine(hour);
+            Console.WriteLine(minute);
+            Console.WriteLine(second);
             // Парсинг идентификатора маячка
             message.GPSTrackerId = Encoding.UTF8.GetString(bytes.Take(20).ToArray<byte>());
+            Console.WriteLine(message.GPSTrackerId.Length);
 
             // Парсинг долготы
             byte[] longitudeBytes = new byte[20];
@@ -31,12 +45,12 @@ namespace DAL.Logic
             Array.Copy(bytes, 40, latitudeBytes, 0, 19);
             message.Latitude = Double.Parse(Encoding.UTF8.GetString(latitudeBytes));
 
-            int year = (int)BitConverter.ToInt16(new byte[] { bytes[59], bytes[60] }, 0);
-            int month =  Convert.ToInt32(bytes[61]);
-            int day =  Convert.ToInt32(bytes[62]);
-            int hour = Convert.ToInt32(bytes[63]);
-            int minute = Convert.ToInt32(bytes[64]);
-            int second = Convert.ToInt32(bytes[65]);
+            
+            //int month =  Convert.ToInt32(bytes[61]);
+            //int day =  Convert.ToInt32(bytes[62]);
+            //int hour = Convert.ToInt32(bytes[63]);
+            //int minute = Convert.ToInt32(bytes[64]);
+            //int second = Convert.ToInt32(bytes[65]);
 
             message.Time = new DateTime(year, month, day,hour, minute, second);
 

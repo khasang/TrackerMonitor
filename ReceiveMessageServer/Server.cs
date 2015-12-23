@@ -59,10 +59,20 @@ namespace ReceiveMessageServer
         private void OnShowReceivedMessage(object sender, EventArgs e)
         {
             UDPMessage message = e as UDPMessage;
+            Console.WriteLine(Encoding.ASCII.GetString(message.Message));
             if (message == null)
                 return;   // Здесь можно ввести обработку ошибки
 
-            GPSTrackerMessage gpsMessage = GPSTrackerMessageConverter.BytesToMessage(message.Message);
+            GPSTrackerMessage gpsMessage = null;
+
+            try
+            {
+                gpsMessage = GPSTrackerMessageConverter.BytesToMessage(message.Message);
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
 
             Console.WriteLine("{0} : {1}", gpsMessage.Latitude, gpsMessage.Longitude);
 

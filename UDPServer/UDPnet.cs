@@ -21,6 +21,7 @@ namespace UDPServer
         {
             using(udpClient = new UdpClient(port))
             {
+                Console.WriteLine(port);
                 stopReceive = false;
                 byte[] message;
 
