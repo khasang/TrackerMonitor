@@ -19,13 +19,13 @@ namespace WebMVC
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
             // Подключите здесь службу электронной почты для отправки сообщения электронной почты.
-            return configSendMailAsync(message);
+            await configSendMailAsync(message);
         }
 
-        private Task configSendMailAsync(IdentityMessage message)
+        private async Task configSendMailAsync(IdentityMessage message)
         {
             MailMessage msg = new MailMessage();  // сообщение электронной почты
 
@@ -40,9 +40,8 @@ namespace WebMVC
             // Send the email.
             if (client != null)
             {
-                client.SendAsync(msg, "test");  // Отправка сообщения
+                await client.SendMailAsync(msg);  // Отправка сообщения
             }
-            return Task.FromResult(0);
         }
     }
 
