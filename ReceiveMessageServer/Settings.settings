@@ -6,7 +6,7 @@
       <Value Profile="(Default)">5000</Value>
     </Setting>
     <Setting Name="Host" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://www.trackermonitor.com:80</Value>
+      <Value Profile="(Default)">http://www.trackermonitor.ru</Value>
     </Setting>
   </Settings>
 </SettingsFile>
