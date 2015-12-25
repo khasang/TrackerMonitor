@@ -37,7 +37,7 @@ namespace ReceiveMessageServer {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.trackermonitor.ru")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:3254")]
         public string Host {
             get {
                 return ((string)(this["Host"]));

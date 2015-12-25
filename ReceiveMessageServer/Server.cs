@@ -59,7 +59,11 @@ namespace ReceiveMessageServer
         private void OnShowReceivedMessage(object sender, EventArgs e)
         {
             UDPMessage message = e as UDPMessage;
-            Console.WriteLine(Encoding.ASCII.GetString(message.Message));
+            foreach (var b in message.Message)
+            {
+                Console.Write("{0}", (int)b);
+            }
+            Console.WriteLine();
             if (message == null)
                 return;   // Здесь можно ввести обработку ошибки
 
