@@ -87,6 +87,7 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DBInitializer.cs" />
     <Compile Include="DBInitializers\DBInit.cs" />
+    <Compile Include="DBInitializers\InitGPSMessages.cs" />
     <Compile Include="DBInitializers\InitGPSTracker.cs" />
     <Compile Include="DBInitializers\InitializationDB.cs" />
     <Compile Include="DBInitializers\InitUserAdmin.cs" />

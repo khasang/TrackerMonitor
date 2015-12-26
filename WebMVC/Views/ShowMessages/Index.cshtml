@@ -1,0 +1,45 @@
+﻿@model WebMVC.Models.FilterMessageViewModel
+
+@using WebMVC.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.Label("Выберите трекер:")
+    <br />
+    @Html.DropDownListFor(x => x.Id, ViewBag.trackers as SelectList)
+    <br />
+    @Html.Label("Выберите промежуток времени:")
+    <br />
+    @Html.TextBoxFor(x => x.FirstDate)
+    <br />
+    @Html.TextBoxFor(x => x.SecondDate)
+    <br />
+    <input type="submit" value="Отправить" class="btn btn-default" />
+}
+
+
+@if (ViewBag.messages == null)
+{
+    Html.Label("Сообщений нет!");
+}
+else
+{
+    foreach (var message in ViewBag.messages)
+    {
+        <br />
+        @Html.Label("Время: ") @message.Time;
+        <br />
+        @Html.Label("Широта: ") @message.Latitude
+        <br />
+        @Html.Label("Долгота: ") @message.Longitude
+        <br />
+    }
+}
