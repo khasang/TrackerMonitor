@@ -54,10 +54,10 @@ namespace TestMessageSender
                         GPSTrackerId = "111111",
                         Latitude = double.Parse(coordinates[0], dbNumberFormat),
                         Longitude = double.Parse(coordinates[1], dbNumberFormat),
-                        //GPSTracker = new GPSTracker()
-                        //{
-                        //    OwnerId = guids[r.Next(2)]
-                        //},
+                        GPSTracker = new GPSTracker()
+                        {
+                            OwnerId = "9a26870f-4966-4b13-aa53-e0742befaf41"
+                        },
                         Time = DateTime.Now
                     });
                 }

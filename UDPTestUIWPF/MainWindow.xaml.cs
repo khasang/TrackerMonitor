@@ -194,6 +194,10 @@ namespace UDPTestUIWPF
                 return;   // Здесь можно ввести обработку ошибки
 
             GPSTrackerMessage gpsMessage = GPSTrackerMessageConverter.BytesToMessage(message.Message);
+            gpsMessage.GPSTracker = new GPSTracker
+                                    {
+                                        OwnerId = "9a26870f-4966-4b13-aa53-e0742befaf41"
+                                    };
 
             udpModel.Message += gpsMessage.ToString();  // ToString() переопределен.
 
@@ -213,7 +217,7 @@ namespace UDPTestUIWPF
                 }
                 catch(Exception ex)
                 {
-                    udpModel.Message += "Error saving!\n";
+                    udpModel.Message += string.Format("Error saving! ({0})\n", ex.Message);
                 }                
             }
 
