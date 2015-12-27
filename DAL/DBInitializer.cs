@@ -26,6 +26,7 @@ namespace DAL
             init.Add(new InitUserAdmin());  // Добавил Ruslan
             init.Add(new InitUserProfile());// Добавил Ruslan
             init.Add(new InitGPSTracker()); // Добавил Ruslan
+            init.Add(new InitGPSMessages()); //Добавил Gleb
 
             init.Initialization();
         }
