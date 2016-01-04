@@ -13,7 +13,8 @@
             new AjaxOptions
             {
                 UpdateTargetId = String.Format("tracker{0}", Model.Id),
-                InsertionMode = InsertionMode.Replace
+                InsertionMode = InsertionMode.Replace,
+                OnSuccess = "hideTrackerEditForm('" + Model.Id + "')"
             }))
     {
         @Html.AntiForgeryToken()
@@ -35,7 +36,7 @@
         </div>
 
         <input type="submit" class="btn btn-primary" value="Сохранить" />
-        <button type="button" class="btn btn-default" onclick=hideTrackerEditForm(@(Model.Id))>Отмена</button>
+        <button type="button" class="btn btn-default" onclick=hideTrackerEditForm('@(Model.Id)')>Отмена</button>
     }
 </div>
 

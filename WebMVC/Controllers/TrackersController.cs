@@ -36,7 +36,7 @@ namespace WebMVC.Controllers
             if (trackerMasseges.Count() == 0)
                 trackerMasseges.Add(new GPSTrackerMessage()
                 {
-                    GPSTrackerId = "111111",
+                    GPSTrackerId = id,
                     Latitude = 55.69873893333814,
                     Longitude = 52.34677000002305
                 });

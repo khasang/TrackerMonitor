@@ -11,7 +11,8 @@
        href="@Url.Action("Edit", "Trackers", new { id = Model.Id })"
        data-ajax="true"
        data-ajax-mode="replace"
-       data-ajax-update="#tracker@(Model.Id)">
+       data-ajax-update="#edit-tracker@(Model.Id)"
+       data-ajax-success="showTrackerEditForm('@(Model.Id)')">
         <span class="glyphicon glyphicon-edit"></span>
     </a>
     <a class="btn btn-default btn-xs"
