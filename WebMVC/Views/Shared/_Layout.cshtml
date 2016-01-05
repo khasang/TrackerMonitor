@@ -22,14 +22,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home", new { area = "" }, null)</li>
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Личный кабинет", "Index", "PersonalArea")</li>
-                    }                    
-                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
-                    <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Тест", "SignalRView", "Home")</li>
+                        <li>@Html.ActionLink("Личный кабинет", "Index", "PersonalArea", new { area = "" }, null)</li>
+                    }
+                    @* new { area = "" }, null для того чтобы ссылки работали и в области и вне ее ппределов *@                   
+                    <li>@Html.ActionLink("О программе", "About", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Контакт", "Contact", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Тест", "SignalRView", "Home", new { area = "" }, null)</li>
+                    @if (Request.IsAuthenticated && User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Администрирование", "Index", new { area = "admin" }, null)</li>
+                    } 
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
