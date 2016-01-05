@@ -31,7 +31,7 @@
                     <li>@Html.ActionLink("О программе", "About", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Контакт", "Contact", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Тест", "SignalRView", "Home", new { area = "" }, null)</li>
-                    @if (Request.IsAuthenticated && User.IsInRole("admin"))
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("Администрирование", "Index", new { area = "admin" }, null)</li>
                     } 

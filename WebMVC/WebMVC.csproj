@@ -173,7 +173,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\admin\adminAreaRegistration.cs" />
+    <Compile Include="Areas\admin\Controllers\GpsTrackersController.cs" />
     <Compile Include="Areas\admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\admin\Controllers\UserProfilesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ShowMessagesController.cs" />
@@ -213,6 +215,8 @@
     <Content Include="Areas\admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\admin\Views\UserProfiles\Index.cshtml" />
+    <Content Include="Areas\admin\Views\GpsTrackers\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

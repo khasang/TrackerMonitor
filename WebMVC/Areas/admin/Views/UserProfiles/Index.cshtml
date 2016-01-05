@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DAL.Entities.UserProfile>
+
+@{
+    ViewBag.Title = "Профили";
+    Layout = null;
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">Профили</div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.EmailConfirmed)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.EmailConfirmed)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

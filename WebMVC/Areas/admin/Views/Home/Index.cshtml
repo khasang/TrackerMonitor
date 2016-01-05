@@ -6,11 +6,18 @@
 
 <h2>Администрирование</h2>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Добро пожаловать, @User.Identity.Name</h3>
-    </div>
-    <div class="panel-body">
-        Panel content
-    </div>
-</div>
+<aside class="sidebar col-sm-2" role="complementary">	
+        <ul class="nav nav-pills nav-stacked">
+            <li>@Ajax.ActionLink("Профили","Index","UserProfiles",new AjaxOptions {UpdateTargetId ="results"})</li>
+            <li>@Ajax.ActionLink("Устройства", "Index", "GpsTrackers", new AjaxOptions { UpdateTargetId = "results" })</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+</aside>
+
+<div id="results" class="col-lg-10"></div>
+
+@section scripts{
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js") 
+    }
