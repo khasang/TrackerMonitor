@@ -176,6 +176,7 @@
     <Compile Include="Areas\admin\Controllers\GpsTrackersController.cs" />
     <Compile Include="Areas\admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\admin\Controllers\UserProfilesController.cs" />
+    <Compile Include="Areas\admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ShowMessagesController.cs" />
@@ -197,7 +198,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\admin\scripts\partial.js" />
+    <Content Include="Areas\admin\scripts\modal-partial.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -251,7 +252,8 @@
     <Content Include="Areas\admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\admin\Views\UserProfiles\Index.cshtml" />
     <Content Include="Areas\admin\Views\GpsTrackers\Index.cshtml" />
-    <Content Include="Areas\admin\Views\UserProfiles\Create.cshtml" />
+    <Content Include="Areas\admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\admin\Views\Users\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -6,14 +6,12 @@
 }
 
 @Scripts.Render("~/bundles/jqueryui")
-@Scripts.Render("~/Areas/admin/scripts/partial.js")
 
 <div class="panel panel-default">
     <div class="panel-heading">
         Профайлы 
         <button type="button" style="width:20%; float:right" class="btn btn-success btn-xs">
-            @Html.ActionLink("Добавить", "Create", "UserProfiles", new { }, new { @class = "viewDialog", data_dialog_title = "Создание модели" })
-            @*<span class="glyphicon glyphicon-plus"></span>Добавить*@
+            <span class="glyphicon glyphicon-plus"></span>Добавить
         </button>
     </div>
     <table class="table">

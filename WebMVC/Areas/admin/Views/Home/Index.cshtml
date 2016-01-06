@@ -4,23 +4,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Styles.Render("~/Content/themes/base/all.css");
-
-<h2>Администрирование</h2>
+<h3>Администрирование</h3>
 
 <aside class="sidebar col-sm-2" role="complementary">	
         <ul class="nav nav-pills nav-stacked">
+            <li>@Ajax.ActionLink("Пользователи", "Index", "Users", new AjaxOptions { UpdateTargetId = "results" })</li>
             <li>@Ajax.ActionLink("Профили","Index","UserProfiles",new AjaxOptions {UpdateTargetId ="results"})</li>
             <li>@Ajax.ActionLink("Устройства", "Index", "GpsTrackers", new AjaxOptions { UpdateTargetId = "results" })</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
         </ul>
 </aside>
+
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
 
 <div id="results" class="col-lg-10"></div>
 @section scripts{
     @Scripts.Render("~/bundles/jqueryajax") 
-    @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/Areas/admin/scripts/partial.js")
-    }
+    @Scripts.Render("~/Areas/admin/scripts/modal-partial.js")
+}

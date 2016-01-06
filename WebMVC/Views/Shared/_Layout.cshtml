@@ -7,6 +7,7 @@
     <title>@ViewBag.Title – приложение ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval", "~/Scripts/bootstrap.js")
 
 </head>
 <body>
@@ -48,7 +49,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

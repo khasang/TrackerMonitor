@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DAL.Entities.ApplicationUser>
+
+@{
+    ViewBag.Title = "Пользователи";
+    Layout = null;
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Пользователи
+        @*<button type="button" style="width:20%; float:right" class="btn btn-success btn-xs">
+            <span class="glyphicon glyphicon-plus"></span>Добавить
+        </button>*@
+        @*@Html.ActionLink("<span class=\"glyphicon glyphicon - plus\"></span>Добавить", "Create", "Users", new { area = "admin" },
+                                    new { @class = "btn btn-success btn-xs",
+                                          @data_modal = "",
+                                          @id = "btnCreate"})*@
+
+        <a href="@Url.Action("Create","Users",new { area = "admin" },null)" class="btn btn-success btn-xs" data-modal ="" id="btnCreate">
+            <span class="glyphicon glyphicon-plus"></span>Добавить
+        </a>
+
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailConfirmed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.ActionLink("Подробности", "Details", "UserProfiles", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
