@@ -36,5 +36,15 @@ namespace WebMVC.Areas.admin.Controllers
             }
             return PartialView(await userProfiles.ToListAsync());
         }
+
+        public ActionResult Details(int id = 0)
+        {
+            var userProfile = db.UserProfiles.Find(id);
+            if (userProfile == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("Details", userProfile);
+        }
     }
 }

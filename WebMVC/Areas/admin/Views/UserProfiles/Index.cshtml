@@ -10,7 +10,6 @@
     <div class="panel-heading">
         Профайлы 
         <button type="button" style="width:20%; float:right" class="btn btn-success btn-xs">@*<span class="glyphicon glyphicon-plus"></span>Добавить*@
-            @Ajax.ActionLink("Добавить","Create", "UserProfiles",new AjaxOptions)
         </button>
     </div>
     <table class="table">
@@ -44,7 +43,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.User.EmailConfirmed)
                 </td>
+                <td>
+                    @Html.ActionLink("Подробности", "Details", "UserProfiles", new { id = item.UserId })
+                    @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
             </tr>
         }
     </table>
 </div>
+
+
+@section scripts{
+    @Scripts.Render("~/Areas/admin/scripts/partial.js")
+}
