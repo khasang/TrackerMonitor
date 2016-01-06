@@ -1,13 +1,18 @@
 ﻿@model IEnumerable<DAL.Entities.UserProfile>
 
 @{
-    ViewBag.Title = "Профили";
+    ViewBag.Title = "Профайлы";
     Layout = null;
 }
 
 
 <div class="panel panel-default">
-    <div class="panel-heading">Профили</div>
+    <div class="panel-heading">
+        Профайлы 
+        <button type="button" style="width:20%; float:right" class="btn btn-success btn-xs">@*<span class="glyphicon glyphicon-plus"></span>Добавить*@
+            @Ajax.ActionLink("Добавить","Create", "UserProfiles",new AjaxOptions)
+        </button>
+    </div>
     <table class="table">
         <tr>
             <th>
