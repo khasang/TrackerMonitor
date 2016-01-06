@@ -37,14 +37,27 @@ namespace WebMVC.Areas.admin.Controllers
             return PartialView(await userProfiles.ToListAsync());
         }
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Create()
         {
-            var userProfile = db.UserProfiles.Find(id);
-            if (userProfile == null)
-            {
-                return HttpNotFound();
-            }
-            return PartialView("Details", userProfile);
+            return PartialView("Create");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(UserProfile model)
+        {
+            UserProfile newProfile = new UserProfile()
+            {
+                UserId = model.UserId,
+                User = model.User,
+                Name = model.Name,
+                GPSTrackers = model.GPSTrackers
+            };
+
+            db.UserProfiles.Add(newProfile);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }

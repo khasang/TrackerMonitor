@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@Styles.Render("~/Content/themes/base/all.css");
+
 <h2>Администрирование</h2>
 
 <aside class="sidebar col-sm-2" role="complementary">	
@@ -17,7 +19,8 @@
 </aside>
 
 <div id="results" class="col-lg-10"></div>
-
 @section scripts{
-    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js") 
+    @Scripts.Render("~/bundles/jqueryajax") 
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/Areas/admin/scripts/partial.js")
     }
