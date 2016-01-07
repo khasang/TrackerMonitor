@@ -1,11 +1,8 @@
 ﻿$(document).ready(function () {
     $(function () {
-        alert(1);
         $.ajaxSetup({ cache: false });
         $("a[data-modal]").on("click", function (e) {
-            alert(2);
             $('#myModalContent').load(this.href, function () {
-                alert(3);
                 $('#myModal').modal({
                     keyboard: true
                 }, 'show');
@@ -16,9 +13,7 @@
     });
 
     function bindForm(dialog) {
-        alert(4);
         $('form', dialog).submit(function () {
-            alert(5);
             $('#progress').show();
             $.ajax({
                 async: false,

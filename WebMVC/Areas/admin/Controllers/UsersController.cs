@@ -29,7 +29,7 @@ namespace WebMVC.Areas.admin.Controllers
             {
                 return HttpNotFound();
             }
-            return PartialView(await users.ToListAsync());
+            return View(await users.ToListAsync());
         }
 
         //Эксперименты с Json

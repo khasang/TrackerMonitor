@@ -2,9 +2,13 @@
 
 @{
     ViewBag.Title = "Пользователи";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<br />
+<div class="row container-fluid">
+    @Html.ActionLink("Вернуться", "Index", "Home", new { area = "admin" }, new { @class = "btn btn-primary" })
+</div>
+<br/>
 <div class="panel panel-default">
     <div class="panel-heading">
         Пользователи
@@ -65,3 +69,6 @@
     </div>
 </div>
 
+@section scripts{
+    @Scripts.Render("~/Areas/admin/scripts/modal-partial.js")
+}

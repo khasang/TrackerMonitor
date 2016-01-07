@@ -1,5 +1,9 @@
 ﻿@model DAL.Entities.ApplicationUser
 
+@{
+    Layout = null;
+}
+
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 class="modal-title">Add New Phone</h3>
@@ -73,7 +77,7 @@
 <script>
         $("form").removeData("validator");
         $("form").removeData("unobtrusiveValidation");
-       // $.validator.unobtrusive.parse("form");
+        //$.validator.unobtrusive.parse("form");
 </script>
     }
 
