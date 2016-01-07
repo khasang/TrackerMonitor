@@ -11,8 +11,6 @@ namespace ReceiveMessageServer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("AAAAAAAAAAAAAAAAAA");
-
             Server server;
             
             using (server = new Server())

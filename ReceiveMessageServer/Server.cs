@@ -60,7 +60,7 @@ namespace ReceiveMessageServer
         {
             UDPMessage message = e as UDPMessage;
             if (message == null)
-                return;   // Здесь можно ввести обработку ошибки
+                return;   // Здесь можно ввести обработку ошибки (неподходящий формат сообщения)
 
             GPSTrackerMessage gpsMessage = GPSTrackerMessageConverter.BytesToMessage(message.Message);
 
@@ -86,9 +86,11 @@ namespace ReceiveMessageServer
                 Console.WriteLine("Ошибка работы с базой данных! : {0}", ex.Message);
             }
 
+            // Решить: Если отвалилась БД, отсылать ли сообщения? В данной реализации - отсылает.
+
             try
             {
-                hubProxy.Invoke("SendNewMessage", gpsMessage);
+                hubProxy.Invoke("SendNewMessage", gpsMessage);            
             }
             catch (Exception ex)
             {
@@ -96,9 +98,9 @@ namespace ReceiveMessageServer
             }
         }
 
-        public void Dispose()
+        public void Dispose(bool disposing)
         {
-            if (dbContext != null)
+            if (disposing && dbContext != null)
                 dbContext.Dispose();
         }
     }
