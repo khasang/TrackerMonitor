@@ -14,16 +14,11 @@
         </ul>
 </aside>
 
-<div id='myModal' class='modal fade in'>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id='myModalContent'></div>
-        </div>
-    </div>
-</div>
+
 
 <div id="results" class="col-lg-10"></div>
 @section scripts{
-    @Scripts.Render("~/bundles/jqueryajax") 
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    @Scripts.Render("~/bundles/jqueryajax")
     @Scripts.Render("~/Areas/admin/scripts/modal-partial.js")
 }

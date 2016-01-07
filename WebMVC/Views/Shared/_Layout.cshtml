@@ -8,9 +8,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval", "~/Scripts/bootstrap.js")
-
 </head>
 <body>
+    
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -31,7 +31,7 @@
                     @* new { area = "" }, null для того чтобы ссылки работали и в области и вне ее ппределов *@                   
                     <li>@Html.ActionLink("О программе", "About", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Контакт", "Contact", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Тест", "SignalRView", "Home", new { area = "" }, null)</li>
+                    @*<li>@Html.ActionLink("Тест", "SignalRView", "Home", new { area = "" }, null)</li>*@
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("Администрирование", "Index", new { area = "admin" }, null)</li>

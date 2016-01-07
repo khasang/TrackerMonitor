@@ -37,7 +37,7 @@ namespace WebMVC.Areas.admin.Controllers
         public ActionResult Create()
         {
             var user = new ApplicationUser();
-            return PartialView("Create", user);
+            return View("Create", user);
         }
 
         [HttpPost]

@@ -8,18 +8,9 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         Пользователи
-        @*<button type="button" style="width:20%; float:right" class="btn btn-success btn-xs">
-            <span class="glyphicon glyphicon-plus"></span>Добавить
-        </button>*@
-        @*@Html.ActionLink("<span class=\"glyphicon glyphicon - plus\"></span>Добавить", "Create", "Users", new { area = "admin" },
-                                    new { @class = "btn btn-success btn-xs",
-                                          @data_modal = "",
-                                          @id = "btnCreate"})*@
-
-        <a href="@Url.Action("Create","Users",new { area = "admin" },null)" class="btn btn-success btn-xs" data-modal ="" id="btnCreate">
+        <a href="@Url.Action("Create","Users",new { area = "admin" },null)" class="btn btn-success btn-xs" data-modal ="" id="btnCreate" style="float:right">
             <span class="glyphicon glyphicon-plus"></span>Добавить
         </a>
-
     </div>
     <table class="table">
         <tr>
@@ -66,4 +57,11 @@
     </table>
 </div>
 
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
 
