@@ -254,6 +254,9 @@
     <Content Include="Areas\admin\Views\GpsTrackers\Index.cshtml" />
     <Content Include="Areas\admin\Views\Users\Index.cshtml" />
     <Content Include="Areas\admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\admin\Views\Users\_form.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -333,6 +336,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\admin\Helpers\" />
     <Folder Include="Areas\admin\Models\" />
     <Folder Include="Mail\" />
     <Folder Include="Views\GPSWorker\" />

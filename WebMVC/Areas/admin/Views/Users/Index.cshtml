@@ -54,7 +54,14 @@
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                 </td>
                 <td>
-                    @Html.ActionLink("Подробности", "Details", "UserProfiles", new { id = item.Id })
+                    <a href="@Url.Action("Edit","Users", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnDetail" style="float:right">
+                        <span class="glyphicon glyphicon-apple"></span>Редактировать
+                    </a>
+
+                    @*<a href="@Url.Action("Details","Users", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnDetail" style="float:right">
+                        <span class="glyphicon glyphicon-plus"></span>Детали
+                    </a>*@
+
                 </td>
             </tr>
         }

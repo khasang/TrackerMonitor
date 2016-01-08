@@ -1,0 +1,141 @@
+﻿@model DAL.Entities.ApplicationUser
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Id, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Id, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.Id)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.UserName, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.UserName)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Email, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.EmailConfirmed, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.EmailConfirmed, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.EmailConfirmed)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.PhoneNumber, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.PhoneNumber)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.PhoneNumberConfirmed, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.PhoneNumberConfirmed, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.PhoneNumberConfirmed)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.AccessFailedCount, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.AccessFailedCount, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.AccessFailedCount)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.LockoutEnabled, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.LockoutEnabled, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.LockoutEnabled)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.LockoutEndDateUtc, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.LockoutEndDateUtc, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.LockoutEndDateUtc)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.PasswordHash, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.PasswordHash, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.PasswordHash)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.SecurityStamp, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.SecurityStamp, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.SecurityStamp)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.TwoFactorEnabled, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.TwoFactorEnabled, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.TwoFactorEnabled)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.UserProfile, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.UserProfile, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.UserProfile)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.UserProfileId, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.UserProfileId, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.UserProfileId)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <input class="btn btn-primary" type="submit" value="Save" />
+        <button class="btn btn-warning" data-dismiss="modal">Close</button>
+    </div>
+}
