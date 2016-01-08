@@ -4,3 +4,4 @@
 
 ## [User stories](https://github.com/WeAreExcitement/OurInternshipProject/blob/master/Documents/UserStories.md)
 ## [Road Map](https://github.com/WeAreExcitement/OurInternshipProject/blob/master/Documents/RoadMap.md)
+## [Architecture](https://github.com/WeAreExcitement/OurInternshipProject/blob/master/Documents/Architecture.md)
