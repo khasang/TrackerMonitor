@@ -13,11 +13,16 @@ using System.Web.Mvc;
 
 namespace WebMVC.Areas.admin.Controllers
 {
+    public enum ViewSelector
+    {
+        Edit,
+        Delete
+    }
+
     public class UsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         UserManager<ApplicationUser> userManager;
-
         public UsersController()
         {
             userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
@@ -38,11 +43,13 @@ namespace WebMVC.Areas.admin.Controllers
         public ActionResult Create()
         {
             var user = new ApplicationUser();
-            return View("Create", user);
+            ViewBag.Selector = ViewSelector.Edit;
+            ViewBag.ActionName = "Добавить пользователя";
+            return View("User_dialog", user);
         }
 
         [HttpPost]
-        public JsonResult Create(ApplicationUser model)
+        public ActionResult Create(ApplicationUser model)
         {
             if (ModelState.IsValid)
             {
@@ -55,12 +62,9 @@ namespace WebMVC.Areas.admin.Controllers
                     PhoneNumber = model.PhoneNumber,
                     PhoneNumberConfirmed = model.PhoneNumberConfirmed,
                     AccessFailedCount = model.AccessFailedCount,
-                    //Claims = model.Claims, только чтение
                     LockoutEnabled = model.LockoutEnabled,
                     LockoutEndDateUtc = model.LockoutEndDateUtc,
-                    //Logins = model.Logins, только чтение
                     PasswordHash = model.PasswordHash,
-                    //Roles = model.Roles, только чтение
                     SecurityStamp = model.SecurityStamp,
                     TwoFactorEnabled = model.TwoFactorEnabled,
                     UserProfile = model.UserProfile,
@@ -70,23 +74,8 @@ namespace WebMVC.Areas.admin.Controllers
                 db.SaveChanges();
                 return Json(new { success = true });
             }
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return View("User_dialog", model);
         }
-
-        //[HttpGet]
-        //public async Task<ActionResult> Details(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    var user = await db.Users.FirstAsync(i => i.Id == id);
-        //    if (user == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return PartialView("Details",user);
-        //}
 
         [HttpGet]
         public async Task<ActionResult> Edit(string id)
@@ -95,18 +84,21 @@ namespace WebMVC.Areas.admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = await db.Users.FirstAsync(i => i.Id == id);
+            var user = await db.Users.FirstAsync(i => i.Id == id); //не нашел FindAsync ????
+            ViewBag.Selector = ViewSelector.Edit;
+            ViewBag.ActionName = "Редактировать";
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return PartialView("Edit", user);
+            return PartialView("User_dialog", user);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ApplicationUser user)
         {
+
             if (ModelState.IsValid)
             {
                 var modifyUser = db.Users.Find(user.Id);
@@ -127,7 +119,33 @@ namespace WebMVC.Areas.admin.Controllers
                 db.SaveChanges();
                 return Json(new { success = true });
             }
-            return PartialView("Edit",user);
+            return PartialView("User_dialog", user);
+        }
+
+        public async Task<ActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = await db.Users.FirstAsync(i => i.Id == id);
+            ViewBag.Selector = ViewSelector.Delete;
+            ViewBag.ActionName = "Удалить";
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("User_dialog", user);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirm(string id)
+        {
+            var user = await db.Users.FirstAsync(i => i.Id == id);
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return Json(new { success = true });
         }
     }
 }

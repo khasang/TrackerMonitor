@@ -4,15 +4,13 @@
     ViewBag.Title = "Пользователи";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<br />
-<div class="row container-fluid">
-    @Html.ActionLink("Вернуться", "Index", "Home", new { area = "admin" }, new { @class = "btn btn-primary" })
-</div>
-<br/>
+
+@Html.Partial("~/Areas/admin/Views/_back_button.cshtml")
+
 <div class="panel panel-default">
     <div class="panel-heading">
         Пользователи
-        <a href="@Url.Action("Create","Users",new { area = "admin" },null)" class="btn btn-success btn-xs" data-modal ="" id="btnCreate" style="float:right">
+        <a href="@Url.Action("Create","Users",new { area = "admin" },null)" class="btn btn-success btn-xs" data-modal ="" id="btnCreate" style="float:right; width:20%;">
             <span class="glyphicon glyphicon-plus"></span>Добавить
         </a>
     </div>
@@ -54,27 +52,21 @@
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                 </td>
                 <td>
-                    <a href="@Url.Action("Edit","Users", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnDetail" style="float:right">
+                    <a href="@Url.Action("Edit","Users", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnEdit" style="float:right">
                         <span class="glyphicon glyphicon-apple"></span>Редактировать
                     </a>
-
-                    @*<a href="@Url.Action("Details","Users", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnDetail" style="float:right">
-                        <span class="glyphicon glyphicon-plus"></span>Детали
-                    </a>*@
-
+                </td>
+                <td>
+                    <a href="@Url.Action("Delete","Users", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnDelete" style="float:right">
+                        <span class="glyphicon glyphicon-trash"></span>Удалить
+                    </a>
                 </td>
             </tr>
         }
     </table>
 </div>
 
-<div id='myModal' class='modal fade in'>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id='myModalContent'></div>
-        </div>
-    </div>
-</div>
+@Html.Partial("~/Areas/admin/Views/_modal_partial.cshtml")
 
 @section scripts{
     @Scripts.Render("~/Areas/admin/scripts/modal-partial.js")
