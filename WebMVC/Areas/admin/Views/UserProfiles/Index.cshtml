@@ -2,17 +2,17 @@
 
 @{
     ViewBag.Title = "Профайлы";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Scripts.Render("~/bundles/jqueryui")
+@Html.Partial("~/Areas/admin/Views/_back_button.cshtml")
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        Профайлы 
-        <button type="button" style="width:20%; float:right" class="btn btn-success btn-xs">
+        Профайлы
+        <a href="@Url.Action("Create","UserProfiles",new { area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnCreate" style="float:right; width:20%;">
             <span class="glyphicon glyphicon-plus"></span>Добавить
-        </button>
+        </a>
     </div>
     <table class="table">
         <tr>
@@ -46,11 +46,22 @@
                     @Html.DisplayFor(modelItem => item.User.EmailConfirmed)
                 </td>
                 <td>
-                    @Html.ActionLink("Подробности", "Details", "UserProfiles", new { id = item.UserId })
+                    <a href="@Url.Action("Edit","UserProfiles", new { id = item.UserId, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnEdit" style="float:right">
+                        <span class="glyphicon glyphicon-apple"></span>Редактировать
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Delete","UserProfiles", new { id = item.UserId, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnDelete" style="float:right">
+                        <span class="glyphicon glyphicon-trash"></span>Удалить
+                    </a>
                 </td>
             </tr>
         }
     </table>
 </div>
 
+@Html.Partial("~/Areas/admin/Views/_modal_partial.cshtml")
 
+@section scripts{
+    @Scripts.Render("~/Areas/admin/scripts/modal-partial.js")
+}

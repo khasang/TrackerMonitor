@@ -13,12 +13,6 @@ using System.Web.Mvc;
 
 namespace WebMVC.Areas.admin.Controllers
 {
-    public enum ViewSelector
-    {
-        Edit,
-        Delete
-    }
-
     public class UsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -27,7 +21,7 @@ namespace WebMVC.Areas.admin.Controllers
         {
             userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
-        // GET: admin/Users
+
         public async Task<ActionResult> Index()
         {
             var users = db.Users;
@@ -45,12 +39,14 @@ namespace WebMVC.Areas.admin.Controllers
             var user = new ApplicationUser();
             ViewBag.Selector = ViewSelector.Edit;
             ViewBag.ActionName = "Добавить пользователя";
-            return View("User_dialog", user);
+            return View("Dialog", user);
         }
 
         [HttpPost]
         public ActionResult Create(ApplicationUser model)
         {
+            ViewBag.Selector = ViewSelector.Edit;
+            ViewBag.ActionName = "Добавить пользователя";
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser()
@@ -74,7 +70,7 @@ namespace WebMVC.Areas.admin.Controllers
                 db.SaveChanges();
                 return Json(new { success = true });
             }
-            return View("User_dialog", model);
+            return View("Dialog", model);
         }
 
         [HttpGet]
@@ -91,14 +87,15 @@ namespace WebMVC.Areas.admin.Controllers
             {
                 return HttpNotFound();
             }
-            return PartialView("User_dialog", user);
+            return PartialView("Dialog", user);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ApplicationUser user)
         {
-
+            ViewBag.Selector = ViewSelector.Edit;
+            ViewBag.ActionName = "Редактировать";
             if (ModelState.IsValid)
             {
                 var modifyUser = db.Users.Find(user.Id);
@@ -119,7 +116,7 @@ namespace WebMVC.Areas.admin.Controllers
                 db.SaveChanges();
                 return Json(new { success = true });
             }
-            return PartialView("User_dialog", user);
+            return PartialView("Dialog", user);
         }
 
         public async Task<ActionResult> Delete(string id)
@@ -135,7 +132,7 @@ namespace WebMVC.Areas.admin.Controllers
             {
                 return HttpNotFound();
             }
-            return PartialView("User_dialog", user);
+            return PartialView("Dialog", user);
         }
 
         [HttpPost, ActionName("Delete")]

@@ -173,6 +173,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\admin\adminAreaRegistration.cs" />
+    <Compile Include="Areas\admin\Common.cs" />
     <Compile Include="Areas\admin\Controllers\GpsTrackersController.cs" />
     <Compile Include="Areas\admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\admin\Controllers\UserProfilesController.cs" />
@@ -253,11 +254,14 @@
     <Content Include="Areas\admin\Views\UserProfiles\Index.cshtml" />
     <Content Include="Areas\admin\Views\GpsTrackers\Index.cshtml" />
     <Content Include="Areas\admin\Views\Users\Index.cshtml" />
-    <Content Include="Areas\admin\Views\Users\User_dialog.cshtml" />
+    <Content Include="Areas\admin\Views\Users\Dialog.cshtml" />
     <Content Include="Areas\admin\Views\Users\_user_form.cshtml" />
     <Content Include="Areas\admin\Views\Users\_delete_form.cshtml" />
     <Content Include="Areas\admin\Views\_modal_partial.cshtml" />
     <Content Include="Areas\admin\Views\_back_button.cshtml" />
+    <Content Include="Areas\admin\Views\UserProfiles\_delete_form.cshtml" />
+    <Content Include="Areas\admin\Views\UserProfiles\_user_form.cshtml" />
+    <Content Include="Areas\admin\Views\UserProfiles\Dialog.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -337,7 +341,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\admin\Helpers\" />
     <Folder Include="Areas\admin\Models\" />
     <Folder Include="Mail\" />
     <Folder Include="Views\GPSWorker\" />
