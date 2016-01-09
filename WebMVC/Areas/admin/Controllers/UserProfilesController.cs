@@ -111,7 +111,7 @@ namespace WebMVC.Areas.admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var profile = await db.UserProfiles.FirstAsync(i => i.UserId == id); //не нашел FindAsync ????
-            ViewBag.Selector = ViewSelector.Edit;
+            ViewBag.Selector = ViewSelector.Delete;
             ViewBag.ActionName = "Удалить";
             if (profile == null)
             {

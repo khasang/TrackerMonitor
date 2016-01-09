@@ -111,7 +111,7 @@ namespace WebMVC.Areas.admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var gpstracker = await db.GPSTrackers.FirstAsync(i => i.Id == id);
-            ViewBag.Selector = ViewSelector.Edit;
+            ViewBag.Selector = ViewSelector.Delete;
             ViewBag.ActionName = "Удалить";
             if (gpstracker == null)
             {
