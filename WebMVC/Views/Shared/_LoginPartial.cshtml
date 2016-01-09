@@ -1,22 +1,40 @@
-﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Здравствуйте, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
-    </ul>
-    }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Регистрация", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Выполнить вход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+﻿
+    <div class="top-content">
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>Log in</h3>
+                                <p><strong>Fill in the form below to login</strong></p>
+                            </div>
+                            <div class="form-top-right">
+                                <i class="fa fa-pencil"></i>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <form role="form" action="" method="post" class="registration-form">
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-email">Email</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                                        <input type="email" name="form-email" placeholder="Email" class="form-email form-control" id="form-email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-password1">Password</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                                        <input type="password" name="form-password1" placeholder="Password" class="form-password1 form-control" id="form-password1">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn center">Log in</button>
+                                <a class="btn btn-link-1" href="signup.html">Sign up</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
