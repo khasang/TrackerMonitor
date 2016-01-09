@@ -1,0 +1,69 @@
+﻿@model DAL.Entities.GPSTracker
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Id, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Id, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.Id)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Name, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.Name)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Owner, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Owner, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.Owner)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.OwnerId, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.OwnerId, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.OwnerId)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.PhoneNumber, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.PhoneNumber)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"> @*Вот в таких местах надо бы выпадающий список*@
+                @Html.LabelFor(m => Model.GPSTrackerMessages, new { @class = "control-label col-sm-3" }) 
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.GPSTrackerMessages, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.GPSTrackerMessages)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <input class="btn btn-primary" type="submit" value="Save" />
+        <button class="btn btn-warning" data-dismiss="modal">Close</button>
+    </div>
+}

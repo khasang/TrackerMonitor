@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<DAL.Entities.GPSTracker>
 
 @{
-    ViewBag.Title = "Устройства";
-    Layout = null;
+    ViewBag.Title = "Трекеры";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+@Html.Partial("~/Areas/admin/Views/_back_button.cshtml")
 
 <div class="panel panel-default">
-    <div class="panel-heading">Устройства <button type="button" style="width:20%; float:right" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span>Добавить</button>
+    <div class="panel-heading">
+        Трекеры
+        <a href="@Url.Action("Create","GpsTrackers",new { area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnCreate" style="float:right; width:20%;">
+            <span class="glyphicon glyphicon-plus"></span>Добавить
+        </a>
     </div>
     <table class="table">
         <tr>
@@ -19,7 +23,7 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Owner.User.UserName)
+                @Html.DisplayNameFor(model => model.Owner)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
@@ -36,13 +40,27 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Owner.User.UserName)
+                    @Html.DisplayFor(modelItem => item.Owner)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit","GpsTrackers", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnEdit" style="float:right">
+                        <span class="glyphicon glyphicon-apple"></span>Редактировать
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Delete","GpsTrackers", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnDelete" style="float:right">
+                        <span class="glyphicon glyphicon-trash"></span>Удалить
+                    </a>
                 </td>
             </tr>
         }
     </table>
 </div>
+@Html.Partial("~/Areas/admin/Views/_modal_partial.cshtml")
 
+@section scripts{
+    @Scripts.Render("~/Areas/admin/scripts/modal-partial.js")
+}

@@ -262,6 +262,9 @@
     <Content Include="Areas\admin\Views\UserProfiles\_delete_form.cshtml" />
     <Content Include="Areas\admin\Views\UserProfiles\_user_form.cshtml" />
     <Content Include="Areas\admin\Views\UserProfiles\Dialog.cshtml" />
+    <Content Include="Areas\admin\Views\GpsTrackers\_delete_form.cshtml" />
+    <Content Include="Areas\admin\Views\GpsTrackers\_user_form.cshtml" />
+    <Content Include="Areas\admin\Views\GpsTrackers\Dialog.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
