@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="e0dfaa32-449a-452b-a931-450f69c61516"
+  name="Sockets"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="aca21b38-e0f4-46c4-a549-42b458190cc7"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSystem.Net.Sockets"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="3a4f3fe3-eb20-42dc-8e05-8be15f47f644"
+        name="UdpClient"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="ace1c5b3-acbc-4dec-a089-39cf08d4a0b0"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FSystem.dll&quot; Namespace%3DSystem.Net.Sockets Type%3DUdpClient"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="a6d4faac-63dc-4873-807e-e0943614c57e"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="04fe2082-b24d-488c-91d8-de23409dd70d">
+                <propertyInstance
+                  Id="3fea2041-aa17-44bb-81fd-b2275152fe0d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="145c6904-583a-449a-ba77-b25ff98f6cde">
+                <propertyInstance
+                  Id="fd3f4098-cf4f-40bd-9603-859b628405c2"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ea85d70a-bb6e-4455-aa9e-44fa27800591">
+                <propertyInstance
+                  Id="01ca4806-f464-40c3-afb2-ff6394f56fe6"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2bf3951e-df3e-4288-b029-5a1819fecfb0">
+                <propertyInstance
+                  Id="59ec923c-3ac0-49be-8c9c-a7785c8b5317"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a321a1a2-c2c4-4cf0-869e-6aa82aa4fc12">
+                <propertyInstance
+                  Id="ccf088a3-9d35-449c-b5af-638c85938e51"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="2c82867e-fc43-4608-9be8-33945d058f65">
+            <interfaceMoniker
+              Id="08a74506-0141-42e7-8f48-6b9455928aa1"
+              LastKnownName="IDisposable"
+              LastKnownLocation="Package_0334.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

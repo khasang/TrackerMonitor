@@ -1,0 +1,1333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="9a8fd295-f41e-4f8a-ae2c-26962f20487b"
+  name="DAL"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="71feeab8-00fe-4b07-b293-888dd2fa1516"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DDAL"
+      tag="ViewCode" />
+  </referencesInternal>
+  <importedPackagesInternal>
+    <packageImport
+      Id="0950a52a-38ee-4fd3-89c2-2dbcd711547a"
+      visibility="Public">
+      <packageMoniker
+        Id="241e9e48-11f9-49b7-bc2f-3ad2d16cf144"
+        LastKnownName="Entities"
+        LastKnownLocation="Package1_0411.uml" />
+    </packageImport>
+  </importedPackagesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="9542da67-2514-4a2d-a164-7e780c5187bc">
+      <profileInstance
+        Id="ae65ee8f-d6f6-43ac-8858-b379ee645cd2"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="50c915cb-02df-470e-bcff-e97f9bf05eb8"
+        name="ApplicationDbContext"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="19e00c52-fb14-4100-83c1-9f46d1e6d4bb"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DApplicationDbContext"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="bfc7a318-af7f-4c08-803d-ddfff3ad84bc"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1539e843-d372-47d4-b210-dfc4681f03a4">
+                <propertyInstance
+                  Id="85810053-959d-449c-ba6f-d838bbed3078"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="36a88a22-a735-4aac-9e0b-627b39b09dc2">
+                <propertyInstance
+                  Id="d184372f-5733-4fc8-8020-0c5a9a2bda18"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="931e09b2-0e4f-4e2c-84c6-5fe2986c446e">
+                <propertyInstance
+                  Id="91494bc8-9b95-4970-ac92-8d4ec62f9405"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c23b08cd-3076-4bdb-8de0-0ba16663aa2b">
+                <propertyInstance
+                  Id="957dca61-6f54-49e4-ac86-fdd70edc7b98"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f25dfd3e-8681-4563-bcfd-f24f3c659ead">
+                <propertyInstance
+                  Id="88b6dbc5-6c76-450f-9fdd-33424a242580"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="58df1f9b-5652-45bd-ab4c-c6bfa0fd765e"
+            isSubstitutable="false">
+            <classMoniker
+              Id="97c35658-0999-4d7f-8c01-6515db15bc6a"
+              LastKnownName="IdentityDbContext&lt;ApplicationUser‎&gt;"
+              LastKnownLocation="Package4_0358.uml" />
+          </generalization>
+          <generalization
+            Id="e5941734-7e26-4673-b8b9-3b1b194deaac"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f524295c-52f6-4060-b870-d81cb93b6f8b"
+              LastKnownName="IdentityDbContext"
+              LastKnownLocation="Package4_0358.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="9942ac9c-1694-47ed-96b1-96b0ea09aa94"
+            isDerived="false"
+            sourceEndRoleName="ApplicationDbContext"
+            targetEndRoleName="GPSTrackers"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="053bc4e6-bda2-48e8-9997-0d2cdd9db57a"
+              LastKnownName="DbSet&lt;GPSTracker‎&gt;"
+              LastKnownLocation="Package1_0358.uml" />
+            <description>Свойство GPSTrackers ссылается на тип DbSet&lt;GPSTracker‎&gt;.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e7f48063-ca18-450d-8690-6b9a4b344c9a"
+                  name="ApplicationDbContext"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="d5ae6d63-feea-4d94-9c21-314bd6d98657"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="ddf9180c-6908-47f7-b885-c9ba365215ad"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7711cfbe-3b76-4248-9ac1-4fac3503e653"
+                  name="GPSTrackers"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="2be2bb2e-a4e7-48d1-8336-7b20034a38d3"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="051dd64a-448a-4d39-b9ff-65b96fe3ca38"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="e7900736-cb91-4979-a08d-4aff191f65a3"
+            isDerived="false"
+            sourceEndRoleName="ApplicationDbContext"
+            targetEndRoleName="GPSTrackerMessages"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="843f707a-cd1d-4fcc-860e-cbcf48255ab9"
+              LastKnownName="DbSet&lt;GPSTrackerMessage‎&gt;"
+              LastKnownLocation="Package1_0358.uml" />
+            <description>Свойство GPSTrackerMessages ссылается на тип DbSet&lt;GPSTrackerMessage‎&gt;.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b614f8e4-5f46-4099-a845-75d18d94a74d"
+                  name="ApplicationDbContext"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="6d34c97d-e1de-446f-9617-62277a3fcd85"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="055983a1-49e2-4d1b-921b-15b72ad73968"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f70db4c5-cceb-4ef2-a7c5-56538a28173a"
+                  name="GPSTrackerMessages"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="8ea3a361-109d-4375-a146-0b6f3a4dae09"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="d21b908f-833a-485f-b029-021383a81545"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="bf33e5c3-b2df-4f2e-9004-1f4bbd753b44"
+            isDerived="false"
+            sourceEndRoleName="ApplicationDbContext"
+            targetEndRoleName="UserProfiles"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="2c91e1a2-2336-49ad-aef2-632c669a9af1"
+              LastKnownName="DbSet&lt;UserProfile‎&gt;"
+              LastKnownLocation="Package1_0358.uml" />
+            <description>Свойство UserProfiles ссылается на тип DbSet&lt;UserProfile‎&gt;.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="97ccbef9-0d95-4a54-9186-b228af38a647"
+                  name="ApplicationDbContext"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="f178da12-6921-450f-bdca-2787880847c0"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="1037f949-636e-4b7d-abcc-64031edea709"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8582386f-4cf0-4499-ae88-15024afff133"
+                  name="UserProfiles"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="8034b926-fa51-423b-8638-ad1090b0c8f1"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="07d8abc6-0f05-4502-ae3b-ca984a5a5087"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="f741dc40-f90c-40b3-8147-7e74ccef8543"
+            isDerived="false"
+            sourceEndRoleName="ApplicationDbContext"
+            targetEndRoleName="UserProfile"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="59348622-3ae4-4870-afb9-b846bd40ace8"
+              LastKnownName="UserProfile"
+              LastKnownLocation="Package1_0411.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f16fa417-3933-4005-a939-47251dbf7744"
+                  name="ApplicationDbContext"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7f954ea6-598d-4563-a0d7-b9c5453ecc64"
+                  name="UserProfile"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="5ad39564-0fae-4777-a199-8b7a24099734"
+            isDerived="false"
+            sourceEndRoleName="ApplicationDbContext"
+            targetEndRoleName="GPSTrackerMessage"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="2e266727-0910-4824-a408-e5d66fd04a2d"
+              LastKnownName="GPSTrackerMessage"
+              LastKnownLocation="Package1_0411.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7e97d5e2-59d5-4584-b19d-2b186f859fb9"
+                  name="ApplicationDbContext"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d4d624eb-f81b-4e00-a6d1-24ac1877a255"
+                  name="GPSTrackerMessage"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="13834322-d5f7-4ea2-851d-86f92250292d"
+            isDerived="false"
+            sourceEndRoleName="ApplicationDbContext"
+            targetEndRoleName="GPSTracker"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="5e85f433-79de-4da5-a7e0-6013ebb5cf90"
+              LastKnownName="GPSTracker"
+              LastKnownLocation="Package1_0411.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="efa95a04-36af-4d9f-a368-5e6c7180297c"
+                  name="ApplicationDbContext"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ba7e6b71-485f-46b1-840f-867e0cd657a5"
+                  name="GPSTracker"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="1748e184-eb8c-47f9-9ad3-b42494f7c880"
+            name="GPSTrackers"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="47babcbc-387c-469d-9fe1-28c4c1d31bc4"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DApplicationDbContext Member%3DGPSTrackers"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="5eebeb9b-6640-477d-ae04-0fcfa794834b"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cbe961de-3fb8-497f-b1c5-876dc14501d2">
+                    <propertyInstance
+                      Id="a67e0e8e-8144-4a2e-8fd1-e2bd38d4ce17"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2926c821-2597-4a91-9f83-d33185c62806">
+                    <propertyInstance
+                      Id="1c96fca5-6363-4686-b81a-b3f67c148a3b"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fdf821a0-7ffb-4921-ba5c-954d918bf321">
+                    <propertyInstance
+                      Id="2e3f48e4-1e46-4eab-b0c4-8d6b4c2f764e"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b482d39f-49b9-46e7-a113-d2de7a175bcf">
+                    <propertyInstance
+                      Id="d39f0f85-1210-468b-80be-8fd213a318cc"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="96ce59ca-12ca-42bf-a6ab-933d89819016">
+                    <propertyInstance
+                      Id="b8bcdad0-6d02-4b8a-9d7d-032acc9c29ff"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d1138bca-33b2-432f-a152-d772003d5eb8">
+                    <propertyInstance
+                      Id="e68b95ae-2cdd-4153-a087-f180c63e3e08"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="70378c5b-370b-4bd7-9211-8c63874befdb">
+                    <propertyInstance
+                      Id="5dbfb109-f913-4331-aeb0-9434b4728d1f"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="053bc4e6-bda2-48e8-9997-0d2cdd9db57a"
+                LastKnownName="DbSet&lt;GPSTracker‎&gt;"
+                LastKnownLocation="Package1_0358.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="f71cad47-dfd4-444a-9ede-1a12e922e817"
+            name="GPSTrackerMessages"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="97d9a62a-4efb-4967-8247-d5c03cf97622"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DApplicationDbContext Member%3DGPSTrackerMessages"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="7dab9bf6-ce6b-4257-a7d7-8461bfe28ac8"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a2ce9e87-aaf6-41c2-bda3-44da66c2eaa6">
+                    <propertyInstance
+                      Id="ace55c6f-8113-4b96-b4f6-697361b1b85d"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c343c7da-5dbd-4991-80cf-1a6c43526fde">
+                    <propertyInstance
+                      Id="76696d13-4e30-490d-bccf-7b48a87e5f5b"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="86cd617a-7f0f-420e-bdc5-1dae80db4ee8">
+                    <propertyInstance
+                      Id="d49cd598-bef9-400c-bf2d-9078466abb43"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2b02488d-e08b-4c38-a05f-b313a5040cde">
+                    <propertyInstance
+                      Id="279a0f6b-ef13-406f-9609-d8f34a98c1a3"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4517bf31-3996-469c-98e0-6a7e71572dc4">
+                    <propertyInstance
+                      Id="7a603132-5392-4f56-8cf9-f28c99d6bbf5"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7d7280d1-aa37-4f92-b0eb-799a42df2270">
+                    <propertyInstance
+                      Id="c10185d4-2e74-49bb-8cba-0240dd2e3b06"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b8dc581d-696d-40f9-863d-86f74f0d2b49">
+                    <propertyInstance
+                      Id="c9d5bc2b-734f-4bb6-b10d-f37b11454bf4"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="843f707a-cd1d-4fcc-860e-cbcf48255ab9"
+                LastKnownName="DbSet&lt;GPSTrackerMessage‎&gt;"
+                LastKnownLocation="Package1_0358.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="86b17c84-07b4-4736-9fe3-f6f38a73a064"
+            name="UserProfiles"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="96a8c45c-ba26-41ff-890e-e900e07c0a31"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DApplicationDbContext Member%3DUserProfiles"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="9d8ad5e9-b6d9-4647-bc34-e34c029aaf0c"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2c6ce9c4-5007-4a23-8faf-7086ba3cb275">
+                    <propertyInstance
+                      Id="11a1212f-4d4b-403a-846c-0b012fae36da"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e2d591df-d4df-4ac8-9b44-1cced13a4ac7">
+                    <propertyInstance
+                      Id="cc608c0f-4961-40da-92b7-c9e51eaf8985"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="272e1a60-f7b9-4675-b25b-f9b91f15a85a">
+                    <propertyInstance
+                      Id="43858c40-f7f7-4271-8840-07c0b29f8635"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6553b2bc-1a7e-4d4d-bb7b-f1d135c2ad8d">
+                    <propertyInstance
+                      Id="7f9cbf27-2fd1-4ddd-ada9-1e8dac8744fd"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9b267125-55c1-445c-8088-458094033252">
+                    <propertyInstance
+                      Id="0fb20b33-9e10-4a5f-ba90-f8114369365e"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3a7128b3-4114-4ad3-bab2-a0923a476744">
+                    <propertyInstance
+                      Id="c7b44612-e316-436b-b3e6-29513513bbd1"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d17b87e0-3c0c-4138-9245-32102295e73e">
+                    <propertyInstance
+                      Id="bc55be0a-5e85-4a9f-961b-7b78e5d0ceca"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="2c91e1a2-2336-49ad-aef2-632c669a9af1"
+                LastKnownName="DbSet&lt;UserProfile‎&gt;"
+                LastKnownLocation="Package1_0358.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="d7562b90-cc95-4263-b9f0-18d6c5db2d25"
+            name="ApplicationDbContext"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="c6a565d0-03ff-4327-a234-dc3948234e33"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DApplicationDbContext Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="dcf7b7bd-ff2f-4f7e-95df-76cba2da9211"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2976e77a-1921-4762-bdd2-a4970741c661">
+                    <propertyInstance
+                      Id="24634c4b-9e34-4f15-a3d2-291a264c8646"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0fa5f662-8c5d-4321-8dda-808d9a8fa323">
+                    <propertyInstance
+                      Id="8fa420c6-f085-4f4e-a657-2631489a019f"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a622612a-edc0-4015-be06-87b359ce48c9">
+                    <propertyInstance
+                      Id="c2d341a2-56a2-45e1-80fc-82f24ae8a7ed"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c1eb9833-9b36-4b0d-8514-a7391a3db275">
+                    <propertyInstance
+                      Id="3ee15b8e-0838-4877-9762-ba2ac07dfbf0"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="52c6a3b2-d3c9-42a8-a2d4-538c2234e930">
+                    <propertyInstance
+                      Id="bdbfef04-fbe5-43cb-8ca9-5e42300423b3"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6714e3f9-be69-42da-a046-7a496fd78acf">
+                    <propertyInstance
+                      Id="5358d33a-2f22-481d-a9a3-15b79928f7fc"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="9c1ecec9-20b4-4e18-9557-d9bad65ae8a6"
+                  name="connectionString"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="e2372e65-c344-41cd-b1f7-523f056a4b29"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DApplicationDbContext Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3DconnectionString"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="3513e317-7872-46e1-86ac-bebef796501b"
+            name="Create"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="f56da9d1-28bc-4bc0-bfd5-49f5a85085ad"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DApplicationDbContext Member%3DCreate"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="266181bb-8961-45c6-9fcc-e5fffff96f32"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b3b2d3e1-6f33-4cd2-9afd-bcc37616b88a">
+                    <propertyInstance
+                      Id="79e2f461-a382-408a-9355-c16205b4b5ef"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f6395716-84aa-49b7-857b-b86f2872ba4f">
+                    <propertyInstance
+                      Id="95661a65-4574-4ac0-8e78-f7e564e018f9"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0e44e874-313f-4c25-9f80-780536fe29fb">
+                    <propertyInstance
+                      Id="1f63773a-0a05-4224-8d44-0092e6dc9535"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="35b370ab-f37e-4914-8b1a-2d035be00923">
+                    <propertyInstance
+                      Id="ce9fe0e0-214e-4229-8298-d969e3422677"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="337a4dbf-35a3-44cb-bd82-f1a91f2f0014">
+                    <propertyInstance
+                      Id="65610487-74bd-4aca-b084-8d36b82acadd"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e1da27a3-468d-42e8-9cfb-e59a5d4e977d">
+                    <propertyInstance
+                      Id="2cc59868-7b33-4cb9-9427-6d691f06e6c5"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cc1d05f5-9dab-4f0f-b6fd-f5f3494054f5"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="50c915cb-02df-470e-bcff-e97f9bf05eb8"
+                      LastKnownName="ApplicationDbContext"
+                      LastKnownLocation="Package3_0334.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="53522ec7-0bd9-4474-80b0-95f8edd5100d"
+            name="OnModelCreating"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="a6eaa649-dc89-4e4d-94e1-6fa22383e008"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DApplicationDbContext Member%3D(Name%3DOnModelCreating OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2Fpackages%2FEntityFramework.6.1.3%2Flib%2Fnet45%2FEntityFramework.dll Namespace%3DSystem.Data.Entity Type%3DDbModelBuilder)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="995161f7-bafe-4309-9d3a-c90c08f08f73"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1ff9ac8f-5095-4462-8348-c4c4fe1507c7">
+                    <propertyInstance
+                      Id="a0b48052-e1d6-4ea4-97ab-67a9848a97d9"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8063e885-5aa4-4709-a307-da502dcf4954">
+                    <propertyInstance
+                      Id="93a5e2ed-ebe9-4edd-9b3a-a0928e10468e"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3dd4faa6-063a-4ca2-8fb4-884798d43371">
+                    <propertyInstance
+                      Id="6fbb817c-ded9-459c-8ab7-00cce3090869"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1e98fbf1-e572-4ba6-bff8-52f7f5283e36">
+                    <propertyInstance
+                      Id="5e14c0d2-06d1-4299-9db5-d9bb197007f4"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="25bbc14d-d8a2-4bae-b52a-f739f36f8ba8">
+                    <propertyInstance
+                      Id="89020705-1f39-4fd0-ba4b-efeab26edcc8"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ac54665f-e077-44ab-a086-963f38007e8e">
+                    <propertyInstance
+                      Id="1ca16c2f-e28f-48df-88b9-845211061bcf"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1a575c49-044c-495f-bb41-dfdc2852f39b"
+                  name="modelBuilder"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="1a19965c-c89a-4a61-8616-50141217ebf1"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DApplicationDbContext Member%3D(Name%3DOnModelCreating OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2Fpackages%2FEntityFramework.6.1.3%2Flib%2Fnet45%2FEntityFramework.dll Namespace%3DSystem.Data.Entity Type%3DDbModelBuilder)]) ParameterIdentifier%3DmodelBuilder"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="316b29e3-3911-44bd-a8e3-d9530b9e48bb"
+                      LastKnownName="DbModelBuilder"
+                      LastKnownLocation="Package1_0358.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="67bf6db2-618f-4090-a1f6-ba2da7d30722"
+            name="ApplicationDbContext"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="bfd6b36c-34e9-447b-a121-2918108bd9d3"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DApplicationDbContext Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="5ccd95af-8bc3-4a91-9bfc-19885af1f6df"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="63231cd0-e815-46b4-92ae-21d9b47b6347">
+                    <propertyInstance
+                      Id="d4b4d648-f9e1-4f66-9f8f-e9ea52b6b4e9"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="52fd8ce0-492f-43cc-985d-20ace71b61c3">
+                    <propertyInstance
+                      Id="78a25fd9-ddc4-4c1b-b117-6e29f18a3e33"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2148350d-1e96-4140-a042-83b7e1dabb81">
+                    <propertyInstance
+                      Id="b5c1c4c1-cdc6-42ca-90f8-696552c68d1d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f2ae168b-fba7-474b-9ec5-a049eedb0750">
+                    <propertyInstance
+                      Id="0df49390-b7d5-4194-a56c-23c19ac09a34"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e4fefce5-6bd6-4e06-8c1e-b7134ce7473d">
+                    <propertyInstance
+                      Id="1733b37c-9d87-440f-a0f5-718ef8c4a383"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9c105b5c-8857-486d-9a6e-6098ba2989ba">
+                    <propertyInstance
+                      Id="725829ff-63af-4c96-a8b7-fa6f04fb83ec"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="0d7be51c-1a3e-4bb2-a39c-9f5eb8a078fa"
+        LastKnownName="Entities"
+        LastKnownLocation="Package2_0358.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="15902dee-863b-4cac-a7da-538a5cd9a611"
+        name="DBInitializer"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="561b6997-79ca-498e-a50c-869c0656c61d"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DDBInitializer"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="abe37b38-ccb3-46a5-86ee-115adf8ef762"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="769a31f1-57f3-4d04-9c9f-f16d013ac14d">
+                <propertyInstance
+                  Id="2f92c50c-11a2-4f6c-a1cf-41c50691b4d8"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8d057bcd-4c2e-4b2d-b5c3-2899c2accd5f">
+                <propertyInstance
+                  Id="415530ec-20a3-4788-b2a8-d2378d3acdb5"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e9cc322a-c3d1-466d-81db-bdccfaf25287">
+                <propertyInstance
+                  Id="8a3240f9-00c8-4917-a415-141c23f2de12"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bee136fa-1125-4af5-b447-0d684d09d0f1">
+                <propertyInstance
+                  Id="1abf8266-7757-4ff9-865c-2942dbb82c64"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b734bba3-5bd9-4ac9-82e8-77d3573c3a71">
+                <propertyInstance
+                  Id="9042e368-7e51-4869-b53d-e9059af06cd2"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="ca314b12-608f-4dab-9d5e-bf2d1533d2d9"
+            isSubstitutable="false">
+            <classMoniker
+              Id="6cb5c598-c9bf-4dbd-9688-adf8d8bd00da"
+              LastKnownName="DropCreateDatabaseIfModelChanges&lt;ApplicationDbContext‎&gt;"
+              LastKnownLocation="Package1_0358.uml" />
+          </generalization>
+          <generalization
+            Id="df609a5e-f3fb-480b-9a95-575c99ed036c"
+            isSubstitutable="false">
+            <classMoniker
+              Id="64864e78-68d2-450a-a27e-cf90f1628607"
+              LastKnownName="DropCreateDatabaseIfModelChanges"
+              LastKnownLocation="Package1_0358.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="3cfa2055-dcfa-4333-8edd-c855a03d2a39"
+            isDerived="false"
+            sourceEndRoleName="DBInitializer"
+            targetEndRoleName="ApplicationDbContext"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="50c915cb-02df-470e-bcff-e97f9bf05eb8"
+              LastKnownName="ApplicationDbContext"
+              LastKnownLocation="Package3_0334.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e5cd2e59-edf8-4425-89d7-ff08302456ab"
+                  name="DBInitializer"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2000006e-343e-4262-8d83-4388e27566af"
+                  name="ApplicationDbContext"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="e13a9c21-9eee-4782-8589-17c3b2e7ec15"
+            name="rnd"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="3167c846-aa77-4f4a-8157-8d89bff87a23"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DDBInitializer Member%3Drnd"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c51bb060-7250-4a3f-9ff4-9690ac25f709"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0f4ad61a-cc79-4c35-88e4-838182779601">
+                    <propertyInstance
+                      Id="592f08f9-7ff2-4cb3-bd88-411e449f37a9"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="60ab23c5-54b3-4fd0-8ccc-ca1c53e311f2">
+                    <propertyInstance
+                      Id="001aee6e-e12f-4ef3-9465-680dd77dd581"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d79f09e6-e8a4-4ede-8155-9a870c697a8e">
+                    <propertyInstance
+                      Id="b96f3ba7-eb1c-4ad0-bbf0-0a83cd1feae0"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="099bc873-3bb8-4635-be01-d4e17553196a">
+                    <propertyInstance
+                      Id="c7f238da-6c4b-4a9d-afbd-d0333f36ee84"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8179d56e-ce92-427a-b766-5e65665459de">
+                    <propertyInstance
+                      Id="ef3418d9-0893-4778-98b9-73c0cc4559b5"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="1051adc2-793a-421e-b18d-536bfe4ad1d4"
+                LastKnownName="Random"
+                LastKnownLocation="Package_0334.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="9d38ad3e-b9af-4dc8-be75-302e74199d7f"
+            name="Seed"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="21786621-f3f3-480a-bc6e-b30476fd9e18"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DDBInitializer Member%3D(Name%3DSeed OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DApplicationDbContext)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="3c412eca-a1e2-4329-84a4-a489d2846f8d"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e5375191-c15d-4e1a-96b3-80383d534f9a">
+                    <propertyInstance
+                      Id="12c241a8-b1fa-4ec5-929f-e4a947b6f495"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="70b2fb1d-e8e8-4e2d-9b07-ebfa8afe59a0">
+                    <propertyInstance
+                      Id="96f059cb-879c-45e9-9a41-848e58e808da"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5213d0f1-7984-4f63-9797-275b74bfdc1a">
+                    <propertyInstance
+                      Id="c96be6e2-626b-4f6d-9e8e-feae0a7bceb5"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6104285d-5616-485f-9505-b0917b053d91">
+                    <propertyInstance
+                      Id="5771eee3-14b9-47ff-9c77-52d673b5e5a1"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7ff9d685-5342-45f2-a1f3-ed5d8651e009">
+                    <propertyInstance
+                      Id="f356d209-204a-42b9-8ebd-615b975c9bff"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8e720187-e6e8-4a95-95de-2e07cf1dd4b8">
+                    <propertyInstance
+                      Id="c2e48f7e-f5a9-4851-ab27-7c6dd24455eb"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e803ba3d-8c14-4e80-991e-89ea2effac35"
+                  name="context"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="c4097799-d039-489b-a804-5d4ccc65bbae"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DDBInitializer Member%3D(Name%3DSeed OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DApplicationDbContext)]) ParameterIdentifier%3Dcontext"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="50c915cb-02df-470e-bcff-e97f9bf05eb8"
+                      LastKnownName="ApplicationDbContext"
+                      LastKnownLocation="Package3_0334.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="3964bae3-1080-4add-844f-6dd3ecc944ef"
+            name="DBInitializer"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="475f065e-5b0f-4ae2-b801-ccf00a66639f"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL Type%3DDBInitializer Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="14b3a8d6-8910-4089-a8ae-05a5e0803967"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fb76c9da-8698-4bbe-8bca-0a62cbf6f0ba">
+                    <propertyInstance
+                      Id="7f4cd266-e559-47f4-9f40-8179e31b240f"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0e7ebf2b-ca5d-43fc-a956-8347c243915b">
+                    <propertyInstance
+                      Id="53e678f9-5f0e-4950-bfdd-51f61708aad1"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a2548760-bd6c-4daf-b8dd-ad919f8dce7e">
+                    <propertyInstance
+                      Id="8c7d4edb-9100-4781-a8ba-c29b5835d489"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a77bb981-99ff-4219-be05-5b5244fe5778">
+                    <propertyInstance
+                      Id="2e5d9c31-754e-4cd6-af0d-5f6ca81689c7"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="05f95d20-3026-4a07-a90d-e9a8f8d0c431">
+                    <propertyInstance
+                      Id="27d961a9-5359-4aac-aac2-09e56bc81109"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="aceeeec3-b290-4f27-a306-721fd1bd0a5e">
+                    <propertyInstance
+                      Id="ea5f6f9e-7c4f-49d4-a3b9-0f08baba8b79"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

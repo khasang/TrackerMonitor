@@ -1,0 +1,1673 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="e666bc6e-693b-47a3-827a-c4ac5874ce9e"
+  name="ReceiveMessageServer"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="3c3af4ac-6a5d-413c-9ad3-ebbc94e9e120"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DReceiveMessageServer"
+      tag="ViewCode" />
+  </referencesInternal>
+  <importedPackagesInternal>
+    <packageImport
+      Id="e329e63e-b1d4-42f3-a81f-3da09317d2c5"
+      visibility="Public">
+      <packageMoniker
+        Id="29aa14a1-1cb0-4ae9-a6be-f8231ce0b92c"
+        LastKnownName="UDPServer"
+        LastKnownLocation="Package2_0334.uml" />
+    </packageImport>
+    <packageImport
+      Id="492e58d8-b377-473d-9318-9356234e8dfb"
+      visibility="Public">
+      <packageMoniker
+        Id="9a8fd295-f41e-4f8a-ae2c-26962f20487b"
+        LastKnownName="DAL"
+        LastKnownLocation="Package3_0334.uml" />
+    </packageImport>
+  </importedPackagesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="39341435-2d55-4f82-9154-95d5a8631b05">
+      <profileInstance
+        Id="f07dfcba-4f77-46c9-bf46-9915b359ed36"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="ce9fe944-64e7-4e1d-a1c2-c34ad7be1899"
+        name="Program"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="cd022b2e-b317-4dda-8658-e634721863bb"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DProgram"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="0cd6f5d0-dd82-49cb-ae1b-0f3b1d6a04c3"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7f5c4362-3ec7-478e-abe4-ffd5b7fe4342">
+                <propertyInstance
+                  Id="de0790e4-d178-4504-a2c9-93337dae4533"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="39303f76-cb63-46e3-abd6-36f341e692e6">
+                <propertyInstance
+                  Id="ae228192-03e7-4289-b3d4-24c9a73ae55b"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ca06bc7b-7b2a-47a5-a12e-c7a314853ae4">
+                <propertyInstance
+                  Id="1efa9c9c-774a-4406-b820-d3f73db79c3d"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fc26fecf-a8ee-4d4b-9b47-3380fa8d667b">
+                <propertyInstance
+                  Id="6264a8a2-9e2c-42d4-89f3-cd85dac656f4"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c8ee3b25-faa7-4996-b799-b4b87e4db221">
+                <propertyInstance
+                  Id="7f7f8f27-c92c-488e-b204-0810babb5d29"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <targetEnds>
+          <association
+            Id="b482d3a0-b590-4891-bfa4-6b527196a8d3"
+            isDerived="false"
+            sourceEndRoleName="Program"
+            targetEndRoleName="Settings"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="9e9bfa34-08f5-49e6-930b-6dc9ed9bda05"
+              LastKnownName="Settings"
+              LastKnownLocation="Package1_0334.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1846aaf9-9326-49fb-a3fe-417731f781b9"
+                  name="Program"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8b640a3b-e93b-4367-bc03-c220ea413871"
+                  name="Settings"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="e526b22c-0b3f-4f87-bda5-a9e2dcf6a6f4"
+            isDerived="false"
+            sourceEndRoleName="Program"
+            targetEndRoleName="Server"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="54ab5e1e-ee86-49fe-a04e-5c7dcd0bd7c6"
+              LastKnownName="Server"
+              LastKnownLocation="Package1_0334.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cbe4b4f4-79cc-467c-867c-3ea316774f20"
+                  name="Program"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="21aafcfe-2e82-4938-a7a8-c10d02666f0e"
+                  name="Server"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedOperationsInternal>
+          <operation
+            Id="625915cf-a66f-45c4-8811-5ae0c7e45475"
+            name="Main"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="9b911d06-46aa-4b86-a865-10a93376e6d8"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DProgram Member%3D(Name%3DMain OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DString ArrayRank%3D1 ParentType%3DString))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="479d3f79-22e0-4493-a685-2f3ccb513ea6"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="095a6fd0-6693-4595-8fcc-53cd76f7d042">
+                    <propertyInstance
+                      Id="6b8850fc-0e78-423a-8ed8-f8316b3c1f01"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="11f3cb42-fe56-4ed1-b13d-134d2db33344">
+                    <propertyInstance
+                      Id="3ead0000-21d3-4ac2-aaab-236edb91765c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8e6153eb-f2a4-49da-9feb-9965fc5066a2">
+                    <propertyInstance
+                      Id="cb5a1807-2605-4df2-9a08-37ab4bc88a3a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a07c616f-c99b-4286-b9d5-6dc00cbd6bdd">
+                    <propertyInstance
+                      Id="16e8d562-d911-4027-8a5f-cfd04e32f9f7"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="073281a3-6c82-47d9-a536-e30935542461">
+                    <propertyInstance
+                      Id="ca5a07e8-3309-4155-928b-778da903a87d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="40dcde14-f92e-4b3a-88e3-ad55d3862af9">
+                    <propertyInstance
+                      Id="de6779d4-229a-49eb-aa8e-211730adc5f4"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f896ca36-eafe-4ad0-856c-d47e1e4a42eb"
+                  name="args"
+                  direction="In"
+                  isOrdered="true">
+                  <referencesInternal>
+                    <reference
+                      Id="44792a14-b49c-4b05-b5b2-36a8b1358e69"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DProgram Member%3D(Name%3DMain OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DString ArrayRank%3D1 ParentType%3DString))]) ParameterIdentifier%3Dargs"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <lowerValueInternal>
+                    <literalString
+                      Id="c076c593-04b4-4b37-a253-fdb1a16c91fa"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="362041e1-cc42-410c-b7c1-efde1342c45d"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="390a589f-666e-4c3b-b82b-10c837509dd7"
+            name="Program"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="7e7d3af5-6ccb-4523-a5ff-4e1f45e98fc1"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DProgram Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="59fb1c60-6241-4c48-b8f3-797171a5ab62"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fc64e23d-9846-40c7-8641-84a72f1cfc21">
+                    <propertyInstance
+                      Id="8a16ae60-a07c-45ec-9da7-a979069238a8"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="23189696-d739-4ce5-a786-1c827715940d">
+                    <propertyInstance
+                      Id="0fc37fc6-ba99-458d-8b68-cac46d66be72"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b4b6d284-9512-4203-92c7-1b836464d75b">
+                    <propertyInstance
+                      Id="b1237f51-d3d3-4dd8-b6a3-ea6e7b68185d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9551f5e7-1a33-49fa-ac1e-2c7a33708a5e">
+                    <propertyInstance
+                      Id="72c58c79-86ed-495c-8445-3fb7b22215f8"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5ecff999-24a1-4184-885a-8efa1ae631b4">
+                    <propertyInstance
+                      Id="b6a7125c-172f-4387-8456-78f0c32728b2"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d975dfb0-44e6-45ff-9dc8-5a2d5638dd2b">
+                    <propertyInstance
+                      Id="986aa8bd-5591-4396-bafc-808958ca2e46"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="54ab5e1e-ee86-49fe-a04e-5c7dcd0bd7c6"
+        name="Server"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="246e99bd-12bb-4b06-bdad-d99b9c885ec2"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="035d6dda-c937-4ef5-b213-4068b93e6428"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f3a5309a-3e79-4338-8ffe-784b32e931df">
+                <propertyInstance
+                  Id="1d10e4da-68d0-4534-b558-239a4a3bc8a4"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5c1cfe84-6395-4fc4-9bdd-d39c67cf4777">
+                <propertyInstance
+                  Id="be001116-9ad6-4068-8d65-36ac315fcf73"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a362ccd8-ddb6-4ec5-9db9-571a7283f033">
+                <propertyInstance
+                  Id="49b1c4a9-33c5-4d97-a23a-8d11efbaac15"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d5e0d6b4-2fd3-4da3-98b5-38273c1d8e45">
+                <propertyInstance
+                  Id="5cb35e10-250b-445e-b3ea-bef5e5f7f459"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="28806b1d-8324-4d1f-89d0-e0502c21649e">
+                <propertyInstance
+                  Id="8e269c2d-0450-4370-ae34-5dfa90c10567"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="45fa65b2-3e4d-48a7-b01c-22d3748ebdd6">
+            <interfaceMoniker
+              Id="08a74506-0141-42e7-8f48-6b9455928aa1"
+              LastKnownName="IDisposable"
+              LastKnownLocation="Package_0334.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="4a0de711-8a1e-4b23-85b2-4c41ce9bc31a"
+            isDerived="false"
+            sourceEndRoleName="Server"
+            targetEndRoleName="UDPnet"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="e3218e4a-a782-4d10-ad4c-494fca6d4a4e"
+              LastKnownName="UDPnet"
+              LastKnownLocation="Package2_0334.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8b50e32a-a6df-4a43-98af-3789a13275ef"
+                  name="Server"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7d687ff7-9434-4f74-ba81-e643ca122154"
+                  name="UDPnet"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="d1c2b827-893b-429b-99e1-76497373057d"
+            isDerived="false"
+            sourceEndRoleName="Server"
+            targetEndRoleName="ApplicationDbContext"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="50c915cb-02df-470e-bcff-e97f9bf05eb8"
+              LastKnownName="ApplicationDbContext"
+              LastKnownLocation="Package3_0334.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ca2bff82-be83-476f-a76e-18ecd27ad5db"
+                  name="Server"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bc4156d8-ced1-49e4-9011-88c4af7789c8"
+                  name="ApplicationDbContext"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="1022f785-cb8d-4501-9bb8-134702291889"
+            name="udpServer"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="48a3e154-02b9-4f53-a52f-f56e5ee43651"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer Member%3DudpServer"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="9280e8ae-8c0e-46a6-83d5-ca266972fa87"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4012a13f-1f06-425b-8b3a-c91cfc1bd9fa">
+                    <propertyInstance
+                      Id="872272c1-ebbe-4fb8-8060-d36fad948a6c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="53f08720-febd-4992-9cf9-362a31d2f0e0">
+                    <propertyInstance
+                      Id="bae136b0-557a-4ffd-8381-3730ef7388f7"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9c3037e5-5645-4131-93b4-1e2cf3aab5db">
+                    <propertyInstance
+                      Id="d1ed842a-561c-4b22-b321-f5e255ad02b0"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="69b2a4f6-0fde-404b-bf8e-e71b8d15789a">
+                    <propertyInstance
+                      Id="3dbc68e6-0a93-4cc0-9f5e-cdba2fe80bde"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="96c23fc9-9c78-41ec-93a9-fe46f157d03c">
+                    <propertyInstance
+                      Id="c6120bbc-3542-4e94-8559-850d1453cc59"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="e3218e4a-a782-4d10-ad4c-494fca6d4a4e"
+                LastKnownName="UDPnet"
+                LastKnownLocation="Package2_0334.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="6e0b4494-10f8-44b2-9ad7-58e48261c6a0"
+            name="dbContext"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="66f80db7-199c-4edb-b569-bf2eb6f33be8"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer Member%3DdbContext"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="fdd0ac15-f9ef-4754-b3b8-77105516a179"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2effe82f-bc69-4ba3-9b31-c93d2a58b517">
+                    <propertyInstance
+                      Id="b0f29800-d129-461f-9ffa-8f60f663b8c4"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4c5a6db5-872e-443c-bea1-90f5c52a0767">
+                    <propertyInstance
+                      Id="22b07485-242b-48e4-bc82-060066008795"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fd0da25e-d406-4285-bc4d-75cd9115f00d">
+                    <propertyInstance
+                      Id="9747cc4b-5b90-4129-b78e-18d3d0ec76d7"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="599b5d83-78c4-438f-8ed9-7bc902aedf85">
+                    <propertyInstance
+                      Id="b69c5f51-a072-4d78-9a65-f7cd0c744061"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8241c126-e236-4e3c-afa4-417c21866311">
+                    <propertyInstance
+                      Id="31e8320d-ec72-458c-a64f-ad6f9340f15a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="50c915cb-02df-470e-bcff-e97f9bf05eb8"
+                LastKnownName="ApplicationDbContext"
+                LastKnownLocation="Package3_0334.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="4b54f27d-8378-4f1a-b922-13c0d905e5f1"
+            name="hubConnection"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="4d4e7bc7-6353-4c69-9971-f73f100e588a"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer Member%3DhubConnection"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="55a348ae-9b65-44b5-bfaa-88bac3400481"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eb99ae75-2d0f-4a58-abe8-19dc64b25713">
+                    <propertyInstance
+                      Id="b03e02cf-48a2-4394-abf3-f16a345d0435"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="983e9b6b-f1d5-4589-a83e-ea8ffb0bbd95">
+                    <propertyInstance
+                      Id="e75805ae-0da4-43c2-9e82-ae622a372fb0"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="abd254e9-15b0-43be-99cf-47f713ae9586">
+                    <propertyInstance
+                      Id="111d4e8d-db2a-4101-b02f-d371851e2baa"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="92947189-7179-41aa-8299-042f63a18d4c">
+                    <propertyInstance
+                      Id="3206e121-94a4-4c6d-bbc9-c38fadf3df80"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f6bd84e3-533e-4254-8523-e09994bf239c">
+                    <propertyInstance
+                      Id="9feb266d-e727-44b4-a9b6-2cf173a5fa7a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="fdb2af7e-f220-48aa-b9eb-25c8ae96565b"
+                LastKnownName="HubConnection"
+                LastKnownLocation="Package7_0334.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="6e7a0488-e769-40e2-a409-0e306ea286be"
+            name="hubProxy"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="0927e9e8-40e2-4077-8af4-93bb9104c7db"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer Member%3DhubProxy"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a0bd47aa-19b9-42b6-983c-5ea766f1ec64"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="afab80b6-2367-4b20-a764-47dd3e6f4211">
+                    <propertyInstance
+                      Id="0c21d243-e28f-4cdb-b69a-8dcb4d7718d2"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e0424494-d713-4b12-9173-bf3a35104f1c">
+                    <propertyInstance
+                      Id="9ceb30fe-1d86-49f1-bb17-62a5d50c98fe"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="96c250b4-7eb0-48d2-9403-377470818fe8">
+                    <propertyInstance
+                      Id="99da1e93-6887-46aa-b409-40e81b32daaf"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="14a4e182-8060-4ba0-871f-bfd0a58f028d">
+                    <propertyInstance
+                      Id="f65f784b-9f0b-4bad-b20c-9d99ea0919a2"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2ddaef41-74ba-4628-9eec-0b82eaa5745d">
+                    <propertyInstance
+                      Id="553b5402-6978-43ee-8b39-aa6fd1e15b27"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="511ef58c-487b-40fd-b58f-8776e8e02024"
+                LastKnownName="IHubProxy"
+                LastKnownLocation="Package7_0334.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="7cd090c0-4cce-41fb-80ad-156a00dcd404"
+            name="Start"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="a5fe14e0-09ff-42ff-b072-28bf0648990a"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer Member%3DStart"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c0f5ec40-30a5-4fe0-abde-460a3b9a6d5b"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="86a5b5bb-042c-442a-b009-a5d949c4af70">
+                    <propertyInstance
+                      Id="239eb553-95aa-48ee-a022-6934671817bf"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ee036fdc-80cd-4d30-9cfe-18a62c78bcba">
+                    <propertyInstance
+                      Id="751c8054-d3f8-4a2e-9dd5-c38a91cad26a"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8f052c83-d9c4-4155-8df8-155f57a03081">
+                    <propertyInstance
+                      Id="62d82c2b-5ceb-488e-baf0-c3907f9c5979"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a4adc3a5-831c-4eb4-a231-12bc1ef7ee06">
+                    <propertyInstance
+                      Id="6bfb7248-3e66-4030-ab04-0a4c47cea546"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dd63d24a-f2cd-4d5a-b543-ccaf4cdd4cec">
+                    <propertyInstance
+                      Id="c535989c-af96-4b1a-ab6f-38b5549fbcd8"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b9e384ae-ced8-4f39-9595-37babea5b605">
+                    <propertyInstance
+                      Id="77536602-aaad-45b0-94da-f26e2412791b"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="d6cc34a6-34d7-42c6-84ab-24d003a11171"
+            name="Stop"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="b4e6bc98-079b-406a-982e-8dbfa5f8c7c0"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer Member%3DStop"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e34e3a08-f721-439f-b42e-aac2e103e2ea"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="25123059-94f8-44e9-b11e-df3eca59cb3a">
+                    <propertyInstance
+                      Id="d7bd248f-b99c-4a32-94fd-34b665f93836"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ee8551b3-6fe6-4e49-8fb9-b918b22a8fbc">
+                    <propertyInstance
+                      Id="9502c361-7440-4afe-b48a-a60322b96f78"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e19a7bcd-87a5-4ec3-9db9-b3c8c18ccd4f">
+                    <propertyInstance
+                      Id="abca19a0-6d48-4fd2-b1fe-7451b84e636d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3a475e2c-862a-4786-a29f-6d03aa2cbd71">
+                    <propertyInstance
+                      Id="89df3819-9800-4980-9f3e-885062cbd12c"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="26224181-86cb-422e-ac49-4f4140013c4d">
+                    <propertyInstance
+                      Id="e8981c7f-6f0a-46f5-9ae8-52999df3cf15"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2a40d24e-0ed9-46ce-a227-ea4c087e8463">
+                    <propertyInstance
+                      Id="d9512f23-2f18-4206-8465-702a19174795"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="98a7360d-790c-45fa-b49f-f139d721184c"
+            name="OnShowReceivedMessage"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="9ea85090-c1fe-4d42-a293-2a872ed6be6d"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer Member%3D(Name%3DOnShowReceivedMessage OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DEventArgs)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="07ebef83-a5e9-4a2e-aa50-829255a01c1f"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ea927d7a-3827-471e-b1ce-336f5e583847">
+                    <propertyInstance
+                      Id="19a4c7a5-7e9f-486f-9c39-b9ab2b108d65"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3ce8884a-eaa2-43a4-94eb-e1f88783eb08">
+                    <propertyInstance
+                      Id="b2dbcdb0-cdc8-4c64-8d5b-9021cc6f2594"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="971ca425-f242-4922-b744-feca0f40442e">
+                    <propertyInstance
+                      Id="c41c8c49-2004-47e0-8715-a3b0447e1480"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c62dccb2-95d7-4d0c-85b8-85419916cc90">
+                    <propertyInstance
+                      Id="6d84bb01-c761-4837-acab-2ef23fe4e7d7"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c280ab39-67ce-4365-8ca8-de26f00ad5b3">
+                    <propertyInstance
+                      Id="51c3f6fd-4fbb-4c57-8332-d7705c1ec8cd"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5998f6a3-b316-493b-8e73-304f5aa366f0">
+                    <propertyInstance
+                      Id="57126815-65a4-4995-9198-1ca9d7568f68"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="12bb5096-8ce9-4c22-9daf-863f10509184"
+                  name="sender"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="b061fb58-35e4-4d01-8c34-686731cc2aba"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer Member%3D(Name%3DOnShowReceivedMessage OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DEventArgs)]) ParameterIdentifier%3Dsender"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="67137738-fe18-4bba-81e6-7f1650999d75"
+                      LastKnownName="Object"
+                      LastKnownLocation="Package_0334.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a8ef93e6-e81d-49a6-b76e-112803103d39"
+                  name="e"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="a80080f2-e7d3-4226-b103-d496b83ed4ae"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer Member%3D(Name%3DOnShowReceivedMessage OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DEventArgs)]) ParameterIdentifier%3De"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="21771cdc-a089-451f-b3b0-fb9043e63c69"
+                      LastKnownName="EventArgs"
+                      LastKnownLocation="Package_0334.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="885c35bc-e343-4748-a515-6a4b4f191709"
+            name="Dispose"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="ebafeee4-7965-4eee-b792-e074790b8ab8"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer Member%3D(Name%3DDispose OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DBoolean)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="52d27b25-062c-42bb-9e08-f3301f2d306b"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="602b937c-9bad-430a-87f2-00a070c9df54">
+                    <propertyInstance
+                      Id="862be3ad-c246-42a6-aca8-29a1a735bc59"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5d245231-01db-4281-8e53-29b6152b21bd">
+                    <propertyInstance
+                      Id="ee9d92a7-1d1c-4532-a864-f14ff4de23b5"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c51b7734-e6cf-4491-af89-766c7709c423">
+                    <propertyInstance
+                      Id="b4e069f6-340a-4677-b097-f0fbb7b1aadc"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="86abdb3d-3e1d-4033-90be-265bf7690686">
+                    <propertyInstance
+                      Id="9c966536-6b99-4f18-946e-037fe909f2b2"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="24d1166b-f5da-4b3a-9c0d-3179265a26a3">
+                    <propertyInstance
+                      Id="affaa71f-2c4d-4be0-ba2e-cbbe44ed74d7"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="92d30ab0-3adc-41e6-92ab-4b1dec6bd5ec">
+                    <propertyInstance
+                      Id="d6a156cc-8035-414a-b244-31be08cdf7ec"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="38182488-7e11-48a5-8730-5708222ee386"
+                  name="disposing"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="715b5503-4d03-484f-8351-378dff062455"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer Member%3D(Name%3DDispose OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DBoolean)]) ParameterIdentifier%3Ddisposing"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="bd0abf48-f0d6-437f-a4d9-de9b6009c436"
+            name="Server"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="f16aafa5-7ca2-4e9a-a706-6826dda54fd3"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DServer Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ba1cf28c-3465-45ee-9a4e-4cac1fa5215f"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2b483c32-e2eb-49e5-84ac-aaa2183a7aed">
+                    <propertyInstance
+                      Id="64d0942f-9347-4be9-8fb1-ddbebb19dfbe"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7f841dbc-bbce-48c1-8049-f3b6e0155d22">
+                    <propertyInstance
+                      Id="5a8db5db-fa70-4af5-9072-b7a81341021d"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8ffbdba7-f6a8-48c8-8fcf-13cbde352ab9">
+                    <propertyInstance
+                      Id="85d4c0e5-b38f-4656-b9f1-2bef4e62ef1d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dd2cfba7-809e-4c94-9dbb-6e61645340ec">
+                    <propertyInstance
+                      Id="1cc16021-0b99-4049-a3be-f08195f5bd8f"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="30a9dc2f-9e38-4916-a3b9-e6f901f41c15">
+                    <propertyInstance
+                      Id="ec760e6a-3c20-4bb0-9d4e-486d530edc0a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fe6dc8b7-d080-40bf-9bfd-6a29138c9f57">
+                    <propertyInstance
+                      Id="74e87deb-0ad8-4270-bad5-66c07e9788ea"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9e9bfa34-08f5-49e6-930b-6dc9ed9bda05"
+        name="Settings"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="004fc5e5-0833-4419-b6cf-9a61c0ead6fd"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DSettings"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="afe78f64-6c1d-4e98-b62e-cdb91c2e1b4e"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e511b544-e1a6-4008-a0ae-08957a03ebf5">
+                <propertyInstance
+                  Id="6f094569-52cf-44fe-b89f-67f482a9d963"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9e69b8ff-1186-45cf-9f78-35fb0f57a77e">
+                <propertyInstance
+                  Id="d474ef15-8b6a-48a0-b85a-5e2c3edaf0e6"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ffafbaa0-8b08-41bd-825d-33fdf9b9ed50">
+                <propertyInstance
+                  Id="90e3daad-1122-406c-88d9-feb1d52ecd60"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0b1f3c49-d2dd-4e8d-809d-5f345692b64b">
+                <propertyInstance
+                  Id="235d27cb-c48d-44f6-a739-a9a3ce838a2a"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0187549c-0304-44e6-9bcd-5695f73e0a4c">
+                <propertyInstance
+                  Id="7fe872cd-db3a-4325-ba2f-94d92960768a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="c16d8031-da27-4b16-bca1-6d6f1c4c3575"
+            isSubstitutable="false">
+            <classMoniker
+              Id="6b117f62-e98e-4685-af6d-cde4adab547e"
+              LastKnownName="ApplicationSettingsBase"
+              LastKnownLocation="Package8_0334.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="a4131123-6d00-4f63-9cc5-b0209347c685"
+            isDerived="false"
+            sourceEndRoleName="Settings"
+            targetEndRoleName="Default"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="9e9bfa34-08f5-49e6-930b-6dc9ed9bda05"
+              LastKnownName="Settings"
+              LastKnownLocation="Package1_0334.uml" />
+            <description>Свойство Default ссылается на тип Settings.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9648365e-4d84-4814-b7a9-00fe636fa70c"
+                  name="Settings"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="65b230c2-b807-4c6f-93a8-78580105a0fa"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="fa9855b2-0972-41db-b38a-d43c279e2242"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="28008090-a207-4d78-b969-b8ea0c342f1c"
+                  name="Default"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="5ab2bf0e-5668-4a63-8f91-8eb38510204e"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="c4a05a52-8560-47ed-98cc-21876fc505eb"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="961a7e7a-eae2-4ef1-84cd-abeafd53bf84"
+            name="Host"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="7a5818ad-b34a-4c75-8d4e-ccd6a910b240"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DSettings Member%3DHost"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="0a8853d1-c287-4daa-8479-7d9a9759ace6"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a8457363-9634-4559-a97b-71a512c5cab1">
+                    <propertyInstance
+                      Id="ff8a4038-48cf-4039-a802-4061db4cdce1"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cca14cb3-17ef-4721-87e0-9eaf0586b7d0">
+                    <propertyInstance
+                      Id="af40ff46-e300-43dd-a12e-2e9c986e015e"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="86730e58-e5cd-42af-b0f7-0b85ba5b69d7">
+                    <propertyInstance
+                      Id="e4bdf9de-693e-4b11-bab1-46da97892786"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="34f2e727-7985-4f30-87ab-317eeed547ea">
+                    <propertyInstance
+                      Id="1b95e3fe-50d6-4226-8928-52198bf6da1e"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bb7c2d55-4389-4c27-8fb1-b6ccffea9723">
+                    <propertyInstance
+                      Id="ffb7a5fe-5e51-49df-a24f-7bbe9296c309"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cece42d3-4316-4e29-b01e-51b61fe62634">
+                    <propertyInstance
+                      Id="4354e1de-2985-4c12-9e96-48724169944f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fbe14e76-b674-40bc-88e5-d834b1dc2345">
+                    <propertyInstance
+                      Id="429ed955-fd69-482d-8aee-0b62784cf8d3"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                LastKnownName="String"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5dfa21ee-e36c-4cf7-a535-d98beb13e4e7"
+            name="Default"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="true"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="109ca627-e21d-46fc-ad20-afa7848d6e97"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DSettings Member%3DDefault"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="8210c2f4-40e7-4088-8918-78c8ba8cb9d7"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="18bf8a1c-1fc7-487f-a2d9-899c48530a42">
+                    <propertyInstance
+                      Id="70014010-6f3f-4c88-a00b-a5adb05409ae"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="860cbbab-0c8a-41f0-bc29-af4a7724a3b3">
+                    <propertyInstance
+                      Id="04313df2-b9ed-4040-89d5-4cf79924d544"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6679da66-4551-41e5-9b8e-2af3acff0c4c">
+                    <propertyInstance
+                      Id="b23b508c-5cbf-47f7-a8a5-14e8159c059b"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3b56708b-7f2f-44f3-ba70-b05ada331a46">
+                    <propertyInstance
+                      Id="9d583fd6-d499-4ce6-989a-e058338ab9f6"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d3b9ef36-140c-476e-a736-da1b8a78f816">
+                    <propertyInstance
+                      Id="738b6f6f-484e-44c8-81ec-03bb8226f930"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="78a73a27-c6a2-424f-9e9d-73c42899ee3d">
+                    <propertyInstance
+                      Id="a545a0e0-de03-4e9f-adae-9bf045da4751"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e7867d36-a251-418b-8bf9-42398bc19caa">
+                    <propertyInstance
+                      Id="b72507fc-1de0-497f-8ce6-9c1fde9d9382"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="9e9bfa34-08f5-49e6-930b-6dc9ed9bda05"
+                LastKnownName="Settings"
+                LastKnownLocation="Package1_0334.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="4b1150dd-4847-4de0-8af8-aa92b86a1679"
+            name="Port"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="ad8048bd-d6f0-4fa9-87f4-134f45d31063"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DSettings Member%3DPort"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="46eed442-59c1-40e4-96fe-ebfb7630218c"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b50605c4-03f7-4f17-ba89-4e2ca067c604">
+                    <propertyInstance
+                      Id="f71470ce-ebb8-4365-951e-4ddfff0fa731"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4bc15c5b-57b0-4040-9992-e025dbb89ce7">
+                    <propertyInstance
+                      Id="140a3517-8d53-4de8-876b-e488841ef098"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="64a2a3b5-083a-4d77-924d-faaf5a7ad5f9">
+                    <propertyInstance
+                      Id="37407552-a151-49cd-9ee3-74966f3b5ff6"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="da7f63cf-6a67-4c60-b211-9f2e27b6f31f">
+                    <propertyInstance
+                      Id="11c75ec0-2854-49ed-9cd3-e485c0b5225c"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="95116767-b3ee-4d21-94f4-3a298e7a9bed">
+                    <propertyInstance
+                      Id="2be4f29c-2913-4a77-86d2-0a020eb27792"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="01fdbd50-6628-4ef0-af61-580b401d083d">
+                    <propertyInstance
+                      Id="ac99136a-0c68-4d46-8110-8bfa97782f6e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4aa7a846-bf30-4fa6-bd6a-194a4a98cc99">
+                    <propertyInstance
+                      Id="0d20335a-a58b-476c-9873-a8c7bfc7c003"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="35ac2a31-ccab-4ec3-9598-cf4fd9fe1285"
+            name="defaultInstance"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="3b17ce4d-2cdc-40b9-81ab-cb2893cb813e"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DSettings Member%3DdefaultInstance"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e2c0dc59-3f17-4fdc-93db-6b09cdd160ff"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8e898afa-ce47-4bf4-b500-c506e583c267">
+                    <propertyInstance
+                      Id="3ebc1b35-98a9-46a4-bbbb-ceeb861ac5d9"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b2674ac0-335b-4917-ba89-6c7608c0f763">
+                    <propertyInstance
+                      Id="18827526-226c-4e9d-b64b-092eed39b4d8"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dc721749-de22-49c8-9dc5-5cb836b7df62">
+                    <propertyInstance
+                      Id="29b5e95d-ff42-4108-998a-18b65f76c913"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a66959bc-eafa-4cb4-8575-f25eb851257d">
+                    <propertyInstance
+                      Id="b2bbd5e3-90dd-4c94-b679-d74ed2023e0a"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a803b6bf-4b4b-4971-9f24-959ad73833b9">
+                    <propertyInstance
+                      Id="b7fc0025-33d5-4dcc-bdce-c8a81d004a65"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="9e9bfa34-08f5-49e6-930b-6dc9ed9bda05"
+                LastKnownName="Settings"
+                LastKnownLocation="Package1_0334.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="2c2671e4-63a3-4ff6-bf6a-7dedfffbe8f7"
+            name="Settings"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="cdea37b3-7fd8-4eeb-b4d5-67cf4a1e0fb9"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FReceiveMessageServer%2Fbin%2FDebug%2FReceiveMessageServer.exe Namespace%3DReceiveMessageServer Type%3DSettings Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="2a89ba44-63c7-4ad2-a78b-80c210c39dfc"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c1d09ae1-9d11-4c4f-948d-34408e94ce01">
+                    <propertyInstance
+                      Id="7c1b6ae8-e7ed-46f2-9dc3-235c28c6b67d"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bfceb776-bdca-4ad4-b95e-df062fd155c0">
+                    <propertyInstance
+                      Id="c228cf0f-2188-47eb-aefd-dac817726df7"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6d3b2f21-4bf4-49ad-90b0-db43ef9c601a">
+                    <propertyInstance
+                      Id="311c6f70-b751-499e-b897-8e25866f7910"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="93dae151-3bf5-4e20-8780-25708b3fe4cf">
+                    <propertyInstance
+                      Id="36766adc-fbca-40ed-97dc-7cc829efa627"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8fca15ab-2082-43b6-a4d1-fcbc1229c25a">
+                    <propertyInstance
+                      Id="c905e43f-c6bb-4d1c-8119-9a621facd005"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4e728300-921d-4722-8a89-0bae079e29e3">
+                    <propertyInstance
+                      Id="e6f7e20d-fb2e-4e3b-875a-c655be5e525c"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="9a8fd295-f41e-4f8a-ae2c-26962f20487b"
+        LastKnownName="DAL"
+        LastKnownLocation="Package3_0334.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

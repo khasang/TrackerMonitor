@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="0d914f65-08a2-4e3f-b3f2-67e84910787b"
+  name="AspNet"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="dbb9e9d5-70dd-4b25-b042-de1054b87157"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMicrosoft.AspNet"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="f65f0550-f94d-467c-b06d-9feb98f1d595"
+        LastKnownName="SignalR"
+        LastKnownLocation="Package6_0334.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="ab783c47-5cc7-4694-baac-e388b7fa786d"
+        LastKnownName="Identity"
+        LastKnownLocation="Package3_0358.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
