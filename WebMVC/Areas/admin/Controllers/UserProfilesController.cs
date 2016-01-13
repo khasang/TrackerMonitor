@@ -56,10 +56,7 @@ namespace WebMVC.Areas.admin.Controllers
             {
                 var profile = new UserProfile()
                 {
-                    UserId = model.UserId,
-                    Name = model.Name,
-                    User = model.User,
-                    GPSTrackers = model.GPSTrackers                    
+                    Name = model.Name,             
                 };
                 db.UserProfiles.Add(profile);
                 db.SaveChanges();
@@ -94,10 +91,7 @@ namespace WebMVC.Areas.admin.Controllers
             if (ModelState.IsValid)
             {
                 var modifyProfile = db.UserProfiles.Find(profile.UserId);
-                modifyProfile.UserId = profile.UserId;
-                modifyProfile.User = profile.User;
                 modifyProfile.Name = profile.Name;
-                modifyProfile.GPSTrackers = profile.GPSTrackers;
                 db.SaveChanges();
                 return Json(new { success = true });
             }

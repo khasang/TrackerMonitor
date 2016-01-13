@@ -55,10 +55,8 @@ namespace WebMVC.Areas.admin.Controllers
                 {
                     Id = model.Id,
                     Name = model.Name,
-                    Owner = model.Owner,
                     OwnerId = model.OwnerId,
                     PhoneNumber =model.PhoneNumber,
-                     GPSTrackerMessages = model.GPSTrackerMessages
                 };
                 db.GPSTrackers.Add(gpstracker);
                 db.SaveChanges();
@@ -95,9 +93,7 @@ namespace WebMVC.Areas.admin.Controllers
                 var modifyGPSTracker = db.GPSTrackers.Find(gpstracker.Id);
                 modifyGPSTracker.Id = gpstracker.Id;
                 modifyGPSTracker.Name = gpstracker.Name;
-                modifyGPSTracker.Owner = gpstracker.Owner;
                 modifyGPSTracker.OwnerId = gpstracker.OwnerId;
-                modifyGPSTracker.GPSTrackerMessages = gpstracker.GPSTrackerMessages;
                 db.SaveChanges();
                 return Json(new { success = true });
             }

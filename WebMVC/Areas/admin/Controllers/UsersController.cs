@@ -63,7 +63,6 @@ namespace WebMVC.Areas.admin.Controllers
                     PasswordHash = model.PasswordHash,
                     SecurityStamp = model.SecurityStamp,
                     TwoFactorEnabled = model.TwoFactorEnabled,
-                    UserProfile = model.UserProfile,
                     UserProfileId = model.UserProfileId
                 };
                 db.Users.Add(user);
@@ -111,7 +110,6 @@ namespace WebMVC.Areas.admin.Controllers
                 modifyUser.PasswordHash = user.PasswordHash;
                 modifyUser.SecurityStamp = user.SecurityStamp;
                 modifyUser.TwoFactorEnabled = user.TwoFactorEnabled;
-                modifyUser.UserProfile = user.UserProfile;
                 modifyUser.UserProfileId = user.UserProfileId;
                 db.SaveChanges();
                 return Json(new { success = true });

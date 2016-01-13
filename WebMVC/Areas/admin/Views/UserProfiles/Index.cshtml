@@ -22,12 +22,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User.EmailConfirmed)
-            </th>
         </tr>
 
         @foreach (var item in Model)
@@ -38,12 +32,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.EmailConfirmed)
                 </td>
                 <td>
                     <a href="@Url.Action("Edit","UserProfiles", new { id = item.UserId, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnEdit" style="float:right">
