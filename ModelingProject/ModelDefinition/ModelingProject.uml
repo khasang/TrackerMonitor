@@ -54,6 +54,18 @@
         LastKnownName="DAL"
         LastKnownLocation="Package_0411.uml" />
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="561b75d3-9c0e-497f-b78c-cad7c4734c1d"
+        LastKnownName="SignalR"
+        LastKnownLocation="Package_1908.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="55f493f5-4ab7-4a76-9b3d-6df065f9de5f"
+        LastKnownName="WebMVC"
+        LastKnownLocation="Package_1951.uml" />
+    </packageHasNamedElement>
   </packagedElements>
   <primitiveType
     Id="220a3521-e091-4221-bae9-3ef9018e845c"

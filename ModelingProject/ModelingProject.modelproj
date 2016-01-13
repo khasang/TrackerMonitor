@@ -34,6 +34,9 @@
     <Content Include="ModelDefinition\Package1_0411.uml">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="ModelDefinition\Package1_2015.uml">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\Package2_0334.uml">
       <SubType>Content</SubType>
     </Content>
@@ -92,6 +95,18 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\Package_0411.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1908.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1911.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1951.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_2015.uml">
       <SubType>Content</SubType>
     </Content>
     <Content Include="UMLClassDiagram.classdiagram">

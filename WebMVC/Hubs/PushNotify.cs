@@ -17,7 +17,7 @@ namespace WebMVC.Hubs
     /// Класс для работы с SignalR
     /// </summary>
     //[Authorize]
-    public class PushNotify:Hub
+    public class PushNotify : Hub
     {
         ApplicationDbContext dbContext = new ApplicationDbContext();
 

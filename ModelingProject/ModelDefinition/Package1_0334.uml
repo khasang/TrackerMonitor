@@ -27,6 +27,14 @@
         LastKnownName="DAL"
         LastKnownLocation="Package3_0334.uml" />
     </packageImport>
+    <packageImport
+      Id="3490bebb-c062-4d3d-a024-c0981095af8c"
+      visibility="Public">
+      <packageMoniker
+        Id="eacc3ccb-a192-4ebb-ae4b-b45d6b3fa30c"
+        LastKnownName="SignalR:Client"
+        LastKnownLocation="Package_1911.uml" />
+    </packageImport>
   </importedPackagesInternal>
   <profileInstances>
     <packageHasProfileInstances
@@ -408,6 +416,14 @@
               LastKnownName="IDisposable"
               LastKnownLocation="Package_0334.uml" />
           </interfaceRealization>
+          <dependency
+            Id="b59588cc-09dd-4403-890c-a06f5251ff48">
+            <interfaceMoniker
+              Id="ecd66653-7d30-43e2-a188-a26c4c029483"
+              LastKnownName="IHubProxi"
+              LastKnownLocation="Package_1911.uml" />
+            <description>Create</description>
+          </dependency>
         </suppliersInternal>
         <targetEnds>
           <association
@@ -478,6 +494,45 @@
                 <memberEnd
                   Id="bc4156d8-ced1-49e4-9011-88c4af7789c8"
                   name="ApplicationDbContext"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="aa2fce84-7cf1-4b35-915e-16ccd0bf4c6c"
+            isDerived="false"
+            sourceEndRoleName="Server"
+            targetEndRoleName="HubConnection"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="d451a278-8dc0-46b7-a11d-19a5882b5407"
+              LastKnownName="HubConnection"
+              LastKnownLocation="Package_1911.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1e231d05-c300-44df-901b-bf20c6a9bd66"
+                  name="Server"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="903d6e43-211d-4747-a387-6cfd6ab2dbc7"
+                  name="HubConnection"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"

@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="ea062226-2be1-4903-a77a-42afa51b3a1a"
+  name="WebMVC:Hub" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="38bbd6d8-0123-4f92-a18b-76d6b14218fd"
+        name="PushNotify"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="e7f167c0-89df-4e05-a769-af75ca8aab71"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FWebMVC%2Fbin%2FWebMVC.dll Namespace%3DWebMVC.Hubs Type%3DPushNotify"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="0217ef9e-e0da-4d56-bff3-5cb79b2e98fc"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bd5b89e0-d119-456d-a78b-a579d0b9769e">
+                <propertyInstance
+                  Id="ca749ca1-0946-45be-abfc-7f1e7bbab8de"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5e356340-f542-40a6-824f-f6d067d9febb">
+                <propertyInstance
+                  Id="9f945a9d-c4fb-4eb1-bf35-163a48f481c5"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c172ffdd-ebb0-4385-8e51-7bbd84e22264">
+                <propertyInstance
+                  Id="512a37a8-200f-44b0-9a4a-6b63f901eaf0"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ed86e286-957e-4aa8-9c16-fe9fa13c8f38">
+                <propertyInstance
+                  Id="bbc084fa-ddcc-451a-8679-ed3b01cb02a2"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d4e30b60-769e-4a10-b065-40ce819608c0">
+                <propertyInstance
+                  Id="e07cdbfc-03fd-4bc3-887e-8b2940aa5eb6"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="dcb2108a-dc05-4352-8499-1c43c24f0b79"
+            isSubstitutable="false">
+            <classMoniker
+              Id="6006c432-3ded-4ab7-ba34-d5611a34d7cb"
+              LastKnownName="Hub"
+              LastKnownLocation="Package6_0334.uml" />
+          </generalization>
+          <generalization
+            Id="a8c86d9d-97f9-4745-ad8b-5f4db0c458d1"
+            isSubstitutable="false">
+            <classMoniker
+              Id="36c1fb0c-894c-4fca-acb6-20daf65d4607"
+              LastKnownName="Hub"
+              LastKnownLocation="Package_1908.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="17eb3ec2-c1bc-4dfd-8310-de3ac3ca3762"
+            name="dbContext"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="933946b1-195e-4f5f-92ba-cd21cf37365a"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FWebMVC%2Fbin%2FWebMVC.dll Namespace%3DWebMVC.Hubs Type%3DPushNotify Member%3DdbContext"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="faabe25f-2cc7-4f98-8b9c-3dd2cdcc7f3c"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="66efb8db-84b4-4ec6-99a3-661c52922307">
+                    <propertyInstance
+                      Id="cdcdc1e8-8656-4555-864b-9d06582a1ab5"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="78180a05-a4f3-435f-b994-152ff39e33e7">
+                    <propertyInstance
+                      Id="d7b09967-5aa9-4a3c-8c71-bab85b1be0e0"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a99388d1-8928-483f-8fd8-bcd991851628">
+                    <propertyInstance
+                      Id="c0affb24-b683-4dcf-a40e-a09ede25e0db"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1fe0de7d-f4f8-49e5-ab94-ec6f3822fc49">
+                    <propertyInstance
+                      Id="5291511a-f238-4096-a72d-445bcf8fc92a"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1e0600b0-139d-4a9a-859f-2949fdaa9784">
+                    <propertyInstance
+                      Id="575bde77-85c8-49ff-8d1c-50f2c0177998"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="73187989-3870-4266-b8f8-ec31ce3bff09"
+                LastKnownName="ApplicationDbContext"
+                LastKnownLocation="Package_0411.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="9d427603-cd65-46ff-b0e4-16057e2d129a"
+            name="SendNewMessage"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="9499a89e-05a7-4162-8929-4740fe4c8e16"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FWebMVC%2Fbin%2FWebMVC.dll Namespace%3DWebMVC.Hubs Type%3DPushNotify Member%3D(Name%3DSendNewMessage OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL.Entities Type%3DGPSTrackerMessage)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b74a0757-03fd-4e49-a8b7-05fb496e461a"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d1620fa2-8a5c-47f6-83bb-6d8e61a9d132">
+                    <propertyInstance
+                      Id="2203e801-8cc7-4dae-b053-3e0da1af04c3"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6f8cd80e-4a26-416c-acc8-0c2e2f17461f">
+                    <propertyInstance
+                      Id="418fc3bb-f957-43dd-9d62-bf7fb9661cf4"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="882cbe9e-be95-4b47-8cfc-e3749168f0d2">
+                    <propertyInstance
+                      Id="b3843113-ed68-4142-bd83-4561223482d9"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b5d481d9-1822-4abc-a110-216771227a01">
+                    <propertyInstance
+                      Id="29845564-5291-4521-836e-eb8def982fe0"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="60e2eb7f-0258-43ca-9489-d73d8bb44fca">
+                    <propertyInstance
+                      Id="4ba9cca1-332a-4440-a514-ac849f1f7534"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6426e6ea-9d9d-4c8e-9acb-708eae7b42f2">
+                    <propertyInstance
+                      Id="9e5f94f8-03bd-49cf-89a2-2d8100210959"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f6a66fe0-7912-48b1-828d-d309defcbfa8"
+                  name="message"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="d86b162c-8966-42d2-a7e5-0344701db166"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FWebMVC%2Fbin%2FWebMVC.dll Namespace%3DWebMVC.Hubs Type%3DPushNotify Member%3D(Name%3DSendNewMessage OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL.Entities Type%3DGPSTrackerMessage)]) ParameterIdentifier%3Dmessage"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="2e266727-0910-4824-a408-e5d66fd04a2d"
+                      LastKnownName="GPSTrackerMessage"
+                      LastKnownLocation="Package1_0411.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="aa16de88-cce5-4c74-974b-8d778ab54a8d"
+            name="PushNotify"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="f20355b1-4033-48d8-90fd-50ea728ab3fd"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FWebMVC%2Fbin%2FWebMVC.dll Namespace%3DWebMVC.Hubs Type%3DPushNotify Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="2027fd25-c5f9-4f2b-9186-1f52b9b5486e"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e4e0423c-8b8d-4a26-9ef8-f1f61a60a785">
+                    <propertyInstance
+                      Id="a43c376f-2446-441b-a592-b4696c8aa798"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="30ce4f4e-41bc-4607-b3e5-d009f1f0cdc1">
+                    <propertyInstance
+                      Id="689ae482-2130-4b5f-bd62-acbb97040ede"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2aea0e31-307f-4c05-96de-ac07419fd147">
+                    <propertyInstance
+                      Id="268c8f39-5355-41a2-b0c2-01c187d81e0a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cf832a25-b21c-4efd-8fac-934ed13d1a5c">
+                    <propertyInstance
+                      Id="1b64ba9d-7be9-4400-8289-0cb53b2925a8"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="56700c4f-73e3-425a-89e2-367c3d326484">
+                    <propertyInstance
+                      Id="16cbbeda-6874-403f-9a29-005d2ede6100"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f4c89619-f583-4be3-a4fd-b862c4a27e89">
+                    <propertyInstance
+                      Id="6b86fa64-44c6-4b3c-9335-10e1de76b5b2"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="3056c8b2-0094-4cca-bce6-1193324f5fa6"
+            name="OnConnected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="270ddaff-9ace-43d2-9c29-f0a9b8bd2cc8"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FWebMVC%2Fbin%2FWebMVC.dll Namespace%3DWebMVC.Hubs Type%3DPushNotify Member%3DOnConnected"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c6f3f6e9-dc30-452b-9f9d-4060be99cc35"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="37d5143b-a534-4f3b-8b1b-1ac4325678d5">
+                    <propertyInstance
+                      Id="0942825c-d611-4db5-9f75-8006e9f48ca8"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="507e7edb-a965-4668-acf4-8813c4e1895a">
+                    <propertyInstance
+                      Id="3f42d4e7-e383-4220-863e-fdae1debae1c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="618c4ce4-33a1-435d-a3ec-4e6b2adcdf94">
+                    <propertyInstance
+                      Id="1081e9a1-7dfc-4cfd-bbc3-c8edab3d5edd"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ff5831f1-01b2-433f-bc52-f90e4bbf7a62">
+                    <propertyInstance
+                      Id="cc1601ae-003c-498e-b0bf-b012ea57f399"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0a21985a-435e-450c-b50a-90aca9b9f133">
+                    <propertyInstance
+                      Id="57fca0a6-1cca-487e-85e5-fc31dc39a5fe"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ea229667-740b-4456-a48f-2916d24ea3aa">
+                    <propertyInstance
+                      Id="accc4302-101d-44d5-ba27-0e5ec0a61221"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e604c4b5-4cc1-41b2-b072-133053e272db"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="bcf6dbc4-6cb4-429b-ab5d-42cb5df608ff"
+                      LastKnownName="Task"
+                      LastKnownLocation="Package1_0337.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
