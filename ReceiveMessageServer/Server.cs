@@ -98,9 +98,9 @@ namespace ReceiveMessageServer
             }
         }
 
-        public void Dispose(bool disposing)
+        public void Dispose()
         {
-            if (disposing && dbContext != null)
+            if (dbContext != null)
                 dbContext.Dispose();
         }
     }

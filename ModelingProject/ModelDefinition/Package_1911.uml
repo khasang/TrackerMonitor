@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="eacc3ccb-a192-4ebb-ae4b-b45d6b3fa30c"
+  name="SignalR:Client" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="79654816-0861-4b6f-98b6-2608a76353bd">
+      <profileInstance
+        Id="e0bb8fad-6bbf-4351-b574-43a3905a6904"
+        name="TextTemplateBindings" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="d451a278-8dc0-46b7-a11d-19a5882b5407"
+        name="HubConnection"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c9b26886-595d-4640-9283-4a7b1999a96f"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9c06e2f8-836c-4084-a3ae-6d00042e9c27">
+                <propertyInstance
+                  Id="8456f32d-57b1-4674-aa24-e005a8a077b8"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2c41ec26-dc69-49cb-8c12-bdb73fac4973">
+                <propertyInstance
+                  Id="ce48f0e0-34d1-4ad9-ad02-ee5bcc1bd0c8"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2cea3221-f173-41b3-87c0-feda54652b83">
+                <propertyInstance
+                  Id="dcafc252-88e3-417b-971e-d366b12758c1"
+                  name="IsStatic"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6ab2a4ec-e7e6-4cc4-aacd-5ded802502ff">
+                <propertyInstance
+                  Id="71bd69d8-3aa0-4ec4-8cc1-4cbcf86ba4da"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="71668e9e-c344-48f0-a602-85dae6f0fc34">
+                <propertyInstance
+                  Id="cd1e6303-a0a9-468a-b5bf-6af6618753d7"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="ecd66653-7d30-43e2-a188-a26c4c029483"
+        name="IHubProxi"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
