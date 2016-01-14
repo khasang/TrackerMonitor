@@ -34,8 +34,8 @@
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => Model.EmailConfirmed, new { @class = "control-label col-sm-3" })
-                <div class="col-sm-9">
-                    @Html.TextBoxFor(m => m.EmailConfirmed, new { @class = "form-control required" })
+                <div class="col-sm-offset-4">
+                    @Html.CheckBoxFor(m => m.EmailConfirmed)
                     <div>
                         @Html.ValidationMessageFor(m => m.EmailConfirmed)
                     </div>
@@ -52,8 +52,8 @@
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => Model.PhoneNumberConfirmed, new { @class = "control-label col-sm-3" })
-                <div class="col-sm-9">
-                    @Html.TextBoxFor(m => m.PhoneNumberConfirmed, new { @class = "form-control required" })
+                <div class="col-sm-offset-4">
+                    @Html.CheckBoxFor(m => m.PhoneNumberConfirmed)
                     <div>
                         @Html.ValidationMessageFor(m => m.PhoneNumberConfirmed)
                     </div>
@@ -70,8 +70,8 @@
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => Model.LockoutEnabled, new { @class = "control-label col-sm-3" })
-                <div class="col-sm-9">
-                    @Html.TextBoxFor(m => m.LockoutEnabled, new { @class = "form-control required" })
+                <div class="col-sm-offset-4">
+                    @Html.CheckBoxFor(m => m.LockoutEnabled)
                     <div>
                         @Html.ValidationMessageFor(m => m.LockoutEnabled)
                     </div>
@@ -106,8 +106,8 @@
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => Model.TwoFactorEnabled, new { @class = "control-label col-sm-3" })
-                <div class="col-sm-9">
-                    @Html.TextBoxFor(m => m.TwoFactorEnabled, new { @class = "form-control required" })
+                <div class="col-sm-offset-4">
+                    @Html.CheckBoxFor(m => m.TwoFactorEnabled)
                     <div>
                         @Html.ValidationMessageFor(m => m.TwoFactorEnabled)
                     </div>
