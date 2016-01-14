@@ -9,12 +9,18 @@ namespace DAL.Entities
 {
     public class UserProfile
     {
+        /// <summary>
+        /// Id пользователя
+        /// </summary>
         [Display(Name = "Id пользователя")]
         public string UserId { get; set; }
 
         [Display(Name = "Пользователь")]
         public virtual ApplicationUser User { get; set; }
 
+        /// <summary>
+        /// Имя профайла
+        /// </summary>
         [Display(Name = "Имя профайла")]
         public string Name { get; set; }
 
