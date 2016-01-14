@@ -15,29 +15,38 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => Model., new { @class = "control-label col-sm-3" })
+                @Html.LabelFor(m => Model.Latitude, new { @class = "control-label col-sm-3" })
                 <div class="col-sm-9">
-                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control required" })
+                    @Html.TextBoxFor(m => m.Latitude, new { @class = "form-control required" })
                     <div>
-                        @Html.ValidationMessageFor(m => m.Name)
+                        @Html.ValidationMessageFor(m => m.Latitude)
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => Model.OwnerId, new { @class = "control-label col-sm-3" })
+                @Html.LabelFor(m => Model.Longitude, new { @class = "control-label col-sm-3" })
                 <div class="col-sm-9">
-                    @Html.TextBoxFor(m => m.OwnerId, new { @class = "form-control required" })
+                    @Html.TextBoxFor(m => m.Longitude, new { @class = "form-control required" })
                     <div>
-                        @Html.ValidationMessageFor(m => m.OwnerId)
+                        @Html.ValidationMessageFor(m => m.Longitude)
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => Model.PhoneNumber, new { @class = "control-label col-sm-3" })
+                @Html.LabelFor(m => Model.Time, new { @class = "control-label col-sm-3" })
                 <div class="col-sm-9">
-                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control required" })
+                    @Html.TextBoxFor(m => m.Time, new { @class = "form-control required" })
                     <div>
-                        @Html.ValidationMessageFor(m => m.PhoneNumber)
+                        @Html.ValidationMessageFor(m => m.Time)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.GPSTrackerId, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.GPSTrackerId, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.GPSTrackerId)
                     </div>
                 </div>
             </div>

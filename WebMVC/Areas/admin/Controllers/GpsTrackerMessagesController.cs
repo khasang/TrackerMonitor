@@ -2,6 +2,7 @@
 using DAL.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -24,14 +25,16 @@ namespace WebMVC.Areas.admin.Controllers
         }
 
         // GET: admin/GpsTrackersMessages
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? page)
         {
-            var gpsTrackersMessages = db.GPSTrackerMessages;
+            int pageSize = 20;              //количество объектов на странице
+            int pageNumber = (page ?? 1);
+            var gpsTrackersMessages =await db.GPSTrackerMessages.ToListAsync();
             if (gpsTrackersMessages == null)
             {
                 return HttpNotFound();
             }
-            return PartialView(await gpsTrackersMessages.ToListAsync());
+            return PartialView(gpsTrackersMessages.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]

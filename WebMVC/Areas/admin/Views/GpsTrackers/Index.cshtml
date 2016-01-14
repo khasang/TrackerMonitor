@@ -1,5 +1,6 @@
-﻿@model IEnumerable<DAL.Entities.GPSTracker>
-
+﻿@*@model IEnumerable<DAL.Entities.GPSTracker>*@
+@model PagedList.IPagedList<DAL.Entities.GPSTracker>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Трекеры";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -17,16 +18,16 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.First().Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.First().Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OwnerId)
+                @Html.DisplayNameFor(model => model.First().OwnerId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
+                @Html.DisplayNameFor(model => model.First().PhoneNumber)
             </th>
         </tr>
 
@@ -60,6 +61,8 @@
     </table>
 </div>
 @Html.Partial("~/Areas/admin/Views/_modal_partial.cshtml")
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.Classic)
 
 @section scripts{
     @Scripts.Render("~/Areas/admin/scripts/modal-partial.js")

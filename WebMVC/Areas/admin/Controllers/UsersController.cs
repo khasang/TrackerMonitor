@@ -2,6 +2,7 @@
 using DAL.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -22,14 +23,16 @@ namespace WebMVC.Areas.admin.Controllers
             userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? page)
         {
-            var users = db.Users;
+            int pageSize = 20;              //количество объектов на странице
+            int pageNumber = (page ?? 1); 
+            var users = await db.Users.ToListAsync();
             if (users == null)
             {
                 return HttpNotFound();
             }
-            return View(await users.ToListAsync());
+            return View(users.ToPagedList(pageNumber, pageSize));
         }
 
         //Эксперименты с Json

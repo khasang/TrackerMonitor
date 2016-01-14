@@ -2,6 +2,7 @@
 using DAL.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -28,14 +29,16 @@ namespace WebMVC.Areas.admin.Controllers
         /// Возвратит нам всех профайлы пользователей.
         /// </summary>
         /// <returns></returns>
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? page)
         {
-            var userProfiles = db.UserProfiles;
+            int pageSize = 20;              //количество объектов на странице
+            int pageNumber = (page ?? 1);
+            var userProfiles = await db.UserProfiles.ToListAsync();
             if (userProfiles == null)
             {
                 return HttpNotFound();
             }
-            return View(await userProfiles.ToListAsync());
+            return View(userProfiles.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]

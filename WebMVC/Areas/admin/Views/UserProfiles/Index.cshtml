@@ -1,4 +1,6 @@
-﻿@model IEnumerable<DAL.Entities.UserProfile>
+﻿@*@model IEnumerable<DAL.Entities.UserProfile>*@
+@model PagedList.IPagedList<DAL.Entities.UserProfile>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Профайлы";
@@ -17,10 +19,10 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserId)
+                @Html.DisplayNameFor(model => model.First().UserId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.First().Name)
             </th>
         </tr>
 
@@ -49,6 +51,8 @@
 </div>
 
 @Html.Partial("~/Areas/admin/Views/_modal_partial.cshtml")
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.Classic)
 
 @section scripts{
     @Scripts.Render("~/Areas/admin/scripts/modal-partial.js")
