@@ -34,7 +34,7 @@
                     @*<li>@Html.ActionLink("Тест", "SignalRView", "Home", new { area = "" }, null)</li>*@
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("АдминистрированиеNtcn", "Index", new { area = "admin" }, null)</li>
+                        <li>@Html.ActionLink("Администрирование", "Index", new { area = "admin" }, null)</li>
                     } 
                 </ul>
                 @Html.Partial("_LoginPartial")
