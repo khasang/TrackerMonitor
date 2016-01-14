@@ -1,7 +1,7 @@
-﻿@model IEnumerable<DAL.Entities.ApplicationUser>
+﻿@model IEnumerable<DAL.Entities.GPSTrackerMessage>
 
 @{
-    ViewBag.Title = "Пользователи";
+    ViewBag.Title = "Сообщения";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,7 +10,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         @ViewBag.Title
-        <a href="@Url.Action("Create","Users",new { area = "admin" },null)" class="btn btn-success btn-xs" data-modal ="" id="btnCreate" style="float:right; width:20%;">
+        <a href="@Url.Action("Create","GpsTrackerMessages",new { area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnCreate" style="float:right; width:20%;">
             <span class="glyphicon glyphicon-plus"></span>Добавить
         </a>
     </div>
@@ -20,16 +20,16 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                @Html.DisplayNameFor(model => model.Latitude)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.Longitude)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EmailConfirmed)
+                @Html.DisplayNameFor(model => model.Time)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
+                @Html.DisplayNameFor(model => model.GPSTrackerId)
             </th>
         </tr>
 
@@ -40,24 +40,24 @@
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
+                    @Html.DisplayFor(modelItem => item.Latitude)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Email)
+                    @Html.DisplayFor(modelItem => item.Longitude)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                    @Html.DisplayFor(modelItem => item.Time)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    @Html.DisplayFor(modelItem => item.GPSTrackerId)
                 </td>
                 <td>
-                    <a href="@Url.Action("Edit","Users", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnEdit" style="float:right">
+                    <a href="@Url.Action("Edit","GpsTrackerMessages", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnEdit" style="float:right">
                         <span class="glyphicon glyphicon-apple"></span>Редактировать
                     </a>
                 </td>
                 <td>
-                    <a href="@Url.Action("Delete","Users", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnDelete" style="float:right">
+                    <a href="@Url.Action("Delete","GpsTrackerMessages", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnDelete" style="float:right">
                         <span class="glyphicon glyphicon-trash"></span>Удалить
                     </a>
                 </td>
@@ -65,7 +65,6 @@
         }
     </table>
 </div>
-
 @Html.Partial("~/Areas/admin/Views/_modal_partial.cshtml")
 
 @section scripts{
