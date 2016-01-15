@@ -15,6 +15,7 @@
                         </div>
                         <div class="form-bottom">
                             <form role="form" action="" method="post" class="registration-form">
+                                @Html.AntiForgeryToken()
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Email</label>
                                     <div class="input-group">

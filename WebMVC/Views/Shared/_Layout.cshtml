@@ -37,12 +37,19 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="top-navbar-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a>@Html.ActionLink("HOME", "Index", "Home")</a>
-                        <a>@Html.ActionLink("WHO WE ARE", "Index", "Home")</a>
-                        <a>@Html.ActionLink("WHAT WE DO", "Index", "Home")</a>
-                        <a>@Html.ActionLink("CONTACTS", "Contact", "Home")</a>
-                    </li>
+                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Личный кабинет", "Index", "PersonalArea")</li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Кабинет Админа", "Index", "Home")</li>
+                    }
+                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
+                    <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Тест", "SignalRView", "Home")</li>
+
                 </ul>
             </div>
         </div>
