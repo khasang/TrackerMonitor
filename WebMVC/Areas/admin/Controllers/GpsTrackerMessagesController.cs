@@ -59,7 +59,7 @@ namespace WebMVC.Areas.admin.Controllers
                     Id = model.Id,
                     Latitude = model.Latitude,
                     Longitude = model.Longitude,
-                    Time = model.Time,
+                    Time = DateTime.Now,
                     GPSTrackerId = model.GPSTrackerId
                 };
                 db.GPSTrackerMessages.Add(gpsTrackersMessage);

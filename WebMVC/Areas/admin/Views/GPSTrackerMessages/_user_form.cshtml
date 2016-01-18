@@ -33,15 +33,6 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => Model.Time, new { @class = "control-label col-sm-3" })
-                <div class="col-sm-9">
-                    @Html.TextBoxFor(m => m.Time, new { @class = "form-control required" })
-                    <div>
-                        @Html.ValidationMessageFor(m => m.Time)
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
                 @Html.LabelFor(m => Model.GPSTrackerId, new { @class = "control-label col-sm-3" })
                 <div class="col-sm-9">
                     @Html.TextBoxFor(m => m.GPSTrackerId, new { @class = "form-control required" })
