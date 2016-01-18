@@ -48,6 +48,7 @@ namespace WebMVC.Areas.admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(GPSTracker model)
         {
             ViewBag.Selector = ViewSelector.Edit;

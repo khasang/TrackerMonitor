@@ -8,7 +8,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => Model.UserId, new { @class = "control-label col-sm-3" })
                 <div class="col-sm-9">
-                    @Html.TextBoxFor(m => m.UserId, new { @class = "form-control", @disabled="disabled"})
+                    @Html.TextBoxFor(m => m.UserId, new { @class = "form-control required" })
                 </div>
             </div>
             <div class="form-group">

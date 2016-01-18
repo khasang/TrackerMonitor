@@ -46,6 +46,7 @@ namespace WebMVC.Areas.admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(ApplicationUser model)
         {
             ViewBag.Selector = ViewSelector.Edit;

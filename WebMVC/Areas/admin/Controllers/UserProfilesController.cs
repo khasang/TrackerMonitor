@@ -51,6 +51,7 @@ namespace WebMVC.Areas.admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(UserProfile model)
         {
             ViewBag.Selector = ViewSelector.Edit;
@@ -59,7 +60,8 @@ namespace WebMVC.Areas.admin.Controllers
             {
                 var profile = new UserProfile()
                 {
-                    Name = model.Name,             
+                    UserId  =   model.UserId,
+                    Name = model.Name             
                 };
                 db.UserProfiles.Add(profile);
                 db.SaveChanges();
@@ -94,6 +96,7 @@ namespace WebMVC.Areas.admin.Controllers
             if (ModelState.IsValid)
             {
                 var modifyProfile = db.UserProfiles.Find(profile.UserId);
+                modifyProfile.UserId = profile.UserId;
                 modifyProfile.Name = profile.Name;
                 db.SaveChanges();
                 return Json(new { success = true });
