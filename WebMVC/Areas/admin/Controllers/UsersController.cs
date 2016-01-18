@@ -83,7 +83,7 @@ namespace WebMVC.Areas.admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = await db.Users.FirstAsync(i => i.Id == id); //не нашел FindAsync ????
+            var user = await db.Users.FirstAsync(i => i.Id == id);
             ViewBag.Selector = ViewSelector.Edit;
             ViewBag.ActionName = "Редактировать";
             if (user == null)

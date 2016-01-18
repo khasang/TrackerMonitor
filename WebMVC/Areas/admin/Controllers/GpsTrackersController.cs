@@ -59,7 +59,7 @@ namespace WebMVC.Areas.admin.Controllers
                 {
                     Id = model.Id,
                     Name = model.Name,
-                    OwnerId = model.OwnerId,
+                    //OwnerId = model.OwnerId,
                     PhoneNumber =model.PhoneNumber,
                 };
                 db.GPSTrackers.Add(gpstracker);

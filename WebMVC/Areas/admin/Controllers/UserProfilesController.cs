@@ -60,7 +60,7 @@ namespace WebMVC.Areas.admin.Controllers
             {
                 var profile = new UserProfile()
                 {
-                    UserId  =   model.UserId,
+                    //UserId  =   model.UserId,
                     Name = model.Name             
                 };
                 db.UserProfiles.Add(profile);
