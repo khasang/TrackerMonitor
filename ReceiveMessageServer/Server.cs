@@ -59,10 +59,24 @@ namespace ReceiveMessageServer
         private void OnShowReceivedMessage(object sender, EventArgs e)
         {
             UDPMessage message = e as UDPMessage;
+            foreach (var b in message.Message)
+            {
+                Console.Write("{0}", (int)b);
+            }
+            Console.WriteLine();
             if (message == null)
-                return;   // Здесь можно ввести обработку ошибки (неподходящий формат сообщения)
+                return;   // Здесь можно ввести обработку ошибки
 
-            GPSTrackerMessage gpsMessage = GPSTrackerMessageConverter.BytesToMessage(message.Message);
+            GPSTrackerMessage gpsMessage = null;
+
+            try
+            {
+                gpsMessage = GPSTrackerMessageConverter.BytesToMessage(message.Message);
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
 
             Console.WriteLine("{0} : {1}", gpsMessage.Latitude, gpsMessage.Longitude);
 
@@ -75,22 +89,27 @@ namespace ReceiveMessageServer
                     // Записываем в лог, что пришло сообщение с неизвестного трекера
                     Console.WriteLine("Не найден трекер с id = {0}", gpsMessage.GPSTrackerId);
                 }
-                else
-                {
-                    dbContext.GPSTrackerMessages.Add(gpsMessage);
-                    dbContext.SaveChanges();
-                }                
+
+                dbContext.GPSTrackerMessages.Add(gpsMessage);
+                dbContext.SaveChanges();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ошибка работы с базой данных! : {0}", ex.Message);
+                Console.WriteLine("Ошибка сохранения в базе данных! : {0}", ex.Message);
             }
-
-            // Решить: Если отвалилась БД, отсылать ли сообщения? В данной реализации - отсылает.
 
             try
             {
-                hubProxy.Invoke("SendNewMessage", gpsMessage);            
+                GPSTrackerMessage signalRMessage = new GPSTrackerMessage();
+
+                signalRMessage.Id = gpsMessage.Id;
+                signalRMessage.Latitude = gpsMessage.Latitude;
+                signalRMessage.Longitude = gpsMessage.Longitude;
+                signalRMessage.Time = gpsMessage.Time;
+                signalRMessage.GPSTracker = new GPSTracker();
+                signalRMessage.GPSTracker.OwnerId = gpsMessage.GPSTracker.OwnerId;
+
+                hubProxy.Invoke("SendNewMessage", signalRMessage);
             }
             catch (Exception ex)
             {
@@ -98,9 +117,9 @@ namespace ReceiveMessageServer
             }
         }
 
-        public void Dispose(bool disposing)
+        public void Dispose()
         {
-            if (disposing && dbContext != null)
+            if (dbContext != null)
                 dbContext.Dispose();
         }
     }
