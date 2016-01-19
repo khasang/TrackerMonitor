@@ -8,6 +8,7 @@
 
 
 
+
 <div class="top-content">
     <div class="inner-bg">
         <div class="container">
@@ -25,19 +26,18 @@
                     <div class="form-bottom">
                         <form role="form" action="" method="post" class="registration-form">
                             @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                <label class="sr-only" for="form-email">Email</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                                    <input type="email" name="Email" placeholder="Email" class="form-email form-control" id="form-email">
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                <label class="sr-only" for="form-password1">Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                                    <input type="password" name="Password" placeholder="Password" class="form-password1 form-control" id="form-password1">
                                 </div>
                             </div>
                             <button type="submit" class="btn center">Log in</button>
