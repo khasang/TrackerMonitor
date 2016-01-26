@@ -19,19 +19,10 @@ namespace WebMVC.Hubs
     //[Authorize]
     public class PushNotify : Hub
     {
-        ApplicationDbContext dbContext = new ApplicationDbContext();
-
+        //[Authorize]
         public void SendNewMessage(GPSTrackerMessage message)
         {
-            Debug.WriteLine("Send -> " + message.GPSTracker.OwnerId);
-
-            if(message.GPSTracker == null)
-            {
-                // Здесь логирование сообщений от неизвестных трекеров
-                return;
-            }
-
-            Clients.Group(message.GPSTracker.OwnerId).ShowMessage(message);            
+            Clients.Group(message.GPSTracker.Owner.Name).ShowMessage(message);
         }
 
         /// <summary>
@@ -40,15 +31,9 @@ namespace WebMVC.Hubs
         /// <returns></returns>
         public override Task OnConnected()
         {
-            Debug.WriteLine("OnConnected");
-            Debug.WriteLine("IsAuthenticated = " + Context.User.Identity.IsAuthenticated.ToString());
-
-            if (!Context.User.Identity.IsAuthenticated) return base.OnConnected();
-
-            Debug.WriteLine("ConnectionId = " + Context.ConnectionId);
-            Debug.WriteLine("UserId = " + Context.User.Identity.GetUserId());
-
-            Groups.Add(Context.ConnectionId, Context.User.Identity.GetUserId()); //имя группы - имя пользователя
+            Debug.WriteLine(Context.ConnectionId);
+            Debug.WriteLine(Context.User.Identity.Name);
+            Groups.Add(Context.ConnectionId, Context.User.Identity.Name); //имя группы - имя пользователя
             return base.OnConnected();
         }
 

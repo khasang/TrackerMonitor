@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebMVC.Json;
 using WebMVC.Models.TrackersViewModels;
 
 namespace WebMVC.Controllers
@@ -36,7 +37,7 @@ namespace WebMVC.Controllers
             if (trackerMasseges.Count() == 0)
                 trackerMasseges.Add(new GPSTrackerMessage()
                 {
-                    GPSTrackerId = "111111",
+                    GPSTrackerId = id,
                     Latitude = 55.69873893333814,
                     Longitude = 52.34677000002305
                 });
@@ -71,7 +72,7 @@ namespace WebMVC.Controllers
             dbContext.GPSTrackers.Add(tracker);
             dbContext.SaveChanges();
 
-            return PartialView("~/Views/Trackers/TrackerListNode.cshtml", tracker);
+            return new JsonCamelCaseResult(model, JsonRequestBehavior.DenyGet);
         }
 
         public ActionResult Edit(string id)
@@ -117,7 +118,7 @@ namespace WebMVC.Controllers
 
             dbContext.SaveChanges();
 
-            return PartialView("TrackerListNode", tracker);
+            return new JsonCamelCaseResult(model, JsonRequestBehavior.DenyGet);
         }
 
         public ActionResult Map()
@@ -161,5 +162,8 @@ namespace WebMVC.Controllers
 
             return Json(id);
         }
+
+
+
     }
 }
