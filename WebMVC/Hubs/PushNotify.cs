@@ -22,7 +22,7 @@ namespace WebMVC.Hubs
         //[Authorize]
         public void SendNewMessage(GPSTrackerMessage message)
         {
-            Clients.Group(message.GPSTracker.Owner.Name).ShowMessage(message);
+            Clients.Group(message.GPSTracker.OwnerId).ShowMessage(message);
         }
 
         /// <summary>
@@ -31,9 +31,10 @@ namespace WebMVC.Hubs
         /// <returns></returns>
         public override Task OnConnected()
         {
-            Debug.WriteLine(Context.ConnectionId);
-            Debug.WriteLine(Context.User.Identity.Name);
-            Groups.Add(Context.ConnectionId, Context.User.Identity.Name); //имя группы - имя пользователя
+            if (Context.User.Identity.IsAuthenticated)
+            {
+                Groups.Add(Context.ConnectionId, Context.User.Identity.GetUserId());
+            }
             return base.OnConnected();
         }
 

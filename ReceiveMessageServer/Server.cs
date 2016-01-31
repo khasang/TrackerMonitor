@@ -106,6 +106,7 @@ namespace ReceiveMessageServer
                 signalRMessage.Latitude = gpsMessage.Latitude;
                 signalRMessage.Longitude = gpsMessage.Longitude;
                 signalRMessage.Time = gpsMessage.Time;
+                signalRMessage.GPSTrackerId = gpsMessage.GPSTrackerId;
                 signalRMessage.GPSTracker = new GPSTracker();
                 signalRMessage.GPSTracker.OwnerId = gpsMessage.GPSTracker.OwnerId;
 

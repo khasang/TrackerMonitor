@@ -17,23 +17,39 @@ namespace UDPServer
         public EventHandler eventReceivedMessage = (x, y) => { };
         public EventHandler eventReceivedError = (x, y) => { };
         
-        public async void StartReceiveAsync(int port) // Запуск приема сообщений
+        public void StartReceiveAsync(int port) // Запуск приема сообщений
         {
             using(udpClient = new UdpClient(port))
             {
                 Console.WriteLine(port);
                 stopReceive = false;
-                byte[] message;
+                IPEndPoint remoteEP = null;
 
                 try
                 {
-                    while (true)  // В цикле слушаем сообщения
+                    while (!stopReceive)  // В цикле слушаем сообщения
                     {
-                        message = (await udpClient.ReceiveAsync()).Buffer; // Ассинхронно ждем получение сообщения
+                        byte[] message = udpClient.Receive(ref remoteEP);
 
-                        eventReceivedMessage(this, new UDPMessage() { Message = message }); // Генерируем событие о получении сообщения.
-                        
-                        if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
+                        Task.Run(() => 
+                        {
+                            eventReceivedMessage(this, new UDPMessage() { Message = message });
+                        });
+
+                        //eventReceivedMessage.BeginInvoke(this, new UDPMessage() { Message = message }, iar => 
+                        //{
+                        //    var ar = (System.Runtime.Remoting.Messaging.AsyncResult)iar;
+                        //    var invokedMethod = (EventHandler)ar.AsyncDelegate;
+
+                        //    try
+                        //    {
+                        //        invokedMethod.EndInvoke(iar);
+                        //    }
+                        //    catch
+                        //    {
+
+                        //    }
+                        //}, null);
                     }
                 }
                 catch (Exception ex)
