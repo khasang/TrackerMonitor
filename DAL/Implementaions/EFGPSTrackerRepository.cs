@@ -10,44 +10,46 @@ namespace DAL.Implementaions
 {
     class EFGPSTrackerRepository : IGPSTrackerRepository
     {
+        ApplicationDbContext dbContext = new ApplicationDbContext();
+
         public IEnumerable<GPSTracker> GetTrackers()
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackers.ToList();
         }
 
-        public IEnumerable<GPSTracker> GetTrackersByUser(Entities.ApplicationUser user)
+        public IEnumerable<GPSTracker> GetTrackersByUser(ApplicationUser user)
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackers.Where(x => x.Owner.UserId  == user.Id);
         }
 
         public IEnumerable<GPSTracker> GetTrackersByUserId(string userId)
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackers.Where(x => x.Owner.UserId == userId);
         }
 
         public GPSTracker GetTrackerById(string id)
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackers.FirstOrDefault(x => x.Id == id);
         }
 
         public GPSTracker GetTrackerByMessage(GPSTrackerMessage message)
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackers.FirstOrDefault(x => x.Id == message.GPSTrackerId);
         }
 
         public void AddTracker(GPSTracker tracker)
         {
-            throw new NotImplementedException();
+            dbContext.GPSTrackers.Add(tracker);
         }
 
         public void DeleteTracker(GPSTracker tracker)
         {
-            throw new NotImplementedException();
+            dbContext.GPSTrackers.Remove(tracker);
         }
 
         public void DeleteTracker(string id)
         {
-            throw new NotImplementedException();
+            dbContext.GPSTrackers.Remove(GetTrackerById(id));
         }
     }
 }
