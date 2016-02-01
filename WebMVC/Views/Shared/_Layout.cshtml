@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="../../Content/css/form-elements.css">
     <link rel="stylesheet" href="../../Content/css/style.css">
 
-
 </head>
 
 <body>
@@ -58,6 +57,7 @@
     <!-- Top content -->
     <div>
         @RenderBody()
+        @RenderSection("scripts", required: false)
         @*<footer>
             <p>&copy; @DateTime.Now.Year – GPSTrackersViewer (c)</p>
         </footer>*@
