@@ -61,7 +61,12 @@ namespace WebMVC.Controllers
 
             var currenUserId = User.Identity.GetUserId();
 
-            GPSTracker tracker = new GPSTracker()
+            GPSTracker tracker = dbContext.GPSTrackers.FirstOrDefault(g => g.Id == model.Id);
+
+            if (tracker != null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            tracker = new GPSTracker()
             {
                 Id = model.Id,
                 Owner = dbContext.Users.Find(currenUserId).UserProfile,

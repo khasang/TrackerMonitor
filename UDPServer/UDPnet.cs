@@ -17,39 +17,26 @@ namespace UDPServer
         public EventHandler eventReceivedMessage = (x, y) => { };
         public EventHandler eventReceivedError = (x, y) => { };
         
-        public void StartReceiveAsync(int port) // Запуск приема сообщений
+        public async void StartReceiveAsync(int port) // Запуск приема сообщений
         {
             using(udpClient = new UdpClient(port))
             {
                 Console.WriteLine(port);
                 stopReceive = false;
-                IPEndPoint remoteEP = null;
 
                 try
                 {
-                    while (!stopReceive)  // В цикле слушаем сообщения
+                    while(!stopReceive)
                     {
-                        byte[] message = udpClient.Receive(ref remoteEP);
-
-                        Task.Run(() => 
+                        await udpClient.ReceiveAsync().ContinueWith((udpReceiveTask) =>
                         {
-                            eventReceivedMessage(this, new UDPMessage() { Message = message });
+                            byte[] message = udpReceiveTask.Result.Buffer;
+
+                            Task.Run(() =>
+                            {
+                                eventReceivedMessage(this, new UDPMessage() { Message = message });
+                            });
                         });
-
-                        //eventReceivedMessage.BeginInvoke(this, new UDPMessage() { Message = message }, iar => 
-                        //{
-                        //    var ar = (System.Runtime.Remoting.Messaging.AsyncResult)iar;
-                        //    var invokedMethod = (EventHandler)ar.AsyncDelegate;
-
-                        //    try
-                        //    {
-                        //        invokedMethod.EndInvoke(iar);
-                        //    }
-                        //    catch
-                        //    {
-
-                        //    }
-                        //}, null);
                     }
                 }
                 catch (Exception ex)
