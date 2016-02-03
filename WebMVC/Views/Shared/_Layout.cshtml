@@ -8,13 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GPSTrackers</title>
 
-
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="../../Content/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../Content/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../Content/css/form-elements.css">
-    <link rel="stylesheet" href="../../Content/css/style.css">
+    @Styles.Render("~/bundles/stylebundle")
+    @Scripts.Render("~/bundles/jquery")
 
 </head>
 
@@ -30,7 +25,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">GPS Tracker</a> <!--Logo-->
+                <a class="navbar-brand" style="height: 98px; width: 246px;" href="index.html">GPS Tracker</a> <!--Logo-->
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -40,6 +35,7 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Личный кабинет", "Index", "PersonalArea")</li>
+                        <li>@Html.ActionLink("Выход", "LogOff", "Account")</li>
                     }
                     @if (User.IsInRole("Admin"))
                     {
@@ -58,20 +54,7 @@
     <div>
         @RenderBody()
         @RenderSection("scripts", required: false)
-        @*<footer>
-            <p>&copy; @DateTime.Now.Year – GPSTrackersViewer (c)</p>
-        </footer>*@
     </div>
-
-
-
-    <!-- Javascript -->
-    <script src="../../Content/js/jquery-1.11.1.min.js"></script>
-    <script src="../../Content/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../Content/js/jquery.backstretch.min.js"></script>
-    <script src="../../Content/js/retina-1.1.0.min.js"></script>
-    <script src="../../Content/js/scripts.js"></script>
-
 
     <!--[if lt IE 10]>
         <script src="~/Content/js/placeholder.js"></script>

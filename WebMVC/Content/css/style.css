@@ -37,6 +37,10 @@ h3 {
 
 img { max-width: 100%; }
 
+div#welcome{
+    color: dodgerblue;
+}
+
 div#sidebar{
 	background: rgba(0, 0, 0, 0.5);
 }
@@ -133,7 +137,6 @@ ul.navbar-nav {
 	background: url(../img/logo.png) left center no-repeat;
 	text-indent: -99999px;
 }
-
 
 /***** Top content *****/
 

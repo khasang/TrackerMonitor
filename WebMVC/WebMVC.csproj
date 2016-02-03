@@ -215,6 +215,7 @@
     <Content Include="Content\img\backgrounds\1.jpg" />
     <Content Include="Content\img\logo%402x.png" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\js\backgroundScript.js" />
     <Content Include="Content\js\images\layers-2x.png" />
     <Content Include="Content\js\images\layers.png" />
     <Content Include="Content\js\images\marker-icon-2x.png" />

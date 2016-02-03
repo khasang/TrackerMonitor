@@ -10,7 +10,22 @@ namespace WebMVC
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Content/js/jquery-1.11.1.min.js"));
+                        "~/Content/js/jquery-1.11.1.min.js",
+                        "~/Content/bootstrap/js/bootstrap.min.js",
+                        "~/Content/js/jquery.backstretch.min.js",
+                        "~/Content/js/retina-1.1.0.min.js",
+                        "~/Content/js/scripts.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/backgroundScript").Include(
+                "~/Content/js/backgroundScript.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/bundles/stylebundle").Include(
+                "~/Content/bootstrap/css/bootstrap.min.css",
+                "~/Content/font-awesome/css/font-awesome.min.css",
+                "~/Content/css/form-elements.css",
+                "~/Content/css/style.css"
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -19,19 +34,6 @@ namespace WebMVC
                         "~/Scripts/jquery.unobtrusive-ajax.js"));
 
 
-            ///////////////////////////////////////////////////////////////////////
-
-
-            bundles.Add(new ScriptBundle("~/bundles/backstretch").Include(
-"~/Content/js/jquery.backstretch.min.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/retina").Include(
-"~/Content/js/retina-1.1.0.min.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/myscripts").Include(
-"~/Content/js/scripts.js"));
-
-            ////////////////////////////////////////////////////////////////////////
 
             // Используйте версию Modernizr для разработчиков, чтобы учиться работать. Когда вы будете готовы перейти к работе,
             // используйте средство сборки на сайте http://modernizr.com, чтобы выбрать только нужные тесты.
