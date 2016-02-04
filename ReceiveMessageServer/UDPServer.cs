@@ -11,7 +11,7 @@ using UDPServer;
 
 namespace ReceiveMessageServer
 {
-    class Server : IDisposable
+    class UDPServer : IDisposable
     {
         UDPnet udpServer;
 
@@ -20,7 +20,7 @@ namespace ReceiveMessageServer
         HubConnection hubConnection;
         IHubProxy hubProxy;
 
-        public Server()
+        public UDPServer()
         {
             this.udpServer = new UDPnet();
             udpServer.eventReceivedMessage += OnShowReceivedMessage;  // Подписываемся на событие получения сообщения

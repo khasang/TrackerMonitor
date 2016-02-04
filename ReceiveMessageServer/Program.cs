@@ -11,9 +11,9 @@ namespace ReceiveMessageServer
     {
         static void Main(string[] args)
         {
-            Server server;
+            UDPServer server;
             
-            using (server = new Server())
+            using (server = new UDPServer())
             {
                 server.Start();
                 Console.WriteLine("Сервер запущен!");

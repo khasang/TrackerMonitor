@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace UDPServer
+namespace NetServer
 {
     public class UDPnet
     {
@@ -34,14 +34,14 @@ namespace UDPServer
 
                             Task.Run(() =>
                             {
-                                eventReceivedMessage(this, new UDPMessage() { Message = message });
+                                eventReceivedMessage(this, new NetMessage() { Message = message });
                             });
                         });
                     }
                 }
                 catch (Exception ex)
                 {
-                    eventReceivedError(this, new ErrorMessage { Message = ex.Message });
+                    eventReceivedError(this, new ErrorNetMessage { Message = ex.Message });
                 }
             }
         }
@@ -52,7 +52,7 @@ namespace UDPServer
             using(udpClient = new UdpClient(port))
             {
                 message = (await udpClient.ReceiveAsync()).Buffer;
-                eventReceivedMessage(this, new UDPMessage() { Message = message });
+                eventReceivedMessage(this, new NetMessage() { Message = message });
 
                 udpClient.Close();
             }

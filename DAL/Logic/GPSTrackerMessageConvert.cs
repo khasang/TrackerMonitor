@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace DAL.Logic
 {
@@ -33,14 +34,14 @@ namespace DAL.Logic
             byte[] longitudeBytes = new byte[longitudeLength];
             Array.Copy(bytes, currentIndex, longitudeBytes, 0, longitudeLength);
             Console.WriteLine(Encoding.UTF8.GetString(longitudeBytes));
-            message.Longitude = Double.Parse(Encoding.UTF8.GetString(longitudeBytes), System.Globalization.NumberStyles.Number);
+            message.Longitude = Double.Parse(Encoding.UTF8.GetString(longitudeBytes), NumberStyles.Number);
             currentIndex += longitudeLength;
 
             // Парсинг широты
             byte[] latitudeBytes = new byte[latitudeLength];
             Array.Copy(bytes, currentIndex, latitudeBytes, 0, latitudeLength);
             Console.WriteLine(Encoding.UTF8.GetString(latitudeBytes));
-            message.Latitude = Double.Parse(Encoding.UTF8.GetString(latitudeBytes), System.Globalization.NumberStyles.Number);
+            message.Latitude = Double.Parse(Encoding.UTF8.GetString(latitudeBytes), NumberStyles.Number);
             currentIndex += latitudeLength;
 
             int year = (int)BitConverter.ToInt16(new byte[] { bytes[currentIndex], bytes[currentIndex + 1] }, 0);
