@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace NetServer
 {
-    public abstract class NetAbstract
+    public abstract class NetProtocol
     {
         protected bool stopReceive = false;
 
         public EventHandler eventReceivedMessage = (x, y) => { };
         public EventHandler eventReceivedError = (x, y) => { };
 
-        public abstract void StartRecieveAsync(int port);
-        public abstract void StopRecieveAsync();
-        public abstract string SendMessageAsync(byte[] message, IPAddress ipAddress, int port);
+        public abstract void StartReceiveAsync(int port);
+        public abstract void StopReceive();
+        public abstract Task<string> SendMessageAsync(byte[] message, IPAddress ipAddress, int port);
     }
 }

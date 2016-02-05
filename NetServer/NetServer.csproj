@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErrorNetMessage.cs" />
-    <Compile Include="NetAbstract.cs" />
+    <Compile Include="NetProtocol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TCPnet.cs" />
     <Compile Include="NetMessage.cs" />
