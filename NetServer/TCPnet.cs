@@ -48,7 +48,23 @@ namespace NetServer
 
         public override string SendMessageAsync(byte[] message, IPAddress ipAddress, int port)
         {
-            throw new NotImplementedException();
+            string backMessage;
+
+            try
+            {
+                TcpClient tcpClient = new TcpClient(new IPEndPoint(ipAddress, port));
+                NetworkStream clientStream = tcpClient.GetStream();
+
+                clientStream.Write(message, 0, message.Length);
+
+                backMessage = message.Length.ToString();
+            }
+            catch(Exception ex)
+            {
+                backMessage = string.Format("Error send: {0}", ex.Message);
+            }
+
+            return backMessage;
         }
     }
 }

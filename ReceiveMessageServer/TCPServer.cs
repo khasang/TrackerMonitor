@@ -1,5 +1,6 @@
 ﻿using DAL;
 using Microsoft.AspNet.SignalR.Client;
+using NetServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
