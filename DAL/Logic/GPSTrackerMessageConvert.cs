@@ -101,16 +101,18 @@ namespace DAL.Logic
                 gpsTrackerMessage.GPSTrackerId = Encoding.ASCII.GetString(bytes.Skip(2).Take(10).ToArray<byte>());
 
                 int latitudeDegrees = Int32.Parse(Encoding.ASCII.GetString(bytes.Skip(24).Take(2).ToArray<byte>()));
-                double latitudeMinutes = Double.Parse(Encoding.ASCII.GetString(bytes.Skip(26).Take(7).ToArray<byte>()));
+                string latitudeMinutesString = Encoding.ASCII.GetString(bytes.Skip(26).Take(7).ToArray<byte>());
+                double latitudeMinutes = Double.Parse(latitudeMinutesString, NumberStyles.Number, (new CultureInfo("en-US")).NumberFormat);
 
                 double latitude = latitudeDegrees + latitudeMinutes / 60;
                 gpsTrackerMessage.Latitude = Encoding.ASCII.GetString(new byte[] { bytes[33] }) == "N" ? latitude : -latitude;
 
                 int longitudeDegrees = Int32.Parse(Encoding.ASCII.GetString(bytes.Skip(34).Take(3).ToArray<byte>()));
-                double longitudeMinutes = Double.Parse(Encoding.ASCII.GetString(bytes.Skip(37).Take(7).ToArray<byte>()));
+                string longitudeMinutesString = Encoding.ASCII.GetString(bytes.Skip(37).Take(7).ToArray<byte>());
+                double longitudeMinutes = Double.Parse(longitudeMinutesString, NumberStyles.Number, (new CultureInfo("en-US")).NumberFormat);
 
                 double longitude = longitudeDegrees + longitudeMinutes / 60;
-                gpsTrackerMessage.Longitude = Encoding.ASCII.GetString(new byte[] { bytes[33] }) == "E" ? longitude : -longitude;
+                gpsTrackerMessage.Longitude = Encoding.ASCII.GetString(new byte[] { bytes[44] }) == "E" ? longitude : -longitude;
 
                 int year = 2000 + Int32.Parse(Encoding.ASCII.GetString(bytes.Skip(17).Take(2).ToArray<byte>()));
 

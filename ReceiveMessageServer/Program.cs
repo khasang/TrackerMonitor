@@ -1,5 +1,4 @@
-﻿using NetServer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,12 +11,12 @@ namespace ReceiveMessageServer
     {
         static void Main(string[] args)
         {
-            NetServer server;
-            
-            using (server = new NetServer(new TCPnet()))
+            Server server;
+
+            using (server = new Server())
             {
                 server.Start();
-                Console.WriteLine("Сервер запущен! Идет прослушка сообщений...");
+                Console.WriteLine("Сервер запущен!");
 
                 Console.WriteLine("Чтоб остановить сервер, введите 'stop'");
                 while (true)
