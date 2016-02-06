@@ -56,19 +56,19 @@
 														title: tracker.name,
 														map: this.state.map});
 		
-		var bounds = new google.maps.LatLngBounds();
+		//var bounds = new google.maps.LatLngBounds();
 		
-		var visTrackers = this.state.visTrackers;
+		//var visTrackers = this.state.visTrackers;
 		
-		for(var i=0; i<visTrackers.length; i++) {
-			if(visTrackers[i].marker != null){
-				bounds.extend(visTrackers[i].marker.getPosition());
-			}
-		}
+		//for(var i=0; i<visTrackers.length; i++) {
+		//	if(visTrackers[i].marker != null){
+		//		bounds.extend(visTrackers[i].marker.getPosition());
+		//	}
+		//}
 		
-		var map = this.state.map;
+		//var map = this.state.map;
 		
-		map.fitBounds(bounds);
+		//map.fitBounds(bounds);
 	},
 	mapCenterLatLng: function () {
         var props = this.props;
@@ -96,6 +96,7 @@
 	},
 	searchTracker: function (tracker) {
 		var marker = null;
+		var visTrackers = this.state.visTrackers;
 		
 		for(var i = 0; i < visTrackers.length; i++){
 				if(visTrackers[i].id == tracker.id){
@@ -105,21 +106,26 @@
 		}
 		
 		if(marker == null) {
-			$.ajax({
-			url: this.props.url,
-			dataType: 'json',
-			type: 'GET',
-			data: { id: this.inputs["trackerId"] == undefined ? this.state.tracker.id : this.inputs["trackerId"].state.value,
-					name: this.inputs["trackerName"].state.value,
-					phoneNumber: '',
-					__RequestVerificationToken: antiForgeryToken },
-			success: function(data) {
+			$.get("trackers/getlastlocation", { id: tracker.id }, function (message) {
+				var mapOptions = {
+					center: new google.maps.LatLng(message.latitude, message.longitude),
+					zoom: 16,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				this.state.map.setOptions(mapOptions);
+				tracker.marker = new google.maps.Marker({
+														position: new google.maps.LatLng(message.latitude, message.longitude),
+														title: tracker.name,
+														map: this.state.map});
+			}.bind(this));
+		} else {
+			var mapOptions = {
+					center: marker.getPosition(),
+					zoom: 16,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
 				
-			}.bind(this),
-			error: function(xhr, status, err) {
-				console.error(this.props.url, status, err.toString());
-			}.bind(this)
-		});
+			this.state.map.setOptions(mapOptions);
 		}		
 	},
 	render: function () {
