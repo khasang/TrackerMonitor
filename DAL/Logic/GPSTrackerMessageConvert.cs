@@ -91,5 +91,44 @@ namespace DAL.Logic
 
             return bytes.ToArray();
         }
+
+        public static GPSTrackerMessage Tk102BytesToMessage(byte[] bytes)
+        {
+            GPSTrackerMessage gpsTrackerMessage = new GPSTrackerMessage();
+
+            if (Encoding.ASCII.GetString(bytes.Skip(13).Take(4).ToArray<byte>()) == "BR00")
+            {
+                gpsTrackerMessage.GPSTrackerId = Encoding.ASCII.GetString(bytes.Skip(2).Take(10).ToArray<byte>());
+
+                int latitudeDegrees = Int32.Parse(Encoding.ASCII.GetString(bytes.Skip(24).Take(2).ToArray<byte>()));
+                double latitudeMinutes = Double.Parse(Encoding.ASCII.GetString(bytes.Skip(26).Take(7).ToArray<byte>()));
+
+                double latitude = latitudeDegrees + latitudeMinutes / 60;
+                gpsTrackerMessage.Latitude = Encoding.ASCII.GetString(new byte[] { bytes[33] }) == "N" ? latitude : -latitude;
+
+                int longitudeDegrees = Int32.Parse(Encoding.ASCII.GetString(bytes.Skip(34).Take(3).ToArray<byte>()));
+                double longitudeMinutes = Double.Parse(Encoding.ASCII.GetString(bytes.Skip(37).Take(7).ToArray<byte>()));
+
+                double longitude = longitudeDegrees + longitudeMinutes / 60;
+                gpsTrackerMessage.Longitude = Encoding.ASCII.GetString(new byte[] { bytes[33] }) == "E" ? longitude : -longitude;
+
+                int year = 2000 + Int32.Parse(Encoding.ASCII.GetString(bytes.Skip(17).Take(2).ToArray<byte>()));
+
+                int month = Int32.Parse(Encoding.ASCII.GetString(bytes.Skip(19).Take(2).ToArray<byte>()));
+
+                int day = Int32.Parse(Encoding.ASCII.GetString(bytes.Skip(21).Take(2).ToArray<byte>()));
+
+                int hour = Int32.Parse(Encoding.ASCII.GetString(bytes.Skip(50).Take(2).ToArray<byte>()));
+
+                int minute = Int32.Parse(Encoding.ASCII.GetString(bytes.Skip(52).Take(2).ToArray<byte>()));
+
+                int second = Int32.Parse(Encoding.ASCII.GetString(bytes.Skip(54).Take(2).ToArray<byte>()));
+
+                gpsTrackerMessage.Time = new DateTime(year, month, day, hour, minute, second);
+            }
+
+
+            return gpsTrackerMessage;
+        }
     }
 }

@@ -23,15 +23,26 @@ namespace NetServer
             {
                 while(!stopReceive)
                 {
-                    TcpClient tcpClient = await tcpListener.AcceptTcpClientAsync();
-                    NetworkStream clientNS = tcpClient.GetStream();
+                    await tcpListener.AcceptTcpClientAsync().ContinueWith((acceptTask) => 
+                    {
+                        TcpClient tcpClient = acceptTask.Result;
 
-                    byte[] message = new byte[256];
-                    clientNS.Read(message, 0, 256);
+                        NetworkStream clientNS = tcpClient.GetStream();
+                        
+                        Task.Run(() =>
+                        {
 
-                    eventReceivedMessage(this, new NetMessage { Message = message } );
+                            byte[] message = new byte[tcpClient.Available];
+                            clientNS.Read(message, 0, tcpClient.Available);
 
-                    clientNS.Close();
+                            eventReceivedMessage(this, new NetMessage { Message = message });
+
+                            clientNS.Close();
+                            tcpClient.Close();
+
+                            eventReceivedMessage(this, new NetMessage() { Message = message });
+                        });
+                    });
                 }
             }
             catch (Exception ex)
