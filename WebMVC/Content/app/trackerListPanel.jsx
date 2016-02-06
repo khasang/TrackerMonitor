@@ -1,4 +1,23 @@
-﻿var TrackerListPanel = React.createClass({
+﻿var TrackerListPanelRow = React.createClass({
+	handleChange: function(event){
+		this.props.handleChange(event);
+	},
+	handleSearchClick: function(){
+		this.props.handleSearchClick(this.props.tracker);
+	},
+	render: function () {
+		return(
+			<tr>
+				<td>{this.props.index + 1}</td>
+				<td>{this.props.tracker.name}</td>
+				<td><input type='checkbox' value={this.props.tracker.id} onChange={this.handleChange}></input></td>
+				<td><button className='btn btn-default btn-xs' onClick={this.handleSearchClick}><span className='glyphicon glyphicon-search'></span></button></td>
+			</tr>
+		)
+	}
+});
+
+var TrackerListPanel = React.createClass({
 	getDefaultProps: function () {
 		return {
 			initialPos: {x: 200, y: 200}
@@ -68,20 +87,19 @@
 		}
 		this.props.changeSelection(tracker);
 	},
+	handleSearchClick: function(tracker) {
+		this.props.searchTracker(tracker)
+	},
 	render: function(){
 		return(
-			<div className='panel panel-default' onMouseDown={this.onMouseDown} style={{width: 200 + 'px', height: 300 + 'px', position: 'absolute', zIndex: 2, left: this.state.pos.x + 'px', top: this.state.pos.y + 'px'}}>
+			<div className='panel panel-default' onMouseDown={this.onMouseDown} style={{width: 250 + 'px', height: 300 + 'px', position: 'absolute', zIndex: 2, left: this.state.pos.x + 'px', top: this.state.pos.y + 'px'}}>
 				<div className='panel-heading'>Трекеры</div>
 				<div className='panel-body pre-scrollable' style={{height: 250 + 'px'}}>
 					<table className='table table-bordered'>
 						<tbody>
 							{this.props.trackers.map(function(tracker, index) {
 								return (
-									<tr key={index}>
-										<td>{index + 1}</td>
-										<td>{tracker.name}</td>
-										<td><input type='checkbox' value={tracker.id} onChange={this.handleChange}></input></td>
-									</tr>
+									<TrackerListPanelRow key={index} tracker={tracker} index={index} handleChange={this.handleChange} handleSearchClick={this.handleSearchClick}/>
 								);
 							}.bind(this))}
 						</tbody>

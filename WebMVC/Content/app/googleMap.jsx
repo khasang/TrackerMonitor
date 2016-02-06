@@ -94,10 +94,38 @@
 			
 		this.setState({map: this.state.map, visTrackers: visTrackers });
 	},
+	searchTracker: function (tracker) {
+		var marker = null;
+		
+		for(var i = 0; i < visTrackers.length; i++){
+				if(visTrackers[i].id == tracker.id){
+					marker = tracker.marker;
+					break;
+				}
+		}
+		
+		if(marker == null) {
+			$.ajax({
+			url: this.props.url,
+			dataType: 'json',
+			type: 'GET',
+			data: { id: this.inputs["trackerId"] == undefined ? this.state.tracker.id : this.inputs["trackerId"].state.value,
+					name: this.inputs["trackerName"].state.value,
+					phoneNumber: '',
+					__RequestVerificationToken: antiForgeryToken },
+			success: function(data) {
+				
+			}.bind(this),
+			error: function(xhr, status, err) {
+				console.error(this.props.url, status, err.toString());
+			}.bind(this)
+		});
+		}		
+	},
 	render: function () {
         return (
 			<div style={{position: 'relative'}}>
-				<TrackerListPanel trackers={this.props.trackers} changeSelection={this.changeSelection}/>
+				<TrackerListPanel trackers={this.props.trackers} changeSelection={this.changeSelection} searchTracker={this.searchTracker}/>
 				<div id='react-valuation-map' style={{height:921 + 'px'}}>
 					
 				</div>
