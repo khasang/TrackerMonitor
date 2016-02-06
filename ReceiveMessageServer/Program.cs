@@ -12,7 +12,7 @@ namespace ReceiveMessageServer
         static void Main(string[] args)
         {
             Server server;
-            
+
             using (server = new Server())
             {
                 server.Start();
