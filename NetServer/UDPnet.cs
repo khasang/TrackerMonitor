@@ -26,12 +26,15 @@ namespace NetServer
                     {
                         await udpClient.ReceiveAsync().ContinueWith((udpReceiveTask) =>
                         {
-                            byte[] message = udpReceiveTask.Result.Buffer;
-
-                            Task.Run(() =>
+                            if (udpReceiveTask.Status != TaskStatus.Faulted)
                             {
-                                eventReceivedMessage(this, new NetMessage() { Message = message });
-                            });
+                                byte[] message = udpReceiveTask.Result.Buffer;
+
+                                Task.Run(() =>
+                                {
+                                    eventReceivedMessage(this, new NetMessage() { Message = message });
+                                });
+                            }
                         });
                     }
                 }
