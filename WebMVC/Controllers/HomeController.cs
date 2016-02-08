@@ -6,14 +6,15 @@ using System.Web.Mvc;
 
 namespace WebMVC.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            if(!Request.IsAuthenticated)
-            {
-                return Redirect("/Account/Login");
-            }
+            //if(!Request.IsAuthenticated)
+            //{
+            //    return Redirect("/Account/Login");
+            //}
             return View();
         }
 

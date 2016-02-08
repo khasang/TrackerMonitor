@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -32,19 +34,27 @@
             <div class="collapse navbar-collapse" id="top-navbar-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                    @if (Request.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Личный кабинет", "Index", "PersonalArea")</li>
-                        <li>@Html.ActionLink("Выход", "LogOff", "Account")</li>
-                    }
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li>@Html.ActionLink("Кабинет Админа", "Index", "Home")</li>
-                    }
                     <li>@Html.ActionLink("О программе", "About", "Home")</li>
                     <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Тест", "SignalRView", "Home")</li>
 
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Личный кабинет", "Index", "PersonalArea")</li>
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Кабинет Админа", "Index", new { area = "admin", controller = "Home" })</li>
+                        }
+
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                        @Html.AntiForgeryToken()
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
+                        </ul>
+                        }
+                    }
                 </ul>
             </div>
         </div>

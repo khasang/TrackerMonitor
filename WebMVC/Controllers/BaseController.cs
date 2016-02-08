@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace WebMVC.Controllers
 {
+    [Authorize]
     public class BaseController : Controller
     {
         protected ApplicationDbContext dbContext = new ApplicationDbContext();

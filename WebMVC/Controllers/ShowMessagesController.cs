@@ -10,6 +10,7 @@ using WebMVC.Models;
 
 namespace WebMVC.Controllers
 {
+    [Authorize]
     public class ShowMessagesController : BaseController
     {
 
