@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -166,6 +167,25 @@ namespace WebMVC.Controllers
             dbContext.SaveChanges();
 
             return Json(id);
+        }
+
+        public ActionResult GetLastLocation(string id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            GPSTracker tracker = dbContext.GPSTrackers.Find(id);
+
+            if (tracker == null)
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+            if (tracker.Owner.User.Id != User.Identity.GetUserId())
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
+            GPSTrackerMessage message = dbContext.GPSTrackerMessages.Where(m => m.GPSTrackerId == id).OrderBy(m => m.Time).First();
+            message.GPSTracker = null;
+
+            return new JsonCamelCaseResult(message, JsonRequestBehavior.AllowGet);
         }
 
 

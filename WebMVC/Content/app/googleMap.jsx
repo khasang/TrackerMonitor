@@ -56,19 +56,19 @@
 														title: tracker.name,
 														map: this.state.map});
 		
-		var bounds = new google.maps.LatLngBounds();
+		//var bounds = new google.maps.LatLngBounds();
 		
-		var visTrackers = this.state.visTrackers;
+		//var visTrackers = this.state.visTrackers;
 		
-		for(var i=0; i<visTrackers.length; i++) {
-			if(visTrackers[i].marker != null){
-				bounds.extend(visTrackers[i].marker.getPosition());
-			}
-		}
+		//for(var i=0; i<visTrackers.length; i++) {
+		//	if(visTrackers[i].marker != null){
+		//		bounds.extend(visTrackers[i].marker.getPosition());
+		//	}
+		//}
 		
-		var map = this.state.map;
+		//var map = this.state.map;
 		
-		map.fitBounds(bounds);
+		//map.fitBounds(bounds);
 	},
 	mapCenterLatLng: function () {
         var props = this.props;
@@ -94,10 +94,44 @@
 			
 		this.setState({map: this.state.map, visTrackers: visTrackers });
 	},
+	searchTracker: function (tracker) {
+		var marker = null;
+		var visTrackers = this.state.visTrackers;
+		
+		for(var i = 0; i < visTrackers.length; i++){
+				if(visTrackers[i].id == tracker.id){
+					marker = tracker.marker;
+					break;
+				}
+		}
+		
+		if(marker == null) {
+			$.get("trackers/getlastlocation", { id: tracker.id }, function (message) {
+				var mapOptions = {
+					center: new google.maps.LatLng(message.latitude, message.longitude),
+					zoom: 16,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				this.state.map.setOptions(mapOptions);
+				tracker.marker = new google.maps.Marker({
+														position: new google.maps.LatLng(message.latitude, message.longitude),
+														title: tracker.name,
+														map: this.state.map});
+			}.bind(this));
+		} else {
+			var mapOptions = {
+					center: marker.getPosition(),
+					zoom: 16,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				
+			this.state.map.setOptions(mapOptions);
+		}		
+	},
 	render: function () {
         return (
 			<div style={{position: 'relative'}}>
-				<TrackerListPanel trackers={this.props.trackers} changeSelection={this.changeSelection}/>
+				<TrackerListPanel trackers={this.props.trackers} changeSelection={this.changeSelection} searchTracker={this.searchTracker}/>
 				<div id='react-valuation-map' style={{height:921 + 'px'}}>
 					
 				</div>
