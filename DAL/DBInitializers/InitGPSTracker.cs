@@ -19,7 +19,7 @@ namespace DAL.DBInitializers
                 GPSTracker track = new GPSTracker()
                 {
                     Id = Guid.NewGuid().ToString().Substring(0, 10),
-                    Name = $"Трекер №{i}",
+                    Name = string.Format("Трекер №{0}",i),
                     Owner = user.UserProfile,
                     IsActive = r.Next(5) > 2 ? true : false //Рандомно задаем активность трекера.
                 };
