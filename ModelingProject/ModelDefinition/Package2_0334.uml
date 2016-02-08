@@ -1,0 +1,1410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="29aa14a1-1cb0-4ae9-a6be-f8231ce0b92c"
+  name="UDPServer"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="26289d20-eba7-419a-9c62-9c14c01236a6"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DUDPServer"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="f74bfe4f-0899-4372-838c-3e7e94171322">
+      <profileInstance
+        Id="cd929495-98f2-4c7e-a0b9-9c91db231042"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="e3218e4a-a782-4d10-ad4c-494fca6d4a4e"
+        name="UDPnet"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="8af01b99-b98e-4533-8a3b-a8820d384410"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="f6e55ffd-c570-4005-9c14-601823dfc2da"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="53ac01da-1b4e-4a9e-b205-7afcae284fa5">
+                <propertyInstance
+                  Id="dccac862-aa00-493e-8f28-e410e73b527f"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ca38eae9-ebd0-48d4-8f5c-6aad4351a3c9">
+                <propertyInstance
+                  Id="a027a28b-c599-4348-b64d-e1243d86b680"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ba177121-ec54-4c4a-9376-c81cf04b2560">
+                <propertyInstance
+                  Id="7405264d-d932-4ca6-81af-5e4655838b50"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9f78b690-953c-4401-81cd-4d615a572808">
+                <propertyInstance
+                  Id="f864828c-ee80-412d-b73d-1eecc2848f2e"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9c92a5f0-e60b-4292-bd7d-b90161d0a91d">
+                <propertyInstance
+                  Id="61908276-e942-43f5-8cf9-105c1a8e0990"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <targetEnds>
+          <association
+            Id="b1d9531b-5901-4092-8b07-d50766d50d0f"
+            isDerived="false"
+            sourceEndRoleName="UDPnet"
+            targetEndRoleName="ErrorMessage"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="4f4699c5-9ccd-44d5-a3ec-d8f30f0291f4"
+              LastKnownName="ErrorMessage"
+              LastKnownLocation="Package2_0334.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f92b0a56-8629-4d78-92fb-81fe952af654"
+                  name="UDPnet"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1815476f-7188-4a66-94b7-26ff093fb71d"
+                  name="ErrorMessage"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="49e34d03-75e7-42fd-abe1-d00bda2c9afb"
+            isDerived="false"
+            sourceEndRoleName="UDPnet"
+            targetEndRoleName="UDPMessage"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="d4b3f0f0-4b83-4a1d-9546-61fbb1358852"
+              LastKnownName="UDPMessage"
+              LastKnownLocation="Package2_0334.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f4bd205d-c0e2-4e1c-b2a2-96b993730c46"
+                  name="UDPnet"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b59b942c-8ce4-4422-b02d-1272e95b9ca1"
+                  name="UDPMessage"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="f478a481-60fb-49de-93d7-05a43035611d"
+            name="udpClient"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="34a59736-516c-4e75-815c-6b5537766c3b"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3DudpClient"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="d1645a9e-023d-4d6a-a651-4a2adfab49b5"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ddc793e0-5269-494f-a1d7-d12498c2aab8">
+                    <propertyInstance
+                      Id="6ca72b50-044f-4a78-821c-284934b43cfd"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a2a55e76-c2cd-486a-a76c-eada87ac4648">
+                    <propertyInstance
+                      Id="f3b0fc8d-6eab-492e-a910-eaf7db0e70a2"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ca41c076-bec9-4d9c-941b-3a04ec4aeac7">
+                    <propertyInstance
+                      Id="44c26d0c-d498-4e74-b041-b92626bbb743"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="47bec772-c218-47c8-91eb-67d5c7c98d46">
+                    <propertyInstance
+                      Id="3e4d541d-69e9-427a-9230-5217f2456e9f"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7a6c8ce3-4b3f-4181-9fc4-412f36130fb0">
+                    <propertyInstance
+                      Id="7451f228-8efc-4d54-a4cd-8a285cee14d2"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="3a4f3fe3-eb20-42dc-8e05-8be15f47f644"
+                LastKnownName="UdpClient"
+                LastKnownLocation="Package3_0337.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5e446f3f-c3ef-4968-a23a-33809b29f6fd"
+            name="stopReceive"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="e7b4c24a-be65-4c46-8cb6-b620eac30966"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3DstopReceive"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="76f77b9d-be26-4d78-92e7-cb39038cf525"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b1cab533-6652-42a4-b0b5-80efb5fcab7d">
+                    <propertyInstance
+                      Id="0c9fd77b-f33b-4e41-a85e-f47a7e5997fb"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="96548851-e193-4107-b0a0-dbdf2e1f8275">
+                    <propertyInstance
+                      Id="2b8071ca-29ae-4f35-bd89-ca84f4b051bb"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a157f914-2341-42cc-8587-54e2674ede08">
+                    <propertyInstance
+                      Id="06bf585c-63dc-4283-a9ac-5c6a16d71d53"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3b2e5615-3f6a-49f3-8711-7716901a346c">
+                    <propertyInstance
+                      Id="4fe555c2-2bd9-444b-bc99-a34e2591cfd2"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7a379a1a-af7b-431e-9747-23885fc1d712">
+                    <propertyInstance
+                      Id="3230ecfa-c326-4e73-a4d2-74ca7f8a7758"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                LastKnownName="Boolean"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="d28542cb-27dc-4574-9dda-b8d1d87dab94"
+            name="eventReceivedMessage"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="f5e65825-a672-4c78-9b0f-73492fa8c274"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3DeventReceivedMessage"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="11fd7ee0-e317-4a1f-830e-577b451e8215"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="68b10810-6944-4190-8d30-f6f825fb54e7">
+                    <propertyInstance
+                      Id="0639c599-d5bf-4fd0-a400-4f2a81d39d68"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e6524024-d0d7-4c5c-ad9a-417747e5faad">
+                    <propertyInstance
+                      Id="8e92f5c9-1b01-4da7-ba84-e99da65712ba"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e13d8994-00a4-4237-8103-1931d612f75f">
+                    <propertyInstance
+                      Id="a3536f66-b385-4721-9066-85f4d2403da1"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="71c7395b-ac7d-417c-887c-1cc3e75660ac">
+                    <propertyInstance
+                      Id="9a285c35-3265-410e-995b-fec1c6930b2f"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="feafce2c-54fa-4c5a-b3fd-211e475773e3">
+                    <propertyInstance
+                      Id="9a2d9022-f9bd-4de2-a9b2-81f65a5a199f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="2d5ae8a1-2e7a-4b62-b26a-41fe826251da"
+                LastKnownName="EventHandler"
+                LastKnownLocation="Package_0334.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="0c82580f-19d4-491c-814e-64dd45b3df6a"
+            name="eventReceivedError"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="b61a9c4b-9263-4e79-96f7-a7a7760a5c1c"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3DeventReceivedError"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="15d64838-9489-4550-8ada-df6387135e58"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6888fca3-bcbf-422b-829c-fa16b9940e96">
+                    <propertyInstance
+                      Id="9145cbf4-8248-4e28-ba9c-619c8ea38782"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bac55e86-aee4-49e1-ba32-03ee1f4039e2">
+                    <propertyInstance
+                      Id="2a9b2138-0b93-4259-aa35-00d225ff96e1"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6f2f1750-1fc5-4f83-bf0b-9ca06df34bb3">
+                    <propertyInstance
+                      Id="b7c5070c-c8d3-4638-85e2-3fa808849f65"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="39529eb0-502c-40c3-a3ab-1dc1ccc14925">
+                    <propertyInstance
+                      Id="8595df9c-9282-4738-b0c7-7234f7a835f2"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8bfce18d-fc14-4f1b-a6e5-95f05678e198">
+                    <propertyInstance
+                      Id="a83cc1b5-274e-408c-ad37-f608265ad419"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="2d5ae8a1-2e7a-4b62-b26a-41fe826251da"
+                LastKnownName="EventHandler"
+                LastKnownLocation="Package_0334.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="ac1895fc-eacb-47b7-b812-f3f8dc58f577"
+            name="StartReceiveAsync"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="1b8b170b-356b-4375-bffb-f12688f56e94"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3D(Name%3DStartReceiveAsync OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="2ee299a1-1096-4e62-8a4f-a8c586f22bf7"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6599330b-cd54-49d0-8c16-f092c09ea934">
+                    <propertyInstance
+                      Id="846304ad-4f46-4b59-8eb0-4598d92f2ed7"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4292deec-17df-4901-94a3-de421e0fb130">
+                    <propertyInstance
+                      Id="50229176-900f-41cd-87ac-b52468831b46"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ffe97613-bf0f-4968-b90b-1df67f953c12">
+                    <propertyInstance
+                      Id="6d22d676-d2d0-4d40-9191-fbf286293cf7"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="32f76455-d284-425b-b0f8-fd8877b49f79">
+                    <propertyInstance
+                      Id="0840e0ea-d720-4942-bd2d-a0cf7f37069a"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d21461b6-958d-4696-a63b-5d0f085de8ed">
+                    <propertyInstance
+                      Id="550f4ba0-df8c-4c4d-8146-334b58359255"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d5f02239-f7c2-45d0-9b0c-e349686589c5">
+                    <propertyInstance
+                      Id="71607496-78af-4cf9-bd0e-e19bb9c8c130"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d5303f4d-5081-47fd-921b-01763c968141"
+                  name="port"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="d189ff70-6949-47df-a0c1-13f7ea82fd7c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3D(Name%3DStartReceiveAsync OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3Dport"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="29d1a973-6585-446f-a4d5-dc99251df677"
+            name="ReceiveSingleMessageAsync"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="9e50fae0-205b-49c3-b544-5e5691c57b35"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3D(Name%3DReceiveSingleMessageAsync OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="0ced541c-d9e9-4c3b-b05b-50c366e3f3c8"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="15e46a63-c080-45b6-8b9e-0b7c0ae0d300">
+                    <propertyInstance
+                      Id="c49fb5f4-102a-4b14-942d-e216daa3560e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a6abb158-c4c1-4927-8314-ad041624128d">
+                    <propertyInstance
+                      Id="01aee06f-2854-4a22-8e24-4113f39d7a5c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="94dd0f10-0b0c-4fe1-a235-5ca8a7fec5cc">
+                    <propertyInstance
+                      Id="6219149d-7f58-443d-990a-0d8e47edf97b"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6477dc23-42f2-4268-9173-51c0b2695f19">
+                    <propertyInstance
+                      Id="683be03b-3722-4306-909c-95415e0b8776"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="72130747-b3cc-4842-aaec-1e3de0c21893">
+                    <propertyInstance
+                      Id="76af45be-6471-4ff0-8195-59561f5a20fa"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="19dbad2e-316c-4ea7-8a5c-d327b1a91450">
+                    <propertyInstance
+                      Id="109b769e-6eb2-49d5-9b12-2285b192d26c"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="254b4dfb-cf2b-4791-a416-6855757ad1bd"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="11613009-1dcc-4763-bc06-363132fcbf19"
+                      LastKnownName="Task&lt;Byte‎[]‎&gt;"
+                      LastKnownLocation="Package1_0337.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c80aaae3-b7aa-46dc-b594-7fcfcad8ae73"
+                  name="port"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="cd23c8f5-fac3-4cb6-9f77-9467f1afe636"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3D(Name%3DReceiveSingleMessageAsync OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3Dport"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="c0d589de-00e7-4bef-887a-49f69508486c"
+            name="StopReceive"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="ad6b5ca2-09bd-4dc0-a5ef-38620d3a76fa"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3DStopReceive"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="eb5e5952-e2b1-4d0b-98e7-b882a6eda0e1"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="037f7704-f4e5-427b-96b1-3fba63fbdf13">
+                    <propertyInstance
+                      Id="4ce0cb0a-0c4a-4f3b-9bb5-09fdfa64a681"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dfddf3ea-f18e-4c1d-a983-5ef2f5d15025">
+                    <propertyInstance
+                      Id="f99d1a43-15f3-4b97-88e9-5548dcdedb7f"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6b97fafa-4942-4a2f-b4e2-a2a5df075b93">
+                    <propertyInstance
+                      Id="70c6db54-4738-4b1b-8a70-621cf3c69b7a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2f8005d3-6fda-4299-82b0-f1a0a1272f32">
+                    <propertyInstance
+                      Id="19960147-43ff-4819-83c7-85613e2b5a23"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1f08236b-2515-4e02-9ed3-d5c0443305c0">
+                    <propertyInstance
+                      Id="c1bd660f-b414-4f26-bd1c-0b38deec1152"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1dda81f2-59f9-4295-be53-23273465e7ed">
+                    <propertyInstance
+                      Id="d8ea81af-ebe3-41c6-94eb-ca319a9aa188"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="c7e9e79b-7fd9-4c62-a131-ae845c59efcc"
+            name="SendMessageAsync"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="818bba19-9afc-40b3-8a42-4914db09fcf4"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3D(Name%3DSendMessageAsync OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FSystem.dll&quot; Namespace%3DSystem.Net Type%3DIPAddress)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c985124e-31e8-471c-b5af-0d96f7fac9d7"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bb9b53a3-2ca1-4faf-8f3f-076525f7865e">
+                    <propertyInstance
+                      Id="85904b78-04e7-4345-98d9-0698c0d7a6f2"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="982a1a6b-fbfd-4e3a-8d3c-6d4cfbfa7ef0">
+                    <propertyInstance
+                      Id="acdc0539-9f82-4a79-a192-94b5f4d8565c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ef560a35-5826-4ca0-bdb0-f3c34827b99b">
+                    <propertyInstance
+                      Id="031858d5-568b-4c91-affb-8cfae4e31c6d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="72e831a4-6aae-4c0e-8ed7-cedabb9ebce5">
+                    <propertyInstance
+                      Id="90f776a1-54c4-4527-be83-c6b0ff3a46b7"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="af2b0eaa-b16e-4d4b-95bd-3c1954a3df5a">
+                    <propertyInstance
+                      Id="2b541b94-0b90-45e1-be81-fca849671b40"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bce12927-57d4-4e3a-a4db-e7f5a79dabc0">
+                    <propertyInstance
+                      Id="c2fa83e6-4e86-4cd4-8b91-2dd11d8d98e6"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5a8734a6-f791-48ad-9c7a-306c78388689"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="12a5da6a-9e78-4fea-85ed-f0e8fe37682e"
+                      LastKnownName="Task&lt;String‎&gt;"
+                      LastKnownLocation="Package1_0337.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e40ace07-00ea-4dea-bd3c-f86dbf5526bc"
+                  name="message"
+                  direction="In"
+                  isOrdered="true">
+                  <referencesInternal>
+                    <reference
+                      Id="2ecc2dcc-9360-4563-b4ed-9eda1e791b7b"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3D(Name%3DSendMessageAsync OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FSystem.dll&quot; Namespace%3DSystem.Net Type%3DIPAddress)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3Dmessage"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <lowerValueInternal>
+                    <literalString
+                      Id="8b7c6f00-8b42-455c-b05d-c892a049a3be"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="5d5c9e4e-c1dd-4968-b4c1-d4cf402a0332"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="430cdee4-1612-4ae1-9084-6d04f74f2fa6"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package_0334.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="11df6d10-6d50-4b1e-ac96-3f48f8a32b08"
+                  name="ipAddress"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="f0029c95-b0c3-46e2-8508-9fcdc2324554"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3D(Name%3DSendMessageAsync OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FSystem.dll&quot; Namespace%3DSystem.Net Type%3DIPAddress)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3DipAddress"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="dc1c38d7-2c6e-4a8c-b683-879f5d2e6744"
+                      LastKnownName="IPAddress"
+                      LastKnownLocation="Package2_0337.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="14260296-24d5-4e65-b42f-6faea8ff3cf8"
+                  name="port"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="5e644cda-8f57-4000-8b71-dde5ab368ff6"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3D(Name%3DSendMessageAsync OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FSystem.dll&quot; Namespace%3DSystem.Net Type%3DIPAddress)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3Dport"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="ModelingProject.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="61c1d441-df2b-4855-9b0e-2d837145b543"
+            name="UDPnet"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="850981d5-95eb-4dc9-b704-473b908f8353"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPnet Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a0ab4598-5e39-4442-bd4a-6805398b3902"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="81fa241f-ccf7-4001-af67-c9018b8ac3c4">
+                    <propertyInstance
+                      Id="7111b7bf-e9f7-449b-8bea-b0bbf27e7c24"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="08ebe1d7-225a-4b15-811d-294b6e33e7ab">
+                    <propertyInstance
+                      Id="489b9eff-817d-49d6-9f15-7b789376933d"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="25ac1d60-27af-40a0-ac23-3e560634a6e4">
+                    <propertyInstance
+                      Id="d1c71685-ec46-48ce-a7cc-38d091133b54"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2db5df50-9069-4bec-b358-afb134c15b05">
+                    <propertyInstance
+                      Id="9c496a7e-c8bf-4373-bf7b-c942791d1864"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="00ff47dc-160c-40f4-b4a6-147b3a8bc209">
+                    <propertyInstance
+                      Id="2b22da75-6332-4c20-ab68-0f902b2081ec"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="200bc030-6459-477f-a73c-8463a43b7282">
+                    <propertyInstance
+                      Id="0fed8311-bda1-4d5e-8820-363a43110de7"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="4f4699c5-9ccd-44d5-a3ec-d8f30f0291f4"
+        name="ErrorMessage"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="806c0093-1327-4afb-9bd3-81245a894a21"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DErrorMessage"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="4129c8f4-e81d-4dc0-b4d3-8cd047bf2ab2"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="897e4d58-246e-466b-b0db-81888ee4f8aa">
+                <propertyInstance
+                  Id="96957104-ce1d-4f5d-9e82-490886b76c25"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7604efc1-a5a8-408f-a66d-f2d730bdcd88">
+                <propertyInstance
+                  Id="3c20e040-0254-42cf-989a-779ba713e807"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7877ce7e-74f7-4eef-a821-c3e50a46fd69">
+                <propertyInstance
+                  Id="e2040bf8-b575-4c7c-ad6f-ca79ce3f8fcc"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8883da1c-b0aa-431c-af6d-cf036bca8615">
+                <propertyInstance
+                  Id="3c0fafc4-5e2b-4251-a7c7-f38c64d2da72"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d5ffaee1-2559-48b7-ab23-2f8e4e7230cc">
+                <propertyInstance
+                  Id="26640a45-6461-47df-bc7f-b1086d83acfe"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="ab4fb72f-0be3-4c33-a46f-4ee18c4a84d7"
+            isSubstitutable="false">
+            <classMoniker
+              Id="21771cdc-a089-451f-b3b0-fb9043e63c69"
+              LastKnownName="EventArgs"
+              LastKnownLocation="Package_0334.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="5c8d5fea-2994-4e09-83b2-7ec117915885"
+            name="Message"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="78844674-d09f-41a1-aba4-cc4cfc74195c"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DErrorMessage Member%3DMessage"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="7f0c431f-bc81-4cc0-b7f4-3275bf786437"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8b211fb5-0e58-4dfa-8e97-854c6eeafcf3">
+                    <propertyInstance
+                      Id="e798d245-16d0-485a-aa33-9cc42770b07c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5a095b33-02a8-40cf-9cb3-efd8ddc4492c">
+                    <propertyInstance
+                      Id="8a0b8e91-badc-405c-bfd1-ff16af26d0e1"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="14439a28-52a2-4d70-8be8-35b31d840211">
+                    <propertyInstance
+                      Id="e65ed1b4-6c0f-4719-87cf-41b9f77d1c5d"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="500ec3da-eac1-4ab8-ac83-8778f7d326b9">
+                    <propertyInstance
+                      Id="5eb7309c-f54d-49ec-8836-9ca2e011f946"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f1c384d3-42e2-4d73-a0e1-f3058830b704">
+                    <propertyInstance
+                      Id="2e546202-e34f-4067-9785-613eebe3384f"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="af2280dd-3f7c-4907-a11f-8ba23ba8584d">
+                    <propertyInstance
+                      Id="74af7fec-7d79-490f-b4d2-4edd01a7c25c"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0651909d-7e2d-4e59-afff-d0bff85c0bf9">
+                    <propertyInstance
+                      Id="d4cc4d7b-04ea-471a-934f-0f65acb25d49"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                LastKnownName="String"
+                LastKnownLocation="ModelingProject.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="8dcc45e0-e11e-4c6d-8fac-0dfe3fafef0a"
+            name="ErrorMessage"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="5a39a3d9-62f2-4c74-a0d6-dfa7a317ee2c"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DErrorMessage Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="42025698-16e5-4e33-96f2-11efb7beb7a5"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7941639e-a0e0-4b22-b59b-d244e840b7a8">
+                    <propertyInstance
+                      Id="1518d5ae-68e9-454f-a138-a250a2d4eb89"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="89b24da8-e338-42ee-828f-65c83962f5f9">
+                    <propertyInstance
+                      Id="98789bc8-d6c2-4a71-bf6e-25caec95b44c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4e08fe39-7b9f-46d9-a80e-2960c87eaa5b">
+                    <propertyInstance
+                      Id="4d3a463e-7540-4e4a-bd5b-b434bc8fd480"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e81bedf8-327d-41c5-92ce-78a01d32aaf7">
+                    <propertyInstance
+                      Id="ff707bf9-0f6c-4966-91b4-9829671da2d1"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0fa2acce-9899-4428-9eff-17029a09e7ae">
+                    <propertyInstance
+                      Id="41d34d65-bba1-4d52-bfc6-4fa5164e2343"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0e759110-6cac-4a57-a3b8-7c9bd1c5da2a">
+                    <propertyInstance
+                      Id="8251de32-4566-4b3c-9e21-816e1210cc1f"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="d4b3f0f0-4b83-4a1d-9546-61fbb1358852"
+        name="UDPMessage"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="179a0ca2-9772-4a5f-b72f-431e6b0ee60e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPMessage"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="a6633d42-29c1-4a19-8bbd-000a6d4da86d"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1231d53d-f0e7-4a2d-af08-83e2ef4c9a51">
+                <propertyInstance
+                  Id="af47be44-be46-4182-8937-205530608d73"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="52347c99-1576-4f12-8d01-f9197642d8cc">
+                <propertyInstance
+                  Id="b3935a67-e2c0-4de6-a94a-740dde09fc01"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="081a0c2e-e89d-4c2d-9229-ef9a0d9e5ee8">
+                <propertyInstance
+                  Id="1ad00ff1-527e-442a-8ee3-e08862d1d9e3"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="87c43091-b398-435b-bb39-3d3b3ebcb9b1">
+                <propertyInstance
+                  Id="42927627-44e5-42e5-aca4-36e438bd17a6"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="084fa49a-6606-4d8f-a851-a7679c176844">
+                <propertyInstance
+                  Id="36a622d5-5bff-4c4a-974a-f5dbda5e70b2"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="7aa0374f-4917-40a9-a879-1916364c9ed2"
+            isSubstitutable="false">
+            <classMoniker
+              Id="21771cdc-a089-451f-b3b0-fb9043e63c69"
+              LastKnownName="EventArgs"
+              LastKnownLocation="Package_0334.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="e4f16dd6-b99a-419d-bbe4-b9937cefa55d"
+            isDerived="false"
+            sourceEndRoleName="UDPMessage"
+            targetEndRoleName="Message"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="430cdee4-1612-4ae1-9084-6d04f74f2fa6"
+              LastKnownName="Byte"
+              LastKnownLocation="Package_0334.uml" />
+            <description>Свойство Message ссылается на тип Byte.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9c22a4e0-3c3e-4792-b7fb-0c74c066577f"
+                  name="UDPMessage"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="8f8c5810-60de-4453-8b20-71ff11fbe1f4"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="8e0661c6-dbe8-4704-8c71-81717ed3cace"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="52eae035-6d24-47ac-9e2c-356b0a757d96"
+                  name="Message"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isOrdered="true"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="aee07302-70be-4efd-9cf5-9c3b19c7a1ef"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="bdf5cead-22e5-45e3-ba96-d92484a29f7a"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="40895887-46f9-4a70-94f4-bb5b591a6150"
+            name="Message"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isOrdered="true"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="f22dc5cc-87b5-41b8-9279-06cc29e675c7"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPMessage Member%3DMessage"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="60e533c7-cdba-41f4-a318-96c0b65bd60f"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3334fb96-86fd-4f1c-9464-afd9d89feaec">
+                    <propertyInstance
+                      Id="ffe0e028-500c-4a91-a7d9-3226c9af7462"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="85de3a57-9190-4672-8a6f-0852d60d3e96">
+                    <propertyInstance
+                      Id="91bd112e-ac44-48f6-a2f1-239d9fbb1dbf"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2c2da5f4-ae14-4a68-b16b-cd70e31726b5">
+                    <propertyInstance
+                      Id="ceeb7ff3-9bb0-4224-828c-529cf4f6928a"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a462d1ac-1bb4-4fee-baf5-df5febb23408">
+                    <propertyInstance
+                      Id="1beb1577-ad05-4112-8f48-b54d472961b6"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c186545a-b36a-42d3-bd14-fa453e73ddb6">
+                    <propertyInstance
+                      Id="87d81bf1-18dc-422f-9e8d-a2ad76f52420"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d0ead6d9-9ca0-44f2-b82c-624f3795b719">
+                    <propertyInstance
+                      Id="94545b29-d539-4ec2-92f1-5a5164cca876"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="23270b7f-7f4f-4baf-aad3-536ef85b7184">
+                    <propertyInstance
+                      Id="ef1e265c-3fdc-43fb-8efe-bad048887b52"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <lowerValueInternal>
+              <literalString
+                Id="c0f72656-2cf9-4fc2-b044-3766cd48aebb"
+                name="Lower"
+                value="*" />
+            </lowerValueInternal>
+            <upperValueInternal>
+              <literalString
+                Id="a4efd450-bdde-4f8a-97db-46f350f7418e"
+                name="Upper"
+                value="*" />
+            </upperValueInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="430cdee4-1612-4ae1-9084-6d04f74f2fa6"
+                LastKnownName="Byte"
+                LastKnownLocation="Package_0334.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="67e89245-69f3-439e-8b7f-1d7d00ef5714"
+            name="UDPMessage"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="68932b84-3bb1-4084-99ce-973a0658b002"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FUDPServer%2Fbin%2FDebug%2FUDPServer.dll Namespace%3DUDPServer Type%3DUDPMessage Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="87c4f363-c83c-4b94-9fc5-9539b2c59d5e"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c57385bf-7df0-4003-9bc9-1161665c6fe1">
+                    <propertyInstance
+                      Id="c7fdb031-4d35-4044-85dc-a8a565254bb8"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ca9b09df-9254-41e7-b213-60ce5f1d3d4c">
+                    <propertyInstance
+                      Id="e111b5eb-8a52-4ef4-9a21-e33d7f8c87c1"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1a8196c3-8de2-4555-a93c-b214a2c8ddc6">
+                    <propertyInstance
+                      Id="23850d96-9af9-4e2c-80bb-4f196f3559ff"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="939f3149-9774-4208-aefe-ebc4f4d645ac">
+                    <propertyInstance
+                      Id="b41e431a-0048-44bb-8136-cfea99a38831"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1b3aa6b0-a11d-4e05-96d7-8feaba65e555">
+                    <propertyInstance
+                      Id="f4563386-8395-4134-90b9-cd6a2b6af844"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ecd1319a-4555-4c49-a637-665d47007c64">
+                    <propertyInstance
+                      Id="ed548a03-2c25-4cb8-a1da-dd9f00d507ae"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

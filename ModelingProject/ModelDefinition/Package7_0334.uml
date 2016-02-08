@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="c1a1e0f2-53ce-48b8-96b0-01633441ee11"
+  name="Client"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="0fc459fd-0702-4172-9e10-33eb7ab29409"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMicrosoft.AspNet.SignalR.Client"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="18c19748-8d87-49e9-8074-16dace01ab47">
+      <profileInstance
+        Id="607fe656-9162-4d5d-b310-e622a3a70bcc"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="fdb2af7e-f220-48aa-b9eb-25c8ae96565b"
+        name="HubConnection"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="b9f27465-67c2-407f-897d-3efff9e861aa"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2Fpackages%2FMicrosoft.AspNet.SignalR.Client.2.2.0%2Flib%2Fnet45%2FMicrosoft.AspNet.SignalR.Client.dll Namespace%3DMicrosoft.AspNet.SignalR.Client Type%3DHubConnection"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="a1a4a700-b9db-4005-aaec-403e941f565f"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="02556e2d-8977-42b0-a0bd-5c4dcc2783cf">
+                <propertyInstance
+                  Id="aadf1e3c-3772-4e2f-827a-d6d1d5958049"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e45dfcd0-8e89-4392-b83f-a1efb6f9b08f">
+                <propertyInstance
+                  Id="2e492984-7612-4531-ab13-065e460953dd"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0037891b-5f7a-47d6-b5b9-2bf591664599">
+                <propertyInstance
+                  Id="220703d9-f42d-49d7-8273-30b33e9e6e50"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4f36fca5-392b-4173-a91b-bbc48a708beb">
+                <propertyInstance
+                  Id="36a59a44-63b0-48e6-936d-92d200b61865"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fed22262-a85a-4de9-a131-c37a2ca8e148">
+                <propertyInstance
+                  Id="71ffc64c-30da-4e8b-a5ef-1e1e77becd77"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="511ef58c-487b-40fd-b58f-8776e8e02024"
+        name="IHubProxy"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="f416971a-2d2b-46a1-973b-b69b476eeec7"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2Fpackages%2FMicrosoft.AspNet.SignalR.Client.2.2.0%2Flib%2Fnet45%2FMicrosoft.AspNet.SignalR.Client.dll Namespace%3DMicrosoft.AspNet.SignalR.Client Type%3DIHubProxy"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="aa9df1cd-f49e-4595-b465-74ba604fe10b"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="251848f8-c44b-4527-9a07-708419bc02fc">
+                <propertyInstance
+                  Id="e35ba674-d246-48e7-a070-d746b933dce8"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cc409408-b9a9-4752-9845-caadaa0e2339">
+                <propertyInstance
+                  Id="1ca80a97-fd99-4d55-86d1-0d06d1ac3059"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4b2260bc-083c-4446-9dcf-cf4fd6633747">
+                <propertyInstance
+                  Id="2908b0dd-bda1-4982-b090-765c7944644b"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d3405300-2633-4517-9a60-f331c6c169ff">
+                <propertyInstance
+                  Id="435d9549-d7e1-40ba-8b52-139b7865069a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

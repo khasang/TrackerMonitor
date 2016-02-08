@@ -2,19 +2,19 @@
 using DAL.Entities;
 using DAL.Logic;
 using Microsoft.AspNet.SignalR.Client;
+using NetServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UDPServer;
 
 namespace ReceiveMessageServer
 {
     class Server : IDisposable
     {
         UDPnet udpServer;
-
+        TCPnet tcpServer;
         ApplicationDbContext dbContext;
 
         HubConnection hubConnection;
@@ -23,7 +23,9 @@ namespace ReceiveMessageServer
         public Server()
         {
             this.udpServer = new UDPnet();
-            udpServer.eventReceivedMessage += OnShowReceivedMessage;  // Подписываемся на событие получения сообщения
+            this.tcpServer = new TCPnet();
+            udpServer.eventReceivedMessage += OnUdpReceivedMessage;  // Подписываемся на событие получения сообщения
+            tcpServer.eventReceivedMessage += OnTcpReceivedMessage;
 
             try
             {
@@ -49,46 +51,112 @@ namespace ReceiveMessageServer
         public void Start()
         {
             udpServer.StartReceiveAsync(Settings.Default.Port);
+            tcpServer.StartReceiveAsync(Settings.Default.Port);
         }
 
         public void Stop()
         {
             udpServer.StopReceive();
+            tcpServer.StopReceive();
         }
 
-        private void OnShowReceivedMessage(object sender, EventArgs e)
+        private void OnUdpReceivedMessage(object sender, EventArgs e)
         {
-            UDPMessage message = e as UDPMessage;
+            NetMessage message = e as NetMessage;
+            foreach (var b in message.Message)
+            {
+                Console.Write("{0}", (int)b);
+            }
+            Console.WriteLine();
             if (message == null)
                 return;   // Здесь можно ввести обработку ошибки
 
-            GPSTrackerMessage gpsMessage = GPSTrackerMessageConverter.BytesToMessage(message.Message);
-
-            Console.WriteLine("{0} : {1}", gpsMessage.Latitude, gpsMessage.Longitude);
+            GPSTrackerMessage gpsMessage = null;
 
             try
             {
-                gpsMessage.GPSTracker = dbContext.GPSTrackers.Find(gpsMessage.GPSTrackerId);
-
-                if (gpsMessage.GPSTracker == null)
-                {
-                    // Записываем в лог, что пришло сообщение с неизвестного трекера
-                    Console.WriteLine("Не найден трекер с id = {0}", gpsMessage.GPSTrackerId);
-                }
-                else
-                {
-                    dbContext.GPSTrackerMessages.Add(gpsMessage);
-                    dbContext.SaveChanges();
-                }                
+                gpsMessage = GPSTrackerMessageConverter.BytesToMessage(message.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ошибка работы с базой данных! : {0}", ex.Message);
+                return;
             }
+
+            Console.WriteLine("{0} : {1}", gpsMessage.Latitude, gpsMessage.Longitude);
+
+            SaveGpsTrackerMessage(gpsMessage);
+            NotifyHub(gpsMessage);
+        }
+
+        private void OnTcpReceivedMessage(object sender, EventArgs e)
+        {
+            NetMessage message = e as NetMessage;
+            foreach (var b in message.Message)
+            {
+                Console.Write("{0}", (int)b);
+            }
+            Console.WriteLine();
+            if (message == null)
+                return;   // Здесь можно ввести обработку ошибки
+
+            GPSTrackerMessage gpsMessage = null;
 
             try
             {
-                hubProxy.Invoke("SendNewMessage", gpsMessage);
+                gpsMessage = GPSTrackerMessageConverter.Tk102BytesToMessage(message.Message);
+
+                if (gpsMessage == null) return;
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+
+            Console.WriteLine("{0} : {1}", gpsMessage.Latitude, gpsMessage.Longitude);
+
+            SaveGpsTrackerMessage(gpsMessage);
+            NotifyHub(gpsMessage);
+        }
+
+        private void SaveGpsTrackerMessage(GPSTrackerMessage gpsMessage)
+        {
+            try
+            {
+                lock (dbContext)
+                {
+                    gpsMessage.GPSTracker = dbContext.GPSTrackers.FirstOrDefault(g => g.Id.Contains(gpsMessage.GPSTrackerId));
+
+                    if (gpsMessage.GPSTracker == null)
+                    {
+                        // Записываем в лог, что пришло сообщение с неизвестного трекера
+                        Console.WriteLine("Не найден трекер с id = {0}", gpsMessage.GPSTrackerId);
+                    }
+
+                    dbContext.GPSTrackerMessages.Add(gpsMessage);
+                    dbContext.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ошибка сохранения в базе данных! : {0}", ex.Message);
+            }
+        }
+
+        private void NotifyHub(GPSTrackerMessage gpsMessage)
+        {
+            try
+            {
+                GPSTrackerMessage signalRMessage = new GPSTrackerMessage();
+
+                signalRMessage.Id = gpsMessage.Id;
+                signalRMessage.Latitude = gpsMessage.Latitude;
+                signalRMessage.Longitude = gpsMessage.Longitude;
+                signalRMessage.Time = gpsMessage.Time;
+                signalRMessage.GPSTrackerId = gpsMessage.GPSTrackerId;
+                signalRMessage.GPSTracker = new GPSTracker();
+                signalRMessage.GPSTracker.OwnerId = gpsMessage.GPSTracker.OwnerId;
+
+                lock (hubProxy) { hubProxy.Invoke("SendNewMessage", signalRMessage); }
             }
             catch (Exception ex)
             {

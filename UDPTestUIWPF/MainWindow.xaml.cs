@@ -1,6 +1,7 @@
 ﻿using DAL;
 using DAL.Entities;
 using DAL.Logic;
+using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

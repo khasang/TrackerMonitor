@@ -17,21 +17,12 @@ namespace WebMVC.Hubs
     /// Класс для работы с SignalR
     /// </summary>
     //[Authorize]
-    public class PushNotify:Hub
+    public class PushNotify : Hub
     {
-        ApplicationDbContext dbContext = new ApplicationDbContext();
-
+        //[Authorize]
         public void SendNewMessage(GPSTrackerMessage message)
         {
-            Debug.WriteLine("Send -> " + message.GPSTracker.OwnerId);
-
-            if(message.GPSTracker == null)
-            {
-                // Здесь логирование сообщений от неизвестных трекеров
-                return;
-            }
-
-            Clients.Group(message.GPSTracker.OwnerId).ShowMessage(message);            
+            Clients.Group(message.GPSTracker.OwnerId).ShowMessage(message);
         }
 
         /// <summary>
@@ -40,15 +31,10 @@ namespace WebMVC.Hubs
         /// <returns></returns>
         public override Task OnConnected()
         {
-            Debug.WriteLine("OnConnected");
-            Debug.WriteLine("IsAuthenticated = " + Context.User.Identity.IsAuthenticated.ToString());
-
-            if (!Context.User.Identity.IsAuthenticated) return base.OnConnected();
-
-            Debug.WriteLine("ConnectionId = " + Context.ConnectionId);
-            Debug.WriteLine("UserId = " + Context.User.Identity.GetUserId());
-
-            Groups.Add(Context.ConnectionId, Context.User.Identity.GetUserId()); //имя группы - имя пользователя
+            if (Context.User.Identity.IsAuthenticated)
+            {
+                Groups.Add(Context.ConnectionId, Context.User.Identity.GetUserId());
+            }
             return base.OnConnected();
         }
 

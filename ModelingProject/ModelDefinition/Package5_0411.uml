@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="fa1f0ada-76e1-4880-a7af-95955f20ddb4"
+  name="Generic"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="9e670e1e-21b4-40a8-ba1f-4745669a9aa9"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSystem.Collections.Generic"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="871d40e1-39c6-483b-9562-8bca795847d2"
+        name="ICollection&lt;GPSTrackerMessage‎&gt;"
+        isAbstract="false"
+        isLeaf="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="f804ecd4-0355-4396-ae1c-0c2eab946f36"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bb872628-5be9-47c3-9763-e0622ddcee64">
+                <propertyInstance
+                  Id="d3732786-9ced-4854-8d55-7be81015d297"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e4669f3a-b766-4bf5-a40f-65bdf287e6c6">
+                <propertyInstance
+                  Id="dd3a930f-7d1f-4b05-b4af-0f8729f239d2"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ed297947-06a3-4a21-9b49-cce368359e08">
+                <propertyInstance
+                  Id="1a1b0bf3-bdbb-40eb-bbbf-4f02f37c6f31"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3e470b3e-2eaa-43ed-a2b6-e4d7fca59d01">
+                <propertyInstance
+                  Id="9e8ae313-f06c-4d75-9d67-b62787bf4473"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <signatures>
+          <templateBinding
+            Id="7fc50249-480d-4100-ba12-1e29fbdfe6b2">
+            <redefinableTemplateSignatureMoniker
+              Id="25b80603-1ddc-44cc-83be-c54c9b28cdc5"
+              LastKnownLocation="Package5_0411.uml" />
+            <relationshipOwnedElementsInternal>
+              <templateBindingHasTemplateParameterSubstitution>
+                <templateParameterSubstitution
+                  Id="52909c5d-2e75-4660-ac98-bf46dfbd245a">
+                  <actuals>
+                    <classMoniker
+                      Id="2e266727-0910-4824-a408-e5d66fd04a2d"
+                      LastKnownName="GPSTrackerMessage"
+                      LastKnownLocation="Package1_0411.uml" />
+                  </actuals>
+                  <formal>
+                    <classifierTemplateParameterMoniker
+                      Id="81370ae9-f414-4814-a60d-2942bb73d9fb"
+                      LastKnownLocation="Package5_0411.uml" />
+                  </formal>
+                </templateParameterSubstitution>
+              </templateBindingHasTemplateParameterSubstitution>
+            </relationshipOwnedElementsInternal>
+          </templateBinding>
+        </signatures>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="b54d116a-9280-45e4-9869-0c0c17123ade"
+        name="ICollection"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="522f35a7-901b-4604-8a12-95cd786a221e"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DICollection GenericParameterCount%3D1)"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c936b55f-9629-4321-acbb-690e98fc41dc"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="41d2f9bd-8e07-4b88-83b8-7d1089b3c7e8">
+                <propertyInstance
+                  Id="e5da6122-2e90-4244-b828-cb798ba4c40a"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a03137cd-9881-4af3-80ea-bed698cd6fa5">
+                <propertyInstance
+                  Id="9ff9851e-c8e8-4d4d-8eb1-e7549c5996ba"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a25de2a4-107a-486b-a605-d26df62fa1fd">
+                <propertyInstance
+                  Id="154c0f48-6135-4179-a290-b3069a426c54"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b2d36795-d566-4c64-8883-022a55be9c03">
+                <propertyInstance
+                  Id="0d708ed1-df5c-453c-aad3-b4cc6d6d2cd9"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedRedefinableTemplateSignatureInternal>
+          <redefinableTemplateSignature
+            Id="25b80603-1ddc-44cc-83be-c54c9b28cdc5"
+            parameters=""
+            name="RedefinableTemplateSignature1"
+            isLeaf="false">
+            <ownedParameters>
+              <classifierTemplateParameter
+                Id="81370ae9-f414-4814-a60d-2942bb73d9fb">
+                <referencesInternal>
+                  <reference
+                    Id="ee37b6da-a88a-49f1-bc74-70407103b4d6"
+                    handle="viewcode://./CodeSchema_GenericParameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DICollection GenericParameterCount%3D1) ParameterIdentifier%3D0"
+                    tag="ViewCode" />
+                </referencesInternal>
+                <ownedParameterableElement>
+                  <class
+                    Id="67af8b97-b563-4e87-b26c-957e524cc963"
+                    name="T"
+                    isAbstract="false"
+                    isLeaf="false"
+                    isActiveClass="false" />
+                </ownedParameterableElement>
+              </classifierTemplateParameter>
+            </ownedParameters>
+          </redefinableTemplateSignature>
+        </ownedRedefinableTemplateSignatureInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="313621dc-2602-4d95-b51d-3e887daa6709"
+        name="ICollection&lt;GPSTracker‎&gt;"
+        isAbstract="false"
+        isLeaf="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="ac3ae675-2eab-4e5b-a3b5-057036aa039d"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="231d0b5e-d568-430a-991f-417b328ce61c">
+                <propertyInstance
+                  Id="4e43cde5-ccd8-4763-a0b2-dfaa33407aa4"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="33c2dec0-1f0e-4e94-b559-b81c133c51ad">
+                <propertyInstance
+                  Id="44335779-888b-42f6-84a8-64c7babc8ed4"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="687cad43-2b10-4b1f-82a0-9db0342639a1">
+                <propertyInstance
+                  Id="d76606a1-390b-4a81-90bf-c72dbfb09506"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ef25391c-a3f9-4d49-83c6-9a0a4c258529">
+                <propertyInstance
+                  Id="d77c6a3f-4d58-42f9-8e59-6c031da9895f"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <signatures>
+          <templateBinding
+            Id="c09a107d-a42f-4a25-8181-f5946eb30685">
+            <redefinableTemplateSignatureMoniker
+              Id="25b80603-1ddc-44cc-83be-c54c9b28cdc5"
+              LastKnownLocation="Package5_0411.uml" />
+            <relationshipOwnedElementsInternal>
+              <templateBindingHasTemplateParameterSubstitution>
+                <templateParameterSubstitution
+                  Id="f42a59ae-0aed-42d0-8584-a2398b125442">
+                  <actuals>
+                    <classMoniker
+                      Id="5e85f433-79de-4da5-a7e0-6013ebb5cf90"
+                      LastKnownName="GPSTracker"
+                      LastKnownLocation="Package1_0411.uml" />
+                  </actuals>
+                  <formal>
+                    <classifierTemplateParameterMoniker
+                      Id="81370ae9-f414-4814-a60d-2942bb73d9fb"
+                      LastKnownLocation="Package5_0411.uml" />
+                  </formal>
+                </templateParameterSubstitution>
+              </templateBindingHasTemplateParameterSubstitution>
+            </relationshipOwnedElementsInternal>
+          </templateBinding>
+        </signatures>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
