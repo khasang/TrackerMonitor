@@ -7,17 +7,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace UDPServer
+namespace NetServer
 {
-    public class UDPnet
+    public class UDPnet : NetProtocol
     {
         UdpClient udpClient = null;
-        bool stopReceive = false;
-
-        public EventHandler eventReceivedMessage = (x, y) => { };
-        public EventHandler eventReceivedError = (x, y) => { };
         
-        public async void StartReceiveAsync(int port) // Запуск приема сообщений
+        public override async void StartReceiveAsync(int port) // Запуск приема сообщений
         {
             using(udpClient = new UdpClient(port))
             {
@@ -30,18 +26,21 @@ namespace UDPServer
                     {
                         await udpClient.ReceiveAsync().ContinueWith((udpReceiveTask) =>
                         {
-                            byte[] message = udpReceiveTask.Result.Buffer;
-
-                            Task.Run(() =>
+                            if (udpReceiveTask.Status != TaskStatus.Faulted)
                             {
-                                eventReceivedMessage(this, new UDPMessage() { Message = message });
-                            });
+                                byte[] message = udpReceiveTask.Result.Buffer;
+
+                                Task.Run(() =>
+                                {
+                                    eventReceivedMessage(this, new NetMessage() { Message = message });
+                                });
+                            }
                         });
                     }
                 }
                 catch (Exception ex)
                 {
-                    eventReceivedError(this, new ErrorMessage { Message = ex.Message });
+                    eventReceivedError(this, new ErrorNetMessage { Message = ex.Message });
                 }
             }
         }
@@ -52,14 +51,14 @@ namespace UDPServer
             using(udpClient = new UdpClient(port))
             {
                 message = (await udpClient.ReceiveAsync()).Buffer;
-                eventReceivedMessage(this, new UDPMessage() { Message = message });
+                eventReceivedMessage(this, new NetMessage() { Message = message });
 
                 udpClient.Close();
             }
             return message;
         }
 
-        public void StopReceive()          // Метод остановки дополнительного потока
+        public override void StopReceive()          // Метод остановки дополнительного потока
         {
             stopReceive = true;            // Останавливаем цикл приема сообщений           
             if (udpClient != null) udpClient.Close();  // Принудительно закрываем объект класса UdpClient
@@ -72,7 +71,7 @@ namespace UDPServer
         /// <param name="ipAddress">IP адрес</param>
         /// <param name="port">Порт</param>
         /// <returns>Результат отправки</returns>
-        public async Task<string> SendMessageAsync(byte[] message, IPAddress ipAddress, int port) // Отправка сообщения
+        public override async Task<string> SendMessageAsync(byte[] message, IPAddress ipAddress, int port) // Отправка сообщения
         {
             using(udpClient = new UdpClient())
             {
