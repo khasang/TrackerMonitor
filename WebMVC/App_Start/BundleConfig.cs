@@ -14,7 +14,8 @@ namespace WebMVC
                         "~/Content/bootstrap/js/bootstrap.min.js",
                         "~/Content/js/jquery.backstretch.min.js",
                         "~/Content/js/retina-1.1.0.min.js",
-                        "~/Content/js/scripts.js"));
+                        "~/Content/js/scripts.js",
+                        "~/Content/js/jquery.main.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/backgroundScript").Include(
                 "~/Content/js/backgroundScript.js"
@@ -24,7 +25,8 @@ namespace WebMVC
                 "~/Content/bootstrap/css/bootstrap.min.css",
                 "~/Content/font-awesome/css/font-awesome.min.css",
                 "~/Content/css/form-elements.css",
-                "~/Content/css/style.css"
+                "~/Content/css/style.css",
+                "~/Content/css/all.css"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -45,7 +47,7 @@ namespace WebMVC
                       "~/Scripts/respond.js",
                       "~/Content/bootstrap/js/bootstrap.min.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/privateareastyles").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap/css/bootstrap.min.css",

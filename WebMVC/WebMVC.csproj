@@ -205,6 +205,7 @@
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap\js\npm.js" />
+    <Content Include="Content\css\all.css" />
     <Content Include="Content\css\form-elements.css" />
     <Content Include="Content\css\leaflet.css" />
     <Content Include="Content\css\style.css" />
@@ -213,9 +214,12 @@
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\img\backgrounds\1%402x.jpg" />
     <Content Include="Content\img\backgrounds\1.jpg" />
+    <Content Include="Content\img\backgrounds\landing_background.jpg" />
+    <Content Include="Content\img\Landing\first.png" />
     <Content Include="Content\img\logo%402x.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\js\backgroundScript.js" />
+    <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\images\layers-2x.png" />
     <Content Include="Content\js\images\layers.png" />
     <Content Include="Content\js\images\marker-icon-2x.png" />
@@ -225,6 +229,7 @@
     <Content Include="Content\js\jquery-1.11.1.min.js" />
     <Content Include="Content\js\jquery.backstretch.js" />
     <Content Include="Content\js\jquery.backstretch.min.js" />
+    <Content Include="Content\js\jquery.main.js" />
     <Content Include="Content\js\leaflet-src.js" />
     <Content Include="Content\js\leaflet.js" />
     <Content Include="Content\js\placeholder.js" />
@@ -283,6 +288,7 @@
     <Content Include="Content\img\backgrounds\.DS_Store" />
     <Content Include="Content\js\.DS_Store" />
     <Content Include="Content\.DS_Store" />
+    <Content Include="Content\css\all.css.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -352,6 +358,8 @@
     <Content Include="Views\PersonalArea\Details.cshtml" />
     <Content Include="Views\Trackers\TrackerListNode.cshtml" />
     <Content Include="Views\ShowMessages\Index.cshtml" />
+    <Content Include="Views\Shared\LandingPartial.cshtml" />
+    <Content Include="Views\Home\LandingPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
