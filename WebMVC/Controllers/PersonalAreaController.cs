@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using WebMVC.Models.PersonalAreaViewModels;
+using WebMVC.Json;
 
 namespace WebMVC.Controllers
 {
@@ -59,7 +60,7 @@ namespace WebMVC.Controllers
         public ActionResult Edit(EditViewModel model)
         {
             if (!ModelState.IsValid)
-                return View(model);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             UserProfile profile = dbContext.UserProfiles.Find(User.Identity.GetUserId());
 
@@ -67,7 +68,7 @@ namespace WebMVC.Controllers
 
             dbContext.SaveChanges();
 
-            return View("Details", profile);
+            return new JsonCamelCaseResult(model, JsonRequestBehavior.DenyGet);
         }
     }
 }

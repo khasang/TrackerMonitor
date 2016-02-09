@@ -25,9 +25,9 @@ namespace WebMVC.Controllers
         // GET: ShowMessagesController
         public ActionResult Index()
         {
-            string ownerId = User.Identity.GetUserId();
+            string userId = User.Identity.GetUserId();
 
-            SelectList trackers = new SelectList(dbContext.UserProfiles.Find(ownerId).GPSTrackers, "Id", "Name");
+            SelectList trackers = new SelectList(dbContext.UserProfiles.Find(userId).GPSTrackers, "Id", "Name");
 
             ViewBag.trackers = trackers;
 
@@ -45,8 +45,7 @@ namespace WebMVC.Controllers
 
             filterMessage.Messages = dbContext
                                     .GPSTrackers
-                                    .Find(filterMessage
-                                    .Id)
+                                    .Find(filterMessage.Id)
                                     .GPSTrackerMessages
                                     .Where(x => (x.Time < filterMessage.SecondDate && x.Time > filterMessage.FirstDate))
                                     .ToList();

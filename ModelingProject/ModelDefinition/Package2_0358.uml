@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="0d7be51c-1a3e-4bb2-a39c-9f5eb8a078fa"
+  name="Entities"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="012d7396-db3c-4645-9af1-cd5b3dde60f2"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DDAL.Entities"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="3c970041-0026-4a69-b111-9babd9cf0810"
+        name="GPSTracker"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="bd8cfee4-d2d1-4612-a5de-a019f5b69b0d"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL.Entities Type%3DGPSTracker"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="e8ec1a9f-192a-4d11-84bd-7faba9ceb4cf"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a82876b0-8dfa-4b1a-b7e0-99ba77bc6c10">
+                <propertyInstance
+                  Id="acdef9d7-4ad7-4a24-afbf-ec805297e568"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7b57bda5-fb6c-4ff4-8b04-528c18fd4124">
+                <propertyInstance
+                  Id="49cc13bf-36fc-4e62-81f3-44b27d1e12ae"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7940d76d-7a67-4651-9338-72f73c61f4c3">
+                <propertyInstance
+                  Id="7b65fdab-a860-43a4-9f36-dbeaae0b7e7e"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="80fe3598-1dc0-4736-b383-b66f1e70a3bd">
+                <propertyInstance
+                  Id="c82c9755-6026-49a8-8891-7fb1f4422870"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="617d1b29-d6c6-4d50-9ce7-fd6b513808c1">
+                <propertyInstance
+                  Id="fefe13d6-dacf-47f1-a658-19a53e7bdc2a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a9dbe7a9-a07e-4e6f-8f3a-db44e30c64f9"
+        name="GPSTrackerMessage"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="c0f74eba-4849-423f-9985-6c80e3d7c451"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL.Entities Type%3DGPSTrackerMessage"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="09fd6b64-c509-41cc-ba37-b2ff8d6df435"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5734f1ac-9d7d-4baa-a117-4667dc22cc06">
+                <propertyInstance
+                  Id="9e34a9c5-81f0-46f9-a3f7-c473a25e1078"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c53e059d-2dff-46b9-b1b4-5bcd4dd9295f">
+                <propertyInstance
+                  Id="58f5a4fe-c6a2-4c13-b3fa-341fe28bdf13"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4c7d4d9e-606e-400e-9cc7-13bd425880f7">
+                <propertyInstance
+                  Id="3b71b783-99b4-4f1b-af9f-b5534a23fb64"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1aef4921-a935-4de2-800b-b54f820db01b">
+                <propertyInstance
+                  Id="0713ace3-db2e-46fd-855e-f38ea834f402"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fb1b9129-6bc5-49e7-a0c2-9ae0ffb927d4">
+                <propertyInstance
+                  Id="4571adcc-e744-4cb2-8dde-2c71a2e3f476"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2e8d5d87-71a8-4e3a-9125-b326a3ec63fb"
+        name="UserProfile"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="1d6f7792-5adf-4f4d-9027-736e7dd73b6d"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL.Entities Type%3DUserProfile"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="84fa5526-0ec3-4fae-ba08-db05f21d2fea"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="81e06b3a-d0f1-45f3-a2ea-0c953a94fe7d">
+                <propertyInstance
+                  Id="f34c7b33-576c-44ab-947c-e10c3ae3fd91"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1952b2e7-9c42-47b7-9419-7c54e32a7c35">
+                <propertyInstance
+                  Id="2d521652-6512-4c09-aef7-8de7997a7a25"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7afaf526-7226-4b09-a5b1-806dcec07464">
+                <propertyInstance
+                  Id="ff52778c-63f5-480d-8e37-f2a55a87a225"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4c164380-c064-4bbb-a0ff-212f40d99a9b">
+                <propertyInstance
+                  Id="a04e6798-42d2-46ea-9b91-19cd7c911880"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="915901ab-e814-4d19-a454-00479749f657">
+                <propertyInstance
+                  Id="1d3e537e-9343-4f31-9ebd-1c78139d9851"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="82cffc5a-01b2-43a2-bdcf-afefe7ca25f1"
+        name="ApplicationUser"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="537fa121-1dea-476c-8551-39851c6db664"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FE:%2FProjects%2FTrackerMonitor%2FDAL%2Fbin%2FDebug%2FDAL.dll Namespace%3DDAL.Entities Type%3DApplicationUser"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="b77145ef-e1cb-42ef-9e8c-a6d0fbac4971"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9357a5ae-a01c-4e7a-862a-af45f015bd5e">
+                <propertyInstance
+                  Id="48d89f36-32a1-4a4a-ad6e-9232746aff5e"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e6217b6a-9505-4e54-8d8a-ded954aae0fb">
+                <propertyInstance
+                  Id="0550c15d-e88a-4f8a-830a-281770062c1a"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="21c37f24-3c51-4d10-ab6e-5b4f556c7e23">
+                <propertyInstance
+                  Id="17a6cc4e-397d-4bd8-b69d-ba32dd8506d4"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7468cecb-740e-42ed-9980-4aced22c3568">
+                <propertyInstance
+                  Id="ce22fdd5-0892-4ad8-89f0-e55a7999e90d"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="102202e0-ddaa-4107-84ee-714627ed1393">
+                <propertyInstance
+                  Id="7752a10f-22df-45a8-bbd2-602fbb88c739"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
