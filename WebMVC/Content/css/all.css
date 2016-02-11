@@ -175,9 +175,10 @@ p {
   color: #8d81ac;
   font-size: 0;
   letter-spacing: -4px;
-  padding: 104px 0 0;
-  background-image:url(img/landing_background.jpg);
-  background: #000; }
+
+  background-image:url(/Content/img/backgrounds/background2.jpg);
+  background-size:100%;
+}
   .visual .bg-stretch {
     position: absolute;
     bottom: 0;
@@ -211,7 +212,7 @@ p {
     color: #494654;
     text-transform: uppercase; }
   .visual .text-block {
-    padding: 90px 0; }
+    padding: 50px 0; }
 
 #cta {
   position: relative;
@@ -288,7 +289,9 @@ p {
   border-radius: 40px; }
 
 .main {
-  padding: 47px 0; }
+  padding: 47px 0;
+  background-color:silver;
+}
   .main .content {
     padding: 25px 15px 23px;
     font-size: 1.3rem;
@@ -676,7 +679,8 @@ p {
   padding: 62px 15px 92px;
   font-size: 1.4rem;
   line-height: 1.6428571429;
-  color: #848e97; }
+  color: black;
+}
   .footer-holder:before {
     content: '';
     position: absolute;
@@ -705,7 +709,7 @@ p {
     font-size: 1.5rem;
     line-height: 1.55; }
     .footer-holder ul a {
-      color: #8d81ac; }
+      color: black; }
       .footer-holder ul a:hover {
         color: #716298; }
   .footer-holder .text-holder {
@@ -726,7 +730,7 @@ p {
     line-height: 1.3333333;
     font-weight: bold;
     text-transform: uppercase;
-    color: #848e97; }
+    color: black; }
   .footer-holder address {
     display: block;
     margin: -3px 0 0;
