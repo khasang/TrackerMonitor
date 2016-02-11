@@ -1,6 +1,7 @@
 ﻿using DAL.Entities;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,24 +18,24 @@ namespace WebMVC.Controllers
     [Authorize]
     public class TrackersController : BaseController
     {
-        public JsonResult Index()
+        public string GetTrackers(string id1, string id2, string id3)
         {
-            var messages = new ICollection<GPSTrackerMessage>()
+            var messages = new List<GPSTrackerMessage>();
             messages.Add(new GPSTrackerMessage()
                 {
-                    GPSTrackerId = id,
+                    GPSTrackerId = id1 + "1",
                     Latitude = 54.69873893333814,
                     Longitude = 52.34677000002305
                 });
             messages.Add(new GPSTrackerMessage()
                 {
-                    GPSTrackerId = id,
+                    GPSTrackerId = id2 + "2",
                     Latitude = 42.69873893333814,
                     Longitude = 52.34677000002305
                 });
             messages.Add(new GPSTrackerMessage()
                 {
-                    GPSTrackerId = id,
+                    GPSTrackerId = id3+ "3",
                     Latitude = 99.69873893333814,
                     Longitude = 52.34677000002305
                 });
