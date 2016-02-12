@@ -2,6 +2,7 @@
 using DAL.Entities;
 using DAL.Logic;
 using Microsoft.AspNet.SignalR.Client;
+using NetServer;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,7 +12,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using UDPServer;
+
 
 namespace UDPTestUIWPF
 {
@@ -190,7 +191,7 @@ namespace UDPTestUIWPF
         /// </summary>
         private void OnShowReceivedMessage(object sender, EventArgs e)
         {
-            UDPMessage message = e as UDPMessage;
+            NetMessage message = e as NetMessage;
             if (message == null)
                 return;   // Здесь можно ввести обработку ошибки
 
