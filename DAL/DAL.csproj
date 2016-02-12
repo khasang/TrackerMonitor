@@ -108,6 +108,7 @@
     <Compile Include="Interfaces\IApplicationUserRepository.cs" />
     <Compile Include="Interfaces\IGPSTrackerRepository.cs" />
     <Compile Include="Interfaces\IGPSTrackerMessageRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUserProfileRepository.cs" />
     <Compile Include="Logic\GPSTrackerMessageConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

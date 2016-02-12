@@ -17,16 +17,6 @@ namespace DAL.Implementaions
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<GPSTrackerMessage> GetMessages()
-        {
-            throw new NotImplementedException();
-        }
-
-        public GPSTrackerMessage GetMessageById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<GPSTrackerMessage> GetMessagesOfTracker(GPSTracker tracker)
         {
             throw new NotImplementedException();
@@ -37,17 +27,32 @@ namespace DAL.Implementaions
             throw new NotImplementedException();
         }
 
-        public void AddMessage(GPSTrackerMessage message)
+        public IEnumerable<GPSTrackerMessage> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteMessage(GPSTrackerMessage message)
+        public GPSTrackerMessage GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteMessage(int messageId)
+        public void Add(GPSTrackerMessage item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(GPSTrackerMessage item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(GPSTrackerMessage item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }

@@ -7,14 +7,9 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IApplicationUserRepository
+    public interface IApplicationUserRepository : IRepository<ApplicationUser, string>
     {
-        IEnumerable<ApplicationUser> GetUsers();
-        ApplicationUser GetUserById(string id);
         ApplicationUser GetUserByProfile(UserProfile userProfile);
         ApplicationUser GetUserByTracker(GPSTracker tracker);
-        void AddUser(ApplicationUser user);
-        void DeleteUser(ApplicationUser user);
-        void DeleteUser(string userId);
     }
 }

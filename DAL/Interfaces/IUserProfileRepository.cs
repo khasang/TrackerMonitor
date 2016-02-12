@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IUserProfileRepository
+    public interface IUserProfileRepository : IRepository<UserProfile, string>
     {
-        IEnumerable<UserProfile> GetUserProfiles();
         UserProfile GetUserProfile(string userProfileId);
         UserProfile GetUserProfile(ApplicationUser user);
         void AddUserProfile(UserProfile userProfile);
-        void DeleteUserProfile(UserProfile userProfile);
-        void DeleteUserProfile(string userProfileId);
     }
 }

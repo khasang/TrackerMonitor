@@ -7,15 +7,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IGPSTrackerRepository
+    public interface IGPSTrackerRepository : IRepository<GPSTracker, string>
     {
-        IEnumerable<GPSTracker> GetTrackers();
         IEnumerable<GPSTracker> GetTrackersByUser(ApplicationUser user);
         IEnumerable<GPSTracker> GetTrackersByUserId(string userId);
-        GPSTracker GetTrackerById(string id);
         GPSTracker GetTrackerByMessage(GPSTrackerMessage message);
-        void AddTracker(GPSTracker tracker);
-        void DeleteTracker(GPSTracker tracker);
-        void DeleteTracker(string id);
+        GPSTracker GetTrackerByMessageId(int messageId);
     }
 }

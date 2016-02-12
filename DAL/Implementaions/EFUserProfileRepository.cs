@@ -17,11 +17,6 @@ namespace DAL.Implementaions
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<UserProfile> GetUserProfiles()
-        {
-            throw new NotImplementedException();
-        }
-
         public UserProfile GetUserProfile(string userProfileId)
         {
             throw new NotImplementedException();
@@ -37,12 +32,32 @@ namespace DAL.Implementaions
             throw new NotImplementedException();
         }
 
-        public void DeleteUserProfile(UserProfile userProfile)
+        public IEnumerable<UserProfile> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteUserProfile(string userProfileId)
+        public UserProfile GetById(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(UserProfile item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(UserProfile item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(UserProfile item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(string id)
         {
             throw new NotImplementedException();
         }

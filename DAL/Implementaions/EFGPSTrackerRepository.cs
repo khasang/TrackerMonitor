@@ -17,44 +17,54 @@ namespace DAL.Implementaions
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<GPSTracker> GetTrackers()
-        {
-            return dbContext.GPSTrackers.ToList();
-        }
-
         public IEnumerable<GPSTracker> GetTrackersByUser(ApplicationUser user)
         {
-            return dbContext.GPSTrackers.Where(x => x.Owner.UserId  == user.Id);
+            throw new NotImplementedException();
         }
 
         public IEnumerable<GPSTracker> GetTrackersByUserId(string userId)
         {
-            return dbContext.GPSTrackers.Where(x => x.Owner.UserId == userId);
-        }
-
-        public GPSTracker GetTrackerById(string id)
-        {
-            return dbContext.GPSTrackers.FirstOrDefault(x => x.Id == id);
+            throw new NotImplementedException();
         }
 
         public GPSTracker GetTrackerByMessage(GPSTrackerMessage message)
         {
-            return dbContext.GPSTrackers.FirstOrDefault(x => x.Id == message.GPSTrackerId);
+            throw new NotImplementedException();
         }
 
-        public void AddTracker(GPSTracker tracker)
+        public GPSTracker GetTrackerByMessageId(int messageId)
         {
-            dbContext.GPSTrackers.Add(tracker);
+            throw new NotImplementedException();
         }
 
-        public void DeleteTracker(GPSTracker tracker)
+        public IEnumerable<GPSTracker> GetAll()
         {
-            dbContext.GPSTrackers.Remove(tracker);
+            throw new NotImplementedException();
         }
 
-        public void DeleteTracker(string id)
+        public GPSTracker GetById(string id)
         {
-            dbContext.GPSTrackers.Remove(GetTrackerById(id));
+            throw new NotImplementedException();
+        }
+
+        public void Add(GPSTracker item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(GPSTracker item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(GPSTracker item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
