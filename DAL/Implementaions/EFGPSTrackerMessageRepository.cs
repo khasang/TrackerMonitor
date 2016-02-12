@@ -10,6 +10,13 @@ namespace DAL.Implementaions
 {
     class EFGPSTrackerMessageRepository : IGPSTrackerMessageRepository
     {
+        ApplicationDbContext dbContext;
+
+        public EFGPSTrackerMessageRepository(ApplicationDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public IEnumerable<GPSTrackerMessage> GetMessages()
         {
             throw new NotImplementedException();

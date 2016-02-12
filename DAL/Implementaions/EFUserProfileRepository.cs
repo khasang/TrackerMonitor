@@ -10,6 +10,13 @@ namespace DAL.Implementaions
 {
     class EFUserProfileRepository : IUserProfileRepository
     {
+        ApplicationDbContext dbContext;
+
+        public EFUserProfileRepository(ApplicationDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public IEnumerable<UserProfile> GetUserProfiles()
         {
             throw new NotImplementedException();

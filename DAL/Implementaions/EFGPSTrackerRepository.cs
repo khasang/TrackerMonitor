@@ -10,7 +10,12 @@ namespace DAL.Implementaions
 {
     class EFGPSTrackerRepository : IGPSTrackerRepository
     {
-        ApplicationDbContext dbContext = new ApplicationDbContext();
+        ApplicationDbContext dbContext;
+
+        public EFGPSTrackerRepository(ApplicationDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
 
         public IEnumerable<GPSTracker> GetTrackers()
         {

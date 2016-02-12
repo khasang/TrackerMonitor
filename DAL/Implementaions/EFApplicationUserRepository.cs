@@ -10,6 +10,13 @@ namespace DAL.Implementaions
 {
     class EFApplicationUserRepository : IApplicationUserRepository
     {
+        ApplicationDbContext dbContext;
+
+        public EFApplicationUserRepository(ApplicationDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public IEnumerable<ApplicationUser> GetUsers()
         {
             throw new NotImplementedException();
