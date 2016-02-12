@@ -3,10 +3,12 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebMVC.Json;
 using WebMVC.Models.TrackersViewModels;
 
 namespace WebMVC.Controllers
@@ -36,7 +38,7 @@ namespace WebMVC.Controllers
             if (trackerMasseges.Count() == 0)
                 trackerMasseges.Add(new GPSTrackerMessage()
                 {
-                    GPSTrackerId = "111111",
+                    GPSTrackerId = id,
                     Latitude = 55.69873893333814,
                     Longitude = 52.34677000002305
                 });
@@ -60,7 +62,12 @@ namespace WebMVC.Controllers
 
             var currenUserId = User.Identity.GetUserId();
 
-            GPSTracker tracker = new GPSTracker()
+            GPSTracker tracker = dbContext.GPSTrackers.FirstOrDefault(g => g.Id == model.Id);
+
+            if (tracker != null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            tracker = new GPSTracker()
             {
                 Id = model.Id,
                 Owner = dbContext.Users.Find(currenUserId).UserProfile,
@@ -71,7 +78,7 @@ namespace WebMVC.Controllers
             dbContext.GPSTrackers.Add(tracker);
             dbContext.SaveChanges();
 
-            return PartialView("~/Views/Trackers/TrackerListNode.cshtml", tracker);
+            return new JsonCamelCaseResult(model, JsonRequestBehavior.DenyGet);
         }
 
         public ActionResult Edit(string id)
@@ -117,7 +124,7 @@ namespace WebMVC.Controllers
 
             dbContext.SaveChanges();
 
-            return PartialView("TrackerListNode", tracker);
+            return new JsonCamelCaseResult(model, JsonRequestBehavior.DenyGet);
         }
 
         public ActionResult Map()
@@ -161,5 +168,27 @@ namespace WebMVC.Controllers
 
             return Json(id);
         }
+
+        public ActionResult GetLastLocation(string id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            GPSTracker tracker = dbContext.GPSTrackers.Find(id);
+
+            if (tracker == null)
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+            if (tracker.Owner.User.Id != User.Identity.GetUserId())
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
+            GPSTrackerMessage message = dbContext.GPSTrackerMessages.Where(m => m.GPSTrackerId == id).OrderBy(m => m.Time).First();
+            message.GPSTracker = null;
+
+            return new JsonCamelCaseResult(message, JsonRequestBehavior.AllowGet);
+        }
+
+
+
     }
 }

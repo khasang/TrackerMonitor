@@ -1,127 +1,153 @@
 ﻿@model DAL.Entities.UserProfile
+@using WebMVC.Helpers
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_PrivateLayout.cshtml";
 }
 
-<h2>Личный кабинет</h2>
-<hr />
+<script>
+    user = { id: '@Model.UserId', name: '@Model.Name' };
+    trackers = [];
 
-<fieldset>
-    <legend>Профайл</legend>
-    <div id="profile">
-        @Html.Partial("~/Views/PersonalArea/Details.cshtml", Model)
-    </div>
-</fieldset>
+    initialLocLat = 55.698647;
+    initialLocLng = 52.346526;
 
-<fieldset>
-    <legend>Трекеры</legend>
-    <div class="form-group">
-        @if (Model.GPSTrackers.Count != 0)
+    @if (Model.GPSTrackers.Count() != 0)
+    {
+        foreach (var tracker in Model.GPSTrackers)
         {
-            <ul class="unbulleted" id="tracker-list">
-                @foreach (var tracker in Model.GPSTrackers)
-                {
-                    @Html.Partial("~/Views/Trackers/TrackerListNode.cshtml", tracker)
-                }
-            </ul>
-            @*<table class="table table-bordered table-condensed">
-                <thead>
-                    <tr>
-                        <th class="text-center">Название</th>
-                        <th class="text-center">Действия</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <text>
+            trackers.push({ id: '@tracker.Id', name: '@tracker.Name', isSelected: false, marker: null });
+            </text>
+        }
+    }
+
+    antiForgeryToken = '@Html.GetAntiForgeryToken()'
+</script>
+
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+}
+
+@*<h2>Личный кабинет</h2>
+    <hr />
+
+    <fieldset>
+        <legend>Профайл</legend>
+        <div id="profile">
+            @Html.Partial("~/Views/PersonalArea/Details.cshtml", Model)
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Трекеры</legend>
+        <div class="form-group">
+            @if (Model.GPSTrackers.Count != 0)
+            {
+                <ul class="unbulleted" id="tracker-list">
                     @foreach (var tracker in Model.GPSTrackers)
-                {
-                        <tr class="text-center">
-                            <td>@tracker.Name</td>
-                            <td>
-                                <a href="@Url.Action("Index", "Trackers", new { trackers = Model.GPSTrackers.Where(x => x.Id == tracker.Id).ToList() })" class="btn btn-default btn-xs">
-                                    <span class="glyphicon glyphicon-eye-open"></span>
-                                </a>
-                                <a href="@Url.Action("Edit", "Trackers", new { id = tracker.Id })" class="btn btn-default btn-xs">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </a>
-                                <a href="@Url.Action("ConfirmDelete", "Trackers", new { id = tracker.Id })" class="btn btn-default btn-xs">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </a>
-                            </td>
-                        </tr>
+                    {
+                        @Html.Partial("~/Views/Trackers/TrackerListNode.cshtml", tracker)
                     }
-                </tbody>
-            </table>*@
-        }
-        else
-        {
-            <h4>На данный момент у вас отсутствуют трекеры. Нажмите "+", чтобы добавить трекер.</h4>
-        }
+                </ul>
+                @*<table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Название</th>
+                            <th class="text-center">Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var tracker in Model.GPSTrackers)
+                    {
+                            <tr class="text-center">
+                                <td>@tracker.Name</td>
+                                <td>
+                                    <a href="@Url.Action("Index", "Trackers", new { trackers = Model.GPSTrackers.Where(x => x.Id == tracker.Id).ToList() })" class="btn btn-default btn-xs">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a>
+                                    <a href="@Url.Action("Edit", "Trackers", new { id = tracker.Id })" class="btn btn-default btn-xs">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </a>
+                                    <a href="@Url.Action("ConfirmDelete", "Trackers", new { id = tracker.Id })" class="btn btn-default btn-xs">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h4>На данный момент у вас отсутствуют трекеры. Нажмите "+", чтобы добавить трекер.</h4>
+            }
 
+        </div>
+    </fieldset>
+    <div class="form-group">
+        <div id="register-tracker"></div>
+        <a class="btn btn-default"
+           href="@Url.Action("Register", "Trackers")"
+           id="register-tracker-btn"
+           data-ajax="true"
+           data-ajax-mode="replace"
+           data-ajax-update="#register-tracker"
+           data-ajax-success="hideRegisterTrackerBtn">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
     </div>
-</fieldset>
-<div class="form-group">
-    <div id="register-tracker"></div>
-    <a class="btn btn-default"
-       href="@Url.Action("Register", "Trackers")"
-       id="register-tracker-btn"
-       data-ajax="true"
-       data-ajax-mode="replace"
-       data-ajax-update="#register-tracker"
-       data-ajax-success="hideRegisterTrackerBtn">
-        <span class="glyphicon glyphicon-plus"></span>
-    </a>
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryajax")
-}
-
-<script>
-    function showRegisterTrackerBtn() {
-        $("#register-tracker").children().remove();
-        $("#register-tracker-btn").show();
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryajax")
     }
 
-    function hideRegisterTrackerBtn() {
-        $("#register-tracker-btn").hide();
-    }
-</script>
+    <script>
+        function showRegisterTrackerBtn() {
+            $("#register-tracker").children().remove();
+            $("#register-tracker-btn").show();
+        }
 
-<script>
-    function showTrackerNode(id) {
-        $("#tracker" + id).show()
-    }
+        function hideRegisterTrackerBtn() {
+            $("#register-tracker-btn").hide();
+        }
+    </script>
 
-    function hideTrackerNode(id) {
-        $("#tracker" + id).hide();
-    }
+    <script>
+        function showTrackerNode(id) {
+            $("#tracker" + id).show()
+        }
 
-    function removeTrackerNode(id) {
-        $("#delete-tracker" + id).remove();
-        $("#tracker" + id).remove();
-    }
+        function hideTrackerNode(id) {
+            $("#tracker" + id).hide();
+        }
 
-    function showConfirmMessage(id) {
-        $("#delete-tracker" + id).show();
-        hideTrackerNode(id);
-    }
+        function removeTrackerNode(id) {
+            $("#delete-tracker" + id).remove();
+            $("#tracker" + id).remove();
+        }
 
-    function hideConfirmMessage(id) {
-        $("#delete-tracker" + id).hide();
-        showTrackerNode(id);
-    }
-</script>
-<script>
-    function showTrackerEditForm(id) {
-        $("#edit-tracker" + id).show();
-        hideTrackerNode(id);
-    }
+        function showConfirmMessage(id) {
+            $("#delete-tracker" + id).show();
+            hideTrackerNode(id);
+        }
 
-    function hideTrackerEditForm(id) {
-        $("#edit-tracker" + id).hide();
-        showTrackerNode(id);
-    }
+        function hideConfirmMessage(id) {
+            $("#delete-tracker" + id).hide();
+            showTrackerNode(id);
+        }
+    </script>
+    <script>
+        function showTrackerEditForm(id) {
+            $("#edit-tracker" + id).show();
+            hideTrackerNode(id);
+        }
 
-</script>
+        function hideTrackerEditForm(id) {
+            $("#edit-tracker" + id).hide();
+            showTrackerNode(id);
+        }
+
+    </script>*@
 

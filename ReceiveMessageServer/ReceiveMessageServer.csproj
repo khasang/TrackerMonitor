@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ReceiveMessageServer</RootNamespace>
     <AssemblyName>ReceiveMessageServer</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -90,9 +91,9 @@
       <Project>{7a95cf0d-f891-4e66-9d8e-0680fec162a7}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UDPServer\UDPServer.csproj">
-      <Project>{dbad3094-c6fa-4a62-b807-bed3ae69fbc3}</Project>
-      <Name>UDPServer</Name>
+    <ProjectReference Include="..\NetServer\NetServer.csproj">
+      <Project>{d56f77ff-d088-4770-be29-94b5ba66d0d5}</Project>
+      <Name>NetServer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

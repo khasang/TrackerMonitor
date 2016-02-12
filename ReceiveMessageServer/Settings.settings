@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Port" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">9050</Value>
+      <Value Profile="(Default)">5000</Value>
     </Setting>
     <Setting Name="Host" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://localhost:3254</Value>
