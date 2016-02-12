@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    interface IGPSTrackerRepository
+    public interface IGPSTrackerRepository
     {
         IEnumerable<GPSTracker> GetTrackers();
         IEnumerable<GPSTracker> GetTrackersByUser(ApplicationUser user);

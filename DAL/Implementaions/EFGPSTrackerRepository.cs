@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementaions
 {
-    class EFGPSTrackerRepository : IGPSTrackerRepository
+    public class EFGPSTrackerRepository : IGPSTrackerRepository
     {
         ApplicationDbContext dbContext;
 

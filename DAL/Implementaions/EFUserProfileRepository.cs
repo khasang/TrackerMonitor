@@ -8,7 +8,7 @@ using DAL.Interfaces;
 
 namespace DAL.Implementaions
 {
-    class EFUserProfileRepository : IUserProfileRepository
+    public class EFUserProfileRepository : IUserProfileRepository
     {
         ApplicationDbContext dbContext;
 

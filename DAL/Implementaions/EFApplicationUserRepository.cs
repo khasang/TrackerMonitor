@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementaions
 {
-    class EFApplicationUserRepository : IApplicationUserRepository
+    public class EFApplicationUserRepository : IApplicationUserRepository
     {
         ApplicationDbContext dbContext;
 

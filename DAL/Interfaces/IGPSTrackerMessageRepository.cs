@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    interface IGPSTrackerMessageRepository
+    public interface IGPSTrackerMessageRepository
     {
         IEnumerable<GPSTrackerMessage> GetMessages();
         GPSTrackerMessage GetMessageById(int id);

@@ -8,7 +8,7 @@ using DAL.Interfaces;
 
 namespace DAL.Implementaions
 {
-    class EFGPSTrackerMessageRepository : IGPSTrackerMessageRepository
+    public class EFGPSTrackerMessageRepository : IGPSTrackerMessageRepository
     {
         ApplicationDbContext dbContext;
 

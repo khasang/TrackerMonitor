@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    interface IApplicationUserRepository
+    public interface IApplicationUserRepository
     {
         IEnumerable<ApplicationUser> GetUsers();
         ApplicationUser GetUserById(string id);

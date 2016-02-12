@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    interface IUserProfileRepository
+    public interface IUserProfileRepository
     {
         IEnumerable<UserProfile> GetUserProfiles();
         UserProfile GetUserProfile(string userProfileId);
