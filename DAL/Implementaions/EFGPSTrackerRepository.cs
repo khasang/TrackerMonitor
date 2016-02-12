@@ -2,6 +2,7 @@
 using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,52 +20,54 @@ namespace DAL.Implementaions
 
         public IEnumerable<GPSTracker> GetTrackersByUser(ApplicationUser user)
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackers.Where(t => t.OwnerId == user.Id);
         }
 
         public IEnumerable<GPSTracker> GetTrackersByUserId(string userId)
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackers.Where(t => t.OwnerId == userId);
         }
 
         public GPSTracker GetTrackerByMessage(GPSTrackerMessage message)
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackers.FirstOrDefault(t => t.Id == message.GPSTrackerId);
         }
 
         public GPSTracker GetTrackerByMessageId(int messageId)
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackers.FirstOrDefault(t => t.Id == dbContext.GPSTrackerMessages.Find(messageId).GPSTrackerId);
         }
 
         public IEnumerable<GPSTracker> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackers;
         }
 
         public GPSTracker GetById(string id)
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackers.Find(id);
         }
 
         public void Add(GPSTracker item)
         {
-            throw new NotImplementedException();
+            dbContext.GPSTrackers.Add(item);
         }
 
         public void Update(GPSTracker item)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(item).State = EntityState.Modified;
         }
 
         public void Delete(GPSTracker item)
         {
-            throw new NotImplementedException();
+            Delete(item.Id);
         }
 
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            GPSTracker tracker = GetById(id);
+            if (tracker != null)
+                dbContext.GPSTrackers.Remove(tracker);
         }
     }
 }

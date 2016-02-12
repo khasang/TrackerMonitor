@@ -9,8 +9,7 @@ namespace DAL.Interfaces
 {
     public interface IUserProfileRepository : IRepository<UserProfile, string>
     {
-        UserProfile GetUserProfile(string userProfileId);
-        UserProfile GetUserProfile(ApplicationUser user);
-        void AddUserProfile(UserProfile userProfile);
+        UserProfile GetByUser(ApplicationUser user);
+        UserProfile GetByUserId(string userId);
     }
 }

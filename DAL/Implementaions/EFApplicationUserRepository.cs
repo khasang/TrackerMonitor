@@ -19,25 +19,25 @@ namespace DAL.Implementaions
 
         public ApplicationUser GetUserByProfile(UserProfile userProfile)
         {
-            throw new NotImplementedException();
+            return dbContext.Users.Find(userProfile.UserId);
         }
 
         public ApplicationUser GetUserByTracker(GPSTracker tracker)
         {
-            throw new NotImplementedException();
+            return dbContext.Users.Find(tracker.OwnerId);
         }
 
         public IEnumerable<ApplicationUser> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.Users;
         }
 
         public ApplicationUser GetById(string id)
         {
-            throw new NotImplementedException();
+            return dbContext.Users.Find(id);
         }
 
-        public void Add(ApplicationUser item)
+        public void Add(ApplicationUser user)
         {
             throw new NotImplementedException();
         }

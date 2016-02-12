@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.Entities;
 using DAL.Interfaces;
+using System.Data.Entity;
 
 namespace DAL.Implementaions
 {
@@ -19,42 +20,44 @@ namespace DAL.Implementaions
 
         public IEnumerable<GPSTrackerMessage> GetMessagesOfTracker(GPSTracker tracker)
         {
-            throw new NotImplementedException();
+            return GetMessagesOfTracker(tracker.Id);
         }
 
         public IEnumerable<GPSTrackerMessage> GetMessagesOfTracker(string trackerId)
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackerMessages.Where(m => m.GPSTrackerId == trackerId);
         }
 
         public IEnumerable<GPSTrackerMessage> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackerMessages;
         }
 
         public GPSTrackerMessage GetById(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.GPSTrackerMessages.Find(id);
         }
 
         public void Add(GPSTrackerMessage item)
         {
-            throw new NotImplementedException();
+            dbContext.GPSTrackerMessages.Add(item);
         }
 
         public void Update(GPSTrackerMessage item)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(item).State = EntityState.Modified;
         }
 
         public void Delete(GPSTrackerMessage item)
         {
-            throw new NotImplementedException();
+            Delete(item.Id);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            GPSTrackerMessage message = GetById(id);
+            if (message != null)
+                dbContext.GPSTrackerMessages.Remove(message);
         }
     }
 }

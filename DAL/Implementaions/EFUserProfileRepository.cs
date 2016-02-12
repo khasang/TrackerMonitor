@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.Entities;
 using DAL.Interfaces;
+using System.Data.Entity;
 
 namespace DAL.Implementaions
 {
@@ -17,49 +18,46 @@ namespace DAL.Implementaions
             this.dbContext = dbContext;
         }
 
-        public UserProfile GetUserProfile(string userProfileId)
+        public UserProfile GetByUser(ApplicationUser user)
         {
-            throw new NotImplementedException();
+            return GetByUserId(user.Id);
         }
 
-        public UserProfile GetUserProfile(ApplicationUser user)
+        public UserProfile GetByUserId(string userId)
         {
-            throw new NotImplementedException();
-        }
-
-        public void AddUserProfile(UserProfile userProfile)
-        {
-            throw new NotImplementedException();
+            return dbContext.UserProfiles.Find(userId);
         }
 
         public IEnumerable<UserProfile> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.UserProfiles;
         }
 
         public UserProfile GetById(string id)
         {
-            throw new NotImplementedException();
+            return dbContext.UserProfiles.Find(id);
         }
 
         public void Add(UserProfile item)
         {
-            throw new NotImplementedException();
+            dbContext.UserProfiles.Add(item);
         }
 
         public void Update(UserProfile item)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(item).State = EntityState.Modified;
         }
 
         public void Delete(UserProfile item)
         {
-            throw new NotImplementedException();
+            Delete(item.UserId);
         }
 
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            UserProfile profile = GetById(id);
+            if (profile != null)
+                dbContext.UserProfiles.Remove(profile);
         }
     }
 }
