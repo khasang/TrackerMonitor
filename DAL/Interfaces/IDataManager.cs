@@ -11,7 +11,7 @@ namespace DAL.Interfaces
         IApplicationUserRepository Users { get; }
         IGPSTrackerRepository GPSTrackers { get; }
         IGPSTrackerMessageRepository GPSTrackerMessages { get; }
-        Task Save();
+        void Save();
         IUserProfileRepository UserProfiles { get; }
     }
 }

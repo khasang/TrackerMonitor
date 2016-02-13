@@ -21,7 +21,7 @@ namespace DAL
 
         public DataManager()
         {
-            dbContext = new ApplicationDbContext("DefaultConnection");
+            dbContext = new ApplicationDbContext();
         }
 
         public DataManager(string connectionString)
@@ -69,39 +69,39 @@ namespace DAL
             }
         }
 
-        public async Task Save()
-        {
-            bool success = false;
+        //public async Task Save()
+        //{
+        //    bool success = false;
 
-            do
-            {
-                try
-                {
-                    await dbContext.SaveChangesAsync();
+        //    do
+        //    {
+        //        try
+        //        {
+        //            await dbContext.SaveChangesAsync();
 
-                    success = true;
-                }
-                catch (DbUpdateException ex)
-                {
-                    foreach (DbEntityEntry entry in ex.Entries.Where(x => x.State == EntityState.Modified))
-                    {
-                        entry.CurrentValues.SetValues(entry.OriginalValues);
-                        entry.State = EntityState.Unchanged;
-                    }
+        //            success = true;
+        //        }
+        //        catch (DbUpdateException ex)
+        //        {
+        //            foreach (DbEntityEntry entry in ex.Entries.Where(x => x.State == EntityState.Modified))
+        //            {
+        //                entry.CurrentValues.SetValues(entry.OriginalValues);
+        //                entry.State = EntityState.Unchanged;
+        //            }
 
-                    foreach (DbEntityEntry entry in ex.Entries.Where(x => x.State == EntityState.Added))
-                    {
-                        entry.State = EntityState.Detached;
-                    }
+        //            foreach (DbEntityEntry entry in ex.Entries.Where(x => x.State == EntityState.Added))
+        //            {
+        //                entry.State = EntityState.Detached;
+        //            }
 
-                    foreach (DbEntityEntry entry in ex.Entries.Where(x => x.State == EntityState.Deleted))
-                    {
-                        entry.State = EntityState.Unchanged;
-                    }
-                }
+        //            foreach (DbEntityEntry entry in ex.Entries.Where(x => x.State == EntityState.Deleted))
+        //            {
+        //                entry.State = EntityState.Unchanged;
+        //            }
+        //        }
 
-            } while (!success);
-        }
+        //    } while (!success);
+        //}
 
         private bool disposed = false;
 
@@ -121,6 +121,12 @@ namespace DAL
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+
+        public void Save()
+        {
+            dbContext.SaveChanges();
         }
     }
 }
