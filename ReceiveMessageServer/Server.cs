@@ -1,5 +1,6 @@
 ﻿using DAL;
 using DAL.Entities;
+using DAL.Interfaces;
 using DAL.Logic;
 using Microsoft.AspNet.SignalR.Client;
 using NetServer;
@@ -15,7 +16,7 @@ namespace ReceiveMessageServer
     {
         UDPnet udpServer;
         TCPnet tcpServer;
-        ApplicationDbContext dbContext;
+        IDataManager dataManager;
 
         HubConnection hubConnection;
         IHubProxy hubProxy;
@@ -29,7 +30,7 @@ namespace ReceiveMessageServer
 
             try
             {
-                dbContext = new ApplicationDbContext("DefaultConnection");
+                dataManager = new DataManager();
             }
             catch (Exception ex)
             {
@@ -122,9 +123,9 @@ namespace ReceiveMessageServer
         {
             try
             {
-                lock (dbContext)
+                lock (dataManager)
                 {
-                    gpsMessage.GPSTracker = dbContext.GPSTrackers.FirstOrDefault(g => g.Id.Contains(gpsMessage.GPSTrackerId));
+                    gpsMessage.GPSTracker = dataManager.GPSTrackers.GetAll().FirstOrDefault(g => g.Id.Contains(gpsMessage.GPSTrackerId));
 
                     if (gpsMessage.GPSTracker == null)
                     {
@@ -132,8 +133,8 @@ namespace ReceiveMessageServer
                         Console.WriteLine("Не найден трекер с id = {0}", gpsMessage.GPSTrackerId);
                     }
 
-                    dbContext.GPSTrackerMessages.Add(gpsMessage);
-                    dbContext.SaveChanges();
+                    dataManager.GPSTrackerMessages.Add(gpsMessage);
+                    dataManager.Save();
                 }
             }
             catch (Exception ex)
@@ -166,8 +167,8 @@ namespace ReceiveMessageServer
 
         public void Dispose()
         {
-            if (dbContext != null)
-                dbContext.Dispose();
+            if (dataManager != null)
+                dataManager.Dispose();
         }
     }
 }
