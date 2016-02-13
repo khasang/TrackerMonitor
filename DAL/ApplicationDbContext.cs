@@ -18,7 +18,7 @@ namespace DAL
         public DbSet<UserProfile> UserProfiles { get; set; }
 
         public ApplicationDbContext()
-            : base("PrimaryConnection", throwIfV1Schema: false)
+            : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
