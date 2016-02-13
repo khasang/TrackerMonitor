@@ -13,12 +13,12 @@ namespace WebMVC.Controllers
     public class ShowMessagesController : BaseController
     {
 
-        UserManager<ApplicationUser> userManager;
+        //UserManager<ApplicationUser> userManager;
 
-        public ShowMessagesController()
-        {
-            userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(dbContext));
-        }
+        //public ShowMessagesController()
+        //{
+        //    userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(dbContext));
+        //}
 
 
         // GET: ShowMessagesController

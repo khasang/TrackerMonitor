@@ -10,7 +10,7 @@ namespace WebMVC.Controllers
 {
     public class BaseController : Controller
     {
-        protected ApplicationDbContext dbContext = new ApplicationDbContext();
+        //protected ApplicationDbContext dbContext = new ApplicationDbContext();
 
         protected IDataManager dataManager = new DataManager();
 
@@ -27,10 +27,10 @@ namespace WebMVC.Controllers
         {
             if (disposing)
             {
-                if (dbContext != null)
+                if (dataManager != null)
                 {
-                    dbContext.Dispose();
-                    dbContext = null;
+                    dataManager.Dispose();
+                    dataManager = null;
                 }
             }
             base.Dispose(disposing);
