@@ -1,5 +1,6 @@
 ﻿using DAL;
 using DAL.Entities;
+using DAL.Interfaces;
 using DAL.Logic;
 using Microsoft.AspNet.SignalR.Client;
 using NetServer;
@@ -26,7 +27,7 @@ namespace UDPTestUIWPF
         UDPDataModel udpModel;
         SettingModel settingModel;
 
-        ApplicationDbContext dbContext;
+        IDataManager dataManager;
 
         HubConnection hubConnection;
         IHubProxy hubProxy;
@@ -103,7 +104,7 @@ namespace UDPTestUIWPF
 
                 if(settingModel.WriteToDB == true)
                 {
-                    dbContext = new ApplicationDbContext("UDPTestConnection");  // Для возможности записи сообщений в базу 
+                    dataManager = new DataManager("UDPTestConnection");  // Для возможности записи сообщений в базу 
                 }
 
                 udpServer.StartReceiveAsync(udpModel.Port);
@@ -208,14 +209,14 @@ namespace UDPTestUIWPF
             {
                 try
                 {
-                    gpsMessage.GPSTracker = dbContext.GPSTrackers.Find(gpsMessage.GPSTrackerId);
+                    gpsMessage.GPSTracker = dataManager.GPSTrackers.GetById(gpsMessage.GPSTrackerId);
                     if (gpsMessage.GPSTracker == null)
                     {
                         udpModel.Message += "Tracker is not found!\n";
                     }
 
-                    dbContext.GPSTrackerMessages.Add(gpsMessage);
-                    dbContext.SaveChanges();
+                    dataManager.GPSTrackerMessages.Add(gpsMessage);
+                    dataManager.Save();
                 }
                 catch(Exception ex)
                 {
