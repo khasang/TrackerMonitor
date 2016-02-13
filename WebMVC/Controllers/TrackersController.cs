@@ -23,19 +23,19 @@ namespace WebMVC.Controllers
             var messages = new List<GPSTrackerMessage>();
             messages.Add(new GPSTrackerMessage()
                 {
-                    GPSTrackerId = id1 + "1",
+                    GPSTrackerId = id1 + "0",
                     Latitude = 54.69873893333814,
                     Longitude = 52.34677000002305
                 });
             messages.Add(new GPSTrackerMessage()
                 {
-                    GPSTrackerId = id2 + "2",
+                    GPSTrackerId = id2 + "1",
                     Latitude = 42.69873893333814,
                     Longitude = 52.34677000002305
                 });
             messages.Add(new GPSTrackerMessage()
                 {
-                    GPSTrackerId = id3+ "3",
+                    GPSTrackerId = id3+ "2",
                     Latitude = 99.69873893333814,
                     Longitude = 52.34677000002305
                 });
