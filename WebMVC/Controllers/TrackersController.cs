@@ -1,5 +1,7 @@
 ﻿using DAL.Entities;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +18,39 @@ namespace WebMVC.Controllers
     [Authorize]
     public class TrackersController : BaseController
     {
+        public string GetTrackers(string id1, string id2, string id3)
+        {
+            var messages = new List<GPSTrackerMessage>();
+            messages.Add(new GPSTrackerMessage()
+                {
+                    GPSTrackerId = id1 + "0",
+                    Latitude = 54.69873893333814,
+                    Longitude = 52.34677000002305
+                });
+            messages.Add(new GPSTrackerMessage()
+                {
+                    GPSTrackerId = id2 + "1",
+                    Latitude = 42.69873893333814,
+                    Longitude = 52.34677000002305
+                });
+            messages.Add(new GPSTrackerMessage()
+                {
+                    GPSTrackerId = id3+ "2",
+                    Latitude = 99.69873893333814,
+                    Longitude = 52.34677000002305
+                });
+
+            var settings = new JsonSerializerSettings();
+            settings.Converters.Add(new StringEnumConverter
+            {
+                CamelCaseText = true
+            });
+
+            var json = JsonConvert.SerializeObject(messages, Formatting.None, settings);
+
+            return json;
+        }
+
         public ActionResult Index(string id)
         {
             if (id == null)
