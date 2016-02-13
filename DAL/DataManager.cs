@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class UnitOfWork : IDisposable
+    public class DataManager : IDataManager
     {
         ApplicationDbContext dbContext;
 
@@ -19,12 +19,17 @@ namespace DAL
         IGPSTrackerRepository gpsTracker;
         IUserProfileRepository userProfile;
 
-        public UnitOfWork(string connectionString)
+        public DataManager()
+        {
+            dbContext = new ApplicationDbContext("DefaultConnection");
+        }
+
+        public DataManager(string connectionString)
         {
             dbContext = new ApplicationDbContext(connectionString);
         }
 
-        public IApplicationUserRepository ApplicationUser
+        public IApplicationUserRepository Users
         {
             get
             {
@@ -34,7 +39,7 @@ namespace DAL
             }
         }
 
-        public IGPSTrackerMessageRepository GPSTrackerMessage
+        public IGPSTrackerMessageRepository GPSTrackerMessages
         {
             get
             {
@@ -44,7 +49,7 @@ namespace DAL
             }
         }
 
-        public IGPSTrackerRepository GPSTracker
+        public IGPSTrackerRepository GPSTrackers
         {
             get
             {
@@ -54,7 +59,7 @@ namespace DAL
             }
         }
 
-        public IUserProfileRepository UserProfile
+        public IUserProfileRepository UserProfiles
         {
             get
             {

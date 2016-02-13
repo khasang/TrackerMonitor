@@ -21,7 +21,7 @@ namespace WebMVC.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            GPSTracker tracker = dbContext.GPSTrackers.Find(id);
+            GPSTracker tracker = dataManager.GPSTrackers.GetById(id);
 
             if (tracker == null)
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
@@ -29,8 +29,8 @@ namespace WebMVC.Controllers
             if (tracker.OwnerId != User.Identity.GetUserId())
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
-            ICollection<GPSTrackerMessage> trackerMasseges = dbContext.GPSTrackerMessages
-                                                                        .Where(m => m.GPSTrackerId == id)
+            ICollection<GPSTrackerMessage> trackerMasseges = dataManager.GPSTrackerMessages
+                                                                        .GetMessagesByTrackerId(id)
                                                                         .OrderByDescending(m => m.Id)
                                                                         .Take(10)
                                                                         .ToList();
@@ -62,7 +62,7 @@ namespace WebMVC.Controllers
 
             var currenUserId = User.Identity.GetUserId();
 
-            GPSTracker tracker = dbContext.GPSTrackers.FirstOrDefault(g => g.Id == model.Id);
+            GPSTracker tracker = dataManager.GPSTrackers.GetById(model.Id);
 
             if (tracker != null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -70,13 +70,13 @@ namespace WebMVC.Controllers
             tracker = new GPSTracker()
             {
                 Id = model.Id,
-                Owner = dbContext.Users.Find(currenUserId).UserProfile,
+                Owner = dataManager.Users.GetById(currenUserId).UserProfile,
                 PhoneNumber = model.PhoneNumber,
                 Name = model.Name
             };
 
-            dbContext.GPSTrackers.Add(tracker);
-            dbContext.SaveChanges();
+            dataManager.GPSTrackers.Add(tracker);
+            dataManager.Save();
 
             return new JsonCamelCaseResult(model, JsonRequestBehavior.DenyGet);
         }
@@ -86,7 +86,7 @@ namespace WebMVC.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            GPSTracker tracker = dbContext.GPSTrackers.Find(id);
+            GPSTracker tracker = dataManager.GPSTrackers.GetById(id);
 
             if (tracker == null)
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
@@ -111,7 +111,7 @@ namespace WebMVC.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            GPSTracker tracker = dbContext.GPSTrackers.Find(model.Id);
+            GPSTracker tracker = dataManager.GPSTrackers.GetById(model.Id);
 
             if (tracker == null)
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
@@ -122,7 +122,7 @@ namespace WebMVC.Controllers
             tracker.PhoneNumber = model.PhoneNumber;
             tracker.Name = model.Name;
 
-            dbContext.SaveChanges();
+            dataManager.Save();
 
             return new JsonCamelCaseResult(model, JsonRequestBehavior.DenyGet);
         }
@@ -137,7 +137,7 @@ namespace WebMVC.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            GPSTracker tracker = dbContext.GPSTrackers.Find(id);
+            GPSTracker tracker = dataManager.GPSTrackers.GetById(id);
 
             if (tracker == null)
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
@@ -155,7 +155,7 @@ namespace WebMVC.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            GPSTracker tracker = dbContext.GPSTrackers.Find(id);
+            GPSTracker tracker = dataManager.GPSTrackers.GetById(id);
 
             if (tracker == null)
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
@@ -163,8 +163,8 @@ namespace WebMVC.Controllers
             if (tracker.Owner.User.Id != User.Identity.GetUserId())
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
-            dbContext.GPSTrackers.Remove(tracker);
-            dbContext.SaveChanges();
+            dataManager.GPSTrackers.Delete(tracker);
+            dataManager.Save();
 
             return Json(id);
         }
@@ -174,7 +174,7 @@ namespace WebMVC.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            GPSTracker tracker = dbContext.GPSTrackers.Find(id);
+            GPSTracker tracker = dataManager.GPSTrackers.GetById(id);
 
             if (tracker == null)
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
@@ -182,7 +182,7 @@ namespace WebMVC.Controllers
             if (tracker.Owner.User.Id != User.Identity.GetUserId())
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
-            GPSTrackerMessage message = dbContext.GPSTrackerMessages.Where(m => m.GPSTrackerId == id).OrderBy(m => m.Time).First();
+            GPSTrackerMessage message = dataManager.GPSTrackerMessages.GetMessagesByTrackerId(id).OrderBy(m => m.Time).First();
             message.GPSTracker = null;
 
             return new JsonCamelCaseResult(message, JsonRequestBehavior.AllowGet);

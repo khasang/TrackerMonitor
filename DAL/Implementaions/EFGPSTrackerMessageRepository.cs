@@ -18,12 +18,12 @@ namespace DAL.Implementaions
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<GPSTrackerMessage> GetMessagesOfTracker(GPSTracker tracker)
+        public IEnumerable<GPSTrackerMessage> GetMessagesByTracker(GPSTracker tracker)
         {
-            return GetMessagesOfTracker(tracker.Id);
+            return GetMessagesByTrackerId(tracker.Id);
         }
 
-        public IEnumerable<GPSTrackerMessage> GetMessagesOfTracker(string trackerId)
+        public IEnumerable<GPSTrackerMessage> GetMessagesByTrackerId(string trackerId)
         {
             return dbContext.GPSTrackerMessages.Where(m => m.GPSTrackerId == trackerId);
         }

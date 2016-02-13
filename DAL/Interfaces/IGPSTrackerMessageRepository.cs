@@ -9,7 +9,7 @@ namespace DAL.Interfaces
 {
     public interface IGPSTrackerMessageRepository : IRepository<GPSTrackerMessage, int>
     {
-        IEnumerable<GPSTrackerMessage> GetMessagesOfTracker(GPSTracker tracker);
-        IEnumerable<GPSTrackerMessage> GetMessagesOfTracker(string trackerId);
+        IEnumerable<GPSTrackerMessage> GetMessagesByTracker(GPSTracker tracker);
+        IEnumerable<GPSTrackerMessage> GetMessagesByTrackerId(string trackerId);
     }
 }
