@@ -19,6 +19,7 @@ namespace WebMVC
                         "~/Scripts/jquery.unobtrusive-ajax.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery-landing").Include(
+                        "~/Scripts/bootstrap.js",
                         "~/Scripts/jquery.landing.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/reactjs").Include(
@@ -39,6 +40,7 @@ namespace WebMVC
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/bundles/landing-css").Include(
+                      "~/Content/bootstrap.css",
                       "~/Content/css/landing.css"));
 
             bundles.Add(new BabelBundle("~/bundles/main").Include(
