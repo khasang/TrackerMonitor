@@ -106,7 +106,7 @@ namespace WebMVC.Controllers // Hello
             {
                 ModelState.AddModelError("", "Неверный логин или пароль");
             }
-
+            
             return View(model);
         }
 
