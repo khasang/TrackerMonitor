@@ -251,6 +251,18 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\backgrounds\1%402x.jpg" />
+    <Content Include="Content\img\backgrounds\1.jpg" />
+    <Content Include="Content\img\backgrounds\background2.jpg" />
+    <Content Include="Content\img\Faces\user-01.jpg" />
+    <Content Include="Content\img\Faces\user-02.jpg" />
+    <Content Include="Content\img\Faces\user-03.jpg" />
+    <Content Include="Content\img\Landing\first.png" />
+    <Content Include="Content\img\Landing\gps-vehicle-tracking-splash.jpg" />
+    <Content Include="Content\img\Landing\tick.png" />
+    <Content Include="Content\img\Landing\whatyouget1.png" />
+    <Content Include="Content\img\logo%402x.png" />
+    <Content Include="Content\img\logo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -277,6 +289,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\img\.DS_Store" />
+    <Content Include="Content\img\backgrounds\.DS_Store" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="readme.txt" />
     <Content Include="Resources\babel.js" />
