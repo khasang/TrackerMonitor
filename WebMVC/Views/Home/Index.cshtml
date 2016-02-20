@@ -2,30 +2,189 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="row">
+    <div>
+        <section class="visual">
+            <div class="container">
+                <div class="text-block">
+                    <div class="heading-holder">
+                        <h1>GPSTrackers Monitor</h1>
+                    </div>
+                    <p class="tagline">Your personal Big Brother</p>
+                </div>
+            </div>
+            <img src="~/Content/img/Landing/first.png" style="bottom:270px; width:800px" alt="" class="bg-stretch">
+        </section>
+
+        <section class="main">
+            <div class="container">
+                <div id="cta">
+                    <a href="~/Account/Register" class="btn btn-primary rounded">Начать слежку прямо сейчас!</a>
+                </div>
+                <div class="row">
+                    <div class="text-box col-md-offset-1 col-md-10">
+                        <h2>Самый современный способ контроля местоположения объектов</h2>
+                        <p>Вы можете отслежевать местонахождение и перемещение любых интересующих Вас объектов, на которых установлен GPS-маячок. </p>
+                        <div class="social-placeholder"><img src="images/img-social-placeholder-01.png" height="26" width="365" alt=""></div> <!--Добавить ссылки на соц.сети!!!-->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <!--Левая колонка-->
+                        <ul class="visual-list">
+                            <li>
+                                <div class="img-holder">
+                                    <img src="~/Content/img/Landing/tick.png" width="110" alt="">
+                                </div>
+                                <div class="text-holder">
+                                    <h3>Отслежевание текущего положения GPS-трекеров</h3>
+                                    <p>Получите возможность отслеживать на карте положение зарегистрированных GPS-маячков в режиме реального времени.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="img-holder">
+                                    <img src="~/Content/img/Landing/tick.png" width="110" alt="">
+                                </div>
+                                <div class="text-holder">
+                                    <h3>История перемещения</h3>
+                                    <p>Получите возможность проследить траекторию движения своих устройства с GPS-маячками за указанный промежуток времени.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="img-holder">
+                                    <img src="~/Content/img/Landing/tick.png" width="110" alt="">
+                                </div>
+                                <div class="text-holder">
+                                    <h3>Интуитивно понятный интерфейс</h3>
+                                    <p>Наш сервис разработан для простых людей и содержит интуитивно понятный интерфейс. </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="img-holder">
+                                    <img src="~/Content/img/Landing/tick.png" width="110" alt="">
+                                </div>
+                                <div class="text-holder">
+                                    <h3>Мобильная версия сервиса</h3>
+                                    <p>Опробуйте мобильную версию нашего сервиса и отслеживайте меестоположение объектов в любом удобном для Вас месте. </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-7">
+                        <!--Правая колонка-->
+                        <div class="slide-holder">
+                            <h2 class="hidden-xs hidden-sm text-primary">Почему именно наш сервис?</h2>
+                            <div class="img-slide scroll-trigger"><img src="~/Content/img/Landing/whatyouget1.png" height="624" width="1184" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="main">
+            <div class="container" style="border:4px solid black;">
+                <div class="block-holder">
+                    <div class="block-frame">
+                        <div class="cycle-gallery">
+                            <div class="mask">
+                                <div class="slideset">
+                                    <p style="font-size:medium;"><strong>Отзывы наших пользователей</strong></p>
+                                    <div class="slide">
+                                        <div class="img-box">
+                                            <div class="img-holder"><img src="~/Content/img/Faces/user-01.jpg" height="85" width="85" alt=""></div>
+                                            <div class="text-holder">
+                                                <h3>Александр Степанов</h3>
+                                            </div>
+                                        </div>
+                                        <p> Спасибо! Отличный сервис!.</p>
+                                        <em class="date">2 hours ago</em>
+                                    </div>
+                                    <div class="slide">
+                                        <div class="img-box">
+                                            <div class="img-holder"><img src="~/Content/img/Faces/user-02.jpg" height="85" width="85" alt=""></div>
+                                            <div class="text-holder">
+                                                <h3>Андрей Иванов</h3>
+                                            </div>
+                                        </div>
+                                        <p> Очень удобный сервис. Регулярно пользуюсь для отслеживания перевозки грузов.</p>
+                                        <em class="date">5 hours ago</em>
+                                    </div>
+                                    <div class="slide">
+                                        <div class="img-box">
+                                            <div class="img-holder"><img src="~/Content/img/Faces/user-03.jpg" height="85" width="85" alt=""></div>
+                                            <div class="text-holder">
+                                                <h3>Денис Сидоров</h3>
+                                            </div>
+                                        </div>
+                                        <p>Отличный сервис. Очень удобный интерфейс и наличие мобильной версии является огромным плюсом!</p>
+                                        <em class="date">1 day ago</em>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="btn-prev" href="#"><i class="glyphicon glyphicon-menu-left"></i></a>
+                            <a class="btn-next" href="#"><i class="glyphicon glyphicon-menu-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="area">
+            <div class="container">
+                <div class="subscribe">
+                    <h3>Подпишитесь на наши новости</h3>
+                    <form class="form-inline">
+                        <button type="submit" class="btn btn-primary rounded">Подписаться</button>
+                        <div class="form-group">
+                            <input type="email" class="form-control rounded" id="exampleInputEmail2" placeholder="Email...">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <footer id="footer">
+            <div class="container">
+                <div class="footer-holder">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="logo"><a href="#"><img src="~/Content/img/logo.png" alt="GPSTrackers monitoring"></a></div>
+                        </div>
+                        <div class="col-md-2">
+                            <h4>Навигация</h4>
+                            <ul>
+                                <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
+                                <li>@Html.ActionLink("О программе", "About", "Home")</li>
+                                <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-holder">
+                                <strong class="phone"><a href="tel:3475677890">347 567 78 90</a></strong>
+                                <span class="available">Часы работы: 09:00 - 21:00</span>
+                                <h4>Россия, г. Москва</h4>
+                                <address>улица Пушкина, дом Колотушкина</address>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-frame">
+                                <h4>Info</h4>
+                                <p>Если у Вас появились вопросы по работе сервиса или есть предложения по поводу рекламы и сотрудничества, мы с удовольствием их рассмотрим. Наши контакты указаны в разделе <a href="~/Home/Contact">Контакты</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>    
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.main.js"></script>
+<script src="js/jquery.backstretch.js"></script>
+<script src="js/jquery.backstretch.min.js"></script>
+<script src="js/scripts.js"></script>
