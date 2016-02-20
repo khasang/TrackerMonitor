@@ -18,6 +18,9 @@ namespace WebMVC
             bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery-landing").Include(
+                        "~/Scripts/jquery.landing.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/reactjs").Include(
                       "~/Scripts/react.js",
                       "~/Scripts/react-dom.js"));
@@ -31,9 +34,12 @@ namespace WebMVC
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/landing-css").Include(
+                      "~/Content/css/landing.css"));
 
             bundles.Add(new BabelBundle("~/bundles/main").Include(
                 "~/Content/app/trackerSection.jsx",
