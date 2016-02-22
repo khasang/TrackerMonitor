@@ -18,6 +18,9 @@ namespace WebMVC
             bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                      "~/Scripts/jquery-ui-{version}.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/reactjs").Include(
                       "~/Scripts/react.js",
                       "~/Scripts/react-dom.js"));

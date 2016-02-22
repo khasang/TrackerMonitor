@@ -1,0 +1,23 @@
+﻿@model DAL.Entities.GPSTracker
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <h3>
+                        <span class="label label-danger">
+                            Удалить трекер @Model.Name ?
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <input class="btn btn-primary" type="submit" value="Да" />
+        <button class="btn btn-warning" data-dismiss="modal">Нет</button>
+    </div>
+}

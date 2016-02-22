@@ -1,0 +1,25 @@
+﻿@model DAL.Entities.GPSTrackerMessage
+
+@{
+    Layout = null;
+    string partialName;
+}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 class="modal-title">@ViewBag.ActionName</h3>
+</div>
+@{
+    partialName = (ViewBag.Selector != 0)?"_delete_form":"_user_form";
+}
+
+@Html.Partial(partialName,Model)
+
+@section scripts{
+<script>
+        //$("form").removeData("validator");
+        //$("form").removeData("unobtrusiveValidation");
+        //$.validator.unobtrusive.parse("form");
+</script>
+}
+

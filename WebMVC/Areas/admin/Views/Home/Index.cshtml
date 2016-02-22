@@ -1,0 +1,23 @@
+﻿
+
+@Styles.Render("~/Content/PagedList.css")
+
+@{
+    ViewBag.Title = "Администрирование";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Администрирование</h3>
+
+<aside class="sidebar col-sm-2" role="complementary">	
+        <ul class="nav nav-pills nav-stacked">
+            @*<li>@Ajax.ActionLink("Пользователи", "Index", "Users", new AjaxOptions { UpdateTargetId = "results" })</li>
+            <li>@Ajax.ActionLink("Профили","Index","UserProfiles",new AjaxOptions {UpdateTargetId ="results"})</li>
+            <li>@Ajax.ActionLink("Устройства", "Index", "GpsTrackers", new AjaxOptions { UpdateTargetId = "results" })</li>*@
+            <li>@Html.ActionLink("Пользователи", "Index", "Users")</li>
+            <li>@Html.ActionLink("Профили", "Index", "UserProfiles")</li>
+            <li>@Html.ActionLink("Устройства", "Index", "GpsTrackers")</li>
+            <li>@Html.ActionLink("Сообщения", "Index", "GpsTrackerMessages")</li>
+        </ul>
+</aside>
+

@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -11,7 +12,12 @@ namespace DAL.Entities
 {
     public class ApplicationUser : IdentityUser
     {
+        /// <summary>
+        /// Id профайла
+        /// </summary>
+        [Display(Name = "Id профайла")]
         public int UserProfileId { get; set; }
+
         public virtual UserProfile UserProfile { get; set; }
 
         public ApplicationUser()

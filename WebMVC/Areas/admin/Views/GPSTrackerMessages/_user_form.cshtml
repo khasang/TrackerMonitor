@@ -1,0 +1,51 @@
+﻿@model DAL.Entities.GPSTrackerMessage
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Id, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Id, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.Id)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Latitude, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Latitude, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.Latitude)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Longitude, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Longitude, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.Longitude)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => Model.GPSTrackerId, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.GPSTrackerId, new { @class = "form-control required" })
+                    <div>
+                        @Html.ValidationMessageFor(m => m.GPSTrackerId)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <input class="btn btn-primary" type="submit" value="Save" />
+        <button class="btn btn-warning" data-dismiss="modal">Close</button>
+    </div>
+}

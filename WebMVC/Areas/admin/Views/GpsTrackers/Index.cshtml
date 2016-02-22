@@ -1,0 +1,69 @@
+﻿@*@model IEnumerable<DAL.Entities.GPSTracker>*@
+@model PagedList.IPagedList<DAL.Entities.GPSTracker>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Трекеры";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("~/Areas/admin/Views/_back_button.cshtml")
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @ViewBag.Title
+        <a href="@Url.Action("Create","GpsTrackers",new { area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnCreate" style="float:right; width:20%;">
+            <span class="glyphicon glyphicon-plus"></span>Добавить
+        </a>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().OwnerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().PhoneNumber)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit","GpsTrackers", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnEdit" style="float:right">
+                        <span class="glyphicon glyphicon-apple"></span>Редактировать
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Delete","GpsTrackers", new { id = item.Id, area = "admin" },null)" class="btn btn-success btn-xs" data-modal="" id="btnDelete" style="float:right">
+                        <span class="glyphicon glyphicon-trash"></span>Удалить
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@Html.Partial("~/Areas/admin/Views/_modal_partial.cshtml")
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.Classic)
+
+@section scripts{
+    @Scripts.Render("~/Areas/admin/scripts/modal-partial.js")
+}

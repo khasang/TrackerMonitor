@@ -11,29 +11,21 @@ namespace DAL.DBInitializers
     {
         public override void Initialization(ApplicationDbContext context)
         {
+            Random r = new Random();
             var user = context.Users.FirstOrDefault(x => x.Email == "admin@admin.com");
 
-            context.GPSTrackers.Add(new GPSTracker()
+            for (int i = 0; i < 100; i++)
             {
-                Id = "111111",
-                Name = "Tracker1",
-                Owner = user.UserProfile
-            });
+                GPSTracker track = new GPSTracker()
+                {
+                    Id = Guid.NewGuid().ToString().Substring(0, 10),
+                    Name = string.Format("Трекер №{0}",i),
+                    Owner = user.UserProfile,
+                    IsActive = r.Next(5) > 2 ? true : false //Рандомно задаем активность трекера.
+                };
 
-            context.GPSTrackers.Add(new GPSTracker()
-            {
-                Id = "222222",
-                Name = "Tracker2",
-                Owner = user.UserProfile
-            });
-
-            context.GPSTrackers.Add(new GPSTracker()
-            {
-                Id = "11223344556677",
-                Name = "Tracker3",
-                Owner = user.UserProfile
-            });
-
+                context.GPSTrackers.Add(track);
+            }
             context.SaveChanges();
         }
     }
