@@ -232,7 +232,6 @@
     <Compile Include="App_Start\ReactConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Areas\admin\adminAreaRegistration.cs" />
     <Compile Include="Areas\admin\Common.cs" />
     <Compile Include="Areas\admin\Controllers\GpsTrackerMessagesController.cs" />
     <Compile Include="Areas\admin\Controllers\GpsTrackersController.cs" />
