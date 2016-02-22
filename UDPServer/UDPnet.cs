@@ -21,23 +21,26 @@ namespace UDPServer
         {
             using(udpClient = new UdpClient(port))
             {
+                Console.WriteLine(port);
                 stopReceive = false;
-                byte[] message;
 
                 try
                 {
-                    while (true)  // В цикле слушаем сообщения
+                    while(!stopReceive)
                     {
-                        message = (await udpClient.ReceiveAsync()).Buffer; // Ассинхронно ждем получение сообщения
+                        await udpClient.ReceiveAsync().ContinueWith((udpReceiveTask) =>
+                        {
+                            byte[] message = udpReceiveTask.Result.Buffer;
 
-                        eventReceivedMessage(this, new UDPMessage() { Message = message }); // Генерируем событие о получении сообщения.
-                        
-                        if (stopReceive == true) break;  // Если дана команда остановить поток, останавливаем бесконечный цикл.
+                            Task.Run(() =>
+                            {
+                                eventReceivedMessage(this, new UDPMessage() { Message = message });
+                            });
+                        });
                     }
                 }
                 catch (Exception ex)
                 {
-                    // Генерируем событие об ошибке приема сообщений!
                     eventReceivedError(this, new ErrorMessage { Message = ex.Message });
                 }
             }
@@ -93,11 +96,6 @@ namespace UDPServer
                 {
                     backMessage = "Error sending!";
                 }
-                //finally
-                //{
-                //    udpClient.Close();  // После окончания попытки отправки закрываем UDP соединение
-                //    backMessage += "Closed!";
-                //}
 
                 return backMessage;
             }            

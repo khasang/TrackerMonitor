@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="55f493f5-4ab7-4a76-9b3d-6df065f9de5f"
+  name="WebMVC"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="f61b7e03-216c-49a0-aab6-59abed7448ea"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DWebMVC"
+      tag="ViewCode" />
+  </referencesInternal>
+  <importedPackagesInternal>
+    <packageImport
+      Id="bbb83bdd-699b-403b-9442-5a1aec1d55d2"
+      visibility="Public">
+      <packageMoniker
+        Id="9a8fd295-f41e-4f8a-ae2c-26962f20487b"
+        LastKnownName="DAL"
+        LastKnownLocation="Package3_0334.uml" />
+    </packageImport>
+  </importedPackagesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="ea062226-2be1-4903-a77a-42afa51b3a1a"
+        LastKnownName="WebMVC:Hub"
+        LastKnownLocation="Package_2015.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="e9a9c8df-055e-4426-bc24-b0eb8c83f2eb"
+        LastKnownName="Hubs"
+        LastKnownLocation="Package1_2015.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="09e06c5e-d3a6-4b46-b2e9-36ffa6275260"
+        name="MVC framework"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="96f6bb8b-9540-4dbe-81e1-862a56e9e180">
+            <classMoniker
+              Id="38bbd6d8-0123-4f92-a18b-76d6b14218fd"
+              LastKnownName="PushNotify"
+              LastKnownLocation="Package_2015.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="bdc6687a-dd83-4219-b6e7-1d1c01330b09"
+            isDerived="false"
+            sourceEndRoleName="Model"
+            targetEndRoleName="ApplicationDbContext"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="50c915cb-02df-470e-bcff-e97f9bf05eb8"
+              LastKnownName="ApplicationDbContext"
+              LastKnownLocation="Package3_0334.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f4c12eaf-05ee-4415-ad1b-8559ef003992"
+                  name="Model"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="288c894b-ce32-477a-9ca8-0fe98f584e1d"
+                  name="ApplicationDbContext"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="8536ccc1-a4a4-4663-b44b-9eb5bb586e9b"
+            name="Controllers"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="6ebc9919-ed3c-4ec3-a43d-a287408bd456"
+            name="Models"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="2ee6bbeb-1756-4284-9868-ccaa1fa7b370"
+            name="Views"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="8cdd4595-87b1-4b19-a2e7-07537f95939b"
+            name="Application_Start"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

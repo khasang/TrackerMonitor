@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using WebMVC.Models.PersonalAreaViewModels;
+using WebMVC.Json;
 
 namespace WebMVC.Controllers
 {
@@ -19,18 +20,18 @@ namespace WebMVC.Controllers
             string currentUserId = User.Identity.GetUserId();
 
             // Профайл текущего пользователя
-            UserProfile model = dbContext.UserProfiles.FirstOrDefault(x => x.User.Id == currentUserId);
+            UserProfile model = dataManager.UserProfiles.GetById(currentUserId);
 
             // Если в личный кабинет пользователь заходит первый раз и профайла у него еще нет, то его надо создать
             if (model == null)
             {
                 model = new UserProfile()
                 {
-                    User = dbContext.Users.FirstOrDefault(x => x.Id == currentUserId)
+                    User = dataManager.Users.GetById(currentUserId)
                 };
 
-                dbContext.UserProfiles.Add(model);
-                dbContext.SaveChanges();
+                dataManager.UserProfiles.Add(model);
+                dataManager.Save();
             }
 
             return View(model);
@@ -38,14 +39,14 @@ namespace WebMVC.Controllers
 
         public ActionResult Details()
         {
-            UserProfile profile = dbContext.UserProfiles.Find(User.Identity.GetUserId());
+            UserProfile profile = dataManager.UserProfiles.GetById(User.Identity.GetUserId());
 
             return View(profile);
         }
 
         public ActionResult Edit()
         {
-            UserProfile profile = dbContext.UserProfiles.Find(User.Identity.GetUserId());
+            UserProfile profile = dataManager.UserProfiles.GetById(User.Identity.GetUserId());
 
             EditViewModel model = new EditViewModel();
 
@@ -59,15 +60,15 @@ namespace WebMVC.Controllers
         public ActionResult Edit(EditViewModel model)
         {
             if (!ModelState.IsValid)
-                return View(model);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            UserProfile profile = dbContext.UserProfiles.Find(User.Identity.GetUserId());
+            UserProfile profile = dataManager.UserProfiles.GetById(User.Identity.GetUserId());
 
             profile.Name = model.Name;
 
-            dbContext.SaveChanges();
+            dataManager.Save();
 
-            return View("Details", profile);
+            return new JsonCamelCaseResult(model, JsonRequestBehavior.DenyGet);
         }
     }
 }

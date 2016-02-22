@@ -13,20 +13,20 @@ namespace WebMVC.Controllers
     public class ShowMessagesController : BaseController
     {
 
-        UserManager<ApplicationUser> userManager;
+        //UserManager<ApplicationUser> userManager;
 
-        public ShowMessagesController()
-        {
-            userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(dbContext));
-        }
+        //public ShowMessagesController()
+        //{
+        //    userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(dbContext));
+        //}
 
 
         // GET: ShowMessagesController
         public ActionResult Index()
         {
-            string ownerId = User.Identity.GetUserId();
+            string userId = User.Identity.GetUserId();
 
-            SelectList trackers = new SelectList(dbContext.UserProfiles.Find(ownerId).GPSTrackers, "Id", "Name");
+            SelectList trackers = new SelectList(dataManager.UserProfiles.GetById(userId).GPSTrackers, "Id", "Name");
 
             ViewBag.trackers = trackers;
 
@@ -38,14 +38,13 @@ namespace WebMVC.Controllers
         {
             ownerId = User.Identity.GetUserId();
 
-            SelectList trackers = new SelectList(dbContext.UserProfiles.Find(ownerId).GPSTrackers, "Id", "Name");
+            SelectList trackers = new SelectList(dataManager.UserProfiles.GetById(ownerId).GPSTrackers, "Id", "Name");
 
             ViewBag.trackers = trackers;
 
-            filterMessage.Messages = dbContext
+            filterMessage.Messages = dataManager
                                     .GPSTrackers
-                                    .Find(filterMessage
-                                    .Id)
+                                    .GetById(filterMessage.Id)
                                     .GPSTrackerMessages
                                     .Where(x => (x.Time < filterMessage.SecondDate && x.Time > filterMessage.FirstDate))
                                     .ToList();

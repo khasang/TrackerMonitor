@@ -1,7 +1,9 @@
 ﻿using DAL;
 using DAL.Entities;
+using DAL.Interfaces;
 using DAL.Logic;
 using Microsoft.AspNet.SignalR.Client;
+using NetServer;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,7 +13,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using UDPServer;
+
 
 namespace UDPTestUIWPF
 {
@@ -25,7 +27,7 @@ namespace UDPTestUIWPF
         UDPDataModel udpModel;
         SettingModel settingModel;
 
-        ApplicationDbContext dbContext;
+        IDataManager dataManager;
 
         HubConnection hubConnection;
         IHubProxy hubProxy;
@@ -102,7 +104,7 @@ namespace UDPTestUIWPF
 
                 if(settingModel.WriteToDB == true)
                 {
-                    dbContext = new ApplicationDbContext("UDPTestConnection");  // Для возможности записи сообщений в базу 
+                    dataManager = new DataManager("UDPTestConnection");  // Для возможности записи сообщений в базу 
                 }
 
                 udpServer.StartReceiveAsync(udpModel.Port);
@@ -190,7 +192,7 @@ namespace UDPTestUIWPF
         /// </summary>
         private void OnShowReceivedMessage(object sender, EventArgs e)
         {
-            UDPMessage message = e as UDPMessage;
+            NetMessage message = e as NetMessage;
             if (message == null)
                 return;   // Здесь можно ввести обработку ошибки
 
@@ -207,14 +209,14 @@ namespace UDPTestUIWPF
             {
                 try
                 {
-                    gpsMessage.GPSTracker = dbContext.GPSTrackers.Find(gpsMessage.GPSTrackerId);
+                    gpsMessage.GPSTracker = dataManager.GPSTrackers.GetById(gpsMessage.GPSTrackerId);
                     if (gpsMessage.GPSTracker == null)
                     {
                         udpModel.Message += "Tracker is not found!\n";
                     }
 
-                    dbContext.GPSTrackerMessages.Add(gpsMessage);
-                    dbContext.SaveChanges();
+                    dataManager.GPSTrackerMessages.Add(gpsMessage);
+                    dataManager.Save();
                 }
                 catch(Exception ex)
                 {

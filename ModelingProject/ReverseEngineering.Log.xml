@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///E:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 12.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Журнал создания кода/преобразования текста">
+  <MessageClass Name="Message" Label="Сообщение" Option="Показывать информационные сообщения" />
+  <MessageClass Name="Warning" Label="Предупреждение" Option="Показывать предупреждения" />
+  <MessageClass Name="Error" Label="Ошибка" Option="Показывать ошибки" />
+  <MessageClass Name="Property" Label="Свойство" Option="Показывать метаданные" />
+  <MessageClass Name="Diagnostic" Label="Сообщение" Option="Показывать диагностические сообщения" />
+  <Message Timestamp="2016-01-13T20:15:10" Importance="High" Text="Реконструирование запущено." />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::DAL&quot; -  (Package)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::DAL::ApplicationDbContext&quot; -  (Class)   (реконструирован частично - определение не обновлено) " />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::DAL::Entities&quot; -  (Package)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::DAL::Entities::GPSTrackerMessage&quot; -  (Class)   (реконструирован частично - определение не обновлено) " />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::Microsoft&quot; -  (Package)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::Microsoft::AspNet&quot; -  (Package)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::Microsoft::AspNet::SignalR&quot; -  (Package)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::Microsoft::AspNet::SignalR::Hub&quot; -  (Class)   (реконструирован частично - определение не обновлено) " />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::System&quot; -  (Package)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::System::Threading&quot; -  (Package)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::System::Threading::Tasks&quot; -  (Package)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::System::Threading::Tasks::Task&quot; -  (Class)   (реконструирован частично - определение не обновлено) " />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::WebMVC&quot; -  (Package)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::WebMVC::Hubs&quot; -  (Package)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Medium" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::WebMVC::Hubs::PushNotify&quot; -  (Class)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::WebMVC::Hubs::PushNotify::dbContext&quot; -  (Property)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::WebMVC::Hubs::PushNotify::OnConnected&quot; -  (Operation)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::WebMVC::Hubs::PushNotify::PushNotify&quot; -  (Operation)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::WebMVC::Hubs::PushNotify::SendNewMessage&quot; -  (Operation)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Элемент реконструирован в модели UML: &quot;ModelingProject::WebMVC::Hubs::PushNotify::SendNewMessage::message&quot; -  (Parameter)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Отношение реконструировано в модели UML: ModelingProject::WebMVC::Hubs::PushNotify в ModelingProject::Microsoft::AspNet::SignalR::Hub (Generalization)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Отношение реконструировано в модели UML: ModelingProject::System::Threading::Tasks::Task в ModelingProject::System::IDisposable (InterfaceRealization)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="Diagnostic" Text="Отношение реконструировано в модели UML: ModelingProject::Microsoft::AspNet::SignalR::Hub в ModelingProject::System::IDisposable (InterfaceRealization)" />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="High" Text="Полностью реконструировано (1) типов." />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="High" Text="Частично реконструировано (4) типов.  Эти типы не были включены в исходный выбор, поэтому их полные определения не реконструированы.  Данная пустая операция лишь проверила наличие этих типов в модели UML, поскольку они необходимы для полного описания других элементов." />
+  <Message Timestamp="2016-01-13T20:15:12" Importance="High" Text="Операция реконструирования завершена; ошибок: (0), предупреждений: (0)." />
+</Log>
