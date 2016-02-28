@@ -39,9 +39,8 @@ namespace WebMVC
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/bundles/landing-css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/css/landing.css"));
+            //bundles.Add(new StyleBundle("~/Content/landing-css").Include(
+            //            "~/Content/css/landing.css"));
 
             bundles.Add(new BabelBundle("~/bundles/main").Include(
                 "~/Content/app/trackerSection.jsx",

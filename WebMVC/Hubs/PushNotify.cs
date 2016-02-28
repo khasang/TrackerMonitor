@@ -1,25 +1,15 @@
-﻿using DAL;
-using DAL.Entities;
+﻿using DAL.Entities;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.SignalR;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Diagnostics;
 
 namespace WebMVC.Hubs
 {
     /// <summary>
     /// Класс для работы с SignalR
     /// </summary>
-    //[Authorize]
     public class PushNotify : Hub
     {
-        //[Authorize]
         public void SendNewMessage(GPSTrackerMessage message)
         {
             Clients.Group(message.GPSTracker.OwnerId).ShowMessage(message);
@@ -28,7 +18,7 @@ namespace WebMVC.Hubs
         /// <summary>
         /// Коннект нового пользователя, добавление новой группы с ConnectionId
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Task</returns>
         public override Task OnConnected()
         {
             if (Context.User.Identity.IsAuthenticated)
